@@ -1,0 +1,75 @@
+{
+  "name": "ts-import-view",
+  "version": "0.0.1",
+  "description": "import view",
+  "keywords": [],
+  "homepage": "https://github.com/Himenon/ts-import-view#readme",
+  "bugs": {
+    "url": "https://github.com/Himenon/ts-import-view/issues"
+  },
+  "repository": "Himenon/ts-import-view",
+  "license": "MIT",
+  "author": {
+    "name": "Himenon",
+    "email": "k.himeno314@gmail.com",
+    "url": "https://github.com/Himenon"
+  },
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "yarn run clean && tsc -p ./tsconfig.build.json",
+    "ci:notify:release": "ts-node ./scripts/notify.ts",
+    "clean": "rimraf ./lib",
+    "cli": "node ./lib/cli.js",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
+    "develop": "yarn run build -- --watch",
+    "format": "prettier --config .prettierrc --write src/*.{ts,tsx}",
+    "lint": "eslint -c ./.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint:fix": "yarn run lint -- --fix",
+    "server": "node ./lib/server.js",
+    "start": "yarn run develop",
+    "test": "yarn run cruiser && yarn run test:jest",
+    "test:ci": "yarn run test && codecov",
+    "test:jest": "jest -c ./jest.config.json",
+    "test:watch": "yarn run test:jest -- --watch",
+    "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
+    "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
+    "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.0",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "codecov": "^3.3.0",
+    "dependency-cruiser": "^4.15.1",
+    "eslint": "^5.16.0",
+    "generate-changelog": "^1.7.1",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1",
+    "jest-cli": "^24.7.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "sort-package-json": "^1.22.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.4.2"
+  }
+}

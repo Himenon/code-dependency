@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint:latest",
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    "no-string-throw": true,
+    "no-unused-expression": true,
+    "no-duplicate-variable": true,
+    "curly": true,
+    "class-name": true,
+    "triple-equals": true,
+    "indent": [true, "spaces", 2],
+    "max-line-length": [true, 120],
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "no-require-imports": false,
+    "no-var-requires": false,
+    "semicolon": [false, "always"],
+    "no-console": [false, "log", "debug", "info", "error"],
+    "no-implicit-dependencies": [false, "optional"],
+    "interface-name": [true, "never-prefix"],
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": [false, "match-declaration-order"],
+    "trailing-comma": false,
+    "rulesDirectory": [
+      "tslint-plugin-prettier"
+    ],
+    "prettier": [true, {
+      "useTabs": false,
+      "printWidth": 140,
+      "tabWidth": 2,
+      "singleQuote": false,
+      "trailingComma": "all",
+      "jsxBracketSameLine": false,
+      "parser": "typescript",
+      "bracketSpacing": true,
+      "semi": true
+    }]
+  }
+}

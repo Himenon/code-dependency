@@ -19,7 +19,7 @@ const main = () => {
   const args = executeCommandLine();
   if (args.file) {
     const inputTsFile = path.resolve(process.cwd(), path.normalize(args.file));
-    const result = TsImportView.Extract.getDeps(inputTsFile);
+    const result = TsImportView.execute(inputTsFile);
     console.log(result);
   }
 };

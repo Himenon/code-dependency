@@ -2,6 +2,11 @@ export type DependencyTypes = "local" | "core" | "npm-dev";
 
 export type ModuleSystem = "cjs" | "amd" | "es6" | "tsd";
 
+export interface ExtractObject {
+  module: string;
+  moduleSystem: ModuleSystem;
+}
+
 export interface Dependency {
   /** full path */
   resolved: string;

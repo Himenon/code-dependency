@@ -1,47 +1,51 @@
-import * as fs from "fs";
+import { ExtractObject } from "@my/types";
 import * as ts from "typescript";
 
-const getASTFromSource = (filename: string): ts.SourceFile => {
-  return ts.createSourceFile(
-    filename || "$internal-file-name",
-    fs.readFileSync(filename, { encoding: "utf-8" }),
-    ts.ScriptTarget.Latest,
-    false,
-  );
+const NOT_EXTRACT_OBJECT = false;
+
+type NotExtractObject = typeof NOT_EXTRACT_OBJECT;
+
+const isExtractObject = (input: ExtractObject | NotExtractObject): input is ExtractObject => {
+  return input !== NOT_EXTRACT_OBJECT;
 };
 
-const extractImportsAndExports = (ast: ts.SourceFile): string[] => {
+const extractImportsAndExports = (ast: ts.SourceFile): ExtractObject[] => {
   return ast.statements
     .filter(statement => {
       return ts.SyntaxKind.ImportDeclaration === statement.kind || ts.SyntaxKind.ExportDeclaration === statement.kind;
     })
-    .map(statement => {
+    .map<ExtractObject | NotExtractObject>(statement => {
       if (ts.isImportDeclaration(statement)) {
-        // @ts-ignore FIXME どうして生えていない？
-        return statement.moduleSpecifier.text;
+        return {
+          // @ts-ignore FIXME どうして生えていない？
+          module: statement.moduleSpecifier.text as string,
+          moduleSystem: "cjs",
+        };
       }
-      return;
+      return NOT_EXTRACT_OBJECT;
     })
-    .filter(Boolean);
+    .filter(isExtractObject);
 };
 
-const extractImportEquals = (ast: ts.SourceFile): string[] => {
+const extractImportEquals = (ast: ts.SourceFile): ExtractObject[] => {
   return ast.statements
     .filter(statement => {
       return ts.SyntaxKind.ImportEqualsDeclaration === statement.kind;
     })
-    .map(statement => {
+    .map<ExtractObject | NotExtractObject>(statement => {
       if (ts.isImportEqualsDeclaration(statement)) {
         if (statement.moduleReference.kind === ts.SyntaxKind.Identifier) {
-          return statement.moduleReference.text;
+          return {
+            module: statement.moduleReference.text,
+            moduleSystem: "cjs",
+          };
         }
       }
-      return "";
+      return NOT_EXTRACT_OBJECT;
     })
-    .filter(Boolean);
+    .filter(isExtractObject);
 };
 
-export const getDeps = (filename: string) => {
-  const ast = getASTFromSource(filename);
+export const getDeps = (ast: ts.SourceFile): ExtractObject[] => {
   return [...extractImportsAndExports(ast), ...extractImportEquals(ast)];
 };

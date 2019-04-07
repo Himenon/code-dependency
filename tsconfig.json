@@ -24,10 +24,11 @@
     "baseUrl": "./",
     "noLib": false,
     "declaration": true,
-    "jsx": "react"
-  },
+    "jsx": "react",
+
   "paths": {
-    "@types": ["./src//types/index.ts"]
+    "@my/types": ["./src/types/index.ts"]
+  },
   },
   "include": [
     "src/**/*.ts",

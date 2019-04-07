@@ -27,7 +27,7 @@
     "build": "yarn run clean && tsc -p ./tsconfig.build.json",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib",
-    "cli": "node ./lib/cli.js",
+    "cli": "node ./lib/cli/index.js -f ./src/index.ts",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",
@@ -44,10 +44,14 @@
     "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^2.20.0",
+    "typescript": "^3.4.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
+    "@types/commander": "^2.12.2",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.0",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
@@ -69,7 +73,6 @@
     "tslint": "^5.15.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.4.2"
+    "tslint-plugin-prettier": "^2.0.1"
   }
 }

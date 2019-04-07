@@ -26,6 +26,9 @@
     "declaration": true,
     "jsx": "react"
   },
+  "paths": {
+    "@types": ["./src//types/index.ts"]
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"

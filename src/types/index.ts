@@ -3,7 +3,7 @@ export interface Options {
   executeDirectory: string;
 }
 
-export type DependencyTypes = "local" | "core" | "npm-dev";
+export type DependencyTypes = "local" | "core" | "npm" | "npm-dev";
 
 export type ModuleSystem = "cjs" | "amd" | "es6" | "tsd";
 
@@ -17,9 +17,17 @@ export interface DevelopDependency extends ExtractObject {
   resolved: string;
 }
 
+export interface ResolvedModule {
+  resolved: string;
+  module: string;
+  moduleSystem: ModuleSystem;
+  coreModule: boolean;
+  couldNotResolve?: boolean;
+}
+
 export interface Dependency {
   /** full path */
-  resolved: string;
+  resolved?: string;
   /** Node Library */
   coreModule: boolean;
   /** User searched file. */

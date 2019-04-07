@@ -15,11 +15,12 @@ const executeCommandLine = (): CliReturnValue => {
   return commander as CliReturnValue;
 };
 
-const main = () => {
+const main = async () => {
   const args = executeCommandLine();
   if (args.file) {
-    const inputTsFile = path.resolve(process.cwd(), path.normalize(args.file));
-    const result = TsImportView.execute(inputTsFile);
+    const source = path.resolve(process.cwd(), path.normalize(args.file));
+    const executeDirectory = process.cwd();
+    const result = await TsImportView.execute({ source, executeDirectory });
     console.log(result);
   }
 };

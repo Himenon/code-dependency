@@ -1,3 +1,8 @@
+export interface Options {
+  source: string;
+  executeDirectory: string;
+}
+
 export type DependencyTypes = "local" | "core" | "npm-dev";
 
 export type ModuleSystem = "cjs" | "amd" | "es6" | "tsd";
@@ -5,6 +10,11 @@ export type ModuleSystem = "cjs" | "amd" | "es6" | "tsd";
 export interface ExtractObject {
   module: string;
   moduleSystem: ModuleSystem;
+}
+
+/** 開発途上用 */
+export interface DevelopDependency extends ExtractObject {
+  resolved: string;
 }
 
 export interface Dependency {

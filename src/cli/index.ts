@@ -1,3 +1,4 @@
+import * as Types from "@my/types";
 import * as commander from "commander";
 import * as path from "path";
 import * as TsImportView from "../";
@@ -17,10 +18,14 @@ const executeCommandLine = (): CliReturnValue => {
 
 const main = async () => {
   const args = executeCommandLine();
+  const options: Types.ResolveOption = {
+    bustTheCache: true,
+    alias: {},
+  };
   if (args.file) {
     const source = path.resolve(process.cwd(), path.normalize(args.file));
     const executeDirectory = process.cwd();
-    const result = await TsImportView.execute({ source, executeDirectory });
+    const result = await TsImportView.execute({ source, executeDirectory }, options);
     console.log(result);
   }
 };

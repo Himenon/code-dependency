@@ -19,7 +19,7 @@
     "class-name": true,
     "triple-equals": true,
     "indent": [true, "spaces", 2],
-    "max-line-length": [true, 120],
+    "max-line-length": [true, 140],
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,

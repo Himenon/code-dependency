@@ -1,9 +1,16 @@
+import * as enhancedResolve from "enhanced-resolve";
+
 export interface Options {
   source: string;
   executeDirectory: string;
 }
 
-export type DependencyTypes = "local" | "core" | "npm" | "npm-dev";
+export interface ResolveOption extends enhancedResolve.ResolverFactory.ResolverOption {
+  bustTheCache: boolean;
+  alias: {};
+}
+
+export type DependencyTypes = "local" | "core" | "npm" | "npm-dev" | "undetermined";
 
 export type ModuleSystem = "cjs" | "amd" | "es6" | "tsd";
 
@@ -41,7 +48,7 @@ export interface Dependency {
   /** */
   moduleSystem: ModuleSystem;
   /** search target? */
-  matchesDoNotFollow: false;
+  matchesDoNotFollow: boolean;
   /** License */
   license?: string;
 }

@@ -46,16 +46,20 @@
   },
   "dependencies": {
     "commander": "^2.20.0",
+    "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
+    "resolve": "^1.10.0",
     "typescript": "^3.4.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@types/commander": "^2.12.2",
+    "@types/enhanced-resolve": "^3.0.6",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.0",
     "@types/recursive-readdir": "^2.2.0",
+    "@types/resolve": "^0.0.8",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/eslint-plugin-tslint": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",

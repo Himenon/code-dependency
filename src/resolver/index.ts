@@ -1,30 +1,64 @@
-import { Dependency, DevelopDependency, Options, ResolvedModule } from "@my/types";
+import * as Types from "@my/types";
 import * as fs from "fs";
 import * as path from "path";
+import { resolveCommonJS } from "./resolved-commonjs";
+
+interface Resolve {
+  resolved: string;
+  coreModule: boolean;
+  followable: boolean;
+  couldNotResolve: boolean;
+  dependencyTypes: Types.DependencyTypes[];
+}
 
 const isRelativeModuleName = (pString: string) => pString.startsWith(".");
 
-const resolveModule = (pDependency: DevelopDependency, pBaseDir: string, pFileDir: string, pResolveOptions: Options): ResolvedModule => {
-  let lRetval = null;
-
-  if (isRelativeModuleName(pDependency.module) || ["cjs", "es6"].indexOf(pDependency.moduleSystem) > -1) {
-    lRetval = resolveCommonJS(pDependency.module, pBaseDir, pFileDir, pResolveOptions);
+const resolveModule = (
+  dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
+  baseDir: string,
+  fileDir: string,
+  resolveOption: Types.ResolveOption,
+): Resolve => {
+  if (isRelativeModuleName(dependency.moduleName) || dependency.moduleSystem in ["cjs", "es6"]) {
+    return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
   } else {
-    lRetval = resolveAMD(pDependency.module, pBaseDir, pFileDir, pResolveOptions);
+    // lRetval = resolveAMD(pDependency.module, pBaseDir, pFileDir, pResolveOptions);
+    return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
   }
-  return lRetval;
 };
 
-export const resolve = (pDependency: DevelopDependency, pBaseDir: string, pFileDir: string, pResolveOptions: Options): Dependency => {
-  const lResolvedModule = resolveModule(pDependency, pBaseDir, pFileDir, pResolveOptions);
+/**
+ * ここではDependencyを解決する
+ */
+export const resolve = (
+  dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
+  baseDir: string,
+  pFileDir: string,
+  resolveOption: Types.ResolveOption,
+): Resolve => {
+  const resolvedModule = resolveModule(dependency, baseDir, pFileDir, resolveOption);
 
-  if (!pResolveOptions.symlinks && !lResolvedModule.coreModule && !lResolvedModule.couldNotResolve) {
+  if (!resolvedModule.coreModule && !resolvedModule.couldNotResolve) {
     try {
-      // tslint:disable
-      lResolvedModule.resolved = path.normalize(path.relative(pBaseDir, fs.realpathSync(path.resolve(pBaseDir, lResolvedModule.resolved))));
+      const resolvedPath = path.relative(baseDir, fs.realpathSync(path.resolve(baseDir, resolvedModule.resolved)));
+      resolvedModule.resolved = path.normalize(resolvedPath);
     } catch (e) {
-      lResolvedModule.couldNotResolve = true;
+      resolvedModule.couldNotResolve = true;
     }
   }
-  return lResolvedModule;
+
+  return resolvedModule;
+};
+
+export const addResolutionAttribute = (options: { baseDir: string }, fileName: string, resolveOptions: Types.ResolveOption) => {
+  return (dependency: { moduleName: string; moduleSystem: Types.ModuleSystem }): Types.Dependency => {
+    const resolved = resolve(dependency, options.baseDir, path.join(options.baseDir, path.dirname(fileName)), resolveOptions);
+    return {
+      ...resolved,
+      module: dependency.moduleName,
+      moduleSystem: dependency.moduleSystem,
+      followable: resolved.followable,
+      matchesDoNotFollow: false,
+    };
+  };
 };

@@ -1,0 +1,23 @@
+{
+  "name": "code-dependency",
+  "version": "0.1.0",
+  "description": "for humans libary with node",
+  "main": "index.js",
+  "repository": "git@github.com:Himenon/ts-import-view.git",
+  "author": "Himenon <6715229+Himenon@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test",
+    "build": "lerna run build",
+    "clean": "lerna run clean"
+  },
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.13.2"
+  },
+  "workspaces": [
+    "packages/*",
+    "packages/@utils/*"
+  ]
+}

@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "import view",
   "keywords": [],
-  "homepage": "https://github.com/Himenon/ts-import-view#readme",
+  "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {
-    "url": "https://github.com/Himenon/ts-import-view/issues"
+    "url": "https://github.com/Himenon/code-dependency/issues"
   },
-  "repository": "Himenon/ts-import-view",
+  "repository": "https://github.com/Himenon/code-dependency/packages/parser",
   "license": "MIT",
   "author": {
     "name": "Himenon",

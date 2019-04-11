@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "for humans libary with node",
-  "repository": "git@github.com:Himenon/ts-import-view.git",
+  "repository": "https://github.com/Himenon/code-dependency.git",
   "license": "MIT",
-  "author": "Himenon <6715229+Himenon@users.noreply.github.com>",
-  "main": "index.js",
+  "author": "Himenon",
   "workspaces": [
     "packages/*",
     "packages/@code-dependency/*"

@@ -1,0 +1,55 @@
+{
+  "name": "@code-dependency/code-dependency",
+  "version": "0.0.1",
+  "description": "import view",
+  "keywords": [],
+  "homepage": "https://github.com/Himenon/ts-import-view#readme",
+  "bugs": {
+    "url": "https://github.com/Himenon/ts-import-view/issues"
+  },
+  "repository": "Himenon/ts-import-view",
+  "license": "MIT",
+  "author": {
+    "name": "Himenon",
+    "email": "k.himeno314@gmail.com",
+    "url": "https://github.com/Himenon"
+  },
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "yarn run clean && tsc -p ./tsconfig.build.json",
+    "ci:notify:release": "ts-node ./scripts/notify.ts",
+    "clean": "rimraf ./lib",
+    "cli": "node ./lib/cli/index.js -f ./src/index.ts",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
+    "develop": "yarn run build -- --watch",
+    "format": "prettier --config .prettierrc --write src/*.{ts,tsx}",
+    "lint": "eslint -c ./.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint:fix": "yarn run lint -- --fix",
+    "server": "node ./lib/server.js",
+    "start": "yarn run develop",
+    "test": "yarn run cruiser && yarn run test:jest",
+    "test:ci": "yarn run test && codecov",
+    "test:jest": "jest -c ./jest.config.json",
+    "test:watch": "yarn run test:jest -- --watch",
+    "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
+    "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
+    "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
+  },
+  "dependencies": {
+    "commander": "^2.20.0",
+    "enhanced-resolve": "^4.1.0",
+    "recursive-readdir": "^2.2.2",
+    "resolve": "^1.10.0",
+    "typescript": "^3.4.2"
+  },
+  "devDependencies": {}
+}

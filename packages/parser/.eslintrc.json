@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "plugins": ["@typescript-eslint", "@typescript-eslint/tslint"],
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "es6": true,
+    "browser": false
+  },
+  "rules": {
+    "@typescript-eslint/tslint/config": [
+      "warn",
+      {
+        "lintFile": "./tslint.json"
+      }
+    ]
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  }
+}

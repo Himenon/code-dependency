@@ -1,5 +1,5 @@
+import * as Parser from "@code-dependency/parser";
 import * as Extract from "./extract";
-import * as Parser from "./parser";
 import * as Resolver from "./resolver";
 import * as Types from "./types";
 

@@ -48,8 +48,7 @@
     "commander": "^2.20.0",
     "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
-    "resolve": "^1.10.0",
-    "typescript": "^3.4.2"
+    "resolve": "^1.10.0"
   },
   "devDependencies": {}
 }

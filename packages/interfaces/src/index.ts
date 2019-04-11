@@ -5,10 +5,7 @@ export interface Options {
   executeDirectory: string;
 }
 
-export interface ResolveOption extends enhancedResolve.ResolverFactory.ResolverOption {
-  bustTheCache: boolean;
-  alias: {};
-}
+export type ResolveOption = enhancedResolve.ResolverFactory.ResolverOption;
 
 export type DependencyTypes = "local" | "core" | "npm" | "npm-dev" | "undetermined";
 

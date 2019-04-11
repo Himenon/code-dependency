@@ -1,32 +1,23 @@
 import { ResolveOption } from "@code-dependency/interfaces";
 import * as enhancedResolve from "enhanced-resolve";
 
-const init = (pResolveOptions: ResolveOption, pCachingContext: string) => {
-  let gResolver = null;
-  const gInitialized = {};
-  if (!gInitialized[pCachingContext] || pResolveOptions.bustTheCache) {
-    gResolver = enhancedResolve.ResolverFactory.createResolver({
-      ...pResolveOptions,
-      // we're doing that ourselves for now
+interface CacheResolver {
+  [key: string]: ReturnType<typeof enhancedResolve.ResolverFactory.createResolver>;
+}
+
+const cachedResolver: CacheResolver = {};
+
+const createResolver = (option: ResolveOption, cacheContext: string) => {
+  if (!cachedResolver[cacheContext]) {
+    return (cachedResolver[cacheContext] = enhancedResolve.ResolverFactory.createResolver({
+      ...option,
       symlinks: false,
-    });
-    /* eslint security/detect-object-injection:0 */
-    gInitialized[pCachingContext] = true;
+    }));
   }
-  return gResolver;
+  return cachedResolver[cacheContext];
 };
 
-export const resolve = (pModuleName: string, pFileDir: string, pResolveOptions: ResolveOption, pCachingContext = "cruise"): string => {
-  const gResolver = init(pResolveOptions, pCachingContext);
-  if (!gResolver) {
-    return "";
-  }
-
-  return gResolver.resolveSync(
-    {},
-    // lookupStartPath
-    pFileDir,
-    // request
-    pModuleName,
-  );
+export const resolve = (moduleName: string, fileDir: string, option: ResolveOption, cacheContext: string = "code-dependency"): string => {
+  const resolver = createResolver(option, cacheContext);
+  return resolver.resolveSync({}, fileDir, moduleName);
 };

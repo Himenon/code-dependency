@@ -1,4 +1,4 @@
-import { ResolveOption } from "@my/types";
+import { ResolveOption } from "@code-dependency/interfaces";
 import * as enhancedResolve from "enhanced-resolve";
 
 const init = (pResolveOptions: ResolveOption, pCachingContext: string) => {

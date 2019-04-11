@@ -1,5 +1,5 @@
 {
-  "name": "@code-dependency/parser",
+  "name": "@code-dependency/interfaces",
   "version": "0.0.1",
   "description": "import view",
   "keywords": [],
@@ -35,7 +35,7 @@
     "lint:fix": "yarn run lint -- --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",
-    "test": "yarn run cruiser && yarn run test:jest",
+    "test": "yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest -c ./jest.config.json",
     "test:watch": "yarn run test:jest -- --watch",
@@ -44,11 +44,11 @@
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
   },
   "dependencies": {
+    "@code-dependency/parser": "0.0.1",
     "commander": "^2.20.0",
     "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
-    "resolve": "^1.10.0",
-    "typescript": "^3.4.3"
+    "resolve": "^1.10.0"
   },
   "devDependencies": {}
 }

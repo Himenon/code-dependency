@@ -1,4 +1,4 @@
-import * as Types from "@my/types";
+import * as Types from "@code-dependency/interfaces";
 import * as fs from "fs";
 import * as path from "path";
 import { resolveCommonJS } from "./resolved-commonjs";

@@ -2,7 +2,7 @@ import * as path from "path";
 import { isCore } from "resolve";
 import { resolve } from "./resolve";
 
-import * as Types from "@my/types";
+import * as Types from "@code-dependency/interfaces";
 
 interface Resolve {
   resolved: string;

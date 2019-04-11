@@ -1,4 +1,4 @@
-import { Options } from "@my/types";
+import { Options } from "@code-dependency/interfaces";
 import * as fs from "fs";
 import * as path from "path";
 import * as recursive from "recursive-readdir";

@@ -1,0 +1,30 @@
+{
+  "automock": true,
+  "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json",
+      "diagnostics": false
+    }
+  },
+  "moduleDirectories": [
+    "node_modules"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "node"
+  ],
+  "testMatch": [
+    "**/__tests__/*.test.+(ts|tsx)"
+  ],
+  "collectCoverage": true,
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  }
+}

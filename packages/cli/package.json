@@ -1,5 +1,5 @@
 {
-  "name": "@code-dependency/parser",
+  "name": "@code-dependency/cli",
   "version": "0.0.1",
   "description": "import view",
   "keywords": [],
@@ -44,11 +44,13 @@
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
   },
   "dependencies": {
+    "@code-dependency/code-dependency": "0.0.1",
+    "@code-dependency/interfaces": "0.0.1",
+    "@code-dependency/resolver": "0.0.1",
     "commander": "^2.20.0",
     "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
-    "resolve": "^1.10.0",
-    "typescript": "^3.4.3"
+    "resolve": "^1.10.0"
   },
   "devDependencies": {}
 }

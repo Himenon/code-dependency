@@ -1,4 +1,4 @@
-import { ExtractObject } from "@my/types";
+import { ExtractObject } from "@code-dependency/interfaces";
 import * as ts from "typescript";
 
 const NOT_EXTRACT_OBJECT = false;

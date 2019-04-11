@@ -1,7 +1,7 @@
-import * as Types from "@my/types";
+import * as TsImportView from "@code-dependency/code-dependency";
+import * as Types from "@code-dependency/interfaces";
 import * as commander from "commander";
 import * as path from "path";
-import * as TsImportView from "../";
 
 interface CliReturnValue {
   file?: string;

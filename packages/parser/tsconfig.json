@@ -25,10 +25,6 @@
     "noLib": false,
     "declaration": true,
     "jsx": "react",
-
-  "paths": {
-    "@my/types": ["./src/types/index.ts"]
-  },
   },
   "include": [
     "src/**/*.ts",

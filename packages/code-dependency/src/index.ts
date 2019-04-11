@@ -1,7 +1,7 @@
+import * as Types from "@code-dependency/interfaces";
 import * as Parser from "@code-dependency/parser";
+import * as Resolver from "@code-dependency/resolver";
 import * as Extract from "./extract";
-import * as Resolver from "./resolver";
-import * as Types from "./types";
 
 const execute = async (options: Types.Options, resolveOption: Types.ResolveOption) => {
   const allFiles = await Extract.gather(options);

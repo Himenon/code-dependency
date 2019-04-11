@@ -1,18 +1,28 @@
 {
   "name": "code-dependency",
   "version": "0.1.0",
+  "private": true,
   "description": "for humans libary with node",
-  "main": "index.js",
   "repository": "git@github.com:Himenon/ts-import-view.git",
-  "author": "Himenon <6715229+Himenon@users.noreply.github.com>",
   "license": "MIT",
+  "author": "Himenon <6715229+Himenon@users.noreply.github.com>",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*",
+    "packages/@code-dependency/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "lerna run test",
     "build": "lerna run build",
-    "clean": "lerna run clean"
+    "clean": "lerna run clean",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "format": "lerna run format",
+    "lint": "lerna run lint",
+    "test": "lerna run test"
   },
-  "private": true,
+  "dependencies": {
+    "typescript": "^3.4.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
@@ -43,12 +53,5 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
     "tslint-plugin-prettier": "^2.0.1"
-  },
-  "workspaces": [
-    "packages/*",
-    "packages/@code-dependency/*"
-  ],
-  "dependencies": {
-    "typescript": "^3.4.3"
   }
 }

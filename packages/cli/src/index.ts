@@ -19,7 +19,6 @@ const executeCommandLine = (): CliReturnValue => {
 const main = async () => {
   const args = executeCommandLine();
   const options: Types.ResolveOption = {
-    bustTheCache: true,
     alias: {},
   };
   if (args.file) {

@@ -29,16 +29,16 @@
     "clean": "rimraf ./lib",
     "cli": "node ./lib/cli/index.js -f ./src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
-    "develop": "yarn run build -- --watch",
+    "develop": "yarn run build --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
-    "lint:fix": "yarn run lint -- --fix",
+    "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest -c ./jest.config.json",
-    "test:watch": "yarn run test:jest -- --watch",
+    "test:watch": "yarn run test:jest --watch",
     "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
     "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
@@ -46,14 +46,17 @@
   "dependencies": {
     "@code-dependency/interfaces": "0.0.1",
     "enhanced-resolve": "^4.1.0",
+    "lodash": "^4.17.11",
     "normalize-package-data": "^2.5.0",
     "pnp-webpack-plugin": "^1.4.1",
     "read-package-json": "^2.0.13",
-    "recursive-readdir": "^2.2.2",
     "resolve": "^1.10.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0"
   },
   "devDependencies": {
     "@types/normalize-package-data": "^2.4.0"
+  },
+  "peerDependencies": {
+    "graceful-fs": "^4.1.2"
   }
 }

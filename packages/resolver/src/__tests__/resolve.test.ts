@@ -1,7 +1,7 @@
 import { ResolveOption } from "@code-dependency/interfaces";
 import * as path from "path";
+import { compileResolveOptions } from "../";
 import { resolve } from "../resolve";
-import { compileResolveOptions } from "../resolveOptions";
 
 describe("#resolve", () => {
   let options: ResolveOption;

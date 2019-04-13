@@ -47,10 +47,7 @@
     "@code-dependency/code-dependency": "0.0.1",
     "@code-dependency/interfaces": "0.0.1",
     "@code-dependency/resolver": "0.0.1",
-    "commander": "^2.20.0",
-    "enhanced-resolve": "^4.1.0",
-    "recursive-readdir": "^2.2.2",
-    "resolve": "^1.10.0"
+    "commander": "^2.20.0"
   },
   "devDependencies": {}
 }

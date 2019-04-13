@@ -1,8 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-import { memoize as _memoize } from "lodash";
-const resolve = require("./resolve");
 import * as Types from "@code-dependency/interfaces";
+import * as fs from "fs";
+import { memoize as _memoize } from "lodash";
+import * as path from "path";
+import { resolve } from "./resolve";
 
 const isLocal = (pModule: string) => pModule.startsWith(".");
 const isScoped = (pModule: string) => pModule.startsWith("@");

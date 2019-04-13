@@ -33,10 +33,10 @@ const resolveModule = (
 export const resolve = (
   dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
   baseDir: string,
-  pFileDir: string,
+  fileDir: string,
   resolveOption: Types.ResolveOption,
 ): Resolve => {
-  const resolvedModule = resolveModule(dependency, baseDir, pFileDir, resolveOption);
+  const resolvedModule = resolveModule(dependency, baseDir, fileDir, resolveOption);
 
   if (!resolvedModule.coreModule && !resolvedModule.couldNotResolve) {
     try {

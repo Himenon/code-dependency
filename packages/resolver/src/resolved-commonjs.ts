@@ -12,17 +12,17 @@ interface Resolve {
   dependencyTypes: Types.DependencyTypes[];
 }
 
-function addResolutionAttributes(pBaseDir: string, pModuleName: string, pFileDir: string, resolveOption: Types.ResolveOption): Resolve {
-  let resolved: string = pModuleName;
+function addResolutionAttributes(baseDir: string, moduleName: string, fileDir: string, resolveOption: Types.ResolveOption): Resolve {
+  let resolved: string = moduleName;
   let followable: boolean = false;
   let couldNotResolve: boolean = false;
   let coreModule = false;
 
-  if (isCore(pModuleName)) {
+  if (isCore(moduleName)) {
     coreModule = true;
   } else {
     try {
-      resolved = path.relative(pBaseDir, resolve(pModuleName, pFileDir, resolveOption));
+      resolved = path.relative(baseDir, resolve(moduleName, fileDir, resolveOption));
       followable = true;
     } catch (e) {
       couldNotResolve = true;
@@ -40,14 +40,14 @@ function addResolutionAttributes(pBaseDir: string, pModuleName: string, pFileDir
 /*
  * resolves both CommonJS and ES6
  */
-export const resolveCommonJS = (pModuleName: string, pBaseDir: string, pFileDir: string, resolveOption: Types.ResolveOption): Resolve => {
+export const resolveCommonJS = (moduleName: string, baseDir: string, fileDir: string, option: Types.ResolveOption): Resolve => {
   const lRetval = {
-    resolved: pModuleName,
+    resolved: moduleName,
     coreModule: false,
     followable: false,
     couldNotResolve: false,
     dependencyTypes: ["undetermined"],
-    ...addResolutionAttributes(pBaseDir, pModuleName, pFileDir, resolveOption),
+    ...addResolutionAttributes(baseDir, moduleName, fileDir, option),
   };
 
   return {

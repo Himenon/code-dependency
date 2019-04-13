@@ -1,11 +1,20 @@
 import * as enhancedResolve from "enhanced-resolve";
+import * as normalize from "normalize-package-data";
+
+export interface Package extends normalize.Package {
+  bundledDependencies?: { [name: string]: string };
+}
 
 export interface Options {
   source: string;
   executeDirectory: string;
 }
 
-export type ResolveOption = enhancedResolve.ResolverFactory.ResolverOption;
+export interface ExtendResolveOption {
+  tsConfig?: string;
+}
+
+export type ResolveOption = enhancedResolve.ResolverFactory.ResolverOption & ExtendResolveOption;
 
 export type DependencyTypes = "local" | "core" | "npm" | "npm-dev" | "undetermined";
 
@@ -16,13 +25,8 @@ export interface ExtractObject {
   moduleSystem: ModuleSystem;
 }
 
-/** 開発途上用 */
-export interface DevelopDependency extends ExtractObject {
-  resolved: string;
-}
-
 export interface ResolvedModule {
-  resolved: string;
+  resolved?: string[];
   module: string;
   moduleSystem: ModuleSystem;
   coreModule: boolean;

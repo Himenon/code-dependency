@@ -4,19 +4,18 @@ import * as webpack from "webpack";
 const resolve = require("resolve");
 import * as ManifestPlugin from "webpack-manifest-plugin";
 import { paths } from "../../config/paths";
+import { ServerSideRenderingPlugin } from "./SsrPlugin";
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 
 export const plugins = {
-  // new BundleAnalyzerPlugin(),
-  // ts-loader | tslint を別プロセスで動かす
+  ServerSideRenderingPlugin: () => new ServerSideRenderingPlugin(HtmlWebpackPlugin),
   ForkTsCheckerWebpackPlugin: ({
     isEnvDevelopment,
     isEnvProduction,

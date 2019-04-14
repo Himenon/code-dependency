@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "outDir": "",
+    "sourceMap": false,
+    "declaration": false,
+    "lib": ["dom", "es2018"],
+    "module": "commonjs",
+    "rootDir": ".",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": ["scripts/**/*.ts", "scripts/**/*.tsx", "config/**/*.ts", "config/**/*.tsx"],
+  "exclude": ["node_modules", "./src/**/__tests__/*", "src/**/*"]
+}

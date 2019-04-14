@@ -1,0 +1,33 @@
+.counterArea {
+  text-align: center;
+}
+
+.counter-display {
+  color: #fd9535;
+  font-size: 128px;
+  font-weight: 600;
+}
+
+.count-upper {
+  position: relative;
+  display: inline-block;
+  padding: 1em 2em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;
+  border-bottom: solid 2px #d27d00;
+  border-radius: 16px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-size: 32px;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    border-bottom: solid 2px #fd9535;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+  }
+  &:focus {
+    outline:0;
+  }
+}

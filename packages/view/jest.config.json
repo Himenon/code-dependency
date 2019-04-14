@@ -1,0 +1,35 @@
+{
+  "automock": false,
+  "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "testEnvironment": "jsdom",
+  "resolver": "jest-pnp-resolver",
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json",
+      "diagnostics": false
+    }
+  },
+  "moduleDirectories": [
+    "node_modules"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "node"
+  ],
+  "testMatch": [
+    "**/__tests__/*.test.+(ts|tsx)"
+  ],
+  "collectCoverage": true,
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+  }
+}

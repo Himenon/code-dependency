@@ -1,6 +1,6 @@
 import * as Types from "@code-dependency/interfaces";
 
-export const converter = (source: string | Types.Dependency, inputDependencies: Types.InputSourceDependency[]): Types.TreeData => {
+export const converter = (source: string | Types.Dependency, flatDependencies: Types.InputSourceDependency[]): Types.TreeData => {
   const root: Types.TreeData =
     typeof source === "string"
       ? {
@@ -18,9 +18,9 @@ export const converter = (source: string | Types.Dependency, inputDependencies: 
           ...source,
           children: [],
         };
-  const rootData = inputDependencies.find(child => root.resolved === child.source);
-  if (rootData) {
-    root.children = rootData.dependencies.map(data => converter(data, inputDependencies));
+  const rootDependency = flatDependencies.find(child => root.resolved === child.source);
+  if (rootDependency) {
+    root.children = rootDependency.dependencies.map(dependency => converter(dependency, flatDependencies));
   }
   return root;
 };

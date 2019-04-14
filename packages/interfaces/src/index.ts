@@ -65,6 +65,12 @@ export interface InputSourceDependency {
   dependencies: Dependency[];
 }
 
+export type FlatDependencies = InputSourceDependency[];
+
 export interface TreeData extends Dependency {
   children: TreeData[];
+}
+
+export interface CsrProps {
+  flatDependencies: FlatDependencies;
 }

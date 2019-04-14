@@ -32,6 +32,8 @@
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
+    "cli:sample": "node ./lib/index.js -f ../code-dependency/src/index.ts -o data/sample.json",
+    "cli:server": "node ./lib/index.js -s -i ./data/sample.json",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
@@ -51,7 +53,12 @@
     "@code-dependency/code-dependency": "0.0.1",
     "@code-dependency/interfaces": "0.0.1",
     "@code-dependency/resolver": "0.0.1",
-    "commander": "^2.20.0"
+    "@code-dependency/converter": "0.0.1",
+    "@code-dependency/view": "0.0.1",
+    "commander": "^2.20.0",
+    "express": "^4.16.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/express": "^4.16.1"
+  }
 }

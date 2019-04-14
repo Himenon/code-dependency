@@ -16,6 +16,7 @@
   },
   "files": [
     "lib",
+    "build",
     "package.json"
   ],
   "main": "lib/index.js",
@@ -24,9 +25,11 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && yarn run build:scripts && node scripts/build.js",
+    "build": "yarn run clean && yarn run build:scripts && node scripts/build.js && yarn run build:lib",
+    "build:lib": "rimraf lib && yarn run build:tsc",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
+    "build:tsc": "tsc -p tsconfig.build.json",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli.js",

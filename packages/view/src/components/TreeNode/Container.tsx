@@ -27,7 +27,7 @@ const generateProps = (store: Store, targetNode: Types.Node): TreeNode.Props => 
       dy: store.text.offset,
       textAnchor: isFirstNode || isLastNode ? "end" : "start",
       onClick: () => {
-        // store.updateKey(targetNode.data.name);
+        store.changeRootSource(targetNode.data.module);
       },
       children: targetNode.data.resolved,
     },

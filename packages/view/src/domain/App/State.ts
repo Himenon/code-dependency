@@ -5,6 +5,7 @@ export interface State {
   treeData: Types.TreeData;
   links: Types.Link[];
   nodes: Types.Node[];
+  rootSource: string;
 }
 
 export const DEFAULT_STATE: State = {
@@ -22,4 +23,5 @@ export const DEFAULT_STATE: State = {
   },
   links: [],
   nodes: [],
+  rootSource: "index.js",
 };

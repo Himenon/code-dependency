@@ -5,6 +5,12 @@ import { State } from "./State";
 
 export const reducer = (state: State, action: ActionTypes): State => {
   switch (action.type) {
+    case "UPDATE_ROOT_SOURCE": {
+      return Factory.generateState({ flatDependencies: state.flatDependencies, rootSource: action.source });
+    }
+    case "UPDATE_RESOLVED": {
+      
+    };
     default:
       return state;
   }

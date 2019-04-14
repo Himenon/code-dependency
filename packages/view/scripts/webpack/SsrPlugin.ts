@@ -6,7 +6,7 @@ import { paths } from "../../config/paths";
 /**
  * Before Execute, generate sample.
  */
-const SAMPLE_DATA_PATH = path.resolve(paths.appPath, "../cli/data/sample.json");
+const CSR_PROPS_DATA_PATH = path.resolve(paths.appPath, "../cli/data/sample.json");
 
 /**
  * TODO update require libraries at file changes,
@@ -18,7 +18,7 @@ export class ServerSideRenderingPlugin {
     compiler.hooks.compilation.tap("ServerSideRenderingPlugin", compilation => {
       // @ts-ignore
       this.htmlWebpackPlugin.getHooks(compilation).beforeEmit.tap("ServerSideRenderingPlugin", data => {
-        const props = require(SAMPLE_DATA_PATH);
+        const props = require(CSR_PROPS_DATA_PATH);
         // const html = this.generateSsrHtml(props);
         // data.html = data.html.replace(this.pattern, html);
         data.html = data.html.replace("{{ SSR_INITIAL_STATE }}", JSON.stringify(props));

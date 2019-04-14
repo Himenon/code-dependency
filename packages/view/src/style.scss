@@ -1,9 +1,19 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+@import '~bootstrap/scss/bootstrap.scss';
 
+@import "./styles/_reboot.scss";
+@import './styles/_functions.scss';
+@import './styles/_variables.scss';
+@import './styles/_navbar.scss';
+@import './styles/_spacing.scss';
+@import './styles/_dashboard.scss';
+
+@import "./styles/_display.scss";
+@import './styles/_flex.scss';
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
 
 .background {
   background-color: #333;

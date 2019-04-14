@@ -1,4 +1,3 @@
-
 import * as Types from "@code-dependency/interfaces";
 import * as App from "./App";
 export { App };

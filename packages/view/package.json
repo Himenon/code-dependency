@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@code-dependency/converter": "^0.0.1",
+    "bootstrap": "^4.3.1",
     "d3": "^5.9.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

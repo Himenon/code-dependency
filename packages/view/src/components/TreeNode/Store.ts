@@ -2,7 +2,7 @@ import * as Domain from "@app/domain";
 import * as Types from "@app/types";
 
 export interface Store {
-  updateKey: (key: string) => void;
+  changeRootSource: (key: string) => void;
   radius: number;
   text: {
     offset: number;
@@ -22,7 +22,12 @@ export interface Store {
 }
 
 export const generateStore = (domainStores: Domain.Stores): Store => ({
-  updateKey: (key: string) => undefined,
+  changeRootSource: (nextSource: string) => {
+    domainStores.app.dispatch({
+      type: "UPDATE_ROOT_SOURCE",
+      source: nextSource,
+    });
+  },
   position: {
     scale: {
       x: domainStores.dendrogram.state.size.height,

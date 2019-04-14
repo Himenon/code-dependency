@@ -1,10 +1,15 @@
 import * as React from "react";
 
-export interface UpdateCountAction {
-  type: "UPDATE_COUNT";
-  value: number;
+export interface UpdateRootSource {
+  type: "UPDATE_ROOT_SOURCE";
+  source: string;
 }
 
-export type ActionTypes = UpdateCountAction;
+export interface UpdateResolved {
+  type: "UPDATE_RESOLVED";
+  resolved: string;
+}
+
+export type ActionTypes = UpdateRootSource | UpdateResolved;
 
 export type Dispatch = React.Dispatch<ActionTypes>;

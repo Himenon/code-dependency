@@ -1,4 +1,11 @@
-.app {
-  border-top: 5px solid #fd9535;
-  padding: 1em;
+@import "../../style";
+
+.menu {
+  float: left;
+  width: 10%;
+}
+
+.dendrogram {
+  float: left;
+  width: 90%;
 }

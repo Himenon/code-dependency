@@ -1,12 +1,15 @@
 import * as Domain from "@app/domain";
 import * as React from "react";
 import * as Dendrogram from "../Dendrogram";
+import * as Menu from "../Menu";
 import { createViewStore, ViewStore } from "./Store";
 import * as Template from "./Template";
 
 const generateProps = (stores: Domain.Stores, viewStore: ViewStore): Template.Props => {
   return {
     Dendrogram: <Dendrogram.Container store={viewStore.dendrogram} />,
+    Menu: <Menu.Container store={viewStore.menu} />,
+    rootSource: stores.app.state.rootSource,
   };
 };
 

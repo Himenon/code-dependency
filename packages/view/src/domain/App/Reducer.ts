@@ -1,11 +1,10 @@
+import * as Type from "@app/types";
 import { ActionTypes } from "./Action";
-import { DEFAULT_STATE, State } from "./State";
+import * as Factory from "./Factory";
+import { State } from "./State";
 
 export const reducer = (state: State, action: ActionTypes): State => {
   switch (action.type) {
-    case "UPDATE_COUNT": {
-      return { ...state, value: action.value };
-    }
     default:
       return state;
   }
@@ -13,6 +12,7 @@ export const reducer = (state: State, action: ActionTypes): State => {
 
 export type Reducer = [typeof reducer, State];
 
-export const createReducer = (state: State = DEFAULT_STATE): Reducer => {
+export const createReducer = ({ flatDependencies }: { flatDependencies: Type.FlatDependencies }): Reducer => {
+  const state = Factory.generateState({ flatDependencies });
   return [reducer, state];
 };

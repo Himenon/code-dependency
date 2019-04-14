@@ -27,7 +27,7 @@
     "jsx": "react",
     "paths": {
       "@app/types": ["./src/types/index.ts"],
-      "@app/domain": ["./src/domain/index.ts"]
+      "@app/domain": ["./src/domain/index.ts"],
     }
   },
   "include": [

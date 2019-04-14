@@ -1,19 +1,21 @@
 import * as React from "react";
 
+// @ts-ignore
 interface ClassNames {
   app?: string;
 }
 
-const styles: ClassNames = require("./template.scss");
+// const styles: ClassNames = require("./template.scss");
 
-interface TemplateProps {
-  Counter: JSX.Element;
+export interface TemplateProps {
+  Dendrogram: JSX.Element;
 }
 
-const App = ({ Counter }: TemplateProps) => {
+const App = ({ Dendrogram }: TemplateProps) => {
   return (
     <>
-      <div className={styles.app}>{Counter}</div>
+      <h1>Hello</h1>
+      {Dendrogram}
     </>
   );
 };

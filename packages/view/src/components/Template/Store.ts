@@ -1,12 +1,12 @@
 import * as Domain from "@app/domain";
-import * as Counter from "../Counter";
+import * as Dendrogram from "../Dendrogram";
 
 export interface ViewStore {
-  counter: Counter.Store;
+  dendrogram: Dendrogram.Store;
 }
 
 export const createViewStore = (stores: Domain.Stores): ViewStore => {
   return {
-    counter: Counter.generateStore(stores),
+    dendrogram: Dendrogram.generateStore(stores),
   };
 };

@@ -18,9 +18,7 @@ export class ServerSideRenderingPlugin {
     compiler.hooks.compilation.tap("ServerSideRenderingPlugin", compilation => {
       // @ts-ignore
       this.htmlWebpackPlugin.getHooks(compilation).beforeEmit.tap("ServerSideRenderingPlugin", data => {
-        const props = {
-          flatDependencies: require(SAMPLE_DATA_PATH),
-        };
+        const props = require(SAMPLE_DATA_PATH);
         // const html = this.generateSsrHtml(props);
         // data.html = data.html.replace(this.pattern, html);
         data.html = data.html.replace("{{ SSR_INITIAL_STATE }}", JSON.stringify(props));

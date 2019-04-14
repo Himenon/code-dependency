@@ -46,6 +46,6 @@ const extractImportEquals = (ast: ts.SourceFile): ExtractObject[] => {
     .filter(isExtractObject);
 };
 
-export const getDeps = (ast: ts.SourceFile): ExtractObject[] => {
+export const extractDependencies = (ast: ts.SourceFile): ExtractObject[] => {
   return [...extractImportsAndExports(ast), ...extractImportEquals(ast)];
 };

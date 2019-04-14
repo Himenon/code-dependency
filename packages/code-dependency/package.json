@@ -27,7 +27,6 @@
     "build": "yarn run clean && tsc -p ./tsconfig.build.json",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib",
-    "cli": "node ./lib/cli/index.js -f ./src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
@@ -44,11 +43,11 @@
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
   },
   "dependencies": {
-    "@code-dependency/interfaces": "0.0.1",
-    "@code-dependency/parser": "0.0.1",
+    "@code-dependency/extract": "0.0.1",
     "@code-dependency/resolver": "0.0.1",
-    "recursive-readdir": "^2.2.2",
-    "typescript": "^3.4.3"
+    "recursive-readdir": "^2.2.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@code-dependency/interfaces": "0.0.1"
+  }
 }

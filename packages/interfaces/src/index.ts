@@ -10,8 +10,12 @@ export interface Options {
   executeDirectory: string;
 }
 
+export type TsConfig = any;
+
 export interface ExtendResolveOption {
-  tsConfig?: string;
+  tsConfig?: TsConfig;
+  exclude?: string; // Regex pattern
+  includeOnly?: string; // Regex Pattern
 }
 
 export type ResolveOption = enhancedResolve.ResolverFactory.ResolverOption & ExtendResolveOption;

@@ -43,8 +43,6 @@
     "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
     "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
   },
-  "dependencies": {
-    "@code-dependency/parser": "0.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

@@ -1,21 +1,29 @@
+import { getTsDependencies } from "@code-dependency/extract";
 import * as Types from "@code-dependency/interfaces";
-import * as Parser from "@code-dependency/parser";
 import { addResolutionAttribute, compileResolveOptions } from "@code-dependency/resolver";
-import * as Extract from "./extract";
+import { gather } from "./gather";
 
-const execute = async (options: Types.Options, resolveOption: Types.ResolveOption) => {
-  const allFiles = await Extract.gather(options);
+const getDependencies = async (options: Types.Options, resolveOption: Types.ResolveOption): Promise<Types.InputSourceDependency[]> => {
+  const visited = new Set<string>();
+  const allFiles = await gather(options);
   const normalizedOption = compileResolveOptions(resolveOption);
-  return allFiles.reduce<Types.Dependency[]>((previousValue: Types.Dependency[], currentValue: string) => {
-    const ast = Parser.toToAst(currentValue);
-    const depObject: Types.Dependency[] = Extract.getDeps(ast).map((extractObject: Types.ExtractObject) =>
-      addResolutionAttribute({ baseDir: options.executeDirectory }, currentValue, normalizedOption)({
+  return allFiles.reduce<Types.InputSourceDependency[]>((previousSourceDependencies: Types.InputSourceDependency[], source: string) => {
+    if (visited.has(source)) {
+      return previousSourceDependencies;
+    }
+    visited.add(source);
+    const dependencies: Types.Dependency[] = getTsDependencies(source).map((extractObject: Types.ExtractObject) =>
+      addResolutionAttribute({ baseDir: options.executeDirectory }, source, normalizedOption)({
         moduleName: extractObject.module,
         moduleSystem: extractObject.moduleSystem,
       }),
     );
-    return [...previousValue, ...depObject];
+    const result: Types.InputSourceDependency = {
+      source,
+      dependencies,
+    };
+    return [...previousSourceDependencies, result];
   }, []);
 };
 
-export { Extract, Parser, execute };
+export { getDependencies };

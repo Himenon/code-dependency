@@ -1,5 +1,5 @@
 {
-  "name": "@code-dependency/parser",
+  "name": "@code-dependency/extract",
   "version": "0.0.1",
   "description": "import view",
   "keywords": [],
@@ -7,7 +7,7 @@
   "bugs": {
     "url": "https://github.com/Himenon/code-dependency/issues"
   },
-  "repository": "https://github.com/Himenon/code-dependency/packages/parser",
+  "repository": "https://github.com/Himenon/code-dependency/packages/extract",
   "license": "MIT",
   "author": {
     "name": "Himenon",
@@ -47,5 +47,7 @@
     "resolve": "^1.10.0",
     "typescript": "^3.4.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@code-dependency/interfaces": "0.0.1"
+  }
 }

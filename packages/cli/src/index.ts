@@ -1,4 +1,4 @@
-import * as TsImportView from "@code-dependency/code-dependency";
+import * as CodeDependency from "@code-dependency/code-dependency";
 import * as Types from "@code-dependency/interfaces";
 import * as commander from "commander";
 import * as path from "path";
@@ -8,7 +8,7 @@ interface CliReturnValue {
 }
 
 const executeCommandLine = (): CliReturnValue => {
-  const pkg = require(path.resolve(__dirname, "../../package.json"));
+  const pkg = require(path.resolve(__dirname, "../../../package.json"));
   commander
     .version(pkg.version)
     .option("-f --file [value]", "Select your file.")
@@ -24,8 +24,8 @@ const main = async () => {
   if (args.file) {
     const source = path.resolve(process.cwd(), path.normalize(args.file));
     const executeDirectory = process.cwd();
-    const result = await TsImportView.execute({ source, executeDirectory }, options);
-    console.log(result);
+    const result = await CodeDependency.getDependencies({ source, executeDirectory }, options);
+    console.log(JSON.stringify(result));
   }
 };
 

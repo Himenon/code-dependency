@@ -1,6 +1,6 @@
 import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
-import { execute } from "../index";
+import { getDependencies } from "../index";
 
 describe("#index", () => {
   const baseDir = path.resolve(__dirname, "../");
@@ -10,7 +10,7 @@ describe("#index", () => {
   };
 
   test("#execute", async done => {
-    const result = await execute(options, {
+    const result = await getDependencies(options, {
       symlinks: false,
       extensions: [".js", ".jsx", ".ts", ".tsx"],
     });

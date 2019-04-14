@@ -65,7 +65,6 @@ export interface InputSourceDependency {
   dependencies: Dependency[];
 }
 
-export interface TreeData {
-  dependency: InputSourceDependency;
+export interface TreeData extends InputSourceDependency {
   children: TreeData[];
 }

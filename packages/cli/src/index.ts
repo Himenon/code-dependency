@@ -1,4 +1,5 @@
 import * as CodeDependency from "@code-dependency/code-dependency";
+import { converter } from "@code-dependency/converter";
 import * as Types from "@code-dependency/interfaces";
 import * as commander from "commander";
 import * as fs from "fs";
@@ -44,8 +45,11 @@ const main = async () => {
     const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory }, options);
     if (args.output) {
       const outputFile = path.resolve(executeDirectory, args.output);
+      const treeDataFile = path.resolve(executeDirectory, path.dirname(args.output), "treeData.json");
       console.log(`Output: ${outputFile}`);
+      console.log(`Output: ${treeDataFile}`);
       fs.writeFileSync(outputFile, JSON.stringify({ flatDependencies }, null, 2), { encoding: "utf-8" });
+      fs.writeFileSync(treeDataFile, JSON.stringify({ treeData: converter(source, flatDependencies) }, null, 2), { encoding: "utf-8" });
     }
   }
 };

@@ -7,6 +7,7 @@ export const externals: webpack.ExternalsElement | webpack.ExternalsElement[] = 
   remote: 'require("remote")',
   shell: 'require("shell")',
   app: 'require("app")',
+  path: 'require("path")',
   ipc: 'require("ipc")',
   fs: 'require("fs")',
   buffer: 'require("buffer")',

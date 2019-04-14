@@ -5,11 +5,6 @@ export interface UpdateRootSource {
   source: string;
 }
 
-export interface UpdateResolved {
-  type: "UPDATE_RESOLVED";
-  resolved: string;
-}
-
-export type ActionTypes = UpdateRootSource | UpdateResolved;
+export type ActionTypes = UpdateRootSource;
 
 export type Dispatch = React.Dispatch<ActionTypes>;

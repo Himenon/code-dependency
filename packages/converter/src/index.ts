@@ -1,15 +1,16 @@
 import * as Types from "@code-dependency/interfaces";
+import normalizePath = require("normalize-path");
 
 export const converter = (source: string | Types.Dependency, flatDependencies: Types.InputSourceDependency[]): Types.TreeData => {
   const root: Types.TreeData =
     typeof source === "string"
       ? {
-          resolved: source,
+          resolved: normalizePath(source),
           coreModule: false,
           followable: true,
           couldNotResolve: false,
           dependencyTypes: ["undetermined"],
-          module: source,
+          module: normalizePath(source),
           moduleSystem: "cjs",
           matchesDoNotFollow: false,
           children: [],

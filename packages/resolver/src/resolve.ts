@@ -2,6 +2,7 @@ import * as Types from "@code-dependency/interfaces";
 import * as fs from "fs";
 import * as path from "path";
 import { resolveCommonJS } from "./resolved-commonjs";
+import { compileResolveOptions } from "./resolveOptions";
 
 interface Resolve {
   resolved: string;
@@ -28,13 +29,18 @@ const resolveModule = (
 
 /**
  * 任意のディレクトリから見たmoduleの解決.
+ *
+ * @dependency: 探索したいmoduleとmodule system
+ * @params baseDir: プロジェクトのルートディレクトリ
+ * @params fileDir: 探索するファイルが位置するディレクトリ
  */
 export const resolve = (
   dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
   baseDir: string,
   fileDir: string,
-  resolveOption: Types.ResolveOption,
+  option: Types.ResolveOption,
 ): Resolve => {
+  const resolveOption = compileResolveOptions(option);
   const resolvedModule = resolveModule(dependency, baseDir, fileDir, resolveOption);
 
   if (!resolvedModule.coreModule && !resolvedModule.couldNotResolve) {

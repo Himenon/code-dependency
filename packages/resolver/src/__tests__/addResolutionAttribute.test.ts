@@ -1,12 +1,12 @@
+import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
-import { compileResolveOptions } from "../";
 import { addResolutionAttribute } from "../addResolutionAttribute";
 
 describe("#resolve", () => {
-  const option = compileResolveOptions({
+  const option: Types.ResolveOption = {
     symlinks: false,
     extensions: [".js", ".jsx", ".ts", ".tsx"],
-  });
+  };
   const baseDir = path.resolve(__dirname, "../../");
   test("addResolutionAttributes", () => {
     const resolver = addResolutionAttribute({ baseDir }, "../addResolutionAttributes.ts", option);

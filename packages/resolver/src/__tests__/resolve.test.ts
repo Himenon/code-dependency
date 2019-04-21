@@ -1,15 +1,14 @@
-import { ResolveOption } from "@code-dependency/interfaces";
+import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
-import { compileResolveOptions } from "../";
 import { resolve } from "../enhancedResolve";
 
 describe("#resolve", () => {
-  let options: ResolveOption;
+  let options: Types.ResolveOption;
   beforeAll(() => {
-    options = compileResolveOptions({
+    options = {
       symlinks: false,
       extensions: [".js", ".jsx", ".ts", ".tsx"],
-    });
+    };
   });
 
   test("#absolute path", () => {

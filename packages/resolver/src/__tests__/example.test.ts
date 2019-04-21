@@ -1,7 +1,6 @@
 import { ResolveOption } from "@code-dependency/interfaces";
 import * as path from "path";
 import { resolve } from "../resolve";
-import { compileResolveOptions } from "../resolveOptions";
 import * as Example from "./example.data";
 
 const EXAMPLE_FILE = path.join(Example.SOURCE_DIR_PATH, "index.ts");
@@ -11,10 +10,10 @@ describe("#resolve", () => {
   let option: ResolveOption;
 
   beforeAll(() => {
-    option = compileResolveOptions({
+    option = {
       symlinks: false,
       extensions: [".js", ".jsx", ".ts", ".tsx"],
-    });
+    };
   });
 
   test("root directory path", () => {

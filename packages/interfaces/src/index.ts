@@ -37,7 +37,15 @@ export interface ResolvedModule {
   couldNotResolve?: boolean;
 }
 
-export interface Dependency {
+export interface NotResolvedDependency {
+  resolved: undefined;
+  coreModule: boolean;
+  couldNotResolve: true;
+  module: string;
+  moduleSystem: ModuleSystem;
+}
+
+export interface ResolvedDependency {
   /** full path */
   resolved: string;
   /** Node Library */
@@ -58,6 +66,8 @@ export interface Dependency {
   license?: string;
 }
 
+export type Dependency = ResolvedDependency | NotResolvedDependency;
+
 export interface InputSourceDependency {
   /** Source file path */
   source: string;
@@ -67,7 +77,7 @@ export interface InputSourceDependency {
 
 export type FlatDependencies = InputSourceDependency[];
 
-export interface TreeData extends Dependency {
+export interface TreeData extends ResolvedDependency {
   children: TreeData[];
 }
 

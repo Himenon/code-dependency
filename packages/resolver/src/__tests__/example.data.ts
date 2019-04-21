@@ -4,22 +4,36 @@ import * as path from "path";
  * Don't touch thid parameters.
  */
 export const SOURCE_DIR_PATH = path.join(process.cwd(), "example/src");
+export const NODE_MODULES = path.join(process.cwd(), "../../node_modules");
 
 const filePath = (fileName: string) => path.join(SOURCE_DIR_PATH, fileName);
+const nodeModulePath = (fileName: string) => path.join(NODE_MODULES, fileName);
 
 const src = {
   components: {
-    index: filePath("index"),
-    Main: filePath("Main"),
+    index: filePath("components/index.ts"),
+    Main: filePath("components/Main.tsx"),
   },
-  app: filePath("app"),
-  index: filePath("index"),
+  domain: {
+    App: {
+      index: filePath("domain/App/index.ts"),
+      Model: filePath("domain/App/Model.ts"),
+    },
+    index: filePath("domain/index.ts"),
+  },
+  circleDeps: {
+    index: filePath("circleDeps/index.ts"),
+    child: filePath("circleDeps/child.ts"),
+    parent: filePath("circleDeps/parent.ts"),
+  },
+  app: filePath("app.tsx"),
+  index: filePath("index.ts"),
 };
 
 interface Result {
   coreModule: boolean;
   couldNotResolve: boolean;
-  resolved: string;
+  resolved?: string;
 }
 
 interface TestData {
@@ -65,7 +79,7 @@ export const RootDirTestData: TestData[] = [
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: "react",
+      resolved: nodeModulePath("react/index.js"),
     },
   },
   {
@@ -73,7 +87,7 @@ export const RootDirTestData: TestData[] = [
     result: {
       coreModule: true,
       couldNotResolve: false,
-      resolved: "path",
+      resolved: undefined,
     },
   },
   {
@@ -81,7 +95,66 @@ export const RootDirTestData: TestData[] = [
     result: {
       coreModule: false,
       couldNotResolve: true,
-      resolved: "dummy test data",
+      resolved: undefined,
+    },
+  },
+  {
+    moduleName: "./circleDeps",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.index,
+    },
+  },
+  {
+    moduleName: "./circleDeps/parent",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.parent,
+    },
+  },
+  {
+    moduleName: "./circleDeps/child",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.child,
+    },
+  },
+];
+
+export const CircleDepsDirTestData: TestData[] = [
+  {
+    moduleName: "./",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.index,
+    },
+  },
+  {
+    moduleName: "./child",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.child,
+    },
+  },
+  {
+    moduleName: "./parent",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.circleDeps.parent,
+    },
+  },
+  {
+    moduleName: "./ERROR-FILE",
+    result: {
+      coreModule: false,
+      couldNotResolve: true,
+      resolved: undefined,
     },
   },
 ];

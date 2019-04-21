@@ -23,7 +23,8 @@ describe("#resolve", () => {
   test("index.ts: native module: path", () => {
     const { baseDir, fileDir } = generateAbsoluteDirPath("../index.ts");
     const result = resolve({ moduleName: "path", moduleSystem: "cjs" }, baseDir, fileDir, option);
-    expect(result.resolved).toBe("path");
+    expect(result.resolved).toBe(undefined);
+    expect(result.couldNotResolve).toBe(false);
   });
 
   test("index.ts: resolved-commonjs", () => {

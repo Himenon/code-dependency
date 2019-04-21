@@ -13,8 +13,11 @@ describe("#resolve", () => {
 
     const result1 = resolver({ moduleName: "@code-dependency/interfaces", moduleSystem: "cjs" });
     expect(result1.resolved).toBe("../interfaces/lib/index.js");
+    expect(result1.couldNotResolve).toBe(false);
 
     const result2 = resolver({ moduleName: "path", moduleSystem: "cjs" });
-    expect(result2.resolved).toBe("path");
+    expect(result2.resolved).toBe(undefined);
+    expect(result2.coreModule).toBe(true);
+    expect(result2.couldNotResolve).toBe(true);
   });
 });

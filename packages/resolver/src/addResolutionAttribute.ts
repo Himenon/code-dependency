@@ -1,6 +1,6 @@
 import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
-import { resolve } from "./main";
+import { resolve } from "./resolve";
 
 export const addResolutionAttribute = (options: { baseDir: string }, fileName: string, resolveOptions: Types.ResolveOption) => {
   return (dependency: { moduleName: string; moduleSystem: Types.ModuleSystem }): Types.Dependency => {

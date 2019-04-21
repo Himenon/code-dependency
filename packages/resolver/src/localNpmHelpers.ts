@@ -2,7 +2,7 @@ import * as Types from "@code-dependency/interfaces";
 import * as fs from "fs";
 import { memoize as _memoize } from "lodash";
 import * as path from "path";
-import { resolve } from "./resolve";
+import { resolve } from "./enhancedResolve";
 
 const isLocal = (pModule: string) => pModule.startsWith(".");
 const isScoped = (pModule: string) => pModule.startsWith("@");

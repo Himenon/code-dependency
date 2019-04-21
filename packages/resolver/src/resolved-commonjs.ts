@@ -1,6 +1,6 @@
 import * as path from "path";
 import { isCore } from "resolve";
-import { resolve } from "./resolve";
+import { resolve } from "./enhancedResolve";
 
 import * as Types from "@code-dependency/interfaces";
 

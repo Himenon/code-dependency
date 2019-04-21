@@ -1,26 +1,50 @@
-import { ResolveOption } from "@code-dependency/interfaces";
-import * as enhancedResolve from "enhanced-resolve";
+import * as Types from "@code-dependency/interfaces";
+import * as fs from "fs";
+import * as path from "path";
+import { resolveCommonJS } from "./resolved-commonjs";
 
-interface CacheResolver {
-  [key: string]: ReturnType<typeof enhancedResolve.ResolverFactory.createResolver>;
+interface Resolve {
+  resolved: string;
+  coreModule: boolean;
+  followable: boolean;
+  couldNotResolve: boolean;
+  dependencyTypes: Types.DependencyTypes[];
 }
 
-const cachedResolver: CacheResolver = {};
+const isRelativeModuleName = (pString: string) => pString.startsWith(".");
 
-const createResolver = (option: ResolveOption, cacheContext: string) => {
-  if (!cachedResolver[cacheContext]) {
-    return (cachedResolver[cacheContext] = enhancedResolve.ResolverFactory.createResolver({
-      ...option,
-      symlinks: false,
-    }));
+const resolveModule = (
+  dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
+  baseDir: string,
+  fileDir: string,
+  resolveOption: Types.ResolveOption,
+): Resolve => {
+  if (isRelativeModuleName(dependency.moduleName) || dependency.moduleSystem in ["cjs", "es6"]) {
+    return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
+  } else {
+    return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
   }
-  return cachedResolver[cacheContext];
 };
 
 /**
- * @see https://github.com/webpack/enhanced-resolve
+ * 任意のディレクトリから見たmoduleの解決.
  */
-export const resolve = (moduleName: string, fileDir: string, option: ResolveOption, cacheContext: string = "code-dependency"): string => {
-  const resolver = createResolver(option, cacheContext);
-  return resolver.resolveSync({}, fileDir, moduleName);
+export const resolve = (
+  dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },
+  baseDir: string,
+  fileDir: string,
+  resolveOption: Types.ResolveOption,
+): Resolve => {
+  const resolvedModule = resolveModule(dependency, baseDir, fileDir, resolveOption);
+
+  if (!resolvedModule.coreModule && !resolvedModule.couldNotResolve) {
+    try {
+      const resolvedPath = path.relative(baseDir, fs.realpathSync(path.resolve(baseDir, resolvedModule.resolved)));
+      resolvedModule.resolved = path.normalize(resolvedPath);
+    } catch (e) {
+      resolvedModule.couldNotResolve = true;
+    }
+  }
+
+  return resolvedModule;
 };

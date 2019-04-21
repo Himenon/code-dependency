@@ -1,6 +1,6 @@
 import { ResolveOption } from "@code-dependency/interfaces";
 import * as path from "path";
-import { resolve } from "../main";
+import { resolve } from "../resolve";
 import { compileResolveOptions } from "../resolveOptions";
 import * as Example from "./example.data";
 

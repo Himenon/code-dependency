@@ -22,13 +22,12 @@ const resolveModule = (
   if (isRelativeModuleName(dependency.moduleName) || dependency.moduleSystem in ["cjs", "es6"]) {
     return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
   } else {
-    // lRetval = resolveAMD(pDependency.module, pBaseDir, pFileDir, pResolveOptions);
     return resolveCommonJS(dependency.moduleName, baseDir, fileDir, resolveOption);
   }
 };
 
 /**
- * ここではDependencyを解決する
+ * 任意のディレクトリから見たmoduleの解決.
  */
 export const resolve = (
   dependency: { moduleName: string; moduleSystem: Types.ModuleSystem },

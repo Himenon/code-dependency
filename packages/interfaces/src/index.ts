@@ -39,7 +39,7 @@ export interface ResolvedModule {
 
 export interface Dependency {
   /** full path */
-  resolved?: string;
+  resolved: string;
   /** Node Library */
   coreModule: boolean;
   /** User searched file. */

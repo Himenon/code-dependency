@@ -17,6 +17,9 @@ const createResolver = (option: ResolveOption, cacheContext: string) => {
   return cachedResolver[cacheContext];
 };
 
+/**
+ * @see https://github.com/webpack/enhanced-resolve
+ */
 export const resolve = (moduleName: string, fileDir: string, option: ResolveOption, cacheContext: string = "code-dependency"): string => {
   const resolver = createResolver(option, cacheContext);
   return resolver.resolveSync({}, fileDir, moduleName);

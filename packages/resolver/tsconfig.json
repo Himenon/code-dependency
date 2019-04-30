@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "paths": { "*": ["types/*"] },
     "outDir": "lib",
     "module": "commonjs",
     "target": "esnext",

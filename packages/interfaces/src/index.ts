@@ -29,6 +29,7 @@ export interface ExtractObject {
   moduleSystem: ModuleSystem;
 }
 
+// TODO なにに利用されているか
 export interface ResolvedModule {
   resolved?: string[];
   module: string;
@@ -37,25 +38,11 @@ export interface ResolvedModule {
   couldNotResolve?: boolean;
 }
 
-export interface NotResolvedDependency {
-  resolved: undefined;
-  coreModule: boolean;
-  couldNotResolve: true;
-  module: string;
-  moduleSystem: ModuleSystem;
-}
-
-export interface ResolvedDependency {
+export interface BaseDependencyProperties {
   /** full path */
-  resolved: string;
-  /** Node Library */
-  coreModule: boolean;
+  resolved: string | undefined;
   /** User searched file. */
   followable: boolean;
-  /** This file is resolve? */
-  couldNotResolve: boolean;
-  /** File types. */
-  dependencyTypes: DependencyTypes[];
   /** relative import path */
   module: string;
   /** */
@@ -64,9 +51,30 @@ export interface ResolvedDependency {
   matchesDoNotFollow: boolean;
   /** License */
   license?: string;
+  /** This file is resolve? */
+  couldNotResolve: boolean;
+  /** File types. */
+  dependencyTypes: DependencyTypes[];
 }
 
-export type Dependency = ResolvedDependency | NotResolvedDependency;
+export interface ResolvedCoreDependency extends BaseDependencyProperties {
+  resolved: string;
+  coreModule: true;
+  couldNotResolve: false;
+}
+
+export interface NotResolvedDependency extends BaseDependencyProperties {
+  resolved: undefined;
+  coreModule: false;
+  couldNotResolve: true;
+}
+
+export interface ResolvedDependency extends BaseDependencyProperties {
+  /** Node Library */
+  coreModule: boolean;
+}
+
+export type Dependency = ResolvedDependency | NotResolvedDependency | ResolvedCoreDependency;
 
 export interface InputSourceDependency {
   /** Source file path */

@@ -4,15 +4,18 @@ import * as express from "express";
 import * as fs from "fs";
 import * as path from "path";
 
-const options = Resolver.compileResolveOptions({
+const options = {
   symlinks: false,
   extensions: [".js", ".jsx", ".ts", ".tsx"],
-});
+};
 
 const getViewLibDirectory = (): string => {
   const baseDir = process.cwd();
   const filePath = path.resolve(baseDir, "src/server.ts");
   const resolved = Resolver.resolve({ moduleName: "@code-dependency/view", moduleSystem: "cjs" }, baseDir, filePath, options).resolved;
+  if (!resolved) {
+    throw new Error("Not resolved @code-dependency/view");
+  }
   return path.join(path.dirname(path.resolve(baseDir, resolved)), "../");
 };
 

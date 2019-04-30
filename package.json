@@ -13,6 +13,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "build:lib": "tsc -b packages tsconfig.build.json",
     "clean": "lerna run clean",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "format": "lerna run format",

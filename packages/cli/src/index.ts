@@ -1,5 +1,4 @@
 import * as CodeDependency from "@code-dependency/code-dependency";
-import { converter } from "@code-dependency/converter";
 import * as Types from "@code-dependency/interfaces";
 import * as commander from "commander";
 import * as fs from "fs";
@@ -11,6 +10,7 @@ interface CliReturnValue {
   output?: string;
   serve?: boolean;
   input?: string;
+  cut?: string;
 }
 
 const executeCommandLine = (): CliReturnValue => {
@@ -21,6 +21,7 @@ const executeCommandLine = (): CliReturnValue => {
     .option("-o --output [value]", "Output file path.")
     .option("-s --serve", "Start server")
     .option("-i --input [value]", "input file.")
+    .option("-c --cut [value]", "cut base path.")
     .parse(process.argv);
   return commander as CliReturnValue;
 };
@@ -42,14 +43,10 @@ const main = async () => {
   if (args.file) {
     const source = path.resolve(process.cwd(), path.normalize(args.file));
     const executeDirectory = process.cwd();
-    const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory }, options);
+    const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory, stripBasePath: args.cut }, options);
     if (args.output) {
       const outputFile = path.resolve(executeDirectory, args.output);
-      const treeDataFile = path.resolve(executeDirectory, path.dirname(args.output), "treeData.json");
-      console.log(`Output: ${outputFile}`);
-      console.log(`Output: ${treeDataFile}`);
       fs.writeFileSync(outputFile, JSON.stringify({ flatDependencies }, null, 2), { encoding: "utf-8" });
-      fs.writeFileSync(treeDataFile, JSON.stringify({ treeData: converter(source, flatDependencies) }, null, 2), { encoding: "utf-8" });
     }
   }
 };

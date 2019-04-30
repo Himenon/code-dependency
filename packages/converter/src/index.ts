@@ -5,7 +5,7 @@ export const converter = (source: string | Types.Dependency, flatDependencies: T
   const root: Types.TreeData =
     typeof source === "string"
       ? {
-          resolved: normalizePath(source),
+          resolved: normalizePath(source, true),
           coreModule: false,
           followable: true,
           couldNotResolve: false,

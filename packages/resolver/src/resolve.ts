@@ -38,7 +38,7 @@ export const resolve = (
 
   if (!resolvedModule.coreModule && !resolvedModule.couldNotResolve && resolvedModule.resolved) {
     try {
-      const resolvedPath = path.relative(baseDir, fs.realpathSync(path.resolve(baseDir, resolvedModule.resolved)));
+      const resolvedPath = path.resolve(baseDir, fs.realpathSync(path.resolve(baseDir, resolvedModule.resolved)));
       resolvedModule.resolved = path.normalize(resolvedPath);
     } catch (e) {
       resolvedModule.couldNotResolve = true;

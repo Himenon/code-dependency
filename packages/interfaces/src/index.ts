@@ -8,6 +8,7 @@ export interface Package extends normalize.Package {
 export interface Options {
   source: string;
   executeDirectory: string;
+  stripBasePath?: string;
 }
 
 export type TsConfig = any;

@@ -1,0 +1,157 @@
+{
+  "flatDependencies": [
+    {
+      "source": "packages/code-dependency/src/gather.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "resolved": "packages/interfaces/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "fs",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "recursive-readdir",
+          "moduleSystem": "cjs",
+          "resolved": "node_modules/recursive-readdir/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/code-dependency/src/index.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/extract",
+          "moduleSystem": "cjs",
+          "resolved": "packages/extract/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "resolved": "packages/interfaces/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "@code-dependency/resolver",
+          "moduleSystem": "cjs",
+          "resolved": "packages/resolver/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./gather",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/code-dependency/src/__tests__/index.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "resolved": "packages/interfaces/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../index",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    }
+  ]
+}

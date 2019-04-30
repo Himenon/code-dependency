@@ -8,11 +8,11 @@
       "esnext"
     ],
     "experimentalDecorators": true,
+    "baseUrl": ".",
     "removeComments": true,
     "sourceMap": true,
     "allowJs": false,
     "moduleResolution": "node",
-    "rootDir": "./src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -21,15 +21,13 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "baseUrl": "./",
     "noLib": false,
     "declaration": true,
     "jsx": "react",
+    "paths": {
+      "@code-dependency/*": ["packages/*/src"]
+    }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
   "exclude": [
     "./node_modules"
   ],

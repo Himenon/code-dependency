@@ -10,7 +10,7 @@ import { paths } from "../../config/paths";
 const protocol = process.env.HTTPS === "true" ? "https" : "http";
 const host = process.env.HOST || "0.0.0.0";
 
-export const createDevServerConfig = (proxy, allowedHost): WebpackDevServer.Configuration => {
+export const createDevServerConfig = (proxy: any, allowedHost: any): WebpackDevServer.Configuration => {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:

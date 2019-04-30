@@ -1,4 +1,12 @@
 {
-  "extends": "./tsconfig",
+  "extends": "../../tsconfig",
+  "include": [
+    "src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "lib",
+    "paths": {}
+  },
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

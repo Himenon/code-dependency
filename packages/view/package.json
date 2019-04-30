@@ -34,7 +34,7 @@
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli.js",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.json src",
+    "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.build.json src",
     "develop": "yarn run build:scripts && yarn run server:dev",
     "format": "prettier --config .prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint -c ./.eslintrc.json 'src/**/*.{ts,tsx}'",
@@ -68,6 +68,8 @@
   "devDependencies": {
     "@code-dependency/interfaces": "^0.0.1",
     "@types/d3": "^5.7.2",
+    "@types/fs-extra": "^5.0.5",
+    "@types/glob": "^7.1.1",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/jsdom": "^12.2.3",
     "@types/mini-css-extract-plugin": "^0.2.0",

@@ -18,7 +18,7 @@ export const configFactory = (webpackEnv: "development" | "production"): webpack
 
   const publicPath = isEnvProduction ? paths.servedPath : isEnvDevelopment && "/";
   const publicUrl = isEnvProduction && publicPath ? publicPath.slice(0, -1) : isEnvDevelopment && "";
-  const env = getClientEnvironment(publicUrl);
+  const env = getClientEnvironment(publicUrl || "");
 
   const shouldUseRelativeAssetPaths = publicPath === "./";
 

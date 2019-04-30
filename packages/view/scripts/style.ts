@@ -13,7 +13,7 @@ process.on("unhandledRejection", err => {
 });
 const entries: { [key: string]: string } = { "style.scss": "./src/style.scss" };
 
-glob.sync("./src/**/*.scss").map(filepath => {
+glob.sync("./src/**/*.scss").map((filepath: string) => {
   const filename = path.basename(filepath);
   if (filename.charAt(0) !== "_") {
     entries[filename] = filepath;

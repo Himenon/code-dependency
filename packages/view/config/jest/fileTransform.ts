@@ -3,7 +3,7 @@ import * as path from "path";
 // This is a custom Jest transformer turning file imports into filenames.
 // http://facebook.github.io/jest/docs/en/webpack.html
 
-export const process = (src, filename) => {
+export const process = (src: string, filename: string) => {
   const assetFilename = JSON.stringify(path.basename(filename));
 
   if (filename.match(/\.svg$/)) {

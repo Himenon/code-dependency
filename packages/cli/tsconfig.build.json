@@ -1,11 +1,13 @@
 {
   "extends": "../tsconfig",
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib"
+    "outDir": "lib",
+    "rootDir": "src"
   },
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

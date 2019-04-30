@@ -4,5 +4,6 @@
     "composite": true,
     "sourceMap": true,
     "declaration": true
-  }
+  },
+  "references": []
 }

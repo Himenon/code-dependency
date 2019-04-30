@@ -5,11 +5,8 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib"
+    "outDir": "lib",
+    "rootDir": "src"
   },
-  "references": [
-    { "path": "../extract" },
-    { "path": "../resolver" }
-  ],
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

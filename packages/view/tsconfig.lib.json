@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig",
-  "compilerOptions": {
-    "rootDir": "src",
-    "baseUrl": "."
-  },
-  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts", "config"]
-}

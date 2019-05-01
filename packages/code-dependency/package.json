@@ -24,7 +24,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && tsc -p ./tsconfig.build.json",
+    "build": "yarn run clean && tsc -p ./tsconfig.json",
     "build:dev:watch": "yarn run build -w",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib",

@@ -4,14 +4,13 @@
 function rewriteValue() {
   tmp=$(mktemp)
   fileName=$1
-  echo $fileName/tsconfig.json
-  jq '.extends = "../tsconfig.shared"' $fileName/tsconfig.json > "$tmp" && mv $tmp $fileName
-  rm $tmp
+  echo $fileName
+  jq '.extends = "../tsconfig.shared"' $fileName > "$tmp" && mv $tmp $fileName
 }
 
-rewriteValue packages/cli
-rewriteValue packages/code-dependency
-rewriteValue packages/converter
-rewriteValue packages/extract
-rewriteValue packages/interfaces
-rewriteValue packages/resolver
+rewriteValue packages/cli/tsconfig.json
+rewriteValue packages/code-dependency/tsconfig.json
+rewriteValue packages/converter/tsconfig.json
+rewriteValue packages/extract/tsconfig.json
+rewriteValue packages/interfaces/tsconfig.json
+rewriteValue packages/resolver/tsconfig.json

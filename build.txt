@@ -1,1 +1,7 @@
 packages/interfaces
+packages/extract
+packages/resolver
+packages/code-dependency
+packages/converter
+packages/view
+packages/cli

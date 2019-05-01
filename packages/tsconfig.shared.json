@@ -23,10 +23,7 @@
     "noUnusedLocals": true,
     "noLib": false,
     "declaration": true,
-    "jsx": "react",
-    "paths": {
-      "@code-dependency/*": ["packages/*/src"]
-    }
+    "jsx": "react"
   },
   "exclude": [
     "./node_modules"

@@ -23,7 +23,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && tsc -p ./tsconfig.build.json",
+    "build": "yarn run clean && tsc -p ./tsconfig.json",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib",
     "cli": "node ./lib/cli/index.js -f ./src/index.ts",

@@ -1,12 +1,18 @@
 {
-  "extends": "../tsconfig.build",
+  "extends": "../tsconfig.shared",
   "compilerOptions": {
     "outDir": "lib",
+    "rootDir": ".",
     "baseUrl": ".",
     "lib": [
       "dom",
       "esnext"
     ],
+    "paths": {
+      "@app/domain": ["./src/domain"],
+      "@app/domain*": ["./src/domain*"],
+      "@app/types": ["./src/types"]
+    }
   },
   "include": [
     "src/**/*.ts",

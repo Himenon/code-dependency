@@ -15,7 +15,7 @@
     "build": "lerna run build",
     "build:lib": "tsc --build @build.txt --verbose",
     "clean": "lerna run clean",
-    "clean:lib": "tsc --build packages --clean",
+    "clean:lib": "tsc --build @build.txt --clean",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "format": "lerna run format",
     "lint": "lerna run lint",

@@ -1,9 +1,11 @@
 {
-  "extends": "./tsconfig.build",
-  "compilerOptions": {
-    "composite": true,
-    "sourceMap": true,
-    "declaration": true
-  },
-  "references": []
+  "files": [],
+  "references": [
+    { "path": "code-dependency" },
+    { "path": "converter" },
+    { "path": "extract" },
+    { "path": "interfaces" },
+    { "path": "resolver" },
+    { "path": "view" }
+  ]
 }

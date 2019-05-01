@@ -27,7 +27,7 @@
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/cli/index.js -f ./src/index.ts",
-    "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
+    "cruiser": "echo 'skip'",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",

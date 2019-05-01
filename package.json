@@ -18,6 +18,7 @@
     "clean": "lerna run clean",
     "clean:lib": "tsc -b @build.txt --clean",
     "commitmsg": "commitlint -e $GIT_PARAMS",
+    "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
     "test": "lerna run test",

@@ -3,7 +3,16 @@ language: node_js
 branches:
   only:
   - master
-cache: yarn
+cache:
+  directories:
+    - "node_modules"
+    - "packages/cli/lib"
+    - "packages/code-dependency/lib"
+    - "packages/converter/lib"
+    - "packages/extract/lib"
+    - "packages/interfaces/lib"
+    - "packages/resolver/lib"
+    - "packages/view/lib"
 stages:
 - name: lint
   if: branch = master AND type = pull_request
@@ -18,21 +27,23 @@ jobs:
   - stage: lint
     script: yarn run lint
     node_js:
-    - '10'
+    - '11'
   - stage: compile
-    script: yarn build
+    script: yarn run build:lib
     node_js:
-    - '10'
+    - '11'
   - stage: test
-    script: yarn run test:ci
+    script:
+    - yarn run build:lib
+    - yarn run test:ci
     node_js:
-    - '10'
+    - '11'
   - stage: deploy
     script:
     - yarn install
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc
-    - npm publish
-    - cp .npmrc.template .npmrc
+    # - npm publish
+    # - cp .npmrc.template .npmrc
     node_js:
-    - '10'
+    - '11'

@@ -1,6 +1,8 @@
 {
   "automock": false,
-  "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
+  "unmockedModulePathPatterns": [
+    "<rootDir>/node_modules/*"
+  ],
   "roots": [
     "<rootDir>/src"
   ],
@@ -35,5 +37,6 @@
     "^.+\\.jsx?$": "babel-jest",
     "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
     "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-  }
+  },
+  "cacheDirectory": "<rootDir>/buildcache"
 }

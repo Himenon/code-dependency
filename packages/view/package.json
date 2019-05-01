@@ -34,20 +34,16 @@
     "cli": "node ./lib/cli.js",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.json src",
-    "develop": "yarn run build:scripts && yarn run server:dev",
-    "format": "prettier --config .prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location buildcache -c ./.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
+    "lint": "eslint --cache --cache-location buildcache -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server:dev": "node scripts/develop.js",
     "server:prod": "serve -s build",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
-    "test:ci": "yarn run build:scripts && yarn run test && codecov",
-    "test:jest": "jest -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch",
-    "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
-    "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
-    "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
+    "test:ci": "yarn run test && codecov",
+    "test:jest": "jest --cache -c ./jest.config.json",
+    "test:watch": "yarn run test:jest --watch"
   },
   "babel": {
     "presets": [

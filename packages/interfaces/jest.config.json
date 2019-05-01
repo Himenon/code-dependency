@@ -1,6 +1,8 @@
 {
   "automock": true,
-  "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
+  "unmockedModulePathPatterns": [
+    "<rootDir>/node_modules/*"
+  ],
   "roots": [
     "<rootDir>/src"
   ],

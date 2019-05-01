@@ -26,19 +26,15 @@
   "scripts": {
     "clean": "rimraf ./lib && tsc -b . --clean",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
-    "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location buildcache -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
-    "lint:fix": "yarn run lint -- --fix",
+    "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
-    "test:jest": "jest -c ./jest.config.json",
-    "test:watch": "yarn run test:jest -- --watch",
-    "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
-    "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
-    "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
+    "test:jest": "jest --cache -c ./jest.config.json",
+    "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
     "@code-dependency/extract": "0.0.1",

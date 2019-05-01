@@ -22,7 +22,7 @@ describe("#resolve", () => {
   test("Walk into example/src", () => {
     Example.RootDirTestData.forEach(testData => {
       const result = resolve({ moduleName: testData.moduleName, moduleSystem: "cjs" }, Example.SOURCE_DIR_PATH, EXAMPLE_FILE_DIR, option);
-      const resolvedAbsolutePath = result.resolved && path.join(Example.SOURCE_DIR_PATH, result.resolved);
+      const resolvedAbsolutePath = result.resolved;
       expect(result.coreModule).toBe(testData.result.coreModule);
       expect(result.couldNotResolve).toBe(testData.result.couldNotResolve);
       expect(resolvedAbsolutePath).toBe(testData.result.resolved);
@@ -37,7 +37,7 @@ describe("#resolve", () => {
         CIRCLE_DEPS_FILE_DIR,
         option,
       );
-      const resolvedAbsolutePath = result.resolved && path.join(Example.SOURCE_DIR_PATH, result.resolved);
+      const resolvedAbsolutePath = result.resolved;
       expect(result.coreModule).toBe(testData.result.coreModule);
       expect(result.couldNotResolve).toBe(testData.result.couldNotResolve);
       expect(resolvedAbsolutePath).toBe(testData.result.resolved);

@@ -18,9 +18,12 @@
     "clean": "lerna run clean",
     "clean:lib": "tsc -b @build.txt --clean",
     "commitmsg": "commitlint -e $GIT_PARAMS",
+    "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "test": "lerna run test"
+    "setup:ci": "ts-node ./bin/setup-ci.ts && lerna run setup:ci",
+    "test": "lerna run test",
+    "test:ci": "lerna run test:ci"
   },
   "dependencies": {
     "lodash": "^4.17.11"

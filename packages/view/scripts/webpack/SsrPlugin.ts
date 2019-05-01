@@ -6,7 +6,7 @@ import { paths } from "../../config/paths";
 /**
  * Before Execute, generate sample.
  */
-const CSR_PROPS_DATA_PATH = path.resolve(paths.appPath, "../cli/data/sample.json");
+const CSR_PROPS_DATA_PATH = path.resolve(paths.appPath, "../converter/sample/code-dependency.json");
 
 /**
  * TODO update require libraries at file changes,

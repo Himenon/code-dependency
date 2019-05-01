@@ -23,7 +23,6 @@ export interface Stores {
 }
 
 export const createReducers = ({ flatDependencies }: Types.CsrProps): Reducers => {
-  console.log({ flatDependencies });
   return {
     app: App.createReducer({ flatDependencies }),
     dendrogram: Dendrogram.createReducer(),

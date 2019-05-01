@@ -29,7 +29,7 @@ const generateProps = (store: Store, targetNode: Types.Node): TreeNode.Props => 
       onClick: () => {
         store.changeRootSource(targetNode.data.module);
       },
-      children: targetNode.data.resolved,
+      children: targetNode.data.module,
     },
   };
 };

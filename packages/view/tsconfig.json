@@ -2,29 +2,42 @@
   "extends": "../tsconfig.shared",
   "compilerOptions": {
     "outDir": "lib",
-    "rootDir": ".",
+    "rootDir": "src",
     "baseUrl": ".",
     "lib": [
       "dom",
       "esnext"
     ],
-    "declarationMap": false,
     "paths": {
-      "@app/domain": ["./src/domain"],
-      "@app/domain*": ["./src/domain*"],
-      "@app/types": ["./src/types"]
-    }
+      "@app/domain": [
+        "./src/domain"
+      ],
+      "@app/domain*": [
+        "./src/domain*"
+      ],
+      "@app/types": [
+        "./src/types"
+      ]
+    },
+    "tsBuildInfoFile": "buildcache/tsconfig.json.tsbuildinfo"
   },
   "references": [
-    { "path": "../interfaces" },
-    { "path": "../converter" }
+    {
+      "path": "../interfaces"
+    },
+    {
+      "path": "../converter"
+    }
   ],
   "include": [
+    "src/*.ts",
+    "src/*.tsx",
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "scripts/**/*.ts",
-    "scripts/**/*.tsx",
-    "config/**/*.ts",
-    "config/**/*.tsx"
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/**/__tests__/*",
+    "scripts"
   ]
 }

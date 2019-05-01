@@ -6,7 +6,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "tsBuildInfoFile": "buildcache/tsconfig.json.tsbuildinfo"
   },
   "exclude": [
     "node_modules",

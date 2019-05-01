@@ -4,13 +4,14 @@ import * as d3 from "d3";
 import { State } from "./State";
 
 interface Parameters {
-  rootSource?: string;
+  inputRootSource?: string;
   flatDependencies: Types.FlatDependencies;
+  stripBasePath?: string;
 }
 
-export const generateState = ({ rootSource, flatDependencies }: Parameters): State => {
-  const fixRootSource = rootSource || flatDependencies[0].source;
-  const treeData = converter(fixRootSource, flatDependencies);
+export const generateState = ({ inputRootSource, flatDependencies }: Parameters): State => {
+  const rootSource: string = inputRootSource || flatDependencies[0].source;
+  const treeData = converter(rootSource, flatDependencies);
   const data = d3.hierarchy(treeData);
   const root = d3.tree<Types.TreeData>()(data);
   const nodes = root.descendants();
@@ -20,6 +21,6 @@ export const generateState = ({ rootSource, flatDependencies }: Parameters): Sta
     nodes,
     links,
     treeData,
-    rootSource: fixRootSource,
+    rootSource,
   };
 };

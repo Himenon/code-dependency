@@ -6,9 +6,9 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/coverage": true,
-    "**/lib": true,
-    "packages/**/*.d.ts.map": true,
-    "packages/**/*.js": true,
+    // "**/lib": true,
+    // "packages/**/*.d.ts.map": true,
+    // "packages/**/*.js": true,
     "packages/view/scripts/**/*.d.ts": true,
     "packages/view/config/**/*.d.ts": true
   }

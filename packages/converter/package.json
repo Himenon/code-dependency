@@ -24,23 +24,20 @@
     "lib": "lib"
   },
   "scripts": {
-    "clean": "rimraf ./lib && tsc -b . --clean",
+    "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "generate:sample": "ts-node ./bin/generate-sample.ts ../code-dependency/src/index.ts",
-    "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location buildcache -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
-    "lint:fix": "yarn run lint -- --fix",
+    "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
-    "test:jest": "jest -c ./jest.config.json",
-    "test:watch": "yarn run test:jest -- --watch",
-    "version_up:major": "changelog -M && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version major",
-    "version_up:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version minor",
-    "version_up:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"chore(change-log): updated CHANGELOG.md\" && npm version patch"
+    "test:jest": "jest --cache -c ./jest.config.json",
+    "test:watch": "yarn run test:jest --watch",
+    "clean:cache": "rimraf ./buildcache"
   },
   "dependencies": {
     "@code-dependency/interfaces": "0.0.1",

@@ -24,6 +24,7 @@
     "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
+    "setup": "ts-node ./bin/setup.ts",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci",
     "warmup": "ts-node ./bin/tsconfig.shared.ts dist",

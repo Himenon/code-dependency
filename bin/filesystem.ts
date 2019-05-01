@@ -13,6 +13,7 @@ export const saveConfig = <T extends {}>(filename: string, data: T) => {
   fs.writeFileSync(filename, JSON.stringify(data, null, 2) + "\n", { encoding: "utf-8" });
 }
 
-export const mkdirP = (filePath: string) => {
-  fs.mkdirSync(filePath, { recursive: true });
+export const mkdirP = (dirPath: string) => {
+  console.log(`Make diretory ... ${dirPath}`)
+  fs.mkdirSync(dirPath, { recursive: true });
 }

@@ -71,7 +71,57 @@
         ],
         "couldNotResolve": true,
         "matchesDoNotFollow": false,
-        "children": []
+        "children": [
+          {
+            "module": "@code-dependency/interfaces",
+            "moduleSystem": "cjs",
+            "coreModule": false,
+            "followable": false,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": true,
+            "matchesDoNotFollow": false,
+            "children": []
+          },
+          {
+            "module": "fs",
+            "moduleSystem": "cjs",
+            "coreModule": true,
+            "followable": false,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": false,
+            "matchesDoNotFollow": false,
+            "children": []
+          },
+          {
+            "module": "path",
+            "moduleSystem": "cjs",
+            "coreModule": true,
+            "followable": false,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": false,
+            "matchesDoNotFollow": false,
+            "children": []
+          },
+          {
+            "module": "recursive-readdir",
+            "moduleSystem": "cjs",
+            "resolved": "node_modules/recursive-readdir/index.js",
+            "coreModule": false,
+            "followable": true,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": false,
+            "matchesDoNotFollow": false,
+            "children": []
+          }
+        ]
       }
     ]
   }

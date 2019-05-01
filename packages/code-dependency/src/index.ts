@@ -4,11 +4,8 @@ import { addResolutionAttribute } from "@code-dependency/resolver";
 import * as path from "path";
 import { gather } from "./gather";
 
-const removeBasePath = (from: string, to: string): string => {
-  if (to.startsWith(from)) {
-    return path.relative(from, to);
-  }
-  return to;
+const stripBasePath = (from: string, to: string): string => {
+  return to.startsWith(from) ? path.relative(from, to) : to;
 };
 
 const getDependencies = async (options: Types.Options, resolveOption: Types.ResolveOption): Promise<Types.InputSourceDependency[]> => {
@@ -24,12 +21,13 @@ const getDependencies = async (options: Types.Options, resolveOption: Types.Reso
         moduleName: extractObject.module,
         moduleSystem: extractObject.moduleSystem,
       });
+
       attributes.resolved =
-        attributes.resolved && options.stripBasePath ? removeBasePath(options.stripBasePath, attributes.resolved) : attributes.resolved;
+        attributes.resolved && options.stripBasePath ? stripBasePath(options.stripBasePath, attributes.resolved) : undefined;
       return attributes;
     });
     const result: Types.InputSourceDependency = {
-      source: options.stripBasePath ? removeBasePath(options.stripBasePath, source) : source,
+      source: options.stripBasePath ? stripBasePath(options.stripBasePath, source) : source,
       dependencies,
     };
     return previousSourceDependencies.concat(result);

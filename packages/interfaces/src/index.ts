@@ -40,7 +40,7 @@ export interface ResolvedModule {
 }
 
 export interface BaseDependencyProperties {
-  /** full path */
+  /** resolved path */
   resolved: string | undefined;
   /** User searched file. */
   followable: boolean;

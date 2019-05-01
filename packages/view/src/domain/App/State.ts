@@ -11,12 +11,12 @@ export interface State {
 export const DEFAULT_STATE: State = {
   flatDependencies: [],
   treeData: {
-    resolved: "inndex.js",
+    resolved: "index.js",
     coreModule: false,
     followable: true,
     couldNotResolve: false,
     dependencyTypes: ["undetermined"],
-    module: "inndex.js",
+    module: "./index.js",
     moduleSystem: "cjs",
     matchesDoNotFollow: false,
     children: [],

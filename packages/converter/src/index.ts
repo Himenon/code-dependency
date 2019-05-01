@@ -10,7 +10,7 @@ export const converter = (source: string | Types.Dependency, flatDependencies: T
           followable: true,
           couldNotResolve: false,
           dependencyTypes: ["undetermined"],
-          module: normalizePath(source),
+          module: source,
           moduleSystem: "cjs",
           matchesDoNotFollow: false,
           children: [],

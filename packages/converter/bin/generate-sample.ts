@@ -1,23 +1,28 @@
-import { getDependencies } from "@code-dependency/code-dependency";
+import * as CodeDependency from "@code-dependency/code-dependency";
 import * as Types from "@code-dependency/interfaces";
 import * as fs from "fs";
 import * as path from "path";
 import { converter } from "../src/index";
 
+const executeDirectory = process.cwd();
+const stripBasePath = path.dirname(path.dirname(process.cwd()));
+
 const save = (filename: string, data: {}) => {
-  fs.writeFileSync(filename, JSON.stringify(data, null, 2), { encoding: "utf-8" });
-  console.log(`Save file ... ${filename}`);
+  const absolutePath = path.resolve(executeDirectory, filename);
+  fs.writeFileSync(absolutePath, JSON.stringify(data, null, 2), { encoding: "utf-8" });
+  console.log(`Save file ... ${absolutePath}`);
 };
 
 const main = async () => {
   const options: Types.ResolveOption = {
     alias: {},
   };
-  const source: string = path.normalize(process.argv[2]);
-  const executeDirectory = process.cwd();
-  const flatDependencies = await getDependencies({ source, executeDirectory }, options);
-  save("./data/flatDependencies.json", { flatDependencies });
-  save("./data/treeData.json", { treeData: converter(source, flatDependencies) });
+  console.log(stripBasePath);
+  const source: string = path.resolve(executeDirectory, path.normalize(process.argv[2]));
+  const convertSource = path.relative(stripBasePath, source);
+  const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory, stripBasePath }, options);
+  save("./sample/code-dependency.json", { flatDependencies });
+  save("./sample/tree-data.json", { treeData: converter(convertSource, flatDependencies) });
 };
 
 main();

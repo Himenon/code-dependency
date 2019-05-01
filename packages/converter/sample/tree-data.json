@@ -1,0 +1,78 @@
+{
+  "treeData": {
+    "resolved": "packages/code-dependency/src/index.ts",
+    "coreModule": false,
+    "followable": true,
+    "couldNotResolve": false,
+    "dependencyTypes": [
+      "undetermined"
+    ],
+    "module": "packages/code-dependency/src/index.ts",
+    "moduleSystem": "cjs",
+    "matchesDoNotFollow": false,
+    "children": [
+      {
+        "module": "@code-dependency/extract",
+        "moduleSystem": "cjs",
+        "resolved": "packages/extract/lib/index.js",
+        "coreModule": false,
+        "followable": true,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": false,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "@code-dependency/interfaces",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "@code-dependency/resolver",
+        "moduleSystem": "cjs",
+        "resolved": "packages/resolver/lib/index.js",
+        "coreModule": false,
+        "followable": true,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": false,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "path",
+        "moduleSystem": "cjs",
+        "coreModule": true,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": false,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "./gather",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": []
+      }
+    ]
+  }
+}

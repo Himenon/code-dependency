@@ -38,7 +38,5 @@ function addResolutionAttributes(
  * resolves both CommonJS and ES6
  */
 export const resolveCommonJS = (moduleName: string, baseDir: string, fileDir: string, option: Types.ResolveOption): ResolutionAttribute => {
-  return {
-    ...addResolutionAttributes(baseDir, moduleName, fileDir, option),
-  };
+  return addResolutionAttributes(baseDir, moduleName, fileDir, option);
 };

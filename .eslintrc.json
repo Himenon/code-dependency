@@ -16,6 +16,6 @@
   },
   "parserOptions": {
     "sourceType": "module",
-    "project": "./tsconfig.build.json"
+    "project": "./tsconfig.json"
   }
 }

@@ -32,7 +32,6 @@
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
-    "generate:sample": "node ./lib/index.js -f ../code-dependency/src/index.ts -c $(echo $(dirname $(dirname $(pwd)))) -o ../converter/sample/code-dependency.json",
     "cli:server": "node ./lib/index.js -s -i ./data/sample.json",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",

@@ -6,13 +6,12 @@
         {
           "module": "@code-dependency/interfaces",
           "moduleSystem": "cjs",
-          "resolved": "packages/interfaces/lib/index.js",
           "coreModule": false,
-          "followable": true,
+          "followable": false,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": false,
+          "couldNotResolve": true,
           "matchesDoNotFollow": false
         },
         {
@@ -69,13 +68,12 @@
         {
           "module": "@code-dependency/interfaces",
           "moduleSystem": "cjs",
-          "resolved": "packages/interfaces/lib/index.js",
           "coreModule": false,
-          "followable": true,
+          "followable": false,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": false,
+          "couldNotResolve": true,
           "matchesDoNotFollow": false
         },
         {
@@ -120,13 +118,12 @@
         {
           "module": "@code-dependency/interfaces",
           "moduleSystem": "cjs",
-          "resolved": "packages/interfaces/lib/index.js",
           "coreModule": false,
-          "followable": true,
+          "followable": false,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": false,
+          "couldNotResolve": true,
           "matchesDoNotFollow": false
         },
         {

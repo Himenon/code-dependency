@@ -30,7 +30,7 @@
     "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
-    "generate:sample": "ts-node ./bin/generate-sample.ts ./src/index.ts",
+    "generate:sample": "ts-node ./bin/generate-sample.ts ../code-dependency/src/index.ts",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",

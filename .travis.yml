@@ -29,7 +29,6 @@ jobs:
   - stage: lint & build & test
     script:
     - yarn run setup:ci
-    - yarn run clean
     - yarn run lint
     - yarn run build:lib
     - yarn run build
@@ -39,7 +38,8 @@ jobs:
     - '11'
   - stage: deploy
     script:
-    - yarn install
+    - yarn run clean
+    - yarn run build:lib
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc
     # - npm publish

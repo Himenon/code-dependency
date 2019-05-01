@@ -31,12 +31,15 @@ jobs:
     - yarn run setup:ci
     - yarn run lint
     - yarn run build:lib
+    - yarn run build
     - yarn run test:ci
+    - yarn run setup:ci
     node_js:
     - '11'
   - stage: deploy
     script:
-    - yarn install
+    - yarn run clean
+    - yarn run build:lib
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc
     # - npm publish

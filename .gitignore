@@ -8,3 +8,4 @@ package-lock.json
 private_npm_cache
 *.tsbuildinfo
 *.d.ts.map
+buildcache/

@@ -23,8 +23,11 @@ const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const { choosePort, createCompiler, prepareProxy, prepareUrls } = require("react-dev-utils/WebpackDevServerUtils");
 const openBrowser = require("react-dev-utils/openBrowser");
 import { paths } from "../config/paths";
+import { resetTsBuildInfoFile } from "./rewriteTsconfig";
 import { configFactory } from "./webpack/webpack.config";
 import { createDevServerConfig } from "./webpack/webpackDevServer.config";
+
+resetTsBuildInfoFile();
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;

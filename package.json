@@ -13,6 +13,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "build:ci": "yarn run build:lib && lerna run build:ci",
     "build:lib": "tsc -b @build.txt --verbose",
     "build:lib:watch": "tsc -b -w @build.txt",
     "clean": "lerna run clean",
@@ -21,7 +22,7 @@
     "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "setup:ci": "ts-node ./bin/setup-ci.ts && lerna run setup:ci",
+    "setup:ci": "ts-node ./bin/tsconfig.normalize.ts rewrite",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci"
   },

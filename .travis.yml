@@ -29,9 +29,12 @@ jobs:
   - stage: lint & build & test
     script:
     - yarn run setup:ci
+    - yarn run clean
     - yarn run lint
     - yarn run build:lib
+    - yarn run build
     - yarn run test:ci
+    - yarn run setup:ci
     node_js:
     - '11'
   - stage: deploy

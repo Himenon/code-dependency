@@ -18,7 +18,11 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as webpack from "webpack";
 import { paths } from "../config/paths";
+import { resetTsBuildInfoFile } from "./rewriteTsconfig";
 import { configFactory } from "./webpack/webpack.config";
+
+resetTsBuildInfoFile();
+
 const chalk = require("react-dev-utils/chalk");
 const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");

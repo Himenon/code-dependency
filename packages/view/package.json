@@ -29,7 +29,7 @@
     "build:lib": "rimraf lib && yarn run build:tsc",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
-    "build:tsc": "tsc -p tsconfig.build.json",
+    "build:tsc": "tsc -p tsconfig.lib.json",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli.js",

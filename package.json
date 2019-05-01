@@ -13,8 +13,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "build:lib": "tsc -b packages tsconfig.build.json",
+    "build:lib": "tsc --build @build.txt --verbose",
     "clean": "lerna run clean",
+    "clean:lib": "tsc --build packages --clean",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "format": "lerna run format",
     "lint": "lerna run lint",

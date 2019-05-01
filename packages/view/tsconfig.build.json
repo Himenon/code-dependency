@@ -1,8 +1,19 @@
 {
-  "extends": "./tsconfig",
+  "extends": "../tsconfig.build",
   "compilerOptions": {
-    "rootDir": "./src",
-    "baseUrl": "."
+    "outDir": "lib",
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
   },
-  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts", "config"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "scripts/**/*.ts",
+    "scripts/**/*.tsx",
+    "config/**/*.ts",
+    "config/**/*.tsx"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig",
+  "extends": "../tsconfig.shared",
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
@@ -9,5 +9,9 @@
     "outDir": "lib",
     "rootDir": "src"
   },
-  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
+  "exclude": [
+    "node_modules",
+    "./src/**/__tests__/*",
+    "scripts"
+  ]
 }

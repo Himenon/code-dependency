@@ -13,6 +13,12 @@ cache:
     - "packages/interfaces/lib"
     - "packages/resolver/lib"
     - "packages/view/lib"
+    - "packages/code-dependency/buildcache"
+    - "packages/converter/buildcache"
+    - "packages/extract/buildcache"
+    - "packages/interfaces/buildcache"
+    - "packages/resolver/buildcache"
+    - "packages/view/buildcache"
 stages:
 - name: lint & build & test
   if: branch = master AND type = pull_request
@@ -22,6 +28,7 @@ jobs:
   include:
   - stage: lint & build & test
     script:
+    - yarn run setup:ci
     - yarn run lint
     - yarn run build:lib
     - yarn run test:ci

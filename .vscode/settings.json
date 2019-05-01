@@ -10,7 +10,6 @@
     "packages/**/*.d.ts.map": true,
     "packages/**/*.js": true,
     "packages/view/scripts/**/*.d.ts": true,
-    "packages/view/config/**/*.d.ts": true,
-    "packages/**/*.tsbuildinfo": true
+    "packages/view/config/**/*.d.ts": true
   }
 }

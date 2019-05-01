@@ -21,6 +21,7 @@
     "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
+    "setup:ci": "ts-node ./bin/setup-ci.ts && lerna run setup:ci",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci"
   },

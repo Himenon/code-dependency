@@ -33,7 +33,7 @@
     "clean": "rimraf ./lib ./build ./tsconfig.scripts.tsbuildinfo ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/cli.js",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.build.json src",
+    "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.json src",
     "develop": "yarn run build:scripts && yarn run server:dev",
     "format": "prettier --config .prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint -c ./.eslintrc.json 'src/**/*.{ts,tsx}'",

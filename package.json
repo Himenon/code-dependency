@@ -20,7 +20,8 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "test:ci": "lerna run test:ci"
   },
   "dependencies": {
     "lodash": "^4.17.11"

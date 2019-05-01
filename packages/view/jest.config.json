@@ -15,6 +15,10 @@
   "moduleDirectories": [
     "node_modules"
   ],
+  "moduleNameMapper": {
+    "@app/domain/(.+)": "<rootDir>/src/domain/$1",
+    "@app/types/(.+)": "<rootDir>/src/types/$1"
+  },
   "moduleFileExtensions": [
     "ts",
     "tsx",
@@ -28,7 +32,7 @@
   "collectCoverage": true,
   "transform": {
     "^.+\\.tsx?$": "ts-jest",
-    "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.jsx?$": "babel-jest",
     "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
     "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
   }

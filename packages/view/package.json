@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "yarn run build:scripts && node scripts/build.js",
-    "build:lib": "rimraf lib && tsc -b . && yarn run build:lib",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
@@ -41,7 +40,7 @@
     "server:prod": "serve -s build",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
-    "test:ci": "yarn run test && codecov",
+    "test:ci": "yarn run build:scripts && yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
     "test:watch": "yarn run test:jest --watch",
     "clean:cache": "rimraf ./buildcache"

@@ -5,6 +5,7 @@ import { Package, JestConfig } from "./types";
 const shareScripts: Package["scripts"] = {
   // lint: "eslint --cache --cache-location buildcache -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
   develop: undefined,
+  "build:lib": undefined,
   "lint:fix": "yarn run lint --fix",
   "test:ci": "yarn run test && codecov",
   "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",

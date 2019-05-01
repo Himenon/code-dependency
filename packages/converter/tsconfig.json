@@ -6,7 +6,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "composite": true,
+    "sourceMap": true,
+    "declarationMap": true
   },
   "exclude": [
     "node_modules",

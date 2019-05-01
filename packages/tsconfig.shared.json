@@ -10,7 +10,6 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "removeComments": true,
-    "sourceMap": true,
     "allowJs": false,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -22,8 +21,11 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noLib": false,
+    "jsx": "react",
     "declaration": true,
-    "jsx": "react"
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
   },
   "exclude": [
     "./node_modules"

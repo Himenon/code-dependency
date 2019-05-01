@@ -24,10 +24,10 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && tsc -p ./tsconfig.json",
+    "build": "yarn run clean && tsc -b . --verbose",
     "build:dev:watch": "yarn run build -w",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
-    "clean": "rimraf ./lib",
+    "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",

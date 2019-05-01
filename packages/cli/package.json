@@ -27,10 +27,10 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && tsc -p ./tsconfig.json",
+    "build": "yarn run clean && tsc -b . --verbose",
     "build:watch": "yarn run build -w",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
-    "clean": "rimraf ./lib",
+    "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "generate:sample": "node ./lib/index.js -f ../code-dependency/src/index.ts -c $(echo $(dirname $(dirname $(pwd)))) -o ../converter/sample/code-dependency.json",
     "cli:server": "node ./lib/index.js -s -i ./data/sample.json",

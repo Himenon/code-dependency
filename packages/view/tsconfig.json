@@ -8,6 +8,7 @@
       "dom",
       "esnext"
     ],
+    "declarationMap": false,
     "paths": {
       "@app/domain": ["./src/domain"],
       "@app/domain*": ["./src/domain*"],

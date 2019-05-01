@@ -8,6 +8,9 @@
     "outDir": "lib",
     "rootDir": "src"
   },
+  "references": [
+    { "path": "../interfaces" }
+  ],
   "exclude": [
     "node_modules",
     "./src/**/__tests__/*",

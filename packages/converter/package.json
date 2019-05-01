@@ -24,10 +24,10 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run clean && tsc -p ./tsconfig.json",
-    "build:watch": "yarn run clean && tsc -p ./tsconfig.json -w",
+    "build": "yarn run clean && tsc -b . --verbose",
+    "build:watch": "yarn run clean && yarn run build -w",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
-    "clean": "rimraf ./lib",
+    "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "generate:sample": "ts-node ./bin/generate-sample.ts ./src/index.ts",

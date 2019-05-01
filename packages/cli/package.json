@@ -27,7 +27,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "clean": "rimraf ./lib && tsc -b . --clean",
+    "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "cli:server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
@@ -40,7 +40,7 @@
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
     "test:watch": "yarn run test:jest --watch",
-    "clean:lib": "rimraf lib"
+    "clean:cache": "rimraf ./buildcache"
   },
   "dependencies": {
     "@code-dependency/code-dependency": "0.0.1",

@@ -9,7 +9,9 @@ const shareScripts: Package["scripts"] = {
   "test:ci": "yarn run test && codecov",
   "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
   "test:jest": "jest --cache -c ./jest.config.json",
-  "clean:lib": "rimraf lib",
+  "clean": "rimraf ./lib ./build",
+  "clean:cache": "rimraf ./buildcache",
+  "clean:lib": undefined,
   "test:watch": "yarn run test:jest --watch",
 }
 

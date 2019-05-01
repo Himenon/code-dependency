@@ -24,7 +24,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "clean": "rimraf ./lib && tsc -b . --clean",
+    "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli/index.js -f ./src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
@@ -36,7 +36,7 @@
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
     "test:watch": "yarn run test:jest --watch",
-    "clean:lib": "rimraf lib"
+    "clean:cache": "rimraf ./buildcache"
   },
   "dependencies": {
     "@code-dependency/interfaces": "0.0.1",

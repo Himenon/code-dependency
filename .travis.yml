@@ -28,15 +28,13 @@ jobs:
   include:
   - stage: lint & build & test
     script:
-    - yarn run setup:ci
     - yarn run lint
-    - yarn run build
+    - yarn run build:lib
     - yarn run test:ci
     node_js:
     - '11'
   - stage: deploy
     script:
-    - yarn run clean
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc
     # - npm publish

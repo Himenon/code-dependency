@@ -5,13 +5,15 @@
     "src/**/*.tsx"
   ],
   "compilerOptions": {
+    "composite": true,
     "baseUrl": ".",
     "outDir": "lib",
-    "rootDir": "src",
-    "composite": true,
-    "sourceMap": true,
-    "declarationMap": true
+    "rootDir": "src"
   },
+  "references": [
+    { "path": "../code-dependency" },
+    { "path": "../interfaces" }
+  ],
   "exclude": [
     "node_modules",
     "./src/**/__tests__/*",

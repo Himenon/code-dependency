@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "yarn run clean && yarn run build:scripts && node scripts/build.js && yarn run build:lib",
-    "build:lib": "yarn run clean && tsc -b . --verbose",
+    "build:lib": "yarn run clean && tsc -p .",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
     "ci:notify:release": "ts-node ./scripts/notify.ts",

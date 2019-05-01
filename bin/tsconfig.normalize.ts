@@ -9,13 +9,10 @@ const rewriteTsBuildInfoFile = () => {
     const cacheDir = buildcaches[name];
     const tsConfig = readConfig<TsConfig>(tsConfigFileName);
     mkdirP(path.join("packages", name, cacheDir));
+    tsConfig.extends = "../tsconfig.shared";
     tsConfig.compilerOptions.tsBuildInfoFile = "buildcache/tsconfig.json.tsbuildinfo";
     saveConfig(tsConfigFileName, tsConfig);
   });
 }
 
-const flag: "reset" | "rewrite" | string | undefined = process.argv[2];
-
-if (flag === "rewrite") {
-  rewriteTsBuildInfoFile();
-}
+rewriteTsBuildInfoFile()

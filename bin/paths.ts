@@ -45,10 +45,12 @@ export const tsConfigs: MonorepoPackageSettings = {
  */
 export const buildcaches: MonorepoPackageSettings = {
   cli: "buildcache",
-  "code-dependency": "dependency/buildcache",
+  "code-dependency": "buildcache",
   converter: "buildcache",
   extract: "buildcache",
   interfaces: "buildcache",
   resolver: "buildcache",
   view: "buildcache",
 };
+
+export const tsConfigShared = "packages/tsconfig.shared.json";

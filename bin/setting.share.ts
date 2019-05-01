@@ -9,6 +9,7 @@ const shareScripts: Package["scripts"] = {
   "test:ci": "yarn run test && codecov",
   "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
   "test:jest": "jest --cache -c ./jest.config.json",
+  "clean:lib": "rimraf lib",
   "test:watch": "yarn run test:jest --watch",
 }
 
@@ -20,9 +21,7 @@ const updatePackage = () => {
   packageNameList.forEach(name => {
     const pkg = readConfig<Package>(packages[name]);
     Object.keys(shareScripts).forEach(key => {
-      if (key in pkg.scripts) {
-        pkg.scripts[key] = shareScripts[key];
-      }
+      pkg.scripts[key] = shareScripts[key];
     });
     saveConfig(packages[name], pkg);
   })

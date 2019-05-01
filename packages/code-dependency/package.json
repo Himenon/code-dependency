@@ -34,7 +34,8 @@
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch"
+    "test:watch": "yarn run test:jest --watch",
+    "clean:lib": "rimraf lib"
   },
   "dependencies": {
     "@code-dependency/extract": "0.0.1",

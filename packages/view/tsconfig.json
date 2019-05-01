@@ -15,6 +15,10 @@
       "@app/types": ["./src/types"]
     }
   },
+  "references": [
+    { "path": "../interfaces" },
+    { "path": "../converter" }
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

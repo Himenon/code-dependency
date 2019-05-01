@@ -8,5 +8,10 @@
     "outDir": "lib",
     "rootDir": "src"
   },
+  "references": [
+    { "path": "../interfaces" },
+    { "path": "../extract" },
+    { "path": "../resolver" }
+  ],
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

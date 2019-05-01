@@ -12,7 +12,10 @@
   },
   "references": [
     { "path": "../code-dependency" },
-    { "path": "../interfaces" }
+    { "path": "../interfaces" },
+    { "path": "../resolver" },
+    { "path": "../converter" },
+    { "path": "../view" }
   ],
   "exclude": [
     "node_modules",

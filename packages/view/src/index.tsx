@@ -1,19 +1,21 @@
-import * as Domain from "@app/domain";
-import * as Types from "@code-dependency/interfaces";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import * as App from "./App";
+import * as path from "path";
+// TODO import render & webpack build
 
-const getCsrProps = (): Types.CsrProps | undefined => (window as any).__INITIAL_STATE__;
+export interface BuildPaths {
+  "asset-manifest": { json: string };
+  index: { html: string };
+  manifest: { json: string };
+  static: string;
+}
 
-const initialize = () => {
-  const csrProps = getCsrProps();
-  if (!csrProps) {
-    alert("Insufficient parameters of initialize.");
-    return;
-  }
-  const reducers = Domain.createReducers(csrProps);
-  ReactDOM.render(<App.Container reducers={reducers} />, document.getElementById("root"));
+const getPaths = (): BuildPaths => {
+  const baseDir = path.resolve(__dirname, "../build");
+  return {
+    "asset-manifest": { json: path.join(baseDir, "asset-manifest.json") },
+    index: { html: path.join(baseDir, "index.html") },
+    manifest: { json: path.join(baseDir, "manifest.json") },
+    static: path.join(baseDir, "static"),
+  };
 };
 
-initialize();
+export { getPaths };

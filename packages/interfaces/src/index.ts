@@ -90,6 +90,7 @@ export interface TreeData extends ResolvedDependency {
   children: TreeData[];
 }
 
+/** Don't use "undefined" property. */
 export interface CsrProps {
   flatDependencies: FlatDependencies;
 }

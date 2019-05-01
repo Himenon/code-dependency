@@ -32,7 +32,7 @@
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./tsconfig.tsbuildinfo",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
-    "cli:server": "node ./lib/index.js -s -i ./data/sample.json",
+    "cli:server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "develop": "yarn run build -- --watch",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",

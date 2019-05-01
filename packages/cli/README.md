@@ -4,5 +4,5 @@
 ## Development
 
 ```sh
-yarn run generate:sample
+yarn run cli:server
 ```

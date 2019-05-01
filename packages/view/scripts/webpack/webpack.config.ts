@@ -29,7 +29,7 @@ export const configFactory = (webpackEnv: "development" | "production"): webpack
     entry: {
       index: paths.appIndexJs,
     },
-    target: "electron-renderer",
+    target: "web",
     devtool: "cheap-module-source-map",
     output: {
       path: isEnvProduction ? paths.appBuild : undefined,

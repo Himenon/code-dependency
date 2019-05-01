@@ -2,13 +2,12 @@
   "extends": "../tsconfig.shared",
   "compilerOptions": {
     "outDir": "lib",
-    "rootDir": ".",
+    "rootDir": "src",
     "baseUrl": ".",
     "lib": [
       "dom",
       "esnext"
     ],
-    "declarationMap": false,
     "paths": {
       "@app/domain": ["./src/domain"],
       "@app/domain*": ["./src/domain*"],
@@ -22,9 +21,5 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "scripts/**/*.ts",
-    "scripts/**/*.tsx",
-    "config/**/*.ts",
-    "config/**/*.tsx"
   ]
 }

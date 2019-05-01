@@ -1,4 +1,5 @@
 import * as webpack from "webpack";
+import { paths } from "../../../config/paths";
 
 export const generateRule = (): webpack.Rule => {
   return {
@@ -9,6 +10,7 @@ export const generateRule = (): webpack.Rule => {
         options: {
           transpileOnly: true,
           experimentalWatchApi: true,
+          configFile: paths.appTsConfig,
         },
       },
     ],

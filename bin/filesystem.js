@@ -14,7 +14,7 @@ exports.saveConfig = function (filename, data) {
     fs.writeFileSync(filename, JSON.stringify(data, null, 2) + "\n", { encoding: "utf-8" });
 };
 exports.mkdirP = function (dirPath) {
-    if (!fs.existsSync(dirPath) && !fs.statSync(dirPath).isDirectory()) {
+    if (!fs.existsSync(dirPath) || !fs.statSync(dirPath).isDirectory()) {
         console.log("Make dir : " + dirPath);
         fs.mkdirSync(dirPath, { recursive: true });
     }

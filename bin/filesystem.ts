@@ -14,7 +14,7 @@ export const saveConfig = <T extends {}>(filename: string, data: T) => {
 }
 
 export const mkdirP = (dirPath: string) => {
-  if (!fs.existsSync(dirPath) && !fs.statSync(dirPath).isDirectory()) {
+  if (!fs.existsSync(dirPath) || !fs.statSync(dirPath).isDirectory()) {
     console.log(`Make dir : ${dirPath}`)
     fs.mkdirSync(dirPath, { recursive: true });
   } else {

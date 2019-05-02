@@ -6,7 +6,7 @@ const isDistMode = process.argv[2] === "dist";
 
 export const rewriteTsconfig = () => {
   const tsConfig = readConfig<TsConfig>(tsConfigs.view);
-  tsConfig.compilerOptions.tsBuildInfoFile = isDistMode ? undefined : "buildcache/tsconfig.json.tsbuildinfo";
+  tsConfig.compilerOptions.tsBuildInfoFile = isDistMode ? undefined : "../../buildcache/view/tsconfig.json.tsbuildinfo";
   saveConfig(tsConfigs.view, tsConfig);
 };
 

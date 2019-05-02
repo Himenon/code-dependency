@@ -27,15 +27,14 @@
     "clean": "rimraf ./lib ./build",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location buildcache -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --cache --cache-location ../../buildcache/code-dependency/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch",
-    "clean:cache": "rimraf ./buildcache"
+    "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
     "@code-dependency/extract": "0.0.1",

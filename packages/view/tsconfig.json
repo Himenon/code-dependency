@@ -19,7 +19,7 @@
         "./src/types"
       ]
     },
-    "tsBuildInfoFile": "buildcache/tsconfig.json.tsbuildinfo"
+    "tsBuildInfoFile": "../../buildcache/view/tsconfig.json.tsbuildinfo"
   },
   "references": [
     {

@@ -1,7 +1,7 @@
 export interface TsConfig {
   extends?: "../tsconfig.shared";
   compilerOptions: {
-    tsBuildInfoFile?: "buildcache/tsconfig.json.tsbuildinfo";
+    tsBuildInfoFile?: string;
     sourceMap?: boolean;
     declarationMap?: boolean;
   }

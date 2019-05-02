@@ -8,7 +8,7 @@ export interface MonorepoPackageSettings {
   view: string;
 }
 
-export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "code-dependency", "converter", "extract", "extract", "resolver", "view"];
+export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "code-dependency", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 
 export const packages: MonorepoPackageSettings = {
   cli: "packages/cli/package.json",
@@ -44,13 +44,13 @@ export const tsConfigs: MonorepoPackageSettings = {
  * relative path from package.
  */
 export const buildcaches: MonorepoPackageSettings = {
-  cli: "buildcache",
-  "code-dependency": "buildcache",
-  converter: "buildcache",
-  extract: "buildcache",
-  interfaces: "buildcache",
-  resolver: "buildcache",
-  view: "buildcache",
+  cli: "../../buildcache/cli/",
+  "code-dependency": "../../buildcache/code-dependency/",
+  converter: "../../buildcache/converter/",
+  extract: "../../buildcache/extract/",
+  interfaces: "../../buildcache/interfaces/",
+  resolver: "../../buildcache/resolver/",
+  view: "../../buildcache/view/",
 };
 
 export const tsConfigShared = "packages/tsconfig.shared.json";

@@ -20,16 +20,16 @@
     "clean": "tsc -b @build.txt --clean && lerna run clean",
     "clean:cache": "rimraf buildcache",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "cooldown": "node ./bin/tsconfig.shared.ts",
-    "cooldown:packages": "node ./bin/tsconfig.build.ts",
+    "cooldown": "node ./bin/tsconfig.shared.js",
+    "cooldown:packages": "node ./bin/tsconfig.build.js",
     "cruiser": "lerna run cruiser",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "setup": "node ./bin/setup.ts",
+    "setup": "node ./bin/setup.js",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci",
-    "warmup": "node ./bin/tsconfig.shared.ts dist",
-    "warmup:packages": "node ./bin/tsconfig.build.ts dist"
+    "warmup": "node ./bin/tsconfig.shared.js dist",
+    "warmup:packages": "node ./bin/tsconfig.build.js dist"
   },
   "dependencies": {
     "lodash": "^4.17.11"

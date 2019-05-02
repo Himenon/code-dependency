@@ -9,7 +9,7 @@
     "baseUrl": ".",
     "outDir": "lib",
     "rootDir": "src",
-    "tsBuildInfoFile": "buildcache/tsconfig.json.tsbuildinfo"
+    "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo"
   },
   "references": [
     {

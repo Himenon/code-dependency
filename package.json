@@ -17,7 +17,7 @@
     "build:lib:dist": "yarn run clean && yarn run warmup && yarn run build:lib",
     "build:lib:watch": "tsc -b -w @build.txt",
     "clean": "tsc -b @build.txt --clean && lerna run clean",
-    "clean:cache": "lerna run clean:cache",
+    "clean:cache": "rimraf buildcache",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cooldown": "ts-node ./bin/tsconfig.shared.ts",
     "cooldown:packages": "ts-node ./bin/tsconfig.build.ts",

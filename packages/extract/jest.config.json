@@ -29,5 +29,5 @@
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  "cacheDirectory": "<rootDir>/buildcache"
+  "cacheDirectory": "<rootDir>/../../buildcache/extract"
 }

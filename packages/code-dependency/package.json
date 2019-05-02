@@ -27,7 +27,7 @@
     "clean": "rimraf ./lib ./build",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location ../../buildcache/code-dependency -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --cache --cache-location ../../buildcache/code-dependency/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",

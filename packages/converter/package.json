@@ -29,7 +29,7 @@
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "generate:sample": "ts-node ./bin/generate-sample.ts ../code-dependency/src/index.ts",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location ../../buildcache/converter -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --cache --cache-location ../../buildcache/converter/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",

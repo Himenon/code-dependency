@@ -4,7 +4,7 @@ import { Package, JestConfig } from "./types";
 
 const generateShareScripts = (name: string) => {
   return {
-    lint: `eslint --cache --cache-location ../../buildcache/${name} -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'`,
+    lint: `eslint --cache --cache-location ../../buildcache/${name}/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'`,
     develop: undefined,
     "build:lib": undefined,
     "lint:fix": "yarn run lint --fix",
@@ -18,7 +18,7 @@ const generateShareScripts = (name: string) => {
   }
 };
 
-const generateSheareJestConfig = (name: string) => ({
+const generateShareJestConfig = (name: string) => ({
   cacheDirectory: `<rootDir>/../../buildcache/${name}`,
 });
 
@@ -36,7 +36,7 @@ const updatePackage = () => {
 const updateJestConfig = () => {
   packageNameList.forEach(name => {
     const jestConfig = readConfig<JestConfig>(jestConfigs[name]);
-    const sharedConfigs = generateSheareJestConfig(name);
+    const sharedConfigs = generateShareJestConfig(name);
     Object.keys(sharedConfigs).forEach(key => {
       jestConfig[key] = sharedConfigs[key];
     });

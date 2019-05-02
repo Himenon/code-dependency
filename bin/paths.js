@@ -32,12 +32,12 @@ exports.tsConfigs = {
  * relative path from package.
  */
 exports.buildcaches = {
-    cli: "../../buildcache/cli",
-    "code-dependency": "../../buildcache/code-dependency",
-    converter: "../../buildcache/converter",
-    extract: "../../buildcache/extract",
-    interfaces: "../../buildcache/interfaces",
-    resolver: "../../buildcache/resolver",
-    view: "../../buildcache/view"
+    cli: "../../buildcache/cli/",
+    "code-dependency": "../../buildcache/code-dependency/",
+    converter: "../../buildcache/converter/",
+    extract: "../../buildcache/extract/",
+    interfaces: "../../buildcache/interfaces/",
+    resolver: "../../buildcache/resolver/",
+    view: "../../buildcache/view/"
 };
 exports.tsConfigShared = "packages/tsconfig.shared.json";

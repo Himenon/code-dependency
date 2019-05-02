@@ -34,7 +34,7 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cruiser": "NODE_ENV=\"production\" npx dependency-cruiser --validate .dependency-cruiser.json --webpack-config ./scripts/webpack/webpack.config.js --ts-config=./tsconfig.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location ../../buildcache/view -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --cache --cache-location ../../buildcache/view/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server:dev": "node scripts/develop.js",
     "server:prod": "serve -s build",

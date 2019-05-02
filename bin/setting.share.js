@@ -4,7 +4,7 @@ var paths_1 = require("./paths");
 var filesystem_1 = require("./filesystem");
 var generateShareScripts = function (name) {
     return {
-        lint: "eslint --cache --cache-location ../../buildcache/" + name + " -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+        lint: "eslint --cache --cache-location ../../buildcache/" + name + "/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
         develop: undefined,
         "build:lib": undefined,
         "lint:fix": "yarn run lint --fix",
@@ -17,7 +17,7 @@ var generateShareScripts = function (name) {
         "test:watch": "yarn run test:jest --watch"
     };
 };
-var generateSheareJestConfig = function (name) { return ({
+var generateShareJestConfig = function (name) { return ({
     cacheDirectory: "<rootDir>/../../buildcache/" + name
 }); };
 var updatePackage = function () {
@@ -33,7 +33,7 @@ var updatePackage = function () {
 var updateJestConfig = function () {
     paths_1.packageNameList.forEach(function (name) {
         var jestConfig = filesystem_1.readConfig(paths_1.jestConfigs[name]);
-        var sharedConfigs = generateSheareJestConfig(name);
+        var sharedConfigs = generateShareJestConfig(name);
         Object.keys(sharedConfigs).forEach(function (key) {
             jestConfig[key] = sharedConfigs[key];
         });

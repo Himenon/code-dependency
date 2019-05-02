@@ -32,7 +32,7 @@
     "cli:server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
-    "lint": "eslint --cache --cache-location ../../buildcache/cli -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",
     "start": "yarn run develop",

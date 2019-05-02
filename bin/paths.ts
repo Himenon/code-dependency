@@ -8,7 +8,7 @@ export interface MonorepoPackageSettings {
   view: string;
 }
 
-export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "code-dependency", "converter", "extract", "extract", "resolver", "view"];
+export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "code-dependency", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 
 export const packages: MonorepoPackageSettings = {
   cli: "packages/cli/package.json",

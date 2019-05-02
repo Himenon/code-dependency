@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.packageNameList = ["cli", "code-dependency", "converter", "extract", "extract", "resolver", "view"];
+exports.packageNameList = ["cli", "code-dependency", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 exports.packages = {
     cli: "packages/cli/package.json",
     "code-dependency": "packages/code-dependency/package.json",

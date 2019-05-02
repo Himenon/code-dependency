@@ -13,12 +13,7 @@ cache:
     - "packages/interfaces/lib"
     - "packages/resolver/lib"
     - "packages/view/lib"
-    - "packages/code-dependency/buildcache"
-    - "packages/converter/buildcache"
-    - "packages/extract/buildcache"
-    - "packages/interfaces/buildcache"
-    - "packages/resolver/buildcache"
-    - "packages/view/buildcache"
+    - "buildcache"
 stages:
 - name: lint & build & test
   if: branch = master AND type = pull_request

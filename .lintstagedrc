@@ -1,6 +1,7 @@
 {
   "linters": {
     "*.{ts,tsx}": ["yarn run format", "yarn run lint", "git add"],
+    "bin/*.{ts}": ["yarn run build:bin", "git add"],
     "package.json": ["sort-package-json", "git add"]
   },
   "ignore": ["yarn.lock", "node_modules/**/*"]

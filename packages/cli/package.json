@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/cli",
   "version": "0.0.1",
-  "description": "import view",
+  "description": "It is a command line tool for using code-dependency library.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {

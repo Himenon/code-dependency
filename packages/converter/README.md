@@ -1,7 +1,3 @@
-# @code-dependency/cli
+# @code-dependency/converter
 
-## Development
-
-```
-yarn run generate:sample
-```
+1次元化された依存関係の地図をグラフ化するためのデータに変換するためのライブラリです。

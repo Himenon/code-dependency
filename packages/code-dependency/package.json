@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/code-dependency",
   "version": "0.0.1",
-  "description": "import view",
+  "description": "It is a library for acquiring as a 1-dimensional array the modules that each file group existing under a certain directory depends on.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {

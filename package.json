@@ -2,7 +2,7 @@
   "name": "code-dependency",
   "version": "0.1.0",
   "private": true,
-  "description": "for humans libary with node",
+  "description": "A work efficiency tool for visualizing code dependencies on a browser.",
   "repository": "https://github.com/Himenon/code-dependency.git",
   "license": "MIT",
   "author": "Himenon",

@@ -3,7 +3,7 @@
 code-dependencyはコードの依存関係を可視化するためのツールです。
 
 * **可視化：** コードの依存関係をグラフを用いて可視化します。
-* **共有：** ブラウザベースで動作するため、ホスティングすれば簡単に共有できます。また、クエリパラメーターに検索クエリを保存するため、検索の再現性が保てます。
+* **共有：** ブラウザベースで動作するため、ホスティングすれば簡単に共有できます。また、クエリパラメーターに検索クエリを保存するため、再現性を保ちます。
 * **検索：** 開発中
 
 ## Installation
@@ -21,13 +21,9 @@ yarn add -g @code-dependency/cli
 code-dependency [target file]
 ```
 
-## Share
+## How to develop.
 
-Now development ...
-
-1. 描画に必要なJSONデータを生成します。
-2. データストアにアップロードします。
-3. datalist.jsonを更新します。
+[see docs](./HOW_TO_DEVELOP.md).
 
 ## License
 

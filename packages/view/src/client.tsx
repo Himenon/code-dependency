@@ -22,7 +22,7 @@ const getCsrProps = async (): Promise<Types.CsrProps | undefined> => {
 export const render = () => {
   getCsrProps().then(csrProps => {
     if (!csrProps) {
-      alert("Insufficient parameters of initialize.");
+      alert("Insufficient parameters of initialize. If debug mode, start debug server with @code-dependency/cli.");
       return;
     }
     const reducers = Domain.createReducers(csrProps);

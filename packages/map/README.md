@@ -1,3 +1,3 @@
-# @code-dependency/code-dependency
+# @code-dependency/map
 
 あるディレクトリ以下に存在するファイル群の1つ1つが依存しているモジュールを1次元の配列として取得するためのライブラリです。

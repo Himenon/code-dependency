@@ -1,5 +1,5 @@
 {
-  "name": "@code-dependency/code-dependency",
+  "name": "@code-dependency/map",
   "version": "0.0.1",
   "description": "It is a library for acquiring as a 1-dimensional array the modules that each file group existing under a certain directory depends on.",
   "keywords": [],

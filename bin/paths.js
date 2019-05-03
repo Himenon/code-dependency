@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
-exports.packageNameList = ["cli", "code-dependency", "interfaces", "converter", "extract", "extract", "resolver", "view"];
+exports.packageNameList = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 exports.packages = {
     cli: "packages/cli/package.json",
-    "code-dependency": "packages/code-dependency/package.json",
+    map: "packages/map/package.json",
     converter: "packages/converter/package.json",
     extract: "packages/extract/package.json",
     interfaces: "packages/interfaces/package.json",
@@ -12,7 +12,7 @@ exports.packages = {
 };
 exports.jestConfigs = {
     cli: "packages/cli/jest.config.json",
-    "code-dependency": "packages/code-dependency/jest.config.json",
+    map: "packages/map/jest.config.json",
     converter: "packages/converter/jest.config.json",
     extract: "packages/extract/jest.config.json",
     interfaces: "packages/interfaces/jest.config.json",
@@ -21,7 +21,7 @@ exports.jestConfigs = {
 };
 exports.tsConfigs = {
     cli: "packages/cli/tsconfig.json",
-    "code-dependency": "packages/code-dependency/tsconfig.json",
+    map: "packages/map/tsconfig.json",
     converter: "packages/converter/tsconfig.json",
     extract: "packages/extract/tsconfig.json",
     interfaces: "packages/interfaces/tsconfig.json",
@@ -33,7 +33,7 @@ exports.tsConfigs = {
  */
 exports.buildcaches = {
     cli: "../../buildcache/cli/",
-    "code-dependency": "../../buildcache/code-dependency/",
+    map: "../../buildcache/map/",
     converter: "../../buildcache/converter/",
     extract: "../../buildcache/extract/",
     interfaces: "../../buildcache/interfaces/",

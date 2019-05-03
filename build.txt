@@ -1,7 +1,7 @@
 packages/interfaces
 packages/extract
 packages/resolver
-packages/code-dependency
+packages/map
 packages/converter
 packages/view
 packages/cli

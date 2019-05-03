@@ -1,7 +1,7 @@
 {
   "files": [],
   "references": [
-    { "path": "code-dependency" },
+    { "path": "map" },
     { "path": "converter" },
     { "path": "extract" },
     { "path": "interfaces" },

@@ -1,6 +1,6 @@
 export interface MonorepoPackageSettings {
   cli: string;
-  "code-dependency": string;
+  map: string;
   converter: string;
   extract: string;
   interfaces: string;
@@ -8,11 +8,11 @@ export interface MonorepoPackageSettings {
   view: string;
 }
 
-export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "code-dependency", "interfaces", "converter", "extract", "extract", "resolver", "view"];
+export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 
 export const packages: MonorepoPackageSettings = {
   cli: "packages/cli/package.json",
-  "code-dependency": "packages/code-dependency/package.json",
+  map: "packages/map/package.json",
   converter: "packages/converter/package.json",
   extract: "packages/extract/package.json",
   interfaces: "packages/interfaces/package.json",
@@ -22,7 +22,7 @@ export const packages: MonorepoPackageSettings = {
 
 export const jestConfigs: MonorepoPackageSettings = {
   cli: "packages/cli/jest.config.json",
-  "code-dependency": "packages/code-dependency/jest.config.json",
+  map: "packages/map/jest.config.json",
   converter: "packages/converter/jest.config.json",
   extract: "packages/extract/jest.config.json",
   interfaces: "packages/interfaces/jest.config.json",
@@ -32,7 +32,7 @@ export const jestConfigs: MonorepoPackageSettings = {
 
 export const tsConfigs: MonorepoPackageSettings = {
   cli: "packages/cli/tsconfig.json",
-  "code-dependency": "packages/code-dependency/tsconfig.json",
+  map: "packages/map/tsconfig.json",
   converter: "packages/converter/tsconfig.json",
   extract: "packages/extract/tsconfig.json",
   interfaces: "packages/interfaces/tsconfig.json",
@@ -45,7 +45,7 @@ export const tsConfigs: MonorepoPackageSettings = {
  */
 export const buildcaches: MonorepoPackageSettings = {
   cli: "../../buildcache/cli/",
-  "code-dependency": "../../buildcache/code-dependency/",
+  map: "../../buildcache/map/",
   converter: "../../buildcache/converter/",
   extract: "../../buildcache/extract/",
   interfaces: "../../buildcache/interfaces/",

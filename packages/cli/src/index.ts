@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import * as CodeDependency from "@code-dependency/code-dependency";
 import * as Types from "@code-dependency/interfaces";
+import * as CodeDependency from "@code-dependency/map";
 import * as commander from "commander";
 import * as fs from "fs";
 import * as path from "path";

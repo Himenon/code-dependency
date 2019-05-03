@@ -28,12 +28,12 @@
   },
   "scripts": {
     "clean": "rimraf ./lib ./build",
-    "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
+    "cli": "node ./lib/index.js -f ../map/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
+    "server": "node ./lib/index.js -s -p ../map/src/index.ts -c",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
@@ -41,7 +41,7 @@
     "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
-    "@code-dependency/code-dependency": "0.0.1",
+    "@code-dependency/map": "0.0.1",
     "@code-dependency/interfaces": "0.0.1",
     "@code-dependency/resolver": "0.0.1",
     "@code-dependency/converter": "0.0.1",

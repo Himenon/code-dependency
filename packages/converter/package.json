@@ -44,7 +44,7 @@
     "normalize-path": "^3.0.0"
   },
   "devDependencies": {
-    "@code-dependency/code-dependency": "0.0.1",
+    "@code-dependency/map": "0.0.1",
     "@types/normalize-path": "^3.0.0"
   }
 }

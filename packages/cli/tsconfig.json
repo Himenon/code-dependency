@@ -13,7 +13,7 @@
   },
   "references": [
     {
-      "path": "../code-dependency"
+      "path": "../map"
     },
     {
       "path": "../interfaces"

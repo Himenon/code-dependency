@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/converter",
   "version": "0.0.1",
-  "description": "Convert dependencies tree.",
+  "description": "It is a library to convert the map of dependency map into data for graphing.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {
@@ -44,7 +44,7 @@
     "normalize-path": "^3.0.0"
   },
   "devDependencies": {
-    "@code-dependency/code-dependency": "0.0.1",
+    "@code-dependency/map": "0.0.1",
     "@types/normalize-path": "^3.0.0"
   }
 }

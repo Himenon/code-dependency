@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/view",
   "version": "0.0.1",
-  "description": "web view.",
+  "description": "A user interface for displaying code dependencies on a browser.",
   "keywords": [],
   "homepage": "https://github.com/https://github.com/Himenon/code-dependency.git#readme",
   "bugs": {

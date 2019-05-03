@@ -30,7 +30,6 @@ const hasModuleDependency = (dep: InputSourceDependency, treeData?: TreeData, pa
   }
   if (parentSource && treeData.module.startsWith(".")) {
     const relativePathPatterns = generateRelativePathPatterns(parentSource.source, treeData.module);
-    // console.log({ dep: dep.source, parent: parentSource && parentSource.source, module: treeData.module, relativePathPatterns });
     if (relativePathPatterns.includes(dep.source)) {
       return true;
     }

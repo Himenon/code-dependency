@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/interfaces",
   "version": "0.0.1",
-  "description": "import view",
+  "description": "Common interface definition in code-dependency.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {

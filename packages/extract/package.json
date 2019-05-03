@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/extract",
   "version": "0.0.1",
-  "description": "import view",
+  "description": "Library for extracting dependencies from specific files.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
   "bugs": {

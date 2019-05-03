@@ -36,7 +36,7 @@
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/view/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "server:dev": "node scripts/develop.js",
+    "develop": "yarn run build:scripts && node scripts/develop.js",
     "server:prod": "serve -s build",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",

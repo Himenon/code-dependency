@@ -1,9 +1,12 @@
+#!/usr/bin/env node
+
 import * as CodeDependency from "@code-dependency/code-dependency";
 import * as Types from "@code-dependency/interfaces";
 import * as commander from "commander";
 import * as fs from "fs";
 import * as path from "path";
 import { createServer } from "./server";
+import { GenerateFlatDependencyFunction } from "./types";
 
 process.on("unhandledRejection", console.dir);
 
@@ -30,9 +33,14 @@ const executeCommandLine = (): CliReturnValue => {
   return commander as CliReturnValue;
 };
 
-const getFlatDependencies = async (cwd: string, fileName: string, stripBasePath: string | undefined, options: Types.ResolveOption) => {
+const getFlatDependencies = (
+  cwd: string,
+  fileName: string,
+  stripBasePath: string | undefined,
+  options: Types.ResolveOption,
+): GenerateFlatDependencyFunction => {
   const source = path.resolve(cwd, path.normalize(fileName));
-  return CodeDependency.getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
+  return () => CodeDependency.getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
 };
 
 const getBasePath = (cwd: string, target: string): string => {
@@ -47,20 +55,21 @@ const main = async () => {
   const options: Types.ResolveOption = {
     alias: {},
   };
+  const DEFAULT_PORT = 7000;
   if (args.serve && args.project) {
     const stripBasePath: string | undefined = args.cut ? getBasePath(cwd, args.project) : undefined;
     const flatDependencies = await getFlatDependencies(cwd, args.project, stripBasePath, options);
-    const server = createServer(flatDependencies);
-    await server.listen(10005);
-    console.log(`Serve start: http://localhost:10005`);
+    const server = await createServer(flatDependencies);
+    await server.listen(DEFAULT_PORT);
+    console.log(`Serve start: http://localhost:${DEFAULT_PORT}`);
     return;
   } else if (args.serve && args.input) {
     const inputFile = path.resolve(cwd, args.input);
     console.log(`Load file .... ${inputFile}`);
     const flatDependencies: Types.FlatDependencies = require(inputFile);
-    const server = createServer(flatDependencies);
-    await server.listen(10005);
-    console.log(`Serve start: http://localhost:10005`);
+    const server = await createServer(() => Promise.resolve(flatDependencies));
+    await server.listen(DEFAULT_PORT);
+    console.log(`Serve start: http://localhost:${DEFAULT_PORT}`);
     return;
   } else if (args.file) {
     const stripBasePath: string | undefined = args.cut ? getBasePath(cwd, args.file) : undefined;

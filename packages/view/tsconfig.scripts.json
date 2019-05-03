@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "",
     "sourceMap": false,
     "declaration": false,
     "declarationMap": false,
     "lib": ["dom", "es2018"],
     "module": "commonjs",
-    "rootDir": ".",
     "typeRoots": [
       "./node_modules/@types"
     ]

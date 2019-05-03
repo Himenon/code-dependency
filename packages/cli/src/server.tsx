@@ -2,25 +2,41 @@ import * as Types from "@code-dependency/interfaces";
 import * as View from "@code-dependency/view";
 import * as express from "express";
 import * as fs from "fs";
+import { GenerateFlatDependencyFunction } from "./types";
 
-export const createServer = (flatDependencies: Types.FlatDependencies) => {
+export const createServer = async (generateFlatDependencies: GenerateFlatDependencyFunction) => {
   const app = express();
   const viewPaths = View.getPaths();
-
-  const applyProps = (): string => {
-    const props: Types.CsrProps = {
-      flatDependencies,
+  const generateProps = async (): Promise<Types.CsrProps> => {
+    return {
+      flatDependencies: await generateFlatDependencies(),
     };
+  };
+
+  const applyProps = async (): Promise<string> => {
+    const props = await generateProps();
     const template = fs.readFileSync(viewPaths.index.html, { encoding: "utf-8" });
-    return template.replace("{{ SSR_DOM }}", "").replace("{{ SSR_INITIAL_STATE }}", JSON.stringify(props));
+    return template.replace("{{ SSR_DOM }}", "").replace('"SSR_INITIAL_STATE"', JSON.stringify(props));
   };
 
   app.use("/static", express.static(viewPaths.static));
   app.use("/manifest.json", express.static(viewPaths.manifest.json));
 
-  app.get("*", (req: express.Request, res: express.Response) => {
-    res.send(applyProps());
-    res.end();
+  /** Debug only */
+  app.get("/api", async (req: express.Request, res: express.Response) => {
+    await generateProps().then(props => {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      res.json(props);
+      res.end();
+    });
+  });
+
+  app.get("*", async (req: express.Request, res: express.Response) => {
+    applyProps().then(result => {
+      res.send(result);
+      res.end();
+    });
   });
 
   return app;

@@ -29,12 +29,11 @@
   "scripts": {
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
-    "cli:server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "server": "node ./lib/server.js",
+    "server": "node ./lib/index.js -s -p ../code-dependency/src/index.ts -c",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",

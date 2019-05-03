@@ -4,7 +4,6 @@ import * as webpack from "webpack";
 const resolve = require("resolve");
 import * as ManifestPlugin from "webpack-manifest-plugin";
 import { paths } from "../../config/paths";
-import { ServerSideRenderingPlugin } from "./SsrPlugin";
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
@@ -15,7 +14,6 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 
 export const plugins = {
-  ServerSideRenderingPlugin: () => new ServerSideRenderingPlugin(HtmlWebpackPlugin),
   ForkTsCheckerWebpackPlugin: ({
     isEnvDevelopment,
     isEnvProduction,

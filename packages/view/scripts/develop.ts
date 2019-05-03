@@ -23,8 +23,11 @@ const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const { choosePort, createCompiler, prepareProxy, prepareUrls } = require("react-dev-utils/WebpackDevServerUtils");
 const openBrowser = require("react-dev-utils/openBrowser");
 import { paths } from "../config/paths";
+import { rewriteTsconfig } from "../config/setup";
 import { configFactory } from "./webpack/webpack.config";
 import { createDevServerConfig } from "./webpack/webpackDevServer.config";
+
+rewriteTsconfig(true);
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
@@ -100,6 +103,7 @@ checkBrowsers(paths.appPath, isInteractive)
 
     (["SIGINT", "SIGTERM"] as NodeJS.Signals[]).forEach(sig => {
       process.on(sig, () => {
+        rewriteTsconfig(false);
         devServer.close();
         process.exit();
       });
@@ -109,5 +113,6 @@ checkBrowsers(paths.appPath, isInteractive)
     if (err && err.message) {
       console.log(err.message);
     }
+    rewriteTsconfig(false);
     process.exit(1);
   });

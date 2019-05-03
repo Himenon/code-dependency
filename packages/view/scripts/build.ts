@@ -18,6 +18,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as webpack from "webpack";
 import { paths } from "../config/paths";
+import { rewriteTsconfig } from "../config/setup";
 import { configFactory } from "./webpack/webpack.config";
 
 const chalk = require("react-dev-utils/chalk");
@@ -41,6 +42,8 @@ const isInteractive = process.stdout.isTTY;
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
+
+rewriteTsconfig(true);
 
 // Process CLI arguments
 const argv = process.argv.slice(2);
@@ -153,6 +156,7 @@ function build(previousFileSizes: number) {
           .catch((error: any) => reject(new Error(error)));
       }
 
+      rewriteTsconfig(false);
       return resolve(resolveArgs);
     });
   });

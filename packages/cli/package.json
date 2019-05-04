@@ -33,7 +33,7 @@
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "server": "node ./lib/index.js -s -p ../map/src/index.ts -c",
+    "server": "node ./lib/index.js -s -p ../view/src/index.ts -c",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",

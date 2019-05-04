@@ -2,8 +2,11 @@ import * as React from "react";
 import { Directory, File } from "./Constants";
 
 interface ClassNames {
+  nav?: string;
+  flexColumn?: string;
   navItem?: string;
   navLink?: string;
+  level?: string;
 }
 
 const styles: ClassNames = require("./menu.scss");
@@ -12,26 +15,35 @@ export interface MenuProps {
   rootDirectory: Directory;
 }
 
-const createFileItem = ({ type, ...props }: File) => {
-  return <a href="#" className={styles.navLink} {...props} />;
-};
-
-const createDirectoryItem = ({ type, items, ...props }: Directory) => {
-  const children = items.map(item => {
-    if (item.type === "file") {
-      return createFileItem(item);
-    }
-    return createDirectoryItem(item);
-  });
+const wrapper = (element: React.ReactNode, key: string): React.ReactElement<any> => {
   return (
-    <li className={styles.navItem} {...props}>
-      {children}
-    </li>
+    <ul className={[styles.nav, styles.flexColumn, styles.level].join(" ")} key={key}>
+      {element}
+    </ul>
   );
 };
 
+const createFileItem = ({ type, path, ...props }: File): React.ReactElement<any> => {
+  return <a href="#" className={styles.navLink} {...props} />;
+};
+
+const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<React.ReactElement<any>> => {
+  const children = items.map((item, idx) => {
+    const key = `${path}-${type}-${idx}`;
+    if (item.type === "file") {
+      return (
+        <li className={styles.navItem} {...props} key={key}>
+          {createFileItem(item)}
+        </li>
+      );
+    }
+    return wrapper(createDirectoryItem(item), key);
+  });
+  return children;
+};
+
 export const Menu = ({ rootDirectory }: MenuProps) => {
-  return createDirectoryItem(rootDirectory);
+  return wrapper(createDirectoryItem(rootDirectory), "");
 };
 
 export { MenuProps as Props, Menu as Component };

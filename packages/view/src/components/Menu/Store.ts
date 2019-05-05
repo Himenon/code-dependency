@@ -33,8 +33,8 @@ const generateFile = (dependency: Types.Dependency): File => {
   return {
     type: "file",
     path: dependency.source,
-    basename: dependency.source, // path.basename(dependency.source),
-    children: dependency.source, // path.basename(dependency.source),
+    basename: path.basename(dependency.source),
+    children: path.basename(dependency.source),
     level: dependency.source.split(path.sep).length,
   };
 };

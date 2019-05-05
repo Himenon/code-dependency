@@ -5,7 +5,10 @@
   width: 10%;
 }
 
-.dendrogram {
-  float: left;
-  width: 90%;
+.wrapper {
+  height: 100%;
+}
+
+.main-wrapper {
+  height: calc(80% - 180px);
 }

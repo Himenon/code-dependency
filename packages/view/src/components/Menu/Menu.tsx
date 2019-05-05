@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { Directory, File } from "./Constants";
 
@@ -7,10 +8,13 @@ interface ClassNames {
   navItem?: string;
   navLink?: string;
   level?: string;
+  directory?: string;
+  file?: string;
   root?: string;
   nested?: string;
   active?: boolean;
   caret?: string;
+  caretDown?: string;
 }
 
 const styles: ClassNames = require("./menu.scss");
@@ -23,29 +27,34 @@ const directoryWrap = ({ level, path, basename, ...props }: Directory, element: 
   const isRoot = level === 0;
   const key = path;
   const [isActive, toggleActive] = React.useState(isRoot ? true : false);
+  const [isChildActive, toggleChildActive] = React.useState(false);
+  const toggle = () => {
+    toggleActive(isRoot ? true : !isActive);
+    toggleChildActive(!isChildActive);
+  };
   return (
     <ul
-      className={[
+      className={classNames([
         styles.nav,
         styles.flexColumn,
+        styles.directory,
         isRoot ? styles.root : "",
         isRoot ? styles.active : isActive ? styles.active : styles.nested,
-      ].join(" ")}
+      ])}
       key={key}
     >
-      {isRoot ||
-        (isActive && (
-          <span className={styles.caret} onClick={() => toggleActive(isRoot ? true : !isActive)}>
-            {basename}
-          </span>
-        ))}
-      {isActive && element}
+      {isActive && (
+        <span className={classNames(styles.caret, isChildActive && styles.caretDown)} onClick={() => toggle()}>
+          {props.children}
+        </span>
+      )}
+      {isChildActive && element}
     </ul>
   );
 };
 
 const createFileItem = ({ type, path, basename, level, ...props }: File): React.ReactElement<any> => {
-  return <a href="#" className={styles.navLink} {...props} />;
+  return <a href="#" {...props} />;
 };
 
 const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<React.ReactElement<any>> => {
@@ -53,7 +62,7 @@ const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<
     const key = `${path}-${type}-${idx}`;
     if (item.type === "file") {
       return (
-        <li className={styles.navItem} {...props} key={key}>
+        <li className={classNames(styles.navItem, styles.file)} {...props} key={key}>
           {createFileItem(item)}
         </li>
       );

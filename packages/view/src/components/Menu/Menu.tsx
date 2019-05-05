@@ -23,32 +23,19 @@ export interface MenuProps {
   rootDirectory: Directory;
 }
 
-const directoryWrap = ({ level, path, basename, ...props }: Directory, element: React.ReactNode): React.ReactElement<any> => {
+const directoryWrap = ({ level, path: key, basename, ...props }: Directory, element: React.ReactNode): React.ReactElement<any> => {
   const isRoot = level === 0;
-  const key = path;
-  const [isActive, toggleActive] = React.useState(isRoot ? true : false);
-  const [isChildActive, toggleChildActive] = React.useState(false);
+  const [isActive, toggleActive] = React.useState(isRoot);
   const toggle = () => {
+    console.log({ children: props.children, isActive });
     toggleActive(isRoot ? true : !isActive);
-    toggleChildActive(!isChildActive);
   };
   return (
-    <ul
-      className={classNames([
-        styles.nav,
-        styles.flexColumn,
-        styles.directory,
-        isRoot ? styles.root : "",
-        isRoot ? styles.active : isActive ? styles.active : styles.nested,
-      ])}
-      key={key}
-    >
-      {isActive && (
-        <span className={classNames(styles.caret, isChildActive && styles.caretDown)} onClick={() => toggle()}>
-          {props.children}
-        </span>
-      )}
-      {isChildActive && element}
+    <ul className={classNames([styles.nav, styles.flexColumn, styles.directory, isRoot ? styles.root : ""])} key={key}>
+      <span className={classNames(styles.caret, isActive && styles.caretDown)} onClick={() => toggle()}>
+        {props.children}
+      </span>
+      {isActive && element}
     </ul>
   );
 };
@@ -73,7 +60,6 @@ const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<
 };
 
 export const Menu = ({ rootDirectory }: MenuProps) => {
-  console.log(rootDirectory);
   return directoryWrap(rootDirectory, createDirectoryItem(rootDirectory));
 };
 

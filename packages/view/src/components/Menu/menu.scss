@@ -1,5 +1,24 @@
 @import "../../style";
 
-.level {
-  padding-left: 1em;
+.caret {
+  cursor: pointer; 
+  user-select: none; /* Prevent text selection */
+  &::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+}
+
+.caret-down::before {
+  transform: rotate(90deg); 
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
 }

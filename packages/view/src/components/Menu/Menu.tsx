@@ -7,6 +7,10 @@ interface ClassNames {
   navItem?: string;
   navLink?: string;
   level?: string;
+  root?: string;
+  nested?: string;
+  active?: boolean;
+  caret?: string;
 }
 
 const styles: ClassNames = require("./menu.scss");
@@ -15,15 +19,32 @@ export interface MenuProps {
   rootDirectory: Directory;
 }
 
-const wrapper = (element: React.ReactNode, key: string): React.ReactElement<any> => {
+const directoryWrap = ({ level, path, basename, ...props }: Directory, element: React.ReactNode): React.ReactElement<any> => {
+  const isRoot = level === 0;
+  const key = path;
+  const [isActive, toggleActive] = React.useState(isRoot ? true : false);
   return (
-    <ul className={[styles.nav, styles.flexColumn, styles.level].join(" ")} key={key}>
-      {element}
+    <ul
+      className={[
+        styles.nav,
+        styles.flexColumn,
+        isRoot ? styles.root : "",
+        isRoot ? styles.active : isActive ? styles.active : styles.nested,
+      ].join(" ")}
+      key={key}
+    >
+      {isRoot ||
+        (isActive && (
+          <span className={styles.caret} onClick={() => toggleActive(isRoot ? true : !isActive)}>
+            {basename}
+          </span>
+        ))}
+      {isActive && element}
     </ul>
   );
 };
 
-const createFileItem = ({ type, path, ...props }: File): React.ReactElement<any> => {
+const createFileItem = ({ type, path, basename, level, ...props }: File): React.ReactElement<any> => {
   return <a href="#" className={styles.navLink} {...props} />;
 };
 
@@ -37,13 +58,14 @@ const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<
         </li>
       );
     }
-    return wrapper(createDirectoryItem(item), key);
+    return directoryWrap(item, createDirectoryItem(item));
   });
   return children;
 };
 
 export const Menu = ({ rootDirectory }: MenuProps) => {
-  return wrapper(createDirectoryItem(rootDirectory), "");
+  console.log(rootDirectory);
+  return directoryWrap(rootDirectory, createDirectoryItem(rootDirectory));
 };
 
 export { MenuProps as Props, Menu as Component };

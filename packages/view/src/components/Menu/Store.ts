@@ -44,6 +44,25 @@ const generateFile = (dependency: Types.Dependency, updateKey: UpdateKeyFunction
   };
 };
 
+/**
+ * vscodeのファイルツリーと同じ順序にならべる.
+ */
+const compareBasename = (a: File | Directory, b: File | Directory): 0 | -1 | 1 => {
+  if (a.type === "directory" && b.type === "file") {
+    return -1;
+  }
+  if (a.type === "file" && b.type === "directory") {
+    return 1;
+  }
+  if (a.basename.toLowerCase() < b.basename.toLowerCase()) {
+    return -1;
+  }
+  if (a.basename.toLowerCase() > b.basename.toLowerCase()) {
+    return 1;
+  }
+  return 0;
+};
+
 const generateItems = (parentDirname: string, directories: string[], flatFileMap: { [dirname: string]: File[] }): Items => {
   const childDirectories = directories.filter(dirname => path.dirname(dirname) === parentDirname);
   // TODO マシな実装を考える
@@ -52,7 +71,10 @@ const generateItems = (parentDirname: string, directories: string[], flatFileMap
     const basename = path.basename(directoryPath);
     return generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap));
   });
-  return items.concat(flatFileMap[parentDirname] || []).filter(a => !!a);
+  return items
+    .concat(flatFileMap[parentDirname] || [])
+    .filter(item => !!item)
+    .sort(compareBasename);
 };
 
 export const generateFolderTree = (dependencies: Types.FlatDependencies, updateKey: UpdateKeyFunction): Directory => {

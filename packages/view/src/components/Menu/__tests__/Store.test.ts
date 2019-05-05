@@ -99,7 +99,8 @@ const directoryResult: Directory = {
 
 describe("Store.ts", () => {
   test("generateFolderTree", () => {
-    const result = generateFolderTree(flatDependencies);
-    expect(result).toEqual(directoryResult);
+    const result = generateFolderTree(flatDependencies, jest.fn());
+    // 関数を潰す
+    expect(JSON.parse(JSON.stringify(result))).toEqual(directoryResult);
   });
 });

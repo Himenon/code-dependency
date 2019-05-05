@@ -27,7 +27,6 @@ const directoryWrap = ({ level, path: key, basename, ...props }: Directory, elem
   const isRoot = level === 0;
   const [isActive, toggleActive] = React.useState(isRoot);
   const toggle = () => {
-    console.log({ children: props.children, isActive });
     toggleActive(isRoot ? true : !isActive);
   };
   return (

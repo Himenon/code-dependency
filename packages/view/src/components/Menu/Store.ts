@@ -9,6 +9,7 @@ export interface Store {
 }
 
 type Items = Array<File | Directory>;
+type UpdateKeyFunction = (key: string) => void;
 
 interface FlatFileMap {
   [dirname: string]: File[];
@@ -30,13 +31,16 @@ const generateDirectory = (directoryPath: string, basename: string, items: Items
   };
 };
 
-const generateFile = (dependency: Types.Dependency): File => {
+const generateFile = (dependency: Types.Dependency, updateKey: UpdateKeyFunction): File => {
   return {
     type: "file",
     path: dependency.source,
     basename: path.basename(dependency.source),
     children: path.basename(dependency.source),
     level: depth(dependency.source),
+    onClick: () => {
+      updateKey(dependency.source);
+    },
   };
 };
 
@@ -51,11 +55,11 @@ const generateItems = (parentDirname: string, directories: string[], flatFileMap
   return items.concat(flatFileMap[parentDirname] || []).filter(a => !!a);
 };
 
-export const generateFolderTree = (dependencies: Types.FlatDependencies): Directory => {
+export const generateFolderTree = (dependencies: Types.FlatDependencies, updateKey: UpdateKeyFunction): Directory => {
   const flatFileMap: FlatFileMap = {};
   dependencies.forEach(dep => {
     const dirname = path.dirname(dep.source);
-    const item: File = generateFile(dep);
+    const item: File = generateFile(dep, updateKey);
     (flatFileMap[dirname] ? flatFileMap[dirname] : (flatFileMap[dirname] = [])).push(item);
   });
   const directories = Object.keys(flatFileMap);
@@ -66,8 +70,13 @@ export const generateFolderTree = (dependencies: Types.FlatDependencies): Direct
 };
 
 export const generateStore = (domainStores: Domain.Stores): Store => {
-  const rootDirectory = generateFolderTree(domainStores.app.state.flatDependencies);
-  console.log(rootDirectory);
+  const onClick = (nextSource: string) => {
+    domainStores.app.dispatch({
+      type: "UPDATE_ROOT_SOURCE",
+      source: nextSource,
+    });
+  };
+  const rootDirectory = generateFolderTree(domainStores.app.state.flatDependencies, onClick);
   return {
     rootDirectory,
   };

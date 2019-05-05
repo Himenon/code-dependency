@@ -23,6 +23,7 @@ jobs:
   include:
   - stage: lint & build & test
     script:
+    - yarn run bootstrap
     - yarn run setup
     - yarn run lint
     - yarn run build:lib
@@ -31,6 +32,7 @@ jobs:
     - '11'
   - stage: deploy
     script:
+    - yarn run bootstrap
     - yarn run setup
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc

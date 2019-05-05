@@ -1,5 +1,6 @@
 import * as Domain from "@app/domain";
 import * as Types from "@app/types";
+import * as path from "path";
 
 export interface Store {
   changeRootSource: (key: string) => void;
@@ -19,6 +20,7 @@ export interface Store {
   };
   nodes: Types.Node[];
   canShow: boolean;
+  rootSource: string;
 }
 
 export const generateStore = (domainStores: Domain.Stores): Store => ({
@@ -44,4 +46,5 @@ export const generateStore = (domainStores: Domain.Stores): Store => ({
   },
   nodes: domainStores.app.state.nodes,
   canShow: !isNaN(domainStores.dendrogram.state.size.width) && !isNaN(domainStores.dendrogram.state.size.height),
+  rootSource: path.basename(domainStores.app.state.rootSource),
 });

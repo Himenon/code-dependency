@@ -3,7 +3,7 @@ import { getClassNames } from "../../utils";
 
 interface ClassNames {
   menu?: string;
-  dendrogram?: string;
+  wrapper?: string;
   h2?: string;
 }
 
@@ -18,9 +18,9 @@ export interface TemplateProps {
 const App = ({ rootSource, Dendrogram, Menu }: TemplateProps) => {
   return (
     <>
-      <nav className={getClassNames("navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow nrsc-top-nav")}>
+      <nav className={getClassNames(styles, "navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow")}>
         <a
-          className={getClassNames("navbar-brand col-sm-3 col-md-2 mr-0")}
+          className={getClassNames(styles, "navbar-brand col-sm-3 col-md-2 mr-0")}
           href="https://github.com/Himenon/code-dependency"
           target="_blank"
           rel="noopener"
@@ -28,14 +28,15 @@ const App = ({ rootSource, Dendrogram, Menu }: TemplateProps) => {
           Code Dependency
         </a>
       </nav>
-      <div className={getClassNames("container-fluid nrsc-container")}>
-        <div className={getClassNames("row nrsc-wrapper")}>
-          <nav className={getClassNames("col-md-2 d-none d-md-block bg-light sidebar nrsc-side-nav")}>
-            <div className={getClassNames("sidebar-sticky")}>{Menu}</div>
+      <div className={getClassNames(styles, "container-fluid wrapper")}>
+        <div className={getClassNames(styles, "row wrapper")}>
+          <nav className={getClassNames(styles, "col-md-2 d-none d-md-block bg-light sidebar")}>
+            <div className={getClassNames(styles, "sidebar-sticky")}>{Menu}</div>
           </nav>
-          <main className={getClassNames("col-md-9 ml-sm-auto col-lg-10 px-4 nrsc-main")}>
+          <main className={getClassNames(styles, "col-md-9 ml-sm-auto col-lg-10 px-4 main-wrapper")}>
             <div
               className={getClassNames(
+                styles,
                 "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom",
               )}
             >

@@ -1,1 +1,35 @@
 @import "../../style";
+
+.caret {
+  cursor: pointer; 
+  user-select: none; /* Prevent text selection */
+  &::before {
+    content: "\25B6";
+    font-size: 1em;
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+}
+
+.caret-down::before {
+  transform: rotate(90deg); 
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.directory {
+  $paddingLeft: 0.9em;
+  & > .file {
+    padding-left: $paddingLeft;
+  }
+  & > .directory {
+    padding-left: $paddingLeft;
+  }
+}

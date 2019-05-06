@@ -2,9 +2,12 @@
 
 import * as Types from "@code-dependency/interfaces";
 import * as CodeDependency from "@code-dependency/map";
+import chalk from "chalk";
 import * as commander from "commander";
 import * as fs from "fs";
+import * as open from "open";
 import * as path from "path";
+import { existFile } from "./filesystem";
 import { createServer } from "./server";
 import { GenerateFlatDependencyFunction } from "./types";
 
@@ -17,6 +20,7 @@ interface CliReturnValue {
   input?: string;
   cut?: boolean;
   project?: string;
+  args: string[];
 }
 
 const executeCommandLine = (): CliReturnValue => {
@@ -40,6 +44,12 @@ const getFlatDependencies = (
   options: Types.ResolveOption,
 ): GenerateFlatDependencyFunction => {
   const source = path.resolve(cwd, path.normalize(fileName));
+  if (!existFile(source)) {
+    console.log(chalk.black.bgRed(" Error "), chalk.red(`Not fount: ${source}`));
+    process.exit();
+  } else {
+    console.log(chalk.black.bgBlueBright(" Watch "), chalk.blueBright(`Entry: ${source}`));
+  }
   return () => CodeDependency.getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
 };
 
@@ -49,33 +59,44 @@ const getBasePath = (cwd: string, target: string): string => {
   return path.dirname(path.join(cwd, diff));
 };
 
+const serveProjectDependency = async (project: string, cwd: string, options: Types.ResolveOption, cut?: boolean, port: number = 7000) => {
+  const stripBasePath: string | undefined = cut ? getBasePath(cwd, project) : undefined;
+  const flatDependencies = await getFlatDependencies(cwd, project, stripBasePath, options);
+  const server = await createServer(flatDependencies);
+  await server.listen(port);
+  const address = `http://localhost:${port}`;
+  console.log("");
+  console.log("  ", chalk.blue(`Server      : ${address}`));
+  console.log("  ", chalk.blue(`API Server  : ${address}/api`));
+  console.log("");
+  open(address);
+};
+
 const main = async () => {
-  const args = executeCommandLine();
+  const option = executeCommandLine();
   const cwd = process.cwd();
-  const options: Types.ResolveOption = {
+  const resolveOption: Types.ResolveOption = {
     alias: {},
   };
   const DEFAULT_PORT = 7000;
-  if (args.serve && args.project) {
-    const stripBasePath: string | undefined = args.cut ? getBasePath(cwd, args.project) : undefined;
-    const flatDependencies = await getFlatDependencies(cwd, args.project, stripBasePath, options);
-    const server = await createServer(flatDependencies);
-    await server.listen(DEFAULT_PORT);
-    console.log(`Serve start: http://localhost:${DEFAULT_PORT}`);
-    return;
-  } else if (args.serve && args.input) {
-    const inputFile = path.resolve(cwd, args.input);
+  if (option.args.length >= 1 && typeof option.args[0] === "string") {
+    return serveProjectDependency(option.args[0], cwd, resolveOption, true);
+  }
+  if (option.serve && option.project) {
+    return serveProjectDependency(option.project, cwd, resolveOption, option.cut);
+  } else if (option.serve && option.input) {
+    const inputFile = path.resolve(cwd, option.input);
     console.log(`Load file .... ${inputFile}`);
     const flatDependencies: Types.FlatDependencies = require(inputFile);
     const server = await createServer(() => Promise.resolve(flatDependencies));
     await server.listen(DEFAULT_PORT);
     console.log(`Serve start: http://localhost:${DEFAULT_PORT}`);
     return;
-  } else if (args.file) {
-    const stripBasePath: string | undefined = args.cut ? getBasePath(cwd, args.file) : undefined;
-    const flatDependencies = await getFlatDependencies(cwd, args.file, stripBasePath, options);
-    if (args.output) {
-      const outputFile = path.resolve(cwd, args.output);
+  } else if (option.file) {
+    const stripBasePath: string | undefined = option.cut ? getBasePath(cwd, option.file) : undefined;
+    const flatDependencies = await getFlatDependencies(cwd, option.file, stripBasePath, resolveOption);
+    if (option.output) {
+      const outputFile = path.resolve(cwd, option.output);
       fs.writeFileSync(outputFile, JSON.stringify({ flatDependencies }, null, 2), { encoding: "utf-8" });
     }
     return;

@@ -1,31 +1,36 @@
-import { Dependency, InputSourceDependency, ViewDependency, ViewSourceDependency } from "@code-dependency/interfaces";
-import * as path from "path";
+import { InputSourceDependency, ViewSourceDependency } from "@code-dependency/interfaces";
 
-const getCircularTarget = (source: string, dependency: Dependency, flatDependencies: InputSourceDependency[]): string[] => {
-  if (!dependency.module.startsWith(".")) {
-    return [];
-  }
-  const dependencySourcePath = path.join(source, path.basename(dependency.module));
-  return flatDependencies.filter(dep => dep.source === dependencySourcePath).map(dep => dep.source);
-};
-
-const transformDependencyToViewDependency = (
-  inputSourceDependency: InputSourceDependency,
-  flatDependencies: InputSourceDependency[],
-): ViewDependency[] => {
-  return inputSourceDependency.dependencies.map(dependency => {
-    return {
-      ...dependency,
-      circular: getCircularTarget(inputSourceDependency.source, dependency, flatDependencies),
-    };
+/**
+ * `InputSourceDependency[dependencies]`が循環依存する`InputSourceDependency[source]`の配列を返す。
+ *
+ * TODO a -> b -> c -> a
+ */
+const getCircularRefs = (target: InputSourceDependency, flatDependencies: InputSourceDependency[]): string[] => {
+  const refs: string[] = [];
+  target.dependencies.forEach(dependency => {
+    if (!dependency.module.startsWith(".") || !dependency.resolved) {
+      return;
+    }
+    // `InputSourceDependency[dependencies]` --> `InputSourceDependency[]`
+    const circularDeps = flatDependencies
+      // child -> parent[]
+      .filter(flatDep => flatDep.source === dependency.resolved)
+      // (parent has child)[]
+      .filter(flatDep => {
+        return flatDep.dependencies.filter(dep => dep.resolved === target.source).length > 0;
+      });
+    if (circularDeps.length > 0) {
+      refs.push(dependency.resolved);
+    }
   });
+  return refs;
 };
 
 export const transformViewDependency = (flatDependencies: InputSourceDependency[]): ViewSourceDependency[] => {
   return flatDependencies.map(inputSourceDependency => {
     return {
-      source: inputSourceDependency.source,
-      dependencies: transformDependencyToViewDependency(inputSourceDependency, flatDependencies),
+      ...inputSourceDependency,
+      circular: getCircularRefs(inputSourceDependency, flatDependencies),
     };
   });
 };

@@ -1,8 +1,8 @@
-import { InputSourceDependency, TreeData, ViewDependency, ViewSourceDependency } from "@code-dependency/interfaces";
+import { Dependency, InputSourceDependency, TreeData, ViewSourceDependency } from "@code-dependency/interfaces";
 import * as path from "path";
 import { transformViewDependency } from "./transform";
 
-type InputSource = string | ViewDependency;
+type InputSource = string | Dependency;
 
 const generateRelativePathPatterns = (basePath: string, moduleName: string): string[] => {
   let patterns: string[] = [];
@@ -55,6 +55,7 @@ const generateTreeData = (source: InputSource): TreeData => {
   }
   return {
     ...source,
+    circular: [],
     children: [],
   };
 };
@@ -69,6 +70,7 @@ const recursiveConvert = (source: InputSource, dependencies: ViewSourceDependenc
 };
 
 export const converter = (source: InputSource, dependencies: InputSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
-  const result = recursiveConvert(source, transformViewDependency(dependencies), parentSource);
-  return result;
+  const t = transformViewDependency(dependencies);
+  // const result = recursiveConvert(source, t, parentSource);
+  return t as any;
 };

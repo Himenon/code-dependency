@@ -16,6 +16,7 @@ const save = (filename: string, data: {}) => {
 const main = async () => {
   const options: Types.ResolveOption = {
     alias: {},
+    extensions: [".js", ".mjs", ".jsx", ".vue", ".ts", ".tsx", ".d.ts", ".coffee", ".litcoffee", ".coffee.md", ".csx", ".cjsx"],
   };
   console.log(stripBasePath);
   const source: string = path.resolve(executeDirectory, path.normalize(process.argv[2]));

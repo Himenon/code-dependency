@@ -1,12 +1,48 @@
 {
   "flatDependencies": [
     {
-      "source": "packages/test-project/src/app.tsx",
+      "source": "packages/test-project/src/index.ts",
       "dependencies": [
         {
-          "module": "react",
+          "module": "./circular-dependencies",
           "moduleSystem": "cjs",
-          "resolved": "node_modules/react/index.js",
+          "resolved": "packages/test-project/src/circular-dependencies/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./domain",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/domain/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./utils",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/utils/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./sourceMap",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/sourceMap.ts",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -18,83 +54,13 @@
         {
           "module": "./components",
           "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/components/index.ts",
           "coreModule": false,
-          "followable": false,
+          "followable": true,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/test-project/src/index.ts",
-      "dependencies": [
-        {
-          "module": "./app",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./circleDeps",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./domain",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./utils",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./sourceMap",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./components",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
+          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]
@@ -107,6 +73,69 @@
           "moduleSystem": "cjs",
           "coreModule": true,
           "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/circular-dependencies/TodoItem.ts",
+      "dependencies": [
+        {
+          "module": "./TodoList",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/circular-dependencies/TodoList.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/circular-dependencies/TodoList.ts",
+      "dependencies": [
+        {
+          "module": "./TodoItem",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/circular-dependencies/TodoItem.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/circular-dependencies/index.ts",
+      "dependencies": [
+        {
+          "module": "./TodoList",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/circular-dependencies/TodoList.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./TodoItem",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/circular-dependencies/TodoItem.ts",
+          "coreModule": false,
+          "followable": true,
           "dependencyTypes": [
             "undetermined"
           ],
@@ -138,59 +167,13 @@
         {
           "module": "./Main",
           "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/components/Main.tsx",
           "coreModule": false,
-          "followable": false,
+          "followable": true,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/test-project/src/circleDeps/child.ts",
-      "dependencies": [
-        {
-          "module": "./parent",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/test-project/src/circleDeps/index.ts",
-      "dependencies": []
-    },
-    {
-      "source": "packages/test-project/src/circleDeps/parent.ts",
-      "dependencies": [
-        {
-          "module": "../domain",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./child",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
+          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]
@@ -209,12 +192,13 @@
         {
           "module": "./App",
           "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/domain/App/index.ts",
           "coreModule": false,
-          "followable": false,
+          "followable": true,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": true,
+          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]
@@ -229,12 +213,13 @@
         {
           "module": "./Model",
           "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/domain/App/Model.ts",
           "coreModule": false,
-          "followable": false,
+          "followable": true,
           "dependencyTypes": [
             "undetermined"
           ],
-          "couldNotResolve": true,
+          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]

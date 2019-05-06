@@ -116,6 +116,7 @@ const main = async () => {
   const cwd = process.cwd();
   const resolveOption: Types.ResolveOption = {
     alias: {},
+    extensions: [".js", ".mjs", ".jsx", ".vue", ".ts", ".tsx", ".d.ts", ".coffee", ".litcoffee", ".coffee.md", ".csx", ".cjsx"],
   };
   if (option.args.length >= 1 && typeof option.args[0] === "string") {
     return startProjectServe(option.args[0], cwd, resolveOption, true);

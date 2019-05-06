@@ -21,10 +21,10 @@ export const src = {
     },
     index: filePath("domain/index.ts"),
   },
-  circleDeps: {
-    index: filePath("circleDeps/index.ts"),
-    child: filePath("circleDeps/child.ts"),
-    parent: filePath("circleDeps/parent.ts"),
+  "circular-dependencies": {
+    index: filePath("circular-dependencies/index.ts"),
+    TodoItem: filePath("circular-dependencies/TodoItem.ts"),
+    TodoList: filePath("circular-dependencies/TodoList.ts"),
   },
   utils: {
     index: filePath("utils/index.ts"),
@@ -103,27 +103,27 @@ export const RootDirTestData: TestData[] = [
     },
   },
   {
-    moduleName: "./circleDeps",
+    moduleName: "./circular-dependencies",
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.index,
+      resolved: src["circular-dependencies"].index,
     },
   },
   {
-    moduleName: "./circleDeps/parent",
+    moduleName: "./circular-dependencies/TodoList",
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.parent,
+      resolved: src["circular-dependencies"].TodoList,
     },
   },
   {
-    moduleName: "./circleDeps/child",
+    moduleName: "./circular-dependencies/TodoItem",
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.child,
+      resolved: src["circular-dependencies"].TodoItem,
     },
   },
   {
@@ -150,23 +150,23 @@ export const CircleDepsDirTestData: TestData[] = [
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.index,
+      resolved: src["circular-dependencies"].index,
     },
   },
   {
-    moduleName: "./child",
+    moduleName: "./TodoItem",
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.child,
+      resolved: src["circular-dependencies"].TodoItem,
     },
   },
   {
-    moduleName: "./parent",
+    moduleName: "./TodoList",
     result: {
       coreModule: false,
       couldNotResolve: false,
-      resolved: src.circleDeps.parent,
+      resolved: src["circular-dependencies"].TodoList,
     },
   },
   {

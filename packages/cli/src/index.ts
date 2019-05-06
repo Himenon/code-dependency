@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import * as Types from "@code-dependency/interfaces";
-import * as CodeDependency from "@code-dependency/map";
+import { getDependencies } from "@code-dependency/map";
 import chalk from "chalk";
 import * as commander from "commander";
 import * as fs from "fs";
@@ -50,7 +50,7 @@ const getFlatDependencies = (
   } else {
     console.log(chalk.black.bgGreen(" Load "), chalk.green(`${source}`));
   }
-  return () => CodeDependency.getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
+  return () => getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
 };
 
 const getBasePath = (cwd: string, target: string): string => {
@@ -98,7 +98,7 @@ const startLoadFileServe = async (filename: string, cwd: string, port: number = 
 const outputCsrProps = async (file: string, cwd: string, options: Types.ResolveOption, cut: boolean, output: string | undefined) => {
   const stripBasePath: string | undefined = cut ? getBasePath(cwd, file) : undefined;
   const source = path.resolve(cwd, path.normalize(file));
-  const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
+  const flatDependencies = await getDependencies({ source, executeDirectory: cwd, stripBasePath }, options);
   if (output) {
     const outputFile = path.resolve(cwd, output);
     const csrProps: Types.CsrProps = { flatDependencies };

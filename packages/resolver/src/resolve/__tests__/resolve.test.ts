@@ -13,13 +13,13 @@ describe("#resolve", () => {
   });
 
   test("#absolute path", () => {
-    const absolutePath = path.resolve(__dirname, "../resolve");
+    const absolutePath = path.resolve(__dirname, "../../resolve");
     const result = resolve("../resolve", absolutePath, options);
-    expect(result).toBe(absolutePath + ".ts");
+    expect(result).toBe(path.join(absolutePath, "index.ts"));
   });
 
   test("#absolute node_modules path", () => {
-    const absolutePath = path.resolve(__dirname, "../../../../node_modules");
+    const absolutePath = path.resolve(__dirname, "../../../../../node_modules");
     const result = resolve("typescript", absolutePath, options);
     expect(result).toBe(path.join(absolutePath, "typescript/lib/typescript.js"));
   });

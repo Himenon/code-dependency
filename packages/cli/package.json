@@ -34,6 +34,7 @@
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/index.js -s -p ../view/src/App.tsx -c",
+    "server:resolver": "node ./lib/index.js -s -p ../resolver/src/index.ts -c",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",

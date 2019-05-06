@@ -1,6 +1,6 @@
 import { ResolveOption } from "@code-dependency/interfaces";
 import * as path from "path";
-import { resolve } from "../resolve";
+import { resolve } from "../index";
 import { compileResolveOptions } from "../resolveOptions";
 
 describe("#resolve", () => {
@@ -32,7 +32,7 @@ describe("#resolve", () => {
   test("index.ts: resolved-commonjs", () => {
     const { baseDir, fileDir } = generateAbsoluteDirPath("../index.ts");
     const result = resolve({ moduleName: "./resolved-commonjs", moduleSystem: "cjs" }, baseDir, fileDir, option);
-    expect(result.resolved).toBe(path.join(process.cwd(), "src/resolved-commonjs.ts"));
+    expect(result.resolved).toBe(path.join(process.cwd(), "src/resolve/resolved-commonjs.ts"));
   });
 
   test.skip("index.ts: @code-dependency/interfaces", () => {

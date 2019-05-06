@@ -36,13 +36,13 @@
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/view/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "develop": "yarn run build:scripts && node scripts/develop.js",
     "server:prod": "serve -s build",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run build:scripts && yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch"
+    "test:watch": "yarn run test:jest --watch",
+    "clean:lib": "rimraf lib"
   },
   "babel": {
     "presets": [

@@ -18,7 +18,7 @@
     "build:lib:dist": "yarn run clean:lib && yarn run warmup && yarn run build:lib --verbose",
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
     "clean:cache": "rimraf buildcache",
-    "clean:lib": "yarn run build:lib --clean",
+    "clean:lib": "yarn run build:lib --clean && lerna run clean:lib",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "cooldown": "node ./bin/tsconfig.shared.js",
     "cruiser": "lerna run cruiser",

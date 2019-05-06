@@ -3,13 +3,13 @@ import * as path from "path";
 /**
  * Don't touch thid parameters.
  */
-export const SOURCE_DIR_PATH = path.join(process.cwd(), "example/src");
+export const SOURCE_DIR_PATH = __dirname;
 export const NODE_MODULES = path.join(process.cwd(), "../../node_modules");
 
 const filePath = (fileName: string) => path.join(SOURCE_DIR_PATH, fileName);
 const nodeModulePath = (fileName: string) => path.join(NODE_MODULES, fileName);
 
-const src = {
+export const src = {
   components: {
     index: filePath("components/index.ts"),
     Main: filePath("components/Main.tsx"),

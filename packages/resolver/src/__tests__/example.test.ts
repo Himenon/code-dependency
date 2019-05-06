@@ -1,7 +1,7 @@
 import { ResolveOption } from "@code-dependency/interfaces";
+import { sourceMap as Example } from "@code-dependency/test-project";
 import * as path from "path";
 import { resolve } from "../resolve";
-import * as Example from "./example.data";
 
 const EXAMPLE_FILE = path.join(Example.SOURCE_DIR_PATH, "index.ts");
 const EXAMPLE_FILE_DIR = path.dirname(EXAMPLE_FILE);

@@ -77,7 +77,7 @@
       "comment": "Don't allow dependencies from src/app/lib to a development only package",
       "from": {
         "path": "^(src|app|lib)",
-        "pathNot": "\\.spec\\.(js|ts|ls|coffee|litcoffee|coffee\\.md)$"
+        "pathNot": "\\__tests__"
       },
       "to": {
         "dependencyTypes": [
@@ -90,7 +90,7 @@
       "severity": "error",
       "comment": "Don't allow dependencies to packages not in package.json (except from within node_modules)",
       "from": {
-        "pathNot": "^node_modules"
+        "pathNot": "^node_modules|../test-project"
       },
       "to": {
         "dependencyTypes": [

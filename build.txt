@@ -1,4 +1,5 @@
 packages/interfaces
+packages/test-project
 packages/extract
 packages/resolver
 packages/map

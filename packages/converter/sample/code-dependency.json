@@ -113,22 +113,6 @@
       ]
     },
     {
-      "source": "packages/view/src/render.ts",
-      "dependencies": [
-        {
-          "module": "./client",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
       "source": "packages/view/src/index.tsx",
       "dependencies": [
         {
@@ -140,6 +124,22 @@
             "undetermined"
           ],
           "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/view/src/render.ts",
+      "dependencies": [
+        {
+          "module": "./client",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
           "matchesDoNotFollow": false
         }
       ]
@@ -497,10 +497,6 @@
       ]
     },
     {
-      "source": "packages/view/src/domain/Dendrogram/State.ts",
-      "dependencies": []
-    },
-    {
       "source": "packages/view/src/domain/Dendrogram/Reducer.ts",
       "dependencies": [
         {
@@ -528,6 +524,10 @@
       ]
     },
     {
+      "source": "packages/view/src/domain/Dendrogram/State.ts",
+      "dependencies": []
+    },
+    {
       "source": "packages/view/src/domain/Dendrogram/index.ts",
       "dependencies": []
     },
@@ -543,23 +543,6 @@
             "undetermined"
           ],
           "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/view/src/components/Dendrogram/Dendrogram.tsx",
-      "dependencies": [
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]
@@ -621,6 +604,23 @@
             "undetermined"
           ],
           "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/view/src/components/Dendrogram/Dendrogram.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
           "matchesDoNotFollow": false
         }
       ]

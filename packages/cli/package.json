@@ -42,10 +42,10 @@
     "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
-    "@code-dependency/map": "0.0.1",
-    "@code-dependency/interfaces": "0.0.1",
-    "@code-dependency/resolver": "0.0.1",
     "@code-dependency/converter": "0.0.1",
+    "@code-dependency/interfaces": "0.0.1",
+    "@code-dependency/map": "0.0.1",
+    "@code-dependency/resolver": "0.0.1",
     "@code-dependency/view": "0.0.1",
     "commander": "^2.20.0",
     "express": "^4.16.4"

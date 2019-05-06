@@ -27,6 +27,7 @@
     "clean": "rimraf ./lib ./build",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "generate:sample": "ts-node ./bin/generate-sample.ts ../test-project/src/index.ts",
+    "generate:sample:view": "ts-node ./bin/generate-sample.ts ../view/src/index.tsx",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/converter/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
@@ -35,7 +36,8 @@
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch"
+    "test:watch": "yarn run test:jest --watch",
+    "clean:lib": "rimraf lib"
   },
   "dependencies": {
     "@code-dependency/interfaces": "0.0.1",

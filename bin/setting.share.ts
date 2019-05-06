@@ -13,7 +13,7 @@ const generateShareScripts = (name: string) => {
     "test:jest": "jest --cache -c ./jest.config.json",
     "clean": "rimraf ./lib ./build",
     "clean:cache": undefined,
-    "clean:lib": undefined,
+    "clean:lib": "rimraf lib",
     "test:watch": "yarn run test:jest --watch",
   }
 };

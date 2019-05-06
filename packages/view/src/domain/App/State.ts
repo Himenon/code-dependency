@@ -20,6 +20,7 @@ export const DEFAULT_STATE: State = {
     moduleSystem: "cjs",
     matchesDoNotFollow: false,
     children: [],
+    circular: [],
   },
   links: [],
   nodes: [],

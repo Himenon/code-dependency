@@ -1,5 +1,6 @@
-import { Dependency, InputSourceDependency, TreeData } from "@code-dependency/interfaces";
+import { Dependency, InputSourceDependency, TreeData, ViewSourceDependency } from "@code-dependency/interfaces";
 import * as path from "path";
+import { transformViewDependency } from "./transform";
 
 type InputSource = string | Dependency;
 
@@ -37,10 +38,10 @@ const hasModuleDependency = (dep: InputSourceDependency, treeData?: TreeData, pa
   return dep.source === treeData.resolved;
 };
 
-const getTreeData = (source: InputSource): TreeData => {
+const generateTreeData = (source: InputSource): TreeData => {
   if (typeof source === "string") {
     return {
-      resolved: source, // TODO undefined
+      resolved: source,
       coreModule: false,
       followable: true,
       couldNotResolve: false,
@@ -48,20 +49,39 @@ const getTreeData = (source: InputSource): TreeData => {
       module: source,
       moduleSystem: "cjs",
       matchesDoNotFollow: false,
+      circular: [],
       children: [],
     };
   }
   return {
     ...source,
+    circular: [],
     children: [],
   };
 };
 
-export const converter = (source: InputSource, dependencies: InputSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
-  const root: TreeData = getTreeData(source);
+/**
+ * ViewSourceDependencyは一度だけ利用可能.
+ */
+const usedPathList: string[] = [];
+
+const recursiveConvert = (source: InputSource, dependencies: ViewSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
+  const root: TreeData = generateTreeData(source);
   const rootDependency = dependencies.find(dep => hasModuleDependency(dep, root, parentSource));
-  if (rootDependency) {
-    root.children = rootDependency.dependencies.map(nextSource => converter(nextSource, dependencies, rootDependency));
+  /**
+   * TODO circular deps
+   */
+  const resolved: string | undefined = typeof source === "string" ? source : source.resolved;
+  if (rootDependency && (!resolved || !usedPathList.includes(resolved))) {
+    if (resolved) {
+      usedPathList.push(resolved);
+    }
+    root.children = rootDependency.dependencies.map(nextSource => recursiveConvert(nextSource, dependencies, rootDependency));
   }
   return root;
+};
+
+export const converter = (source: InputSource, dependencies: InputSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
+  usedPathList.length = 0;
+  return recursiveConvert(source, transformViewDependency(dependencies), parentSource);
 };

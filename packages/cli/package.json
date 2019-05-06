@@ -47,7 +47,6 @@
     "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
-    "@code-dependency/converter": "0.0.1",
     "@code-dependency/interfaces": "0.0.1",
     "@code-dependency/map": "0.0.1",
     "@code-dependency/resolver": "0.0.1",

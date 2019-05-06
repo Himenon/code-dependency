@@ -22,7 +22,7 @@ const main = async () => {
   const convertSource = path.relative(stripBasePath, source);
   const flatDependencies = await CodeDependency.getDependencies({ source, executeDirectory, stripBasePath }, options);
   const csrProps: Types.CsrProps = { flatDependencies };
-  save("./sample/code-dependency.json", csrProps);
+  save("./sample/csrProps.json", csrProps);
   save("./sample/tree-data.json", { treeData: converter(convertSource, flatDependencies) });
 };
 

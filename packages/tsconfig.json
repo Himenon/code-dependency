@@ -6,6 +6,7 @@
     { "path": "extract" },
     { "path": "interfaces" },
     { "path": "resolver" },
-    { "path": "view" }
+    { "path": "view" },
+    { "path": "test-project" }
   ]
 }

@@ -3,13 +3,13 @@ import * as path from "path";
 /**
  * Don't touch thid parameters.
  */
-export const SOURCE_DIR_PATH = path.join(process.cwd(), "example/src");
+export const SOURCE_DIR_PATH = __dirname;
 export const NODE_MODULES = path.join(process.cwd(), "../../node_modules");
 
 const filePath = (fileName: string) => path.join(SOURCE_DIR_PATH, fileName);
 const nodeModulePath = (fileName: string) => path.join(NODE_MODULES, fileName);
 
-const src = {
+export const src = {
   components: {
     index: filePath("components/index.ts"),
     Main: filePath("components/Main.tsx"),
@@ -25,6 +25,10 @@ const src = {
     index: filePath("circleDeps/index.ts"),
     child: filePath("circleDeps/child.ts"),
     parent: filePath("circleDeps/parent.ts"),
+  },
+  utils: {
+    index: filePath("utils/index.ts"),
+    getName: filePath("utils/getName.ts"),
   },
   app: filePath("app.tsx"),
   index: filePath("index.ts"),
@@ -120,6 +124,22 @@ export const RootDirTestData: TestData[] = [
       coreModule: false,
       couldNotResolve: false,
       resolved: src.circleDeps.child,
+    },
+  },
+  {
+    moduleName: "./utils/index",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.utils.index,
+    },
+  },
+  {
+    moduleName: "./utils/getName",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.utils.getName,
     },
   },
 ];

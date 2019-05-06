@@ -3,28 +3,26 @@ import * as fs from "fs";
 import * as path from "path";
 import { converter } from "../index";
 
-const SAMPLE_FILE = path.resolve(__dirname, "../../sample/code-dependency.json");
-
-const INDEX_SOURCE_NAME = "packages/code-dependency/src/index.ts";
-const GATHER_SOURCE_NAME = "packages/code-dependency/src/gather.ts";
-const MODULE_NAME = "./gather";
+const SAMPLE_FILE = path.resolve(__dirname, "../../sample/csrProps.json");
 
 const getSampleData = (filename: string): Types.CsrProps => {
-  console.log(`open: ${filename}`);
   return JSON.parse(fs.readFileSync(filename, { encoding: "utf-8" }));
 };
 
 describe("#code-dependency/src/index.ts", () => {
   const data = getSampleData(SAMPLE_FILE);
   const flatDependencies = data.flatDependencies;
-  const convertedData = converter(INDEX_SOURCE_NAME, flatDependencies);
+
+  const convertedData = converter("packages/test-project/src/index.ts", flatDependencies);
+
   test("length", () => {
-    expect(flatDependencies.length).toBe(3);
+    expect(flatDependencies.length).not.toBe(0);
   });
 
-  test("children", () => {
-    const directConvertResult = converter(GATHER_SOURCE_NAME, flatDependencies);
-    const childConvertResult = convertedData.children.filter(child => child.module === MODULE_NAME)[0];
+  test("親から見たcomponentsとcomponentsを直接見た階層構造が同じになっていること", () => {
+    const childConvertResult = convertedData.children.filter(child => child.module === "./components")[0];
+    const directConvertResult = converter("packages/test-project/src/components/index.ts", flatDependencies);
+    console.log(convertedData);
     expect(childConvertResult.children).toEqual(directConvertResult.children);
   });
 });

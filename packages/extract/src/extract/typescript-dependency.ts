@@ -9,16 +9,25 @@ const isExtractObject = (input: ExtractObject | NotExtractObject): input is Extr
   return input !== NOT_EXTRACT_OBJECT;
 };
 
+const hasModule = (statement: any): statement is { moduleSpecifier: { text: string } } => {
+  // isExportDeclaration: export * from "./hoge"; を検知
+  // isImportDeclaration: import/exportを検知
+  if (ts.isImportDeclaration(statement) /*|| ts.isExportDeclaration(statement)*/) {
+    // @ts-ignore FIXME どうして生えていない？
+    return !!statement && !!statement.moduleSpecifier && typeof (statement.moduleSpecifier as any).text === "string";
+  }
+  return false;
+};
+
 const extractImportsAndExports = (ast: ts.SourceFile): ExtractObject[] => {
   return ast.statements
     .filter(statement => {
       return ts.SyntaxKind.ImportDeclaration === statement.kind || ts.SyntaxKind.ExportDeclaration === statement.kind;
     })
     .map<ExtractObject | NotExtractObject>(statement => {
-      if (ts.isImportDeclaration(statement)) {
+      if (hasModule(statement)) {
         return {
-          // @ts-ignore FIXME どうして生えていない？
-          module: statement.moduleSpecifier.text as string,
+          module: statement.moduleSpecifier.text,
           moduleSystem: "cjs",
         };
       }

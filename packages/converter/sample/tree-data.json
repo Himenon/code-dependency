@@ -1,68 +1,18 @@
 {
   "treeData": {
-    "resolved": "packages/view/src/client.tsx",
+    "resolved": "packages/test-project/src/index.ts",
     "coreModule": false,
     "followable": true,
     "couldNotResolve": false,
     "dependencyTypes": [
       "undetermined"
     ],
-    "module": "packages/view/src/client.tsx",
+    "module": "packages/test-project/src/index.ts",
     "moduleSystem": "cjs",
     "matchesDoNotFollow": false,
     "children": [
       {
-        "module": "@app/domain",
-        "moduleSystem": "cjs",
-        "coreModule": false,
-        "followable": false,
-        "dependencyTypes": [
-          "undetermined"
-        ],
-        "couldNotResolve": true,
-        "matchesDoNotFollow": false,
-        "children": []
-      },
-      {
-        "module": "@code-dependency/interfaces",
-        "moduleSystem": "cjs",
-        "coreModule": false,
-        "followable": false,
-        "dependencyTypes": [
-          "undetermined"
-        ],
-        "couldNotResolve": true,
-        "matchesDoNotFollow": false,
-        "children": []
-      },
-      {
-        "module": "react",
-        "moduleSystem": "cjs",
-        "resolved": "node_modules/react/index.js",
-        "coreModule": false,
-        "followable": true,
-        "dependencyTypes": [
-          "undetermined"
-        ],
-        "couldNotResolve": false,
-        "matchesDoNotFollow": false,
-        "children": []
-      },
-      {
-        "module": "react-dom",
-        "moduleSystem": "cjs",
-        "resolved": "node_modules/react-dom/index.js",
-        "coreModule": false,
-        "followable": true,
-        "dependencyTypes": [
-          "undetermined"
-        ],
-        "couldNotResolve": false,
-        "matchesDoNotFollow": false,
-        "children": []
-      },
-      {
-        "module": "./App",
+        "module": "./app",
         "moduleSystem": "cjs",
         "coreModule": false,
         "followable": false,
@@ -72,18 +22,6 @@
         "couldNotResolve": true,
         "matchesDoNotFollow": false,
         "children": [
-          {
-            "module": "@app/domain",
-            "moduleSystem": "cjs",
-            "coreModule": false,
-            "followable": false,
-            "dependencyTypes": [
-              "undetermined"
-            ],
-            "couldNotResolve": true,
-            "matchesDoNotFollow": false,
-            "children": []
-          },
           {
             "module": "react",
             "moduleSystem": "cjs",
@@ -109,7 +47,71 @@
             "matchesDoNotFollow": false,
             "children": [
               {
-                "module": "./Template",
+                "module": "./Main",
+                "moduleSystem": "cjs",
+                "coreModule": false,
+                "followable": false,
+                "dependencyTypes": [
+                  "undetermined"
+                ],
+                "couldNotResolve": true,
+                "matchesDoNotFollow": false,
+                "children": [
+                  {
+                    "module": "react",
+                    "moduleSystem": "cjs",
+                    "resolved": "node_modules/react/index.js",
+                    "coreModule": false,
+                    "followable": true,
+                    "dependencyTypes": [
+                      "undetermined"
+                    ],
+                    "couldNotResolve": false,
+                    "matchesDoNotFollow": false,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "module": "./circleDeps",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "./domain",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": [
+          {
+            "module": "./App",
+            "moduleSystem": "cjs",
+            "coreModule": false,
+            "followable": false,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": true,
+            "matchesDoNotFollow": false,
+            "children": [
+              {
+                "module": "./Model",
                 "moduleSystem": "cjs",
                 "coreModule": false,
                 "followable": false,
@@ -121,9 +123,59 @@
                 "children": []
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "module": "./utils",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": []
+      },
+      {
+        "module": "./sourceMap",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": [
           {
-            "module": "./style.scss",
+            "module": "path",
+            "moduleSystem": "cjs",
+            "coreModule": true,
+            "followable": false,
+            "dependencyTypes": [
+              "undetermined"
+            ],
+            "couldNotResolve": false,
+            "matchesDoNotFollow": false,
+            "children": []
+          }
+        ]
+      },
+      {
+        "module": "./components",
+        "moduleSystem": "cjs",
+        "coreModule": false,
+        "followable": false,
+        "dependencyTypes": [
+          "undetermined"
+        ],
+        "couldNotResolve": true,
+        "matchesDoNotFollow": false,
+        "children": [
+          {
+            "module": "./Main",
             "moduleSystem": "cjs",
             "coreModule": false,
             "followable": false,
@@ -134,110 +186,15 @@
             "matchesDoNotFollow": false,
             "children": [
               {
-                "module": "~bootstrap/scss/bootstrap.scss",
+                "module": "react",
                 "moduleSystem": "cjs",
+                "resolved": "node_modules/react/index.js",
                 "coreModule": false,
-                "followable": false,
+                "followable": true,
                 "dependencyTypes": [
                   "undetermined"
                 ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_reboot.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_functions.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_variables.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_navbar.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_spacing.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_dashboard.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_display.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
-                "matchesDoNotFollow": false,
-                "children": []
-              },
-              {
-                "module": "./styles/_flex.scss",
-                "moduleSystem": "cjs",
-                "coreModule": false,
-                "followable": false,
-                "dependencyTypes": [
-                  "undetermined"
-                ],
-                "couldNotResolve": true,
+                "couldNotResolve": false,
                 "matchesDoNotFollow": false,
                 "children": []
               }

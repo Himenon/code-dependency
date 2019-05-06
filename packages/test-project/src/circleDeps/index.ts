@@ -1,4 +1,7 @@
-import * as Child from "./child";
-import * as Parent from "./parent";
+// import * as Child from "./child";
+// import * as Parent from "./parent";
 
-export { Child, Parent };
+// export { Child };
+export const hello = () => {
+  console.log("dummy");
+}

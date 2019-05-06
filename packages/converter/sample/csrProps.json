@@ -1,0 +1,243 @@
+{
+  "flatDependencies": [
+    {
+      "source": "packages/test-project/src/app.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./components",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/index.ts",
+      "dependencies": [
+        {
+          "module": "./app",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./circleDeps",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./domain",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./utils",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./sourceMap",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./components",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/sourceMap.ts",
+      "dependencies": [
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/components/Main.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/components/index.ts",
+      "dependencies": [
+        {
+          "module": "./Main",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/circleDeps/child.ts",
+      "dependencies": [
+        {
+          "module": "./parent",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/circleDeps/index.ts",
+      "dependencies": []
+    },
+    {
+      "source": "packages/test-project/src/circleDeps/parent.ts",
+      "dependencies": [
+        {
+          "module": "../domain",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./child",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/utils/getName.ts",
+      "dependencies": []
+    },
+    {
+      "source": "packages/test-project/src/utils/index.ts",
+      "dependencies": []
+    },
+    {
+      "source": "packages/test-project/src/domain/index.ts",
+      "dependencies": [
+        {
+          "module": "./App",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/domain/App/Model.ts",
+      "dependencies": []
+    },
+    {
+      "source": "packages/test-project/src/domain/App/index.ts",
+      "dependencies": [
+        {
+          "module": "./Model",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    }
+  ]
+}

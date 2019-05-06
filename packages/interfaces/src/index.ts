@@ -86,7 +86,15 @@ export interface InputSourceDependency {
 
 export type FlatDependencies = InputSourceDependency[];
 
+export type ViewDependency = Dependency & { circular: string[] };
+
+export interface ViewSourceDependency {
+  source: string;
+  dependencies: ViewDependency[];
+}
+
 export interface TreeData extends ResolvedDependency {
+  circular: string[];
   children: TreeData[];
 }
 

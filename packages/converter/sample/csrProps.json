@@ -82,6 +82,40 @@
       ]
     },
     {
+      "source": "packages/test-project/src/components/Main.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "packages/test-project/src/components/index.ts",
+      "dependencies": [
+        {
+          "module": "./Main",
+          "moduleSystem": "cjs",
+          "resolved": "packages/test-project/src/components/Main.tsx",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
       "source": "packages/test-project/src/circular-dependencies/TodoItem.ts",
       "dependencies": [
         {
@@ -134,40 +168,6 @@
           "module": "./TodoItem",
           "moduleSystem": "cjs",
           "resolved": "packages/test-project/src/circular-dependencies/TodoItem.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/test-project/src/components/Main.tsx",
-      "dependencies": [
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "packages/test-project/src/components/index.ts",
-      "dependencies": [
-        {
-          "module": "./Main",
-          "moduleSystem": "cjs",
-          "resolved": "packages/test-project/src/components/Main.tsx",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

@@ -60,17 +60,28 @@ const generateTreeData = (source: InputSource): TreeData => {
   };
 };
 
+/**
+ * ViewSourceDependencyは一度だけ利用可能.
+ */
+const usedPathList: string[] = [];
+
 const recursiveConvert = (source: InputSource, dependencies: ViewSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
   const root: TreeData = generateTreeData(source);
   const rootDependency = dependencies.find(dep => hasModuleDependency(dep, root, parentSource));
-  if (rootDependency) {
+  /**
+   * TODO circular deps
+   */
+  const resolved: string | undefined = typeof source === "string" ? source : source.resolved;
+  if (rootDependency && (!resolved || !usedPathList.includes(resolved))) {
+    if (resolved) {
+      usedPathList.push(resolved);
+    }
     root.children = rootDependency.dependencies.map(nextSource => recursiveConvert(nextSource, dependencies, rootDependency));
   }
   return root;
 };
 
 export const converter = (source: InputSource, dependencies: InputSourceDependency[], parentSource?: InputSourceDependency): TreeData => {
-  const t = transformViewDependency(dependencies);
-  // const result = recursiveConvert(source, t, parentSource);
-  return t as any;
+  usedPathList.length = 0;
+  return recursiveConvert(source, transformViewDependency(dependencies), parentSource);
 };

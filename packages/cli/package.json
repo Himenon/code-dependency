@@ -33,8 +33,13 @@
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "server:view": "node ./lib/index.js -s -p ../view/src/App.tsx -c",
-    "server:resolver": "node ./lib/index.js -s -p ../resolver/src/index.ts -c",
+    "server:view": "node ./lib/index.js ../view/src/App.tsx",
+    "server:resolver": "node ./lib/index.js ../resolver/src/index.ts",
+    "server:test-project": "node ./lib/index.js ../test-project/src/index.ts",
+    "output:view": "node ./lib/index.js -f ../view/src/App.tsx -o ./data/sample-view.json -c",
+    "output:test-project": "node ./lib/index.js -f ../test-project/src/index.ts -o ./data/sample-test-project.json -c",
+    "input:view": "node ./lib/index.js -s -i ./data/sample-view.json",
+    "input:test-project": "node ./lib/index.js -s -i ./data/sample-test-project.json",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
@@ -47,8 +52,10 @@
     "@code-dependency/map": "0.0.1",
     "@code-dependency/resolver": "0.0.1",
     "@code-dependency/view": "0.0.1",
+    "chalk": "^2.4.2",
     "commander": "^2.20.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "open": "^6.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.16.1"

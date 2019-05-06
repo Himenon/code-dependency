@@ -25,9 +25,8 @@
   },
   "scripts": {
     "clean": "rimraf ./lib ./build",
-    "cli": "node ./lib/index.js -f ../code-dependency/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
-    "generate:sample": "ts-node ./bin/generate-sample.ts ../code-dependency/src/index.ts",
+    "generate:sample": "ts-node ./bin/generate-sample.ts ../view/src/client.tsx",
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/converter/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",

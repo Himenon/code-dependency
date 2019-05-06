@@ -26,6 +26,10 @@ const src = {
     child: filePath("circleDeps/child.ts"),
     parent: filePath("circleDeps/parent.ts"),
   },
+  utils: {
+    index: filePath("utils/index.ts"),
+    getName: filePath("utils/getName.ts"),
+  },
   app: filePath("app.tsx"),
   index: filePath("index.ts"),
 };
@@ -120,6 +124,22 @@ export const RootDirTestData: TestData[] = [
       coreModule: false,
       couldNotResolve: false,
       resolved: src.circleDeps.child,
+    },
+  },
+  {
+    moduleName: "./utils/index",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.utils.index,
+    },
+  },
+  {
+    moduleName: "./utils/getName",
+    result: {
+      coreModule: false,
+      couldNotResolve: false,
+      resolved: src.utils.getName,
     },
   },
 ];

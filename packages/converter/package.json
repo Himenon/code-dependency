@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/converter",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "description": "It is a library to convert the map of dependency map into data for graphing.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
@@ -40,12 +40,12 @@
     "clean:lib": "rimraf lib"
   },
   "dependencies": {
-    "@code-dependency/interfaces": "0.0.1",
+    "@code-dependency/interfaces": "0.0.1-alpha.0",
     "lodash": "^4.17.11",
     "normalize-path": "^3.0.0"
   },
   "devDependencies": {
-    "@code-dependency/map": "0.0.1",
+    "@code-dependency/map": "0.0.1-alpha.0",
     "@code-dependency/test-project": "0.0.1",
     "@types/normalize-path": "^3.0.0"
   }

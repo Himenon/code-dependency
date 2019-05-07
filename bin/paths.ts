@@ -1,12 +1,4 @@
-export interface MonorepoPackageSettings {
-  cli: string;
-  map: string;
-  converter: string;
-  extract: string;
-  interfaces: string;
-  resolver: string;
-  view: string;
-}
+import { MonorepoPackageSettings } from "./types";
 
 export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view"];
 

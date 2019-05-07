@@ -2,6 +2,36 @@
 exports.__esModule = true;
 var paths_1 = require("./paths");
 var filesystem_1 = require("./filesystem");
+var versions = {
+    cli: {
+        name: "@code-dependency/cli",
+        version: "0.0.1-alpha.0"
+    },
+    map: {
+        name: "@code-dependency/map",
+        version: "0.0.1-alpha.0"
+    },
+    converter: {
+        name: "@code-dependency/converter",
+        version: "0.0.1-alpha.0"
+    },
+    extract: {
+        name: "@code-dependency/extract",
+        version: "0.0.1-alpha.0"
+    },
+    interfaces: {
+        name: "@code-dependency/interfaces",
+        version: "0.0.1-alpha.0"
+    },
+    resolver: {
+        name: "@code-dependency/resolver",
+        version: "0.0.1-alpha.0"
+    },
+    view: {
+        name: "@code-dependency/view",
+        version: "0.0.1-alpha.0"
+    }
+};
 var generateShareScripts = function (name) {
     return {
         lint: "eslint --cache --cache-location ../../buildcache/" + name + "/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
@@ -24,8 +54,20 @@ var updatePackage = function () {
     paths_1.packageNameList.forEach(function (name) {
         var pkg = filesystem_1.readConfig(paths_1.packages[name]);
         var shareScripts = generateShareScripts(name);
+        pkg.version = versions[name].version;
         Object.keys(shareScripts).forEach(function (key) {
             pkg.scripts[key] = shareScripts[key];
+        });
+        Object.values(versions).forEach(function (value) {
+            if (pkg.dependencies && value.name in pkg.dependencies) {
+                pkg.dependencies[value.name] = value.version;
+            }
+            if (pkg.devDependencies && value.name in pkg.devDependencies) {
+                pkg.devDependencies[value.name] = value.version;
+            }
+            if (pkg.peerDependencies && value.name in pkg.peerDependencies) {
+                pkg.peerDependencies[value.name] = value.version;
+            }
         });
         filesystem_1.saveConfig(paths_1.packages[name], pkg);
     });

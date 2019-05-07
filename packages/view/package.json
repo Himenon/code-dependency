@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/view",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "description": "A user interface for displaying code dependencies on a browser.",
   "keywords": [],
   "homepage": "https://github.com/https://github.com/Himenon/code-dependency.git#readme",
@@ -36,7 +36,6 @@
     "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/view/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
-    "develop": "yarn run build:scripts && node scripts/develop.js",
     "server:prod": "serve -s build",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
@@ -54,7 +53,7 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "@code-dependency/converter": "^0.0.1",
+    "@code-dependency/converter": "0.0.1-alpha.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "d3": "^5.9.2",
@@ -62,7 +61,7 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@code-dependency/interfaces": "^0.0.1",
+    "@code-dependency/interfaces": "0.0.1-alpha.0",
     "@types/classnames": "^2.2.7",
     "@types/d3": "^5.7.2",
     "@types/fs-extra": "^5.0.5",

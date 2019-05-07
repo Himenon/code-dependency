@@ -2,6 +2,7 @@ import * as Domain from "@app/domain";
 import * as React from "react";
 import * as Dendrogram from "../Dendrogram";
 import * as Menu from "../Menu";
+import * as ProjectMenu from "../ProjectMenu";
 import { createViewStore, ViewStore } from "./Store";
 import * as Template from "./Template";
 
@@ -9,6 +10,7 @@ const generateProps = (stores: Domain.Stores, viewStore: ViewStore): Template.Pr
   return {
     Dendrogram: <Dendrogram.Container store={viewStore.dendrogram} />,
     Menu: <Menu.Container store={viewStore.menu} />,
+    ProjectMenu: <ProjectMenu.Container store={viewStore.projectMenu} />,
     rootSource: stores.app.state.rootSource,
   };
 };

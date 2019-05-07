@@ -18,7 +18,7 @@ export const createReducer = ({ config }: { config?: Type.StaticConfig }): Reduc
   const state: State = config
     ? {
         config,
-        current: undefined,
+        current: config.projects.length > 0 ? config.projects[0] : DEFAULT_STATE.current,
       }
     : DEFAULT_STATE;
   return [reducer, state];

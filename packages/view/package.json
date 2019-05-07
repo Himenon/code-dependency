@@ -25,7 +25,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "yarn run build:scripts && node scripts/build.js",
+    "build": "rimraf build && yarn run build:scripts && node scripts/build.js",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
     "ci:notify:release": "ts-node ./scripts/notify.ts",

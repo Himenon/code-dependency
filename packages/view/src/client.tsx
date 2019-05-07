@@ -1,14 +1,13 @@
 import * as Domain from "@app/domain";
-import * as Types from "@code-dependency/interfaces";
+import * as Types from "@app/types";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as App from "./App";
 
 const DEBUG_API_SERVER = "http://localhost:7000/api";
-const DEBUG_API_CONFIG = "http://localhost:7000/config.json";
 
 const getConfig = async (): Promise<Types.StaticConfig | undefined> => {
-  const configUrl = DEBUG_API_CONFIG; // window.location.href + "config.json";
+  const configUrl = "http://localhost:7000/config.json"; // window.location.href + "config.json";
   try {
     const res = await fetch(configUrl);
     return res.json();

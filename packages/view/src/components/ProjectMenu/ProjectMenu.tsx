@@ -1,6 +1,7 @@
 import * as Types from "@app/types";
 import classNames from "classnames";
 import * as React from "react";
+import { Project } from "./Constants";
 
 interface ClassNames {
   dropdown?: string;
@@ -11,18 +12,25 @@ interface ClassNames {
   dropdownMenu?: string;
   dropdownItem?: string;
   show?: string;
+  active?: string;
 }
 
 const styles: ClassNames = require("./project-menu.scss");
 
 export interface ProjectMenuProps {
-  current: string;
-  projects: Types.Project[];
+  current: Types.Project;
+  projects: Project[];
 }
 
-const createMenuItem = (project: Types.Project, idx: number) => {
+const createMenuItem = ({ project, ...props }: Project, idx: number, current: Types.Project) => {
+  const isActive = current.name === project.name && current.path === project.path;
   return (
-    <button className={styles.dropdownItem} type="button" key={`project-menu-${idx}`}>
+    <button
+      className={classNames(styles.dropdownItem, isActive ? styles.active : undefined)}
+      type="button"
+      key={`project-menu-${idx}`}
+      {...props}
+    >
       {project.name}
     </button>
   );
@@ -44,7 +52,7 @@ const ProjectMenu = ({ projects, current }: ProjectMenuProps) => {
           Project Menu
         </button>
         <div className={classNames(styles.dropdownMenu, isShow ? styles.show : undefined)} aria-labelledby="dropdownMenu2">
-          {projects.map(createMenuItem)}
+          {projects.map((project, idx) => createMenuItem(project, idx, current))}
         </div>
       </div>
     </>

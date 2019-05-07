@@ -34,11 +34,25 @@ export const createServer = async (generateFlatDependencies: GenerateFlatDepende
     });
   });
 
+  /** Debug only */
   app.get("/config.json", async (req: express.Request, res: express.Response) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const config = readConfig<Types.StaticConfig>(path.join(process.cwd(), "./dist/config.json"));
     res.send(JSON.stringify(config)); // Content-Type: text/html; charset=utf-8
+    res.end();
+  });
+
+  /** Debug only */
+  app.get("/projects/:projectName", async (req: express.Request, res: express.Response) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const config = readConfig<Types.CsrProps>(path.join(process.cwd(), "./dist/projects", req.params.projectName));
+    if (config) {
+      res.send(JSON.stringify(config)); // Content-Type: text/html; charset=utf-8
+    } else {
+      res.send(`Not found ${req.params.projectName}`);
+    }
     res.end();
   });
 

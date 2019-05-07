@@ -6,7 +6,14 @@ import { Store } from "./Store";
 const generateProps = (store: Store): ProjectMenu.Props => {
   return {
     current: store.current,
-    projects: store.projects,
+    projects: store.projects.map(project => {
+      return {
+        project,
+        onClick: () => {
+          store.changeProject(project);
+        },
+      };
+    }),
   };
 };
 

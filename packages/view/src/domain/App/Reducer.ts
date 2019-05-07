@@ -8,6 +8,9 @@ export const reducer = (state: State, action: ActionTypes): State => {
     case "UPDATE_ROOT_SOURCE": {
       return Factory.generateState({ flatDependencies: state.flatDependencies, inputRootSource: action.source });
     }
+    case "UPDATE_CSR_PROPS": {
+      return Factory.generateState({ flatDependencies: action.csrProps.flatDependencies });
+    }
     default:
       return state;
   }

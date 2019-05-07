@@ -2,12 +2,15 @@ import * as Types from "@app/types";
 
 export interface State {
   config: Types.StaticConfig;
-  current: string;
+  current: Types.Project;
 }
 
 export const DEFAULT_STATE: State = {
   config: {
     projects: [],
   },
-  current: "",
+  current: {
+    name: "",
+    path: "",
+  },
 };

@@ -6,9 +6,10 @@ export interface MonorepoBase<T> {
   interfaces: T;
   resolver: T;
   view: T;
+  "test-project": T;
 }
 
-export interface MonorepoPackageSettings extends MonorepoBase<string> {
+export interface MonorepoPackageSettings extends MonorepoBase<string | undefined> {
   cli: string;
   map: string;
   converter: string;
@@ -16,6 +17,7 @@ export interface MonorepoPackageSettings extends MonorepoBase<string> {
   interfaces: string;
   resolver: string;
   view: string;
+  "test-project": string | undefined;
 }
 
 export interface MonorepoPackageVersion extends MonorepoBase<{ name: string; version: string }> {
@@ -47,6 +49,10 @@ export interface MonorepoPackageVersion extends MonorepoBase<{ name: string; ver
     name: "@code-dependency/view";
     version: string;
   };
+  "test-project": {
+    name: "@code-dependency/test-project";
+    version: string;
+  };
 }
 
 export interface TsConfig {
@@ -60,7 +66,7 @@ export interface TsConfig {
 
 interface Package {
   version: string;
-  scripts: { [key: string]: string };
+  scripts?: { [key: string]: string };
   peerDependencies?: { [key: string]: string };
   dependencies?: { [key: string]: string };
   devDependencies?: { [key: string]: string };

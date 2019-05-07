@@ -43,7 +43,7 @@
     "typescript": "^3.4.3"
   },
   "devDependencies": {
-    "@code-dependency/interfaces": "0.0.1-alpha.0",
-    "@code-dependency/test-project": "0.0.1"
+    "@code-dependency/interfaces": "^0.0.1-alpha.0",
+    "@code-dependency/test-project": "^0.0.1-alpha.0"
   }
 }

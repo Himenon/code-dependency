@@ -32,6 +32,10 @@ const versions: MonorepoPackageVersion = {
     name: "@code-dependency/view",
     version: "0.0.1-alpha.0",
   },
+  "test-project": {
+    name: "@code-dependency/test-project",
+    version: "0.0.1-alpha.0",
+  },
 }
 
 const generateShareScripts = (name: string) => {
@@ -56,21 +60,26 @@ const generateShareJestConfig = (name: string) => ({
 
 const updatePackage = () => {
   packageNameList.forEach(name => {
+    if (packages[name]) {
+      return;
+    }
     const pkg = readConfig<Package>(packages[name]);
     const shareScripts = generateShareScripts(name);
     pkg.version = versions[name].version;
     Object.keys(shareScripts).forEach(key => {
-      pkg.scripts[key] = shareScripts[key];
+      if (pkg.scripts) {
+        pkg.scripts[key] = shareScripts[key];
+      }
     });
     Object.values(versions).forEach(value => {
       if (pkg.dependencies && value.name in pkg.dependencies) {
-        pkg.dependencies[value.name] = value.version;
+        pkg.dependencies[value.name] = `^${value.version}`;
       }
       if (pkg.devDependencies && value.name in pkg.devDependencies) {
-        pkg.devDependencies[value.name] = value.version;
+        pkg.devDependencies[value.name] = `^${value.version}`;
       }
       if (pkg.peerDependencies && value.name in pkg.peerDependencies) {
-        pkg.peerDependencies[value.name] = value.version;
+        pkg.peerDependencies[value.name] = `^${value.version}`;
       }
     });
     saveConfig(packages[name], pkg);
@@ -79,6 +88,9 @@ const updatePackage = () => {
 
 const updateJestConfig = () => {
   packageNameList.forEach(name => {
+    if (!jestConfigs[name]) {
+      return;
+    }
     const jestConfig = readConfig<JestConfig>(jestConfigs[name]);
     const sharedConfigs = generateShareJestConfig(name);
     Object.keys(sharedConfigs).forEach(key => {

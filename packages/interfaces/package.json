@@ -35,7 +35,5 @@
     "test:jest": "jest --cache -c ./jest.config.json",
     "test:watch": "yarn run test:jest --watch",
     "clean:lib": "rimraf lib"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  }
 }

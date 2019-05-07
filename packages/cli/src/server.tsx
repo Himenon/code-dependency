@@ -2,6 +2,8 @@ import * as Types from "@code-dependency/interfaces";
 import * as View from "@code-dependency/view";
 import * as express from "express";
 import * as fs from "fs";
+import * as path from "path";
+import { readConfig } from "./filesystem";
 import { GenerateFlatDependencyFunction } from "./types";
 
 export const createServer = async (generateFlatDependencies: GenerateFlatDependencyFunction) => {
@@ -30,6 +32,14 @@ export const createServer = async (generateFlatDependencies: GenerateFlatDepende
       res.json(props);
       res.end();
     });
+  });
+
+  app.get("/config.json", async (req: express.Request, res: express.Response) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const config = readConfig<Types.StaticConfig>(path.join(process.cwd(), "./dist/config.json"));
+    res.send(JSON.stringify(config)); // Content-Type: text/html; charset=utf-8
+    res.end();
   });
 
   app.get("*", async (req: express.Request, res: express.Response) => {

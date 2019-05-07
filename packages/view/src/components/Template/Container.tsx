@@ -18,6 +18,7 @@ export const Container = ({ reducers }: { reducers: Domain.Reducers }) => {
   const domainStores: Domain.Stores = {
     app: createReducer(React.useReducer(...reducers.app)),
     dendrogram: createReducer(React.useReducer(...reducers.dendrogram)),
+    project: createReducer(React.useReducer(...reducers.project)),
   };
   const viewStore = createViewStore(domainStores);
   return <Template.Component {...generateProps(domainStores, viewStore)} />;

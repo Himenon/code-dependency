@@ -104,3 +104,7 @@ export interface TreeData extends ResolvedDependency {
 export interface CsrProps {
   flatDependencies: FlatDependencies;
 }
+
+export interface StaticConfig {
+  projects: string[];
+}

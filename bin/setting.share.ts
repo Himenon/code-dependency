@@ -41,7 +41,6 @@ const versions: MonorepoPackageVersion = {
 const generateShareScripts = (name: string) => {
   return {
     lint: `eslint --cache --cache-location ../../buildcache/${name}/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'`,
-    develop: undefined,
     "build:lib": undefined,
     "lint:fix": "yarn run lint --fix",
     "test:ci": name === "view" ? "yarn run build:scripts && yarn run test && codecov" : "yarn run test && codecov",

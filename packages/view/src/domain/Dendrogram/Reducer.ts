@@ -1,5 +1,5 @@
 import { ActionTypes } from "./Action";
-import { initialState, State } from "./State";
+import { DEFAULT_STATE, State } from "./State";
 
 export const reducer = (state: State, action: ActionTypes): State => {
   switch (action.type) {
@@ -14,5 +14,5 @@ export const reducer = (state: State, action: ActionTypes): State => {
 export type Reducer = [typeof reducer, State];
 
 export const createReducer = (): Reducer => {
-  return [reducer, initialState];
+  return [reducer, DEFAULT_STATE];
 };

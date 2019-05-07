@@ -6,7 +6,7 @@ export interface State {
   radius: number;
 }
 
-export const initialState: State = {
+export const DEFAULT_STATE: State = {
   size: { width: NaN, height: NaN },
   radius: 6,
 };

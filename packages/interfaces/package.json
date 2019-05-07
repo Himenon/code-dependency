@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/interfaces",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "description": "Common interface definition in code-dependency.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
@@ -35,7 +35,5 @@
     "test:jest": "jest --cache -c ./jest.config.json",
     "test:watch": "yarn run test:jest --watch",
     "clean:lib": "rimraf lib"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  }
 }

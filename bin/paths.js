@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.packageNameList = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view"];
+exports.packageNameList = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view", "test-project"];
 exports.packages = {
     cli: "packages/cli/package.json",
     map: "packages/map/package.json",
@@ -8,7 +8,8 @@ exports.packages = {
     extract: "packages/extract/package.json",
     interfaces: "packages/interfaces/package.json",
     resolver: "packages/resolver/package.json",
-    view: "packages/view/package.json"
+    view: "packages/view/package.json",
+    "test-project": "packages/test-project/package.json"
 };
 exports.jestConfigs = {
     cli: "packages/cli/jest.config.json",
@@ -17,7 +18,8 @@ exports.jestConfigs = {
     extract: "packages/extract/jest.config.json",
     interfaces: "packages/interfaces/jest.config.json",
     resolver: "packages/resolver/jest.config.json",
-    view: "packages/view/jest.config.json"
+    view: "packages/view/jest.config.json",
+    "test-project": undefined
 };
 exports.tsConfigs = {
     cli: "packages/cli/tsconfig.json",
@@ -26,7 +28,8 @@ exports.tsConfigs = {
     extract: "packages/extract/tsconfig.json",
     interfaces: "packages/interfaces/tsconfig.json",
     resolver: "packages/resolver/tsconfig.json",
-    view: "packages/view/tsconfig.json"
+    view: "packages/view/tsconfig.json",
+    "test-project": undefined
 };
 /**
  * relative path from package.
@@ -38,6 +41,7 @@ exports.buildcaches = {
     extract: "../../buildcache/extract/",
     interfaces: "../../buildcache/interfaces/",
     resolver: "../../buildcache/resolver/",
-    view: "../../buildcache/view/"
+    view: "../../buildcache/view/",
+    "test-project": undefined
 };
 exports.tsConfigShared = "packages/tsconfig.shared.json";

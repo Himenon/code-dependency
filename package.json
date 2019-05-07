@@ -26,6 +26,7 @@
     "format": "lerna run format",
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "lerna run lint",
+    "publish": "lerna publish",
     "setup": "node ./bin/setup.js",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci",

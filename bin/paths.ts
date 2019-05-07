@@ -1,14 +1,6 @@
-export interface MonorepoPackageSettings {
-  cli: string;
-  map: string;
-  converter: string;
-  extract: string;
-  interfaces: string;
-  resolver: string;
-  view: string;
-}
+import { MonorepoPackageSettings } from "./types";
 
-export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view"];
+export const packageNameList: Array<keyof MonorepoPackageSettings> = ["cli", "map", "interfaces", "converter", "extract", "extract", "resolver", "view", "test-project"];
 
 export const packages: MonorepoPackageSettings = {
   cli: "packages/cli/package.json",
@@ -18,6 +10,7 @@ export const packages: MonorepoPackageSettings = {
   interfaces: "packages/interfaces/package.json",
   resolver: "packages/resolver/package.json",
   view: "packages/view/package.json",
+  "test-project": "packages/test-project/package.json",
 }
 
 export const jestConfigs: MonorepoPackageSettings = {
@@ -28,6 +21,7 @@ export const jestConfigs: MonorepoPackageSettings = {
   interfaces: "packages/interfaces/jest.config.json",
   resolver: "packages/resolver/jest.config.json",
   view: "packages/view/jest.config.json",
+  "test-project": undefined,
 };
 
 export const tsConfigs: MonorepoPackageSettings = {
@@ -38,6 +32,7 @@ export const tsConfigs: MonorepoPackageSettings = {
   interfaces: "packages/interfaces/tsconfig.json",
   resolver: "packages/resolver/tsconfig.json",
   view: "packages/view/tsconfig.json",
+  "test-project": undefined,
 };
 
 /**
@@ -51,6 +46,7 @@ export const buildcaches: MonorepoPackageSettings = {
   interfaces: "../../buildcache/interfaces/",
   resolver: "../../buildcache/resolver/",
   view: "../../buildcache/view/",
+  "test-project": undefined,
 };
 
 export const tsConfigShared = "packages/tsconfig.shared.json";

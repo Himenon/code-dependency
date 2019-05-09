@@ -18,7 +18,8 @@
       "@app/types": [
         "./src/types"
       ]
-    }
+    },
+    "tsBuildInfoFile": "../../buildcache/view/tsconfig.json.tsbuildinfo"
   },
   "references": [
     {

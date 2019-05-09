@@ -5,7 +5,8 @@ export const readConfig = <T extends {}>(filename: string): T => {
   try {
     return JSON.parse(fs.readFileSync(filename, { encoding: "utf-8" }))
   } catch (e) {
-    throw Error(`Failed: ${filename}`)
+    console.error(`Failed: ${filename}`);
+    throw Error(e)
   }
 }
 

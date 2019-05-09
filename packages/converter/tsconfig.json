@@ -1,17 +1,11 @@
 {
   "extends": "../tsconfig.shared",
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "lib",
     "rootDir": "src",
     "tsBuildInfoFile": "../../buildcache/converter/tsconfig.json.tsbuildinfo"
   },
-  "exclude": [
-    "node_modules",
-    "./src/**/__tests__/*",
-    "scripts"
-  ]
+  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

@@ -13,24 +13,23 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "yarn run build:lib:dist && lerna run build && yarn run cooldown",
-    "build:bin": "tsc bin/*.ts",
     "build:lib": "tsc -b @build.txt",
     "build:lib:dist": "yarn run clean:lib && yarn run warmup && yarn run build:lib --verbose",
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
     "clean:cache": "rimraf buildcache",
     "clean:lib": "yarn run build:lib --clean && lerna run clean:lib",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "cooldown": "node ./bin/tsconfig.shared.js",
+    "cooldown": "ts-node ./bin/tsconfig.shared.ts",
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",
     "format": "lerna run format",
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "lerna run lint",
     "publish": "lerna publish",
-    "setup": "node ./bin/setup.js",
+    "setup": "ts-node ./bin/setup.ts",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci",
-    "warmup": "node ./bin/tsconfig.shared.js dist"
+    "warmup": "ts-node ./bin/tsconfig.shared.ts dist"
   },
   "dependencies": {
     "lodash": "^4.17.11"

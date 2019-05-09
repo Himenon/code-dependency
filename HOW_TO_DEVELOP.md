@@ -95,5 +95,3 @@ Travis CIを利用しています。以下のHookでタスクが実行されま�
   * jest + package.json
 * bin/tsconfig.share.ts
   * tsconfig.json
-
-また、CI内でも利用するので、オーバーヘッドを下げるため、変更後は`yarn run build:bin`を実行してコミットします。

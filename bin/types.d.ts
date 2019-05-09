@@ -1,75 +1,34 @@
-export interface MonorepoBase<T> {
-  cli: T;
-  map: T;
-  converter: T;
-  extract: T;
-  interfaces: T;
-  resolver: T;
-  view: T;
-  "test-project": T;
+import * as ts from "typescript";
+
+export interface PackageSettings {
+  version: {
+    name: string;
+    value: string;
+  }
+  packageJson: string;
+  tsConfig: string;
+  jestConfig: string;
 }
 
-export interface MonorepoPackageSettings extends MonorepoBase<string | undefined> {
-  cli: string;
-  map: string;
-  converter: string;
-  extract: string;
-  interfaces: string;
-  resolver: string;
-  view: string;
-  "test-project": string | undefined;
+export interface SharedSettings {
+  tsSharedConfig: string;
 }
 
-export interface MonorepoPackageVersion extends MonorepoBase<{ name: string; version: string }> {
-  cli: {
-    name: "@code-dependency/cli";
-    version: string;
-  };
-  map: {
-    name: "@code-dependency/map";
-    version: string;
-  };
-  converter: {
-    name: "@code-dependency/converter";
-    version: string;
-  };
-  extract: {
-    name: "@code-dependency/extract";
-    version: string;
-  };
-  interfaces: {
-    name: "@code-dependency/interfaces";
-    version: string;
-  };
-  resolver: {
-    name: "@code-dependency/resolver";
-    version: string;
-  };
-  view: {
-    name: "@code-dependency/view";
-    version: string;
-  };
-  "test-project": {
-    name: "@code-dependency/test-project";
-    version: string;
-  };
+export interface MonorepoSettings {
+  cli: PackageSettings;
+  map: PackageSettings;
+  converter: PackageSettings;
+  extract: PackageSettings;
+  interfaces: PackageSettings;
+  resolver: PackageSettings;
+  view: PackageSettings;
+  "test-project": PackageSettings;
+  [key: string]: PackageSettings;
 }
 
 export interface TsConfig {
   extends?: "../tsconfig.shared";
-  compilerOptions: {
-    tsBuildInfoFile?: string;
-    sourceMap?: boolean;
-    declarationMap?: boolean;
-  }
-}
-
-interface Package {
-  version: string;
-  scripts?: { [key: string]: string };
-  peerDependencies?: { [key: string]: string };
-  dependencies?: { [key: string]: string };
-  devDependencies?: { [key: string]: string };
+  compilerOptions: ts.CompilerOptions;
 }
 
 interface JestConfig {

@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "",
+    "rootDirs": ["./scripts/", "./config/", "../../bin"],
     "sourceMap": false,
     "declaration": false,
     "declarationMap": false,
@@ -11,6 +10,6 @@
       "./node_modules/@types"
     ]
   },
-  "include": ["scripts/**/*.ts", "scripts/**/*.tsx", "config/**/*.ts", "config/**/*.tsx"],
+  "include": ["scripts/**/*.ts", "scripts/**/*.tsx", "config/**/*.ts", "config/**/*.tsx", "../../bin/*.ts"],
   "exclude": ["node_modules", "./src/**/__tests__/*", "src/**/*"]
 }

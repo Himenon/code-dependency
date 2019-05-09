@@ -1,8 +1,6 @@
 {
   "extends": "../tsconfig.shared",
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "lib",
@@ -10,19 +8,9 @@
     "tsBuildInfoFile": "../../buildcache/map/tsconfig.json.tsbuildinfo"
   },
   "references": [
-    {
-      "path": "../interfaces"
-    },
-    {
-      "path": "../extract"
-    },
-    {
-      "path": "../resolver"
-    }
+    {"path": "../interfaces"},
+    {"path": "../extract"},
+    {"path": "../resolver"}
   ],
-  "exclude": [
-    "node_modules",
-    "./src/**/__tests__/*",
-    "scripts"
-  ]
+  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

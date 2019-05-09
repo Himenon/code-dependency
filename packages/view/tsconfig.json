@@ -4,40 +4,15 @@
     "outDir": "lib",
     "rootDir": "src",
     "baseUrl": ".",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "paths": {
-      "@app/domain": [
-        "./src/domain"
-      ],
-      "@app/domain*": [
-        "./src/domain*"
-      ],
-      "@app/types": [
-        "./src/types"
-      ]
+      "@app/domain": ["./src/domain"],
+      "@app/domain*": ["./src/domain*"],
+      "@app/types": ["./src/types"]
     },
     "tsBuildInfoFile": "../../buildcache/view/tsconfig.json.tsbuildinfo"
   },
-  "references": [
-    {
-      "path": "../interfaces"
-    },
-    {
-      "path": "../converter"
-    }
-  ],
-  "include": [
-    "src/*.ts",
-    "src/*.tsx",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "./src/**/__tests__/*",
-    "scripts"
-  ]
+  "references": [{"path": "../interfaces"}, {"path": "../converter"}],
+  "include": ["src/*.ts", "src/*.tsx", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

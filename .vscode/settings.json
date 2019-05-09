@@ -7,6 +7,7 @@
     "**/.DS_Store": true,
     "**/coverage": true,
     "**/lib": true,
+    "bin/*.js": true,
     "packages/**/*.d.ts.map": true,
     "packages/**/*.js": true,
     "packages/view/scripts/**/*.d.ts": true,

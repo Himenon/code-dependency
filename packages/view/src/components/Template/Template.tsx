@@ -12,10 +12,11 @@ const styles: ClassNames = require("./template.scss");
 export interface TemplateProps {
   Menu: JSX.Element;
   Dendrogram: JSX.Element;
+  ProjectMenu: JSX.Element;
   rootSource: string;
 }
 
-const App = ({ rootSource, Dendrogram, Menu }: TemplateProps) => {
+const App = ({ rootSource, Dendrogram, Menu, ProjectMenu }: TemplateProps) => {
   return (
     <>
       <nav className={getClassNames(styles, "navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow")}>
@@ -27,6 +28,7 @@ const App = ({ rootSource, Dendrogram, Menu }: TemplateProps) => {
         >
           Code Dependency
         </a>
+        <div className={getClassNames(styles, "mr-auto")}>{ProjectMenu}</div>
       </nav>
       <div className={getClassNames(styles, "container-fluid wrapper")}>
         <div className={getClassNames(styles, "row wrapper")}>

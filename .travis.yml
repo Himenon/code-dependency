@@ -5,15 +5,16 @@ branches:
   - master
 cache:
   directories:
-    - "node_modules"
-    - "packages/cli/lib"
-    - "packages/code-dependency/lib"
-    - "packages/converter/lib"
-    - "packages/extract/lib"
-    - "packages/interfaces/lib"
-    - "packages/resolver/lib"
-    - "packages/view/lib"
-    - "buildcache"
+    - $HOME/.cache/yarn
+    - ./node_modules
+    - ./packages/cli/lib
+    - ./packages/code-dependency/lib
+    - ./packages/converter/lib
+    - ./packages/extract/lib
+    - ./packages/interfaces/lib
+    - ./packages/resolver/lib
+    - ./packages/view/lib
+    - ./buildcache
 stages:
 - name: lint & build & test
   if: branch = master AND type = pull_request
@@ -26,7 +27,7 @@ jobs:
     - yarn run bootstrap
     - yarn run setup
     - yarn run lint
-    - yarn run build:lib
+    - yarn run build:lib --verbose
     - yarn run test:ci
     node_js:
     - '11'

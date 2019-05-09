@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "declaration": false,
+    "sourceMap": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": ["./*.ts", "./types.d.ts"]
+}

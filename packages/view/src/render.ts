@@ -1,3 +1,3 @@
-import { render } from "./client";
+import { initialize } from "./client";
 
-render();
+initialize();

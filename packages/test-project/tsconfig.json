@@ -3,10 +3,7 @@
     "outDir": "lib",
     "module": "commonjs",
     "target": "esnext",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "experimentalDecorators": true,
     "removeComments": true,
     "sourceMap": true,
@@ -25,19 +22,13 @@
     "noLib": false,
     "declaration": true,
     "jsx": "react",
+    "tsBuildInfoFile": "../../buildcache/test-project/tsconfig.json.tsbuildinfo"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "./node_modules"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["./node_modules"],
   "ordered-imports": [
     true,
-    {
-      "import-sources-order": "any",
-      "named-imports-order": "case-insensitive"
-    }
-  ]
+    {"import-sources-order": "any", "named-imports-order": "case-insensitive"}
+  ],
+  "extends": "../tsconfig.shared"
 }

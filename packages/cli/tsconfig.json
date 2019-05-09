@@ -1,9 +1,6 @@
 {
   "extends": "../tsconfig.shared",
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
@@ -12,25 +9,11 @@
     "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo"
   },
   "references": [
-    {
-      "path": "../map"
-    },
-    {
-      "path": "../interfaces"
-    },
-    {
-      "path": "../resolver"
-    },
-    {
-      "path": "../converter"
-    },
-    {
-      "path": "../view"
-    }
+    {"path": "../interfaces"},
+    {"path": "../resolver"},
+    {"path": "../converter"},
+    {"path": "../map"},
+    {"path": "../view"}
   ],
-  "exclude": [
-    "node_modules",
-    "./src/**/__tests__/*",
-    "scripts"
-  ]
+  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

@@ -9,3 +9,4 @@ private_npm_cache
 *.tsbuildinfo
 *.d.ts.map
 buildcache/
+bin/*.js

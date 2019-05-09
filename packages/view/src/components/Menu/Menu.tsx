@@ -23,7 +23,8 @@ export interface MenuProps {
   rootDirectory: Directory;
 }
 
-const directoryWrap = ({ level, path: key, basename, ...props }: Directory, element: React.ReactNode): React.ReactElement<any> => {
+const DirectoryWrap = ({ directory, element }: { directory: Directory; element: React.ReactNode }): React.ReactElement<any> => {
+  const { level, path: key, basename, ...props } = directory;
   const isRoot = level === 0;
   const [isActive, toggleActive] = React.useState(isRoot);
   const toggle = () => {
@@ -53,13 +54,13 @@ const createDirectoryItem = ({ type, path, items, ...props }: Directory): Array<
         </li>
       );
     }
-    return directoryWrap(item, createDirectoryItem(item));
+    return <DirectoryWrap {...{ directory: item, element: createDirectoryItem(item) }} key={key} />;
   });
   return children;
 };
 
 export const Menu = ({ rootDirectory }: MenuProps) => {
-  return directoryWrap(rootDirectory, createDirectoryItem(rootDirectory));
+  return <DirectoryWrap {...{ directory: rootDirectory, element: createDirectoryItem(rootDirectory) }} />;
 };
 
 export { MenuProps as Props, Menu as Component };

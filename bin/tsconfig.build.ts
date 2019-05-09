@@ -1,9 +1,9 @@
-import { tsConfigs } from "./paths";
+import { monorepoSettings } from "./settings";
 import { TsConfig } from "./types";
 import { readConfig, saveConfig } from "./filesystem";
 
 export const rewriteTsconfig = (isDistMode: boolean) => {
-  const tsConfig = readConfig<TsConfig>(tsConfigs.view);
+  const tsConfig = readConfig<TsConfig>(monorepoSettings.view.tsConfig);
   tsConfig.compilerOptions.tsBuildInfoFile = isDistMode ? undefined : "../../buildcache/view/tsconfig.json.tsbuildinfo";
-  saveConfig(tsConfigs.view, tsConfig);
+  saveConfig(monorepoSettings.view.tsConfig, tsConfig);
 };

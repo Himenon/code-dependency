@@ -26,7 +26,7 @@ jobs:
     - yarn run bootstrap
     - yarn run setup
     - yarn run lint
-    - yarn run build:lib
+    - yarn run build:lib --verbose
     - yarn run test:ci
     node_js:
     - '11'

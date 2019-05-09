@@ -7,16 +7,33 @@ export interface BuildPaths {
   index: { html: string };
   manifest: { json: string };
   static: string;
+  public: {
+    index: {
+      html: string;
+    };
+    manifest: {
+      json: string;
+    };
+  };
 }
 
 const getPaths = (): BuildPaths => {
-  const baseDir = path.resolve(__dirname, "../build");
+  const buildBaseDir = path.resolve(__dirname, "../build");
+  const publicBaseDir = path.resolve(__dirname, "../public");
   return {
-    build: baseDir,
-    "asset-manifest": { json: path.join(baseDir, "asset-manifest.json") },
-    index: { html: path.join(baseDir, "index.html") },
-    manifest: { json: path.join(baseDir, "manifest.json") },
-    static: path.join(baseDir, "static"),
+    build: buildBaseDir,
+    "asset-manifest": { json: path.join(buildBaseDir, "asset-manifest.json") },
+    index: { html: path.join(buildBaseDir, "index.html") },
+    manifest: { json: path.join(buildBaseDir, "manifest.json") },
+    static: path.join(buildBaseDir, "static"),
+    public: {
+      index: {
+        html: path.join(publicBaseDir, "index.html"),
+      },
+      manifest: {
+        json: path.join(publicBaseDir, "manifest.json"),
+      },
+    },
   };
 };
 

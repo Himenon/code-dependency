@@ -9,7 +9,6 @@ export interface Store {
 }
 
 const fetchCsrProps = async (url: string): Promise<Types.CsrProps> => {
-  console.log({ url });
   try {
     const res = await fetch(url);
     return res.json();
@@ -26,7 +25,6 @@ export const generateStore = (domainStores: Domain.Stores): Store => ({
     domainStores.project.dispatch({ type: "CHANGE_PROJECT", project });
     try {
       const csrProps = await fetchCsrProps("http://localhost:7000/" + project.path);
-      console.log({ csrProps });
       domainStores.app.dispatch({ type: "UPDATE_CSR_PROPS", csrProps });
     } catch (e) {
       console.error(e);

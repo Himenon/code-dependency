@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as stringify from "json-stringify-pretty-compact";
 
 export const readConfig = <T extends {}>(filename: string): T => {
   try {
@@ -10,7 +11,7 @@ export const readConfig = <T extends {}>(filename: string): T => {
 
 export const saveConfig = <T extends {}>(filename: string, data: T) => {
   console.log(`Save file: ${filename}`);
-  fs.writeFileSync(filename, JSON.stringify(data, null, 2) + "\n", { encoding: "utf-8" });
+  fs.writeFileSync(filename, stringify(data) + "\n", { encoding: "utf-8" });
 }
 
 export const mkdirP = (dirPath: string) => {

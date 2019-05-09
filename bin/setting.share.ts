@@ -1,42 +1,7 @@
-import { packages, jestConfigs, packageNameList } from "./paths";
+import { monorepoSettings } from './settings';
 import { readConfig, saveConfig } from "./filesystem";
-import { Package, JestConfig } from "./types";
-import { MonorepoPackageVersion } from "./types";
-
-const versions: MonorepoPackageVersion = {
-  cli: {
-    name: "@code-dependency/cli",
-    version: "0.0.1-alpha.0",
-  },
-  map: {
-    name: "@code-dependency/map",
-    version: "0.0.1-alpha.0",
-  },
-  converter: {
-    name: "@code-dependency/converter",
-    version: "0.0.1-alpha.0",
-  },
-  extract: {
-    name: "@code-dependency/extract",
-    version: "0.0.1-alpha.0",
-  },
-  interfaces: {
-    name: "@code-dependency/interfaces",
-    version: "0.0.1-alpha.0",
-  },
-  resolver: {
-    name: "@code-dependency/resolver",
-    version: "0.0.1-alpha.0",
-  },
-  view: {
-    name: "@code-dependency/view",
-    version: "0.0.1-alpha.0",
-  },
-  "test-project": {
-    name: "@code-dependency/test-project",
-    version: "0.0.1-alpha.0",
-  },
-}
+import { PackageJson } from "type-fest";
+import { JestConfig } from "./types";
 
 const generateShareScripts = (name: string) => {
   return {
@@ -58,44 +23,41 @@ const generateShareJestConfig = (name: string) => ({
 });
 
 const updatePackage = () => {
-  packageNameList.forEach(name => {
-    if (packages[name]) {
-      return;
-    }
-    const pkg = readConfig<Package>(packages[name]);
-    const shareScripts = generateShareScripts(name);
-    pkg.version = versions[name].version;
+  Object.entries(monorepoSettings).forEach(entry => {
+    const [pkgName, settings] = entry;
+    const pkg = readConfig<PackageJson>(settings.packageJson);
+    const shareScripts = generateShareScripts(pkgName);
+    pkg.version = settings.version.value;
     Object.keys(shareScripts).forEach(key => {
       if (pkg.scripts) {
         pkg.scripts[key] = shareScripts[key];
       }
     });
-    Object.values(versions).forEach(value => {
-      if (pkg.dependencies && value.name in pkg.dependencies) {
-        pkg.dependencies[value.name] = `^${value.version}`;
+    Object.entries(monorepoSettings).forEach(innerEntry => {
+      const version = innerEntry[1].version;
+      if (pkg.dependencies && version.name in pkg.dependencies) {
+        pkg.dependencies[version.name] = `^${version.value}`;
       }
-      if (pkg.devDependencies && value.name in pkg.devDependencies) {
-        pkg.devDependencies[value.name] = `^${value.version}`;
+      if (pkg.devDependencies && version.name in pkg.devDependencies) {
+        pkg.devDependencies[version.name] = `^${version.value}`;
       }
-      if (pkg.peerDependencies && value.name in pkg.peerDependencies) {
-        pkg.peerDependencies[value.name] = `^${value.version}`;
+      if (pkg.peerDependencies && version.name in pkg.peerDependencies) {
+        pkg.peerDependencies[version.name] = `^${version.value}`;
       }
     });
-    saveConfig(packages[name], pkg);
+    saveConfig(settings.packageJson, pkg);
   })
 }
 
 const updateJestConfig = () => {
-  packageNameList.forEach(name => {
-    if (!jestConfigs[name]) {
-      return;
-    }
-    const jestConfig = readConfig<JestConfig>(jestConfigs[name]);
+  Object.entries(monorepoSettings).forEach(entry => {
+    const [name, settings] = entry;
+    const jestConfig = readConfig<JestConfig>(settings.jestConfig);
     const sharedConfigs = generateShareJestConfig(name);
     Object.keys(sharedConfigs).forEach(key => {
       jestConfig[key] = sharedConfigs[key];
     });
-    saveConfig(jestConfigs[name], jestConfig);
+    saveConfig(settings.jestConfig, jestConfig);
   })
 }
 

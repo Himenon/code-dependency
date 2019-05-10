@@ -3,10 +3,7 @@
     "outDir": "lib",
     "module": "commonjs",
     "target": "esnext",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "experimentalDecorators": true,
     "baseUrl": ".",
     "removeComments": true,
@@ -27,14 +24,9 @@
     "sourceMap": true,
     "composite": true
   },
-  "exclude": [
-    "./node_modules"
-  ],
+  "exclude": ["./node_modules"],
   "ordered-imports": [
     true,
-    {
-      "import-sources-order": "any",
-      "named-imports-order": "case-insensitive"
-    }
+    {"import-sources-order": "any", "named-imports-order": "case-insensitive"}
   ]
 }

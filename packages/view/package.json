@@ -31,6 +31,7 @@
     "build": "rimraf build && yarn run build:scripts && node scripts/build.js",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "build:style": "webpack --config ./scripts/style.js",
+    "copy:style": "cpx \"src/**/*.scss\" lib --verbose",
     "ci:notify:release": "ts-node ./scripts/notify.ts",
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli.js",

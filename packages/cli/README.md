@@ -34,10 +34,35 @@ code-dependency -f ./index.ts -o ./csr-props.json -c
 code-dependency -s -i ./csr-props-json
 ```
 
-**Generate Distribution**
+## Static Hosting
 
 ```
 code-dependency --static-dist /output/path --public-path /host/path
+```
+
+`output/path/config.json`
+
+```json
+{
+  "projects": [
+    {
+      "name": "test project",
+      "path": "/projects/sample-test-project.json"
+    },
+    {
+      "name": "sample view",
+      "path": "/projects/sample-view.json"
+    }
+  ]
+}
+```
+
+Save csr props.
+
+```
+output/path/projects/
+├── sample-test-project.json
+└── sample-view.json
 ```
 
 ## License

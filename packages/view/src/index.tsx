@@ -37,7 +37,7 @@ export const generateHtml = (assets: Assets, site: Types.Site, options: Options)
           }}
         />
         {assets.css.map(href => (
-          <link href={href} key={href} />
+          <link href={href} key={href} rel="stylesheet" />
         ))}
       </head>
       <body>

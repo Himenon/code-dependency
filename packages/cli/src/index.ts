@@ -16,6 +16,7 @@ interface CliReturnValue {
   cut?: boolean;
   project?: string;
   staticDist?: string;
+  publicPath?: string;
   args: string[];
 }
 
@@ -30,6 +31,7 @@ const executeCommandLine = (): CliReturnValue => {
     .option("-c --cut", "cut base path.")
     .option("-p --project [value]", "project path.")
     .option("--static-dist [value]", "static distribution path")
+    .option("--public-path [value", "public base path")
     .parse(process.argv);
   return commander as CliReturnValue;
 };
@@ -51,7 +53,8 @@ const main = async () => {
   } else if (option.file) {
     return outputCsrProps(option.file, cwd, resolveOption, !!option.cut, option.output);
   } else if (option.staticDist) {
-    return distribution(option.staticDist);
+    const publicPath = option.publicPath ? (option.publicPath.endsWith("/") ? option.publicPath : option.publicPath + "/") : "/";
+    return distribution({ staticDist: option.staticDist, title: "code-dependency", publicPath });
   }
 };
 

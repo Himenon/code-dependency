@@ -8,7 +8,7 @@ cache:
     - $HOME/.cache/yarn
     - ./node_modules
     - ./packages/cli/lib
-    - ./packages/code-dependency/lib
+    - ./packages/map/lib
     - ./packages/converter/lib
     - ./packages/extract/lib
     - ./packages/interfaces/lib

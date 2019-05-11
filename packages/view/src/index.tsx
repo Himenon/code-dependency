@@ -16,12 +16,7 @@ export interface Options {
 }
 
 const generateInitializeInjectScript = (site: Types.Site): string => `
-window.__INITIAL_STATE__ = "SSR_INITIAL_STATE"
-{
-  publicPath: "http://localhost:3000",
-  configJson: "http://localhost:7000/config.json",
-  debugApi: "http://localhost:7000/api"
-};
+window.__INITIAL_STATE__ = "SSR_INITIAL_STATE";
 window.__SITE_STATE__ = ${JSON.stringify(site)}`;
 
 export const generateHtml = (assets: Assets, site: Types.Site, options: Options) => {
@@ -42,7 +37,7 @@ export const generateHtml = (assets: Assets, site: Types.Site, options: Options)
           }}
         />
         {assets.css.map(href => (
-          <link href={href} key={href} />
+          <link href={href} key={href} rel="stylesheet" />
         ))}
       </head>
       <body>

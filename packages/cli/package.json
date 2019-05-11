@@ -37,7 +37,7 @@
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "serve:dist": "serve dist",
-    "generate:dist": "node ./lib/index.js --static-dist ./dist --public-path /sample",
+    "generate:dist": "node ./lib/index.js --static-dist ./dist",
     "server:view": "node ./lib/index.js ../view/src/App.tsx",
     "server:resolver": "node ./lib/index.js ../resolver/src/index.ts",
     "server:test-project": "node ./lib/index.js ../test-project/src/index.ts",

@@ -61,7 +61,8 @@
     "fs-extra": "^7.0.1",
     "interpolate-html-plugin": "^3.0.0",
     "open": "^6.2.0",
-    "pretty": "^2.0.0"
+    "pretty": "^2.0.0",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/express": "^4.16.1",

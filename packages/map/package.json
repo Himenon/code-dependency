@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/map",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "It is a library for acquiring as a 1-dimensional array the modules that each file group existing under a certain directory depends on.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
@@ -41,11 +41,11 @@
     "clean:lib": "rimraf lib"
   },
   "dependencies": {
-    "@code-dependency/extract": "^0.0.1-alpha.2",
-    "@code-dependency/resolver": "^0.0.1-alpha.2",
+    "@code-dependency/extract": "^0.0.1-alpha.3",
+    "@code-dependency/resolver": "^0.0.1-alpha.3",
     "recursive-readdir": "^2.2.2"
   },
   "devDependencies": {
-    "@code-dependency/interfaces": "^0.0.1-alpha.2"
+    "@code-dependency/interfaces": "^0.0.1-alpha.3"
   }
 }

@@ -48,7 +48,6 @@ const render = (site: Types.Site, csrProps?: Types.CsrProps, config?: Types.Stat
 export const initialize = async () => {
   const csrProps = getCsrProps();
   const site = getSiteState();
-  console.log(site);
   const config = await getConfig(site);
   if (!csrProps && !config) {
     debugMode(site.debugApi);

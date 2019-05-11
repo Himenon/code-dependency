@@ -34,6 +34,12 @@ code-dependency -f ./index.ts -o ./csr-props.json -c
 code-dependency -s -i ./csr-props-json
 ```
 
+**Generate Distribution**
+
+```
+code-dependency --static-dist /output/path --public-path /host/path
+```
+
 ## License
 
 @code-dependency/cli is [MIT licensed](https://github.com/Himenon/code-dependency/blob/master/LICENSE).

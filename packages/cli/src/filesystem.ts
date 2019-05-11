@@ -18,6 +18,11 @@ export const mkdirP = (dirPath: string) => {
   }
 };
 
+export const saveFileSync = (filename: string, data: string): void => {
+  console.log(`Save: ${filename}`);
+  fs.writeFileSync(filename, data, { encoding: "utf-8" });
+};
+
 export const readConfig = <T>(filename: string): T | undefined => {
   if (!existFile(filename)) {
     return;

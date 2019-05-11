@@ -1,3 +1,4 @@
+import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
 import * as React from "react";
 
@@ -14,7 +15,16 @@ export interface Options {
   [key: string]: string;
 }
 
-export const generateHtml = (assets: Assets, options: Options) => {
+const generateInitializeInjectScript = (site: Types.Site): string => `
+window.__INITIAL_STATE__ = "SSR_INITIAL_STATE"
+{
+  publicPath: "http://localhost:3000",
+  configJson: "http://localhost:7000/config.json",
+  debugApi: "http://localhost:7000/api"
+};
+window.__SITE_STATE__ = ${JSON.stringify(site)}`;
+
+export const generateHtml = (assets: Assets, site: Types.Site, options: Options) => {
   const SSR_DOM = "{{ SSR_DOM }}";
   return (
     <html lang="en">
@@ -28,7 +38,7 @@ export const generateHtml = (assets: Assets, options: Options) => {
         <script
           nonce="true"
           dangerouslySetInnerHTML={{
-            __html: `window.__INITIAL_STATE__ = "SSR_INITIAL_STATE"`,
+            __html: generateInitializeInjectScript(site),
           }}
         />
         {assets.css.map(href => (

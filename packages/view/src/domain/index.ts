@@ -31,13 +31,14 @@ export interface Stores {
 }
 
 interface InitializeProps {
+  site: Types.Site;
   csrProps?: Types.CsrProps;
   config?: Types.StaticConfig;
 }
 
-export const createReducers = ({ csrProps, config }: InitializeProps): Reducers => {
+export const createReducers = ({ csrProps, config, site }: InitializeProps): Reducers => {
   return {
-    app: App.createReducer({ flatDependencies: csrProps && csrProps.flatDependencies }),
+    app: App.createReducer({ flatDependencies: csrProps && csrProps.flatDependencies, site }),
     dendrogram: Dendrogram.createReducer(),
     project: Project.createReducer({ config }),
   };

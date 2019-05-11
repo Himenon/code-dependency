@@ -8,7 +8,13 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>code-dependency</title>
     <script nonce>
-      window.__INITIAL_STATE__ = "SSR_INITIAL_STATE"
+      window.__INITIAL_STATE__ = "SSR_INITIAL_STATE";
+      window.__SITE_STATE__ = {
+        publicPath: "http://localhost:3000",
+        projectBasePath: "http://localhost:7000",
+        configJson: "http://localhost:7000/config.json",
+        debugApi: "http://localhost:7000/api"
+      };
     </script>
   </head>
   <body>

@@ -113,3 +113,10 @@ export interface Project {
 export interface StaticConfig {
   projects: Project[];
 }
+
+export interface Site {
+  publicPath: string;
+  projectBasePath: string;
+  configJson: string;
+  debugApi: string;
+}

@@ -8,3 +8,4 @@ export type Dependency = Types.InputSourceDependency;
 export type StaticConfig = Types.StaticConfig;
 export type Project = Types.Project;
 export type CsrProps = Types.CsrProps;
+export type Site = Types.Site;

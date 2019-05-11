@@ -24,7 +24,7 @@ export const generateStore = (domainStores: Domain.Stores): Store => ({
   changeProject: async (project: Types.Project) => {
     domainStores.project.dispatch({ type: "CHANGE_PROJECT", project });
     try {
-      const csrProps = await fetchCsrProps("http://localhost:7000/" + project.path);
+      const csrProps = await fetchCsrProps(domainStores.app.state.site.projectBasePath + project.path);
       domainStores.app.dispatch({ type: "UPDATE_CSR_PROPS", csrProps });
     } catch (e) {
       console.error(e);

@@ -79,7 +79,7 @@ const generateItems = (parentDirname: string, directories: string[], flatFileMap
 
 export const generateFolderTree = (dependencies: Types.FlatDependencies, updateKey: UpdateKeyFunction): Directory => {
   const flatFileMap: FlatFileMap = {};
-  dependencies.forEach(dep => {
+  dependencies.forEach((dep: Types.Dependency) => {
     const dirname = path.dirname(dep.source);
     const item: File = generateFile(dep, updateKey);
     (flatFileMap[dirname] ? flatFileMap[dirname] : (flatFileMap[dirname] = [])).push(item);

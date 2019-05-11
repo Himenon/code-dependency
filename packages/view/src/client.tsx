@@ -4,12 +4,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as App from "./App";
 
-const DEBUG_API_SERVER = "http://localhost:7000/api";
-
-const getConfig = async (): Promise<Types.StaticConfig | undefined> => {
-  const configUrl = "http://localhost:7000/config.json"; // window.location.href + "config.json";
+const getConfig = async (site: Types.Site): Promise<Types.StaticConfig | undefined> => {
   try {
-    const res = await fetch(configUrl);
+    const res = await fetch(site.configJson);
     return res.json();
   } catch (e) {
     console.error(e);
@@ -35,18 +32,28 @@ const getCsrProps = (): Types.CsrProps | undefined => {
   return undefined;
 };
 
-const render = (csrProps?: Types.CsrProps, config?: Types.StaticConfig) => {
-  const reducers = Domain.createReducers({ csrProps, config });
+const getSiteState = (): Types.Site => {
+  const siteState = (window as any).__SITE_STATE__;
+  if (typeof siteState === "string") {
+    throw Error("No definition.");
+  }
+  return siteState;
+};
+
+const render = (site: Types.Site, csrProps?: Types.CsrProps, config?: Types.StaticConfig) => {
+  const reducers = Domain.createReducers({ csrProps, config, site });
   ReactDOM.render(<App.Container reducers={reducers} />, document.getElementById("root"));
 };
 
 export const initialize = async () => {
   const csrProps = getCsrProps();
-  const config = await getConfig();
+  const site = getSiteState();
+  console.log(site);
+  const config = await getConfig(site);
   if (!csrProps && !config) {
-    debugMode(DEBUG_API_SERVER);
+    debugMode(site.debugApi);
   } else {
-    render(csrProps, config);
+    render(site, csrProps, config);
   }
   return Promise.resolve();
 };

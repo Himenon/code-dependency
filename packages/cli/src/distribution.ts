@@ -1,3 +1,4 @@
+import * as Types from "@code-dependency/interfaces";
 import { Assets, generateHtml, getPaths } from "@code-dependency/view";
 import * as path from "path";
 import pretty = require("pretty");
@@ -33,11 +34,17 @@ const saveHtml = (assetsManifest: { [key: string]: string }, { publicPath, stati
     manifest: join("/manifest.json"),
     favicon: join("/favicon.ico"),
   };
+  const site: Types.Site = {
+    publicPath,
+    configJson: join("config.json"),
+    debugApi: join("api"),
+    projectBasePath: publicPath,
+  };
   assets.css.push(join(assetsManifest["index.css"]));
   assets.js.push(join(assetsManifest["runtime~index.js"]));
   assets.js.push(join(assetsManifest["vendors~index.js"]));
   assets.js.push(join(assetsManifest["index.js"]));
-  const html: string = "<!DOCTYPE html>\n" + renderToStaticMarkup(generateHtml(assets, option));
+  const html: string = "<!DOCTYPE html>\n" + renderToStaticMarkup(generateHtml(assets, site, option));
   saveFileSync(path.join(staticDist, "index.html"), pretty(html));
 };
 

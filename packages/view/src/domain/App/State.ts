@@ -6,6 +6,7 @@ export interface State {
   links: Types.Link[];
   nodes: Types.Node[];
   rootSource: string;
+  site: Types.Site;
 }
 
 export const DEFAULT_STATE: State = {
@@ -25,4 +26,10 @@ export const DEFAULT_STATE: State = {
   links: [],
   nodes: [],
   rootSource: "index.js",
+  site: {
+    publicPath: "http://localhost:3000",
+    projectBasePath: "http://localhost:7000",
+    configJson: "http://localhost:7000/config.json",
+    debugApi: "http://localhost:7000/api",
+  },
 };

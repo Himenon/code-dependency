@@ -4,6 +4,7 @@
       "license": "MIT"
     },
     "publish": {
+      "access": "public",
       "allowBranch": "master",
       "ignoreChanges": ["CHANGELOG.md"]
     }
@@ -11,7 +12,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
+  "version": "fixed",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",
   "useWorkspaces": true

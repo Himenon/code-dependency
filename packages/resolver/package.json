@@ -23,6 +23,9 @@
   "directories": {
     "lib": "lib"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/cli/index.js -f ./src/index.ts",

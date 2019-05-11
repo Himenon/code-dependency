@@ -10,3 +10,4 @@ private_npm_cache
 *.d.ts.map
 buildcache/
 bin/*.js
+.npmrc

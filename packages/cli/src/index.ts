@@ -21,7 +21,7 @@ interface CliReturnValue {
 }
 
 const executeCommandLine = (): CliReturnValue => {
-  const pkg = require(path.resolve(__dirname, "../../../package.json"));
+  const pkg = require(path.resolve(__dirname, "../package.json"));
   commander
     .version(pkg.version)
     .option("-f --file [value]", "Select your file.")

@@ -14,6 +14,9 @@
     "email": "k.himeno314@gmail.com",
     "url": ""
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "lib",
     "build",

@@ -1,14 +1,13 @@
 {
   "name": "code-dependency",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "A work efficiency tool for visualizing code dependencies on a browser.",
   "repository": "https://github.com/Himenon/code-dependency.git",
   "license": "MIT",
   "author": "Himenon",
   "workspaces": [
-    "packages/*",
-    "packages/@code-dependency/*"
+    "packages/*"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -25,10 +24,11 @@
     "format": "lerna run format",
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "lerna run lint",
-    "publish": "lerna publish",
+    "publish": "lerna publish from-package",
     "setup": "ts-node -P ./bin/tsconfig.json ./bin/setup.ts",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci",
+    "version": "lerna version",
     "warmup": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts dist"
   },
   "dependencies": {
@@ -72,5 +72,8 @@
   },
   "peerDependencies": {
     "graceful-fs": "^4.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

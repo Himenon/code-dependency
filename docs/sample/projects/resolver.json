@@ -1,0 +1,655 @@
+{
+  "flatDependencies": [
+    {
+      "source": "src/addResolutionAttribute.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./resolve",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/index.ts",
+      "dependencies": [
+        {
+          "module": "./addResolutionAttribute",
+          "moduleSystem": "cjs",
+          "resolved": "src/addResolutionAttribute.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/__tests__/addResolutionAttribute.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../addResolutionAttribute",
+          "moduleSystem": "cjs",
+          "resolved": "src/addResolutionAttribute.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/__tests__/example.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "@code-dependency/test-project",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/test-project/src/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../resolve",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/readPackageDeps/index.ts",
+      "dependencies": [
+        {
+          "module": "fs",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "lodash",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "normalize-package-data",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/normalize-package-data/lib/normalize.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./mergePackages",
+          "moduleSystem": "cjs",
+          "resolved": "src/readPackageDeps/mergePackages.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/readPackageDeps/mergePackages.ts",
+      "dependencies": [
+        {
+          "module": "lodash",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "normalize-package-data",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/normalize-package-data/lib/normalize.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/constants.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/determineDependencyTypes.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "resolve",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/resolve/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./localNpmHelpers",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/localNpmHelpers.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/enhancedResolve.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "enhanced-resolve",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/enhanced-resolve/lib/node.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/index.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "fs",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./constants",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/constants.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./resolved-commonjs",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/resolved-commonjs.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./resolveOptions",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/resolveOptions.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/localNpmHelpers.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "fs",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "lodash",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./enhancedResolve",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/enhancedResolve.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/resolveOptions.ts",
+      "dependencies": [
+        {
+          "module": "enhanced-resolve",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/enhanced-resolve/lib/node.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/resolved-commonjs.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "resolve",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/resolve/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./constants",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/constants.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./enhancedResolve",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/enhancedResolve.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/__tests__/index.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../index",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../resolveOptions",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/resolveOptions.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/resolve/__tests__/resolve.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../enhancedResolve",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/enhancedResolve.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../resolveOptions",
+          "moduleSystem": "cjs",
+          "resolved": "src/resolve/resolveOptions.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    }
+  ]
+}

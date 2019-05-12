@@ -1,0 +1,137 @@
+{
+  "flatDependencies": [
+    {
+      "source": "src/index.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./extract",
+          "moduleSystem": "cjs",
+          "resolved": "src/extract/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./parser",
+          "moduleSystem": "cjs",
+          "resolved": "src/parser/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/__tests__/index.test.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/test-project",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/test-project/src/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../index",
+          "moduleSystem": "cjs",
+          "resolved": "src/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/parser/index.ts",
+      "dependencies": []
+    },
+    {
+      "source": "src/parser/toTsAst.ts",
+      "dependencies": [
+        {
+          "module": "fs",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "typescript",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/typescript/lib/typescript.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/extract/index.ts",
+      "dependencies": []
+    },
+    {
+      "source": "src/extract/typescript-dependency.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "typescript",
+          "moduleSystem": "cjs",
+          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/typescript/lib/typescript.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    }
+  ]
+}

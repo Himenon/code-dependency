@@ -1,0 +1,36 @@
+{
+  "projects": [
+    {
+      "name": "@code-dependency/interfaces",
+      "path": "/projects/interfaces.json"
+    },
+    {
+      "name": "@code-dependency/test-project",
+      "path": "/projects/test-project.json"
+    },
+    {
+      "name": "@code-dependency/extract",
+      "path": "/projects/extract.json"
+    },
+    {
+      "name": "@code-dependency/resolver",
+      "path": "/projects/resolver.json"
+    },
+    {
+      "name": "@code-dependency/map",
+      "path": "/projects/map.json"
+    },
+    {
+      "name": "@code-dependency/converter",
+      "path": "/projects/converter.json"
+    },
+    {
+      "name": "@code-dependency/view",
+      "path": "/projects/view.json"
+    },
+    {
+      "name": "@code-dependency/cli",
+      "path": "/projects/cli.json"
+    }
+  ]
+}

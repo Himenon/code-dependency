@@ -22,6 +22,7 @@
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",
     "format": "lerna run format",
+    "generate:sample": "./bin/generate-sample.sh",
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "lerna run lint",
     "publish": "lerna publish from-package",

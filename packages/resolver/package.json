@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/resolver",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.7",
   "description": "It is a library to classify extracted modules and attach information to the result.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
@@ -42,7 +42,7 @@
     "clean:lib": "rimraf lib"
   },
   "dependencies": {
-    "@code-dependency/interfaces": "^0.0.1-alpha.3",
+    "@code-dependency/interfaces": "^0.0.1-alpha.7",
     "enhanced-resolve": "^4.1.0",
     "lodash": "^4.17.11",
     "normalize-package-data": "^2.5.0",

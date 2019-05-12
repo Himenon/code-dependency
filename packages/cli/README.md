@@ -5,7 +5,7 @@ code-dependencyのライブラリを使用するためのコマンドライン�
 **Quick Start**
 
 ```sh
-code-dependency index.ts
+code-dependency [Target file | Project directory]
 ```
 
 ## Other usage
@@ -31,7 +31,7 @@ code-dependency -f ./index.ts -o ./csr-props.json -c
 **Start serve with local csr props data.**
 
 ```sh
-code-dependency -s -i ./csr-props-json
+code-dependency -s -i ./csr-props.json
 ```
 
 ## Static Hosting
@@ -40,7 +40,10 @@ code-dependency -s -i ./csr-props-json
 code-dependency --static-dist /output/path --public-path /host/path
 ```
 
-`output/path/config.json`
+### 複数のプロジェクトを参照する
+
+`output/path/config.json`にプロジェクト名と相対パスを記述します。
+これを元にViewが切り替えメニューを生成します。
 
 ```json
 {

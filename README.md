@@ -15,11 +15,13 @@ npm i -g @code-dependency/cli
 yarn add -g @code-dependency/cli
 ```
 
-## Usage
+## Quick Start
 
 ```sh
-code-dependency [target file]
+code-dependency [Target file | Project directory]
 ```
+
+[more...](./packages/cli/README.md)
 
 ## How to develop.
 

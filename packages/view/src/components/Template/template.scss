@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.navbar {
+  position: fixed;
+}
+
 .main-wrapper {
-  height: calc(80% - 180px);
+  padding-top: 48px;
 }

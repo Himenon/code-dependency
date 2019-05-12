@@ -10,7 +10,7 @@ interface Parameters {
   stripBasePath?: string;
 }
 
-export const generateState = ({ inputRootSource, flatDependencies, site }: Parameters): State=> {
+export const generateState = ({ inputRootSource, flatDependencies, site }: Parameters): State => {
   const rootSource: string = inputRootSource || flatDependencies[0].source;
   const treeData = converter(rootSource, flatDependencies);
   const data = d3.hierarchy(treeData);

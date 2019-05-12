@@ -2,7 +2,7 @@ import * as Domain from "@app/domain";
 import * as Types from "@app/types";
 
 export interface Store {
-  current: Types.Project;
+  current: Types.Project | undefined;
   projects: Types.Project[];
   hasProjects: boolean;
   changeProject: (project: Types.Project) => void | Promise<void>;

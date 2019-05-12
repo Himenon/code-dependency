@@ -5,6 +5,10 @@ export const existFile = (filename: string) => {
   return fs.existsSync(filename) && fs.statSync(filename).isFile();
 };
 
+export const existDir = (dirname: string) => {
+  return fs.existsSync(dirname) && fs.statSync(dirname).isDirectory();
+};
+
 const isDirectory = (dirname: string) => {
   return fs.existsSync(dirname) && fs.statSync(dirname).isDirectory();
 };

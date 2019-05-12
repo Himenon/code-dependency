@@ -6,7 +6,7 @@ export interface Package extends normalize.Package {
 }
 
 export interface Options {
-  source: string;
+  projectDirectory: string;
   executeDirectory: string;
   stripBasePath?: string;
 }

@@ -5,7 +5,7 @@ import { getDependencies } from "../index";
 describe("#index", () => {
   const baseDir = path.resolve(__dirname, "../");
   const options: Types.Options = {
-    source: path.resolve(baseDir, "../index.ts"),
+    projectDirectory: path.resolve(baseDir, "../"),
     executeDirectory: baseDir,
   };
 

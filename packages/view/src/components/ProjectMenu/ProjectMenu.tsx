@@ -18,12 +18,12 @@ interface ClassNames {
 const styles: ClassNames = require("./project-menu.scss");
 
 export interface ProjectMenuProps {
-  current: Types.Project;
+  current: Types.Project | undefined;
   projects: Project[];
 }
 
-const createMenuItem = ({ project, ...props }: Project, idx: number, current: Types.Project) => {
-  const isActive = current.name === project.name && current.path === project.path;
+const createMenuItem = ({ project, ...props }: Project, idx: number, current: Types.Project | undefined) => {
+  const isActive = !!current && (current.name === project.name && current.path === project.path);
   return (
     <button
       className={classNames(styles.dropdownItem, isActive ? styles.active : undefined)}

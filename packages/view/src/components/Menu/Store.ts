@@ -77,7 +77,11 @@ const generateItems = (parentDirname: string, directories: string[], flatFileMap
     .sort(compareBasename);
 };
 
-export const generateFolderTree = (dependencies: Types.FlatDependencies, updateKey: UpdateKeyFunction): Directory => {
+export const generateFolderTree = (
+  dependencies: Types.FlatDependencies,
+  updateKey: UpdateKeyFunction,
+  current: Types.Project | undefined,
+): Directory => {
   const flatFileMap: FlatFileMap = {};
   dependencies.forEach((dep: Types.Dependency) => {
     const dirname = path.dirname(dep.source);
@@ -86,7 +90,7 @@ export const generateFolderTree = (dependencies: Types.FlatDependencies, updateK
   });
   const directories = Object.keys(flatFileMap);
   const directoryPath = ".";
-  const basename = path.basename(directoryPath);
+  const basename = current ? current.name : path.basename(directoryPath);
   deleteItem(directories, directoryPath);
   return generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap), true);
 };
@@ -98,7 +102,7 @@ export const generateStore = (domainStores: Domain.Stores): Store => {
       source: nextSource,
     });
   };
-  const rootDirectory = generateFolderTree(domainStores.app.state.flatDependencies, onClick);
+  const rootDirectory = generateFolderTree(domainStores.app.state.flatDependencies, onClick, domainStores.project.state.current);
   return {
     rootDirectory,
   };

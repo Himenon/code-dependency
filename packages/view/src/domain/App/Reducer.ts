@@ -4,13 +4,12 @@ import * as Factory from "./Factory";
 import { DEFAULT_STATE, State } from "./State";
 
 export const reducer = (state: State, action: ActionTypes): State => {
-  const site = state.site;
   switch (action.type) {
     case "UPDATE_ROOT_SOURCE": {
-      return Factory.generateState({ flatDependencies: state.flatDependencies, inputRootSource: action.source, site });
+      return Factory.generateState({ ...state, inputRootSource: action.source });
     }
     case "UPDATE_CSR_PROPS": {
-      return Factory.generateState({ flatDependencies: action.csrProps.flatDependencies, site });
+      return Factory.generateState({ ...state, flatDependencies: action.csrProps.flatDependencies });
     }
     default:
       return state;
@@ -20,6 +19,6 @@ export const reducer = (state: State, action: ActionTypes): State => {
 export type Reducer = [typeof reducer, State];
 
 export const createReducer = ({ flatDependencies, site }: { flatDependencies?: Type.FlatDependencies; site: Type.Site }): Reducer => {
-  const state = flatDependencies ? Factory.generateState({ flatDependencies, site }) : DEFAULT_STATE;
+  const state: State = flatDependencies ? Factory.generateState({ flatDependencies, site }) : { ...DEFAULT_STATE, site };
   return [reducer, state];
 };

@@ -46,7 +46,7 @@
         {
           "module": "@code-dependency/test-project",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/test-project/src/index.ts",
+          "resolved": "../test-project/src/index.ts",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -90,7 +90,7 @@
         {
           "module": "typescript",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/typescript/lib/typescript.js",
+          "resolved": "../../node_modules/typescript/lib/typescript.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -122,7 +122,7 @@
         {
           "module": "typescript",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/typescript/lib/typescript.js",
+          "resolved": "../../node_modules/typescript/lib/typescript.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

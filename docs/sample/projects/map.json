@@ -28,7 +28,7 @@
         {
           "module": "recursive-readdir",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/recursive-readdir/index.js",
+          "resolved": "../../node_modules/recursive-readdir/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -45,7 +45,7 @@
         {
           "module": "@code-dependency/extract",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/extract/lib/index.js",
+          "resolved": "../extract/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -68,7 +68,7 @@
         {
           "module": "@code-dependency/resolver",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/resolver/lib/index.js",
+          "resolved": "../resolver/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

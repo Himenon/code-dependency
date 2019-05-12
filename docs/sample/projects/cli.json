@@ -1,92 +1,6 @@
 {
   "flatDependencies": [
     {
-      "source": "src/distribution.ts",
-      "dependencies": [
-        {
-          "module": "@code-dependency/interfaces",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "@code-dependency/view",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/view/lib/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "path",
-          "moduleSystem": "cjs",
-          "coreModule": true,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "react-dom/server",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react-dom/server.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "url",
-          "moduleSystem": "cjs",
-          "coreModule": true,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./filesystem",
-          "moduleSystem": "cjs",
-          "resolved": "src/filesystem.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./types",
-          "moduleSystem": "cjs",
-          "resolved": "src/types.d.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
       "source": "src/command.ts",
       "dependencies": [
         {
@@ -103,7 +17,7 @@
         {
           "module": "@code-dependency/map",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/map/lib/index.js",
+          "resolved": "../map/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -115,7 +29,7 @@
         {
           "module": "chalk",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/chalk/index.js",
+          "resolved": "../../node_modules/chalk/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -138,7 +52,7 @@
         {
           "module": "open",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/open/index.js",
+          "resolved": "../../node_modules/open/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -197,12 +111,98 @@
       ]
     },
     {
+      "source": "src/distribution.ts",
+      "dependencies": [
+        {
+          "module": "@code-dependency/interfaces",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "@code-dependency/view",
+          "moduleSystem": "cjs",
+          "resolved": "../view/lib/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "path",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "react-dom/server",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react-dom/server.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "url",
+          "moduleSystem": "cjs",
+          "coreModule": true,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./filesystem",
+          "moduleSystem": "cjs",
+          "resolved": "src/filesystem.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./types",
+          "moduleSystem": "cjs",
+          "resolved": "src/types.d.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
       "source": "src/filesystem.ts",
       "dependencies": [
         {
           "module": "fs-extra",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/fs-extra/lib/index.js",
+          "resolved": "../../node_modules/fs-extra/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -241,7 +241,7 @@
         {
           "module": "commander",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/commander/index.js",
+          "resolved": "../../node_modules/commander/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -304,7 +304,7 @@
         {
           "module": "@code-dependency/view",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/view/lib/index.js",
+          "resolved": "../view/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -316,7 +316,7 @@
         {
           "module": "express",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/express/index.js",
+          "resolved": "../../node_modules/express/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

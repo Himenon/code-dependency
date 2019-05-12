@@ -112,7 +112,7 @@
         {
           "module": "@code-dependency/test-project",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/test-project/src/index.ts",
+          "resolved": "../test-project/src/index.ts",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -163,7 +163,7 @@
         {
           "module": "lodash",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "resolved": "../../node_modules/lodash/lodash.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -175,7 +175,7 @@
         {
           "module": "normalize-package-data",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/normalize-package-data/lib/normalize.js",
+          "resolved": "../../node_modules/normalize-package-data/lib/normalize.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -215,7 +215,7 @@
         {
           "module": "lodash",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "resolved": "../../node_modules/lodash/lodash.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -227,7 +227,7 @@
         {
           "module": "normalize-package-data",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/normalize-package-data/lib/normalize.js",
+          "resolved": "../../node_modules/normalize-package-data/lib/normalize.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -282,7 +282,7 @@
         {
           "module": "resolve",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/resolve/index.js",
+          "resolved": "../../node_modules/resolve/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -322,7 +322,7 @@
         {
           "module": "enhanced-resolve",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/enhanced-resolve/lib/node.js",
+          "resolved": "../../node_modules/enhanced-resolve/lib/node.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -435,7 +435,7 @@
         {
           "module": "lodash",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/lodash/lodash.js",
+          "resolved": "../../node_modules/lodash/lodash.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -475,7 +475,7 @@
         {
           "module": "enhanced-resolve",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/enhanced-resolve/lib/node.js",
+          "resolved": "../../node_modules/enhanced-resolve/lib/node.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -514,7 +514,7 @@
         {
           "module": "resolve",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/resolve/index.js",
+          "resolved": "../../node_modules/resolve/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

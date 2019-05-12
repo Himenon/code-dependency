@@ -1,6 +1,6 @@
 import * as Types from "@code-dependency/interfaces";
 import * as path from "path";
-import { getDependencies } from "../index";
+import { getDependencies, stripBasePath } from "../index";
 
 describe("#index", () => {
   const baseDir = path.resolve(__dirname, "../");
@@ -16,5 +16,11 @@ describe("#index", () => {
     });
     expect(result.length).not.toEqual(0);
     done();
+  });
+
+  test("#stripBasePath", () => {
+    expect(stripBasePath("/a", "/a/b/c")).toBe("b/c");
+    expect(stripBasePath("/a/b", "/a/b/c")).toBe("c");
+    expect(stripBasePath("/a/b/c", "/a/d/c")).toBe("../../d/c");
   });
 });

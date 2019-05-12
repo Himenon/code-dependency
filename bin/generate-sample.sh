@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # Local Test
-node packages/cli/lib/index.js --static-dist ./docs/sample --public-path /sample
-# node packages/cli/lib/index.js --static-dist ./docs/sample --public-path https://himenon.github.io/code-dependency/sample
+# node packages/cli/lib/index.js --static-dist ./docs/sample --public-path /sample
+node packages/cli/lib/index.js --static-dist ./docs/sample --public-path /code-dependency/sample
 
 node packages/cli/lib/index.js -f packages/interfaces/src -o docs/sample/projects/interfaces.json -c
 node packages/cli/lib/index.js -f packages/test-project/src -o docs/sample/projects/test-project.json -c

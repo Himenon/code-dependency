@@ -17,7 +17,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -80,7 +80,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -92,7 +92,7 @@
         {
           "module": "react-dom",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react-dom/index.js",
+          "resolved": "../../node_modules/react-dom/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -143,7 +143,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -296,11 +296,11 @@
       "dependencies": []
     },
     {
-      "source": "src/styles/_display.scss",
+      "source": "src/styles/_flex.scss",
       "dependencies": []
     },
     {
-      "source": "src/styles/_flex.scss",
+      "source": "src/styles/_display.scss",
       "dependencies": []
     },
     {
@@ -397,7 +397,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -446,6 +446,94 @@
       "dependencies": []
     },
     {
+      "source": "src/domain/Project/Action.ts",
+      "dependencies": [
+        {
+          "module": "@app/types",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/domain/Project/Reducer.ts",
+      "dependencies": [
+        {
+          "module": "@app/types",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./Action",
+          "moduleSystem": "cjs",
+          "resolved": "src/domain/Project/Action.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./State",
+          "moduleSystem": "cjs",
+          "resolved": "src/domain/Project/State.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/domain/Project/State.ts",
+      "dependencies": [
+        {
+          "module": "@app/types",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/domain/Project/index.ts",
+      "dependencies": []
+    },
+    {
       "source": "src/domain/App/Action.ts",
       "dependencies": [
         {
@@ -462,7 +550,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -490,7 +578,7 @@
         {
           "module": "@code-dependency/converter",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/packages/converter/lib/index.js",
+          "resolved": "../converter/lib/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -502,7 +590,7 @@
         {
           "module": "d3",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/d3/dist/d3.node.js",
+          "resolved": "../../node_modules/d3/dist/d3.node.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -598,94 +686,6 @@
       "dependencies": []
     },
     {
-      "source": "src/domain/Project/Action.ts",
-      "dependencies": [
-        {
-          "module": "@app/types",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/domain/Project/Reducer.ts",
-      "dependencies": [
-        {
-          "module": "@app/types",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./Action",
-          "moduleSystem": "cjs",
-          "resolved": "src/domain/Project/Action.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./State",
-          "moduleSystem": "cjs",
-          "resolved": "src/domain/Project/State.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/domain/Project/State.ts",
-      "dependencies": [
-        {
-          "module": "@app/types",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/domain/Project/index.ts",
-      "dependencies": []
-    },
-    {
       "source": "src/components/index.ts",
       "dependencies": [
         {
@@ -701,132 +701,6 @@
           "matchesDoNotFollow": false
         }
       ]
-    },
-    {
-      "source": "src/components/Dendrogram/Container.tsx",
-      "dependencies": [
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "../TreeLink",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeLink/index.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "../TreeNode",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeNode/index.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./Dendrogram",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/Dendrogram/Dendrogram.tsx",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./Store",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/Dendrogram/Store.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/Dendrogram/Dendrogram.tsx",
-      "dependencies": [
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/Dendrogram/Store.ts",
-      "dependencies": [
-        {
-          "module": "@app/domain",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "../TreeLink",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeLink/index.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "../TreeNode",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeNode/index.ts",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/Dendrogram/index.tsx",
-      "dependencies": []
     },
     {
       "source": "src/components/ProjectMenu/Constants.ts",
@@ -850,7 +724,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -902,7 +776,7 @@
         {
           "module": "classnames",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/classnames/index.js",
+          "resolved": "../../node_modules/classnames/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -914,7 +788,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1007,6 +881,132 @@
       ]
     },
     {
+      "source": "src/components/Dendrogram/Container.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../TreeLink",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/TreeLink/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../TreeNode",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/TreeNode/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./Dendrogram",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/Dendrogram/Dendrogram.tsx",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./Store",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/Dendrogram/Store.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/Dendrogram/Dendrogram.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/Dendrogram/Store.ts",
+      "dependencies": [
+        {
+          "module": "@app/domain",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../TreeLink",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/TreeLink/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "../TreeNode",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/TreeNode/index.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/Dendrogram/index.tsx",
+      "dependencies": []
+    },
+    {
       "source": "src/components/Template/Container.tsx",
       "dependencies": [
         {
@@ -1023,7 +1023,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1152,7 +1152,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1196,106 +1196,6 @@
       ]
     },
     {
-      "source": "src/components/TreeLink/Container.tsx",
-      "dependencies": [
-        {
-          "module": "@app/types",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./TreeLink",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeLink/TreeLink.tsx",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "./Store",
-          "moduleSystem": "cjs",
-          "resolved": "src/components/TreeLink/Store.tsx",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/TreeLink/Store.tsx",
-      "dependencies": [
-        {
-          "module": "@app/domain",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        },
-        {
-          "module": "@app/types",
-          "moduleSystem": "cjs",
-          "coreModule": false,
-          "followable": false,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": true,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/TreeLink/TreeLink.tsx",
-      "dependencies": [
-        {
-          "module": "react",
-          "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
-          "coreModule": false,
-          "followable": true,
-          "dependencyTypes": [
-            "undetermined"
-          ],
-          "couldNotResolve": false,
-          "matchesDoNotFollow": false
-        }
-      ]
-    },
-    {
-      "source": "src/components/TreeLink/index.ts",
-      "dependencies": []
-    },
-    {
       "source": "src/components/TreeNode/Container.tsx",
       "dependencies": [
         {
@@ -1312,7 +1212,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1391,7 +1291,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1407,16 +1307,23 @@
       "dependencies": []
     },
     {
-      "source": "src/components/Menu/Constants.ts",
-      "dependencies": []
-    },
-    {
-      "source": "src/components/Menu/Container.tsx",
+      "source": "src/components/TreeLink/Container.tsx",
       "dependencies": [
+        {
+          "module": "@app/types",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1426,9 +1333,9 @@
           "matchesDoNotFollow": false
         },
         {
-          "module": "./Menu",
+          "module": "./TreeLink",
           "moduleSystem": "cjs",
-          "resolved": "src/components/Menu/Menu.tsx",
+          "resolved": "src/components/TreeLink/TreeLink.tsx",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1440,7 +1347,7 @@
         {
           "module": "./Store",
           "moduleSystem": "cjs",
-          "resolved": "src/components/Menu/Store.ts",
+          "resolved": "src/components/TreeLink/Store.tsx",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1452,12 +1359,64 @@
       ]
     },
     {
+      "source": "src/components/TreeLink/Store.tsx",
+      "dependencies": [
+        {
+          "module": "@app/domain",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "@app/types",
+          "moduleSystem": "cjs",
+          "coreModule": false,
+          "followable": false,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": true,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/TreeLink/TreeLink.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/TreeLink/index.ts",
+      "dependencies": []
+    },
+    {
+      "source": "src/components/Menu/Constants.ts",
+      "dependencies": []
+    },
+    {
       "source": "src/components/Menu/Menu.tsx",
       "dependencies": [
         {
           "module": "classnames",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/classnames/index.js",
+          "resolved": "../../node_modules/classnames/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1469,7 +1428,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -1544,6 +1503,47 @@
           "module": "./depth",
           "moduleSystem": "cjs",
           "resolved": "src/components/Menu/depth.ts",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        }
+      ]
+    },
+    {
+      "source": "src/components/Menu/Container.tsx",
+      "dependencies": [
+        {
+          "module": "react",
+          "moduleSystem": "cjs",
+          "resolved": "../../node_modules/react/index.js",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./Menu",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/Menu/Menu.tsx",
+          "coreModule": false,
+          "followable": true,
+          "dependencyTypes": [
+            "undetermined"
+          ],
+          "couldNotResolve": false,
+          "matchesDoNotFollow": false
+        },
+        {
+          "module": "./Store",
+          "moduleSystem": "cjs",
+          "resolved": "src/components/Menu/Store.ts",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

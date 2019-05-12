@@ -4,8 +4,14 @@ import { addResolutionAttribute } from "@code-dependency/resolver";
 import * as path from "path";
 import { gather } from "./gather";
 
-const stripBasePath = (from: string, to: string): string => {
-  return to.startsWith(from) ? path.relative(from, to) : to;
+export const stripBasePath = (from: string, to: string, originFrom?: string): string => {
+  if (from === "/" || from === ".") {
+    return to;
+  }
+  if (to.startsWith(from)) {
+    return path.relative(originFrom || from, to);
+  }
+  return stripBasePath(path.dirname(from), to, originFrom || from);
 };
 
 const getDependencies = async (options: Types.Options, resolveOption: Types.ResolveOption): Promise<Types.InputSourceDependency[]> => {

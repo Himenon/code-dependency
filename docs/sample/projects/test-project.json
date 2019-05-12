@@ -150,7 +150,7 @@
         {
           "module": "react",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/react/index.js",
+          "resolved": "../../node_modules/react/index.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -204,6 +204,10 @@
       ]
     },
     {
+      "source": "src/domain/App/Model.ts",
+      "dependencies": []
+    },
+    {
       "source": "src/domain/App/index.ts",
       "dependencies": [
         {
@@ -219,10 +223,6 @@
           "matchesDoNotFollow": false
         }
       ]
-    },
-    {
-      "source": "src/domain/App/Model.ts",
-      "dependencies": []
     }
   ]
 }

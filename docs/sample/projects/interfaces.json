@@ -6,7 +6,7 @@
         {
           "module": "enhanced-resolve",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/enhanced-resolve/lib/node.js",
+          "resolved": "../../node_modules/enhanced-resolve/lib/node.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [
@@ -18,7 +18,7 @@
         {
           "module": "normalize-package-data",
           "moduleSystem": "cjs",
-          "resolved": "/Users/himepro/DevelopProjects/code-dependency/node_modules/normalize-package-data/lib/normalize.js",
+          "resolved": "../../node_modules/normalize-package-data/lib/normalize.js",
           "coreModule": false,
           "followable": true,
           "dependencyTypes": [

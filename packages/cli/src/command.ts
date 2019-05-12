@@ -10,12 +10,12 @@ import { GenerateFlatDependencyFunction } from "./types";
 
 const getFlatDependencies = (
   cwd: string,
-  fileName: string,
+  project: string,
   stripBasePath: string | undefined,
   options: Types.ResolveOption,
 ): GenerateFlatDependencyFunction => {
-  const project: string = path.resolve(cwd, path.normalize(fileName));
-  const projectDirectory: string = existFile(project) ? path.dirname(project) : project;
+  const projectPath: string = path.resolve(cwd, path.normalize(project));
+  const projectDirectory: string = existFile(projectPath) ? path.dirname(projectPath) : projectPath;
   if (!existDir(projectDirectory)) {
     console.log(chalk.black.bgRed(" Not fount "), chalk.red(`${projectDirectory}`));
     process.exit();
@@ -67,10 +67,17 @@ export const startLoadFileServe = async (filename: string, cwd: string, port: nu
 /**
  * ターゲットファイルを元にCSR用のPropsを生成する.
  */
-export const outputCsrProps = async (file: string, cwd: string, options: Types.ResolveOption, cut: boolean, output: string | undefined) => {
-  const stripBasePath: string | undefined = cut ? getBasePath(cwd, file) : undefined;
-  const source = path.resolve(cwd, path.normalize(file));
-  const flatDependencies = await getDependencies({ projectDirectory: source, executeDirectory: cwd, stripBasePath }, options);
+export const outputCsrProps = async (
+  project: string,
+  cwd: string,
+  options: Types.ResolveOption,
+  cut: boolean,
+  output: string | undefined,
+) => {
+  const stripBasePath: string | undefined = cut ? getBasePath(cwd, project) : undefined;
+  const projectPath = path.resolve(cwd, path.normalize(project));
+  const projectDirectory: string = existFile(projectPath) ? path.dirname(projectPath) : projectPath;
+  const flatDependencies = await getDependencies({ projectDirectory, executeDirectory: cwd, stripBasePath }, options);
   if (output) {
     const outputFile = path.resolve(cwd, output);
     const csrProps: Types.CsrProps = { flatDependencies };

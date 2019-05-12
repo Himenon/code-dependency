@@ -35,6 +35,7 @@ jobs:
     script:
     - yarn run bootstrap
     - yarn run setup
+    - yarn run test:ci
     - yarn build
     - echo '//registry.npmjs.org/:_authToken="${NPM_TOKEN}"' >> .npmrc
     # - npm publish

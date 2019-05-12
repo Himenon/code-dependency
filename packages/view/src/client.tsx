@@ -7,9 +7,10 @@ import * as App from "./App";
 const getConfig = async (site: Types.Site): Promise<Types.StaticConfig | undefined> => {
   try {
     const res = await fetch(site.configJson);
-    return res.json();
+    const text = await res.text();
+    return JSON.parse(text);
   } catch (e) {
-    console.error(e);
+    console.info("No config settings.");
     return undefined;
   }
 };

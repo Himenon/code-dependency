@@ -31,7 +31,6 @@
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
     "generate:sample": "ts-node ./bin/generate-sample.ts ../test-project/src/index.ts",
     "generate:sample:view": "ts-node ./bin/generate-sample.ts ../view/src/index.tsx",
-    "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/converter/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "server": "node ./lib/server.js",

@@ -1,6 +1,17 @@
-"use strict";
+
 
 // Do this as the first thing so that any code reading it knows the right env.
+// Ensure environment variables are read.
+import "../config//env";
+
+import * as fs from "fs";
+import * as webpack from "webpack";
+import * as WebpackDevServer from "webpack-dev-server";
+import { paths } from "../config/paths";
+import { rewriteTsconfig } from "../config/setup";
+import { configFactory } from "./webpack/webpack.config";
+import { createDevServerConfig } from "./webpack/webpackDevServer.config";
+
 process.env.BABEL_ENV = "development";
 process.env.NODE_ENV = "development";
 
@@ -10,22 +21,11 @@ process.env.NODE_ENV = "development";
 process.on("unhandledRejection", err => {
   throw err;
 });
-
-// Ensure environment variables are read.
-import "../config//env";
-
-import * as fs from "fs";
 const chalk = require("react-dev-utils/chalk");
-import * as webpack from "webpack";
-import * as WebpackDevServer from "webpack-dev-server";
 const clearConsole = require("react-dev-utils/clearConsole");
 const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const { choosePort, createCompiler, prepareProxy, prepareUrls } = require("react-dev-utils/WebpackDevServerUtils");
 const openBrowser = require("react-dev-utils/openBrowser");
-import { paths } from "../config/paths";
-import { rewriteTsconfig } from "../config/setup";
-import { configFactory } from "./webpack/webpack.config";
-import { createDevServerConfig } from "./webpack/webpackDevServer.config";
 
 rewriteTsconfig(true);
 
@@ -68,10 +68,8 @@ checkBrowsers(paths.appPath, isInteractive)
     const useTypeScript = fs.existsSync(paths.appTsConfig);
     const urls = prepareUrls(protocol, HOST, port);
     const devSocket = {
-      // @ts-ignore
-      warnings: warnings => devServer.sockWrite(devServer.sockets, "warnings", warnings),
-      // @ts-ignore
-      errors: errors => devServer.sockWrite(devServer.sockets, "errors", errors),
+      warnings: warnings => (devServer as any).sockWrite((devServer as any).sockets, "warnings", warnings),
+      errors: errors => (devServer as any).sockWrite((devServer as any).sockets, "errors", errors),
     };
     // Create a webpack compiler that is configured with custom messages.
     const compiler = createCompiler({

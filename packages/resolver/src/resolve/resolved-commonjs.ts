@@ -11,8 +11,8 @@ function addResolutionAttributes(
   resolveOption: Types.ResolveOption,
 ): ResolutionAttribute {
   let resolved: string | undefined;
-  let followable: boolean = false;
-  let couldNotResolve: boolean = false;
+  let followable = false;
+  let couldNotResolve = false;
   let coreModule = false;
 
   if (isCore(moduleName)) {

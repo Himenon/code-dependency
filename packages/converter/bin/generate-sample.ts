@@ -27,4 +27,4 @@ const main = async () => {
   save("./sample/tree-data.json", { treeData: converter(convertSource, flatDependencies) });
 };
 
-main();
+main().catch(console.error);

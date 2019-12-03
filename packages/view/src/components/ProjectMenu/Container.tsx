@@ -9,8 +9,8 @@ const generateProps = (store: Store): ProjectMenu.Props => {
     projects: store.projects.map(project => {
       return {
         project,
-        onClick: () => {
-          store.changeProject(project);
+        onClick: async () => {
+          await store.changeProject(project);
         },
       };
     }),

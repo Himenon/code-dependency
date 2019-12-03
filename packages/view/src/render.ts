@@ -1,3 +1,3 @@
 import { initialize } from "./client";
 
-initialize();
+initialize().catch(console.error);

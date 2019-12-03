@@ -33,7 +33,6 @@
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../map/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
-    "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
     "serve:dist": "serve dist",

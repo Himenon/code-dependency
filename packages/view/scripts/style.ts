@@ -1,12 +1,12 @@
-process.env.BABEL_ENV = "production";
-process.env.NODE_ENV = "production";
-
 import * as glob from "glob";
 import * as path from "path";
 import * as webpack from "webpack";
 import { paths } from "../config/paths";
 import { plugins } from "./webpack/plugins";
 import { rules } from "./webpack/rules";
+
+process.env.BABEL_ENV = "production";
+process.env.NODE_ENV = "production";
 
 process.on("unhandledRejection", err => {
   throw err;

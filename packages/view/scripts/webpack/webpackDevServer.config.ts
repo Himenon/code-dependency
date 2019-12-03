@@ -1,11 +1,11 @@
-const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
-const evalSourceMapMiddleware = require("react-dev-utils/evalSourceMapMiddleware");
-const noopServiceWorkerMiddleware = require("react-dev-utils/noopServiceWorkerMiddleware");
-const ignoredFiles = require("react-dev-utils/ignoredFiles");
 import * as express from "express";
 import * as fs from "fs";
 import * as WebpackDevServer from "webpack-dev-server";
 import { paths } from "../../config/paths";
+const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
+const evalSourceMapMiddleware = require("react-dev-utils/evalSourceMapMiddleware");
+const noopServiceWorkerMiddleware = require("react-dev-utils/noopServiceWorkerMiddleware");
+const ignoredFiles = require("react-dev-utils/ignoredFiles");
 
 const protocol = process.env.HTTPS === "true" ? "https" : "http";
 const host = process.env.HOST || "0.0.0.0";

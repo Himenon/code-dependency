@@ -68,10 +68,8 @@ checkBrowsers(paths.appPath, isInteractive)
     const useTypeScript = fs.existsSync(paths.appTsConfig);
     const urls = prepareUrls(protocol, HOST, port);
     const devSocket = {
-      // @ts-ignore
-      warnings: warnings => devServer.sockWrite(devServer.sockets, "warnings", warnings),
-      // @ts-ignore
-      errors: errors => devServer.sockWrite(devServer.sockets, "errors", errors),
+      warnings: warnings => (devServer as any).sockWrite((devServer as any).sockets, "warnings", warnings),
+      errors: errors => (devServer as any).sockWrite((devServer as any).sockets, "errors", errors),
     };
     // Create a webpack compiler that is configured with custom messages.
     const compiler = createCompiler({

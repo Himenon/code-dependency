@@ -66,8 +66,7 @@ const readPackageDepsCombined = _memoize(
           `&title=Unexpected Error: Unusal baseDir passed to package reading function: '${baseDir}'`,
       );
     }
-    // @ts-ignore TODO いらないのでは
-    const retval = getIntermediatePaths(fileDir, baseDir).reduce((all, current) => mergePackages(all, maybeReadPackage(current)), {});
+    const retval = getIntermediatePaths(fileDir, baseDir).reduce((all, current) => mergePackages(all as any, maybeReadPackage(current) as any), {});
     return Object.keys(retval).length > 0 ? retval : undefined;
   },
 );

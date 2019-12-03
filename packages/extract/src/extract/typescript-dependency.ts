@@ -13,8 +13,7 @@ const hasModule = (statement: any): statement is { moduleSpecifier: { text: stri
   // isExportDeclaration: export * from "./hoge"; を検知
   // isImportDeclaration: import/exportを検知
   if (ts.isImportDeclaration(statement) /*|| ts.isExportDeclaration(statement)*/) {
-    // @ts-ignore FIXME どうして生えていない？
-    return !!statement && !!statement.moduleSpecifier && typeof (statement.moduleSpecifier as any).text === "string";
+    return typeof (statement.moduleSpecifier as any).text === "string";
   }
   return false;
 };

@@ -30,8 +30,7 @@ export const compileResolveOptions = (option: ResolverOption, extraOption: Extra
   };
 
   const NON_OVERRIDABLE_RESOLVE_OPTIONS: ResolverOption = {
-    // @ts-ignore
-    fileSystem: new enhancedResolve.CachedInputFileSystem(new enhancedResolve.NodeJsInputFileSystem(), CACHE_DURATION),
+    fileSystem: new enhancedResolve.CachedInputFileSystem(new enhancedResolve.NodeJsInputFileSystem(), CACHE_DURATION) as any, // TODO
     useSyncFileSystemCalls: true,
   };
 

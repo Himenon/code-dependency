@@ -31,12 +31,12 @@ const getBasePath = (cwd: string, target: string): string => {
   return path.dirname(path.join(cwd, diff));
 };
 
-export const startServeMessage = (address: string) => {
+export const startServeMessage = async (address: string) => {
   console.log("");
   console.log("  ", chalk.blue(`Server      : ${address}`));
   console.log("  ", chalk.blue(`API Server  : ${address}/api`));
   console.log("");
-  open(address);
+  await open(address);
 };
 
 export const startProjectServe = async (project: string, cwd: string, options: Types.ResolveOption, cut?: boolean, port = 7000) => {
@@ -44,7 +44,7 @@ export const startProjectServe = async (project: string, cwd: string, options: T
   const flatDependencies = await getFlatDependencies(cwd, project, stripBasePath, options);
   const server = await createServer(flatDependencies);
   await server.listen(port);
-  startServeMessage(`http://localhost:${port}`);
+  await startServeMessage(`http://localhost:${port}`);
 };
 
 /**
@@ -61,7 +61,7 @@ export const startLoadFileServe = async (filename: string, cwd: string, port = 7
   const csrProps: Types.CsrProps = require(source);
   const server = await createServer(() => Promise.resolve(csrProps.flatDependencies));
   await server.listen(port);
-  startServeMessage(`http://localhost:${port}`);
+  await startServeMessage(`http://localhost:${port}`);
 };
 
 /**

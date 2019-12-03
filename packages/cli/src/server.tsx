@@ -57,7 +57,7 @@ export const createServer = async (generateFlatDependencies: GenerateFlatDepende
   });
 
   app.get("*", async (req: express.Request, res: express.Response) => {
-    applyProps().then(result => {
+    await applyProps().then(result => {
       res.send(result);
       res.end();
     });

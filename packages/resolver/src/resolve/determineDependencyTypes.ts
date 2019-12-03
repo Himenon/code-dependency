@@ -124,5 +124,3 @@ export default (
 
   return lRetval;
 };
-
-/* eslint security/detect-object-injection: 0*/

@@ -15,6 +15,11 @@ const getConfig = async (site: Types.Site): Promise<Types.StaticConfig | undefin
   }
 };
 
+const render = (site: Types.Site, csrProps?: Types.CsrProps, config?: Types.StaticConfig) => {
+  const reducers = Domain.createReducers({ csrProps, config, site });
+  ReactDOM.render(<App.Container reducers={reducers} />, document.getElementById("root"));
+};
+
 const debugMode = async (url: string): Promise<void> => {
   try {
     const res = await fetch(url);
@@ -41,17 +46,12 @@ const getSiteState = (): Types.Site => {
   return siteState;
 };
 
-const render = (site: Types.Site, csrProps?: Types.CsrProps, config?: Types.StaticConfig) => {
-  const reducers = Domain.createReducers({ csrProps, config, site });
-  ReactDOM.render(<App.Container reducers={reducers} />, document.getElementById("root"));
-};
-
 export const initialize = async () => {
   const csrProps = getCsrProps();
   const site = getSiteState();
   const config = await getConfig(site);
   if (!csrProps && !config) {
-    debugMode(site.debugApi);
+    await debugMode(site.debugApi);
   } else {
     render(site, csrProps, config);
   }

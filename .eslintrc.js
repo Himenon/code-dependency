@@ -28,5 +28,7 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "react/prop-types": 0,
     "@typescript-eslint/no-unnecessary-qualifier": 0,
+    "@typescript-eslint/no-use-before-define": 1,
+    "@typescript-eslint/no-unnecessary-condition": 1,
   },
 };

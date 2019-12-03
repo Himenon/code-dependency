@@ -1,9 +1,9 @@
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import * as MiniCssExtractPlugin from "mini-css-extract-plugin";
 import * as webpack from "webpack";
-const resolve = require("resolve");
 import * as ManifestPlugin from "webpack-manifest-plugin";
 import { paths } from "../../config/paths";
+const resolve = require("resolve");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");

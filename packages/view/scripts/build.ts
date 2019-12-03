@@ -1,6 +1,12 @@
-"use strict";
+
 
 // Do this as the first thing so that any code reading it knows the right env.
+import * as fs from "fs-extra";
+import * as path from "path";
+import * as webpack from "webpack";
+import { paths } from "../config/paths";
+import { rewriteTsconfig } from "../config/setup";
+import { configFactory } from "./webpack/webpack.config";
 process.env.BABEL_ENV = "production";
 process.env.NODE_ENV = "production";
 
@@ -14,12 +20,6 @@ process.on("unhandledRejection", err => {
 // Ensure environment variables are read.
 
 const bfj = require("bfj");
-import * as fs from "fs-extra";
-import * as path from "path";
-import * as webpack from "webpack";
-import { paths } from "../config/paths";
-import { rewriteTsconfig } from "../config/setup";
-import { configFactory } from "./webpack/webpack.config";
 
 const chalk = require("react-dev-utils/chalk");
 const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");

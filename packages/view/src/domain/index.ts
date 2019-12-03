@@ -1,12 +1,12 @@
 import * as Types from "@code-dependency/interfaces";
 
 import * as App from "./App";
-export { App };
 
 import * as Dendrogram from "./Dendrogram";
-export { Dendrogram };
 
 import * as Project from "./Project";
+export { App };
+export { Dendrogram };
 export { Project };
 
 export interface Reducers {

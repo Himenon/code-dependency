@@ -20,7 +20,7 @@ const deleteItem = (arr: any[], value: any): void => {
   delete arr[idx];
 };
 
-const generateDirectory = (directoryPath: string, basename: string, items: Items, isRoot: boolean = false): Directory => {
+const generateDirectory = (directoryPath: string, basename: string, items: Items, isRoot = false): Directory => {
   return {
     type: "directory",
     path: directoryPath,

@@ -23,7 +23,7 @@
     "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md,scss}\"",
     "generate:sample": "./bin/generate-sample.sh",
     "initialize": "run-s bootstrap clean:all setup build:lib",
-    "lint": "eslint -c ./.eslintrc.js 'src/**/*.{ts,tsx}'",
+    "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
     "publish": "lerna publish from-package",
     "setup": "ts-node -P ./bin/tsconfig.json ./bin/setup.ts",

@@ -72,7 +72,7 @@ const readPackageDepsCombined = _memoize(
   },
 );
 
-export default (fileDir: string, baseDir: string, combinedDependencies: boolean = false): PackageDependencies | undefined => {
+export default (fileDir: string, baseDir: string, combinedDependencies = false): PackageDependencies | undefined => {
   if (combinedDependencies) {
     return readPackageDepsCombined(fileDir, baseDir);
   } else {

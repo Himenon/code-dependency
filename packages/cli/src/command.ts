@@ -39,7 +39,7 @@ export const startServeMessage = (address: string) => {
   open(address);
 };
 
-export const startProjectServe = async (project: string, cwd: string, options: Types.ResolveOption, cut?: boolean, port: number = 7000) => {
+export const startProjectServe = async (project: string, cwd: string, options: Types.ResolveOption, cut?: boolean, port = 7000) => {
   const stripBasePath: string | undefined = cut ? getBasePath(cwd, project) : undefined;
   const flatDependencies = await getFlatDependencies(cwd, project, stripBasePath, options);
   const server = await createServer(flatDependencies);
@@ -50,7 +50,7 @@ export const startProjectServe = async (project: string, cwd: string, options: T
 /**
  * CSR用のファイルをもとに、サーバーを立てる
  */
-export const startLoadFileServe = async (filename: string, cwd: string, port: number = 7000) => {
+export const startLoadFileServe = async (filename: string, cwd: string, port = 7000) => {
   const source = path.resolve(cwd, filename);
   if (!existFile(source)) {
     console.log(chalk.black.bgRed(" Not fount "), chalk.red(`${source}`));

@@ -11,7 +11,7 @@ export interface DendrogramProps {
 
 export const useOnResize = <T extends React.MutableRefObject<any | null>>(ref: T, onResize: OnResizeFunction) => {
   React.useEffect(() => {
-    let timer: number = NaN;
+    let timer = NaN;
     const callback = () => {
       if (!isNaN(timer)) {
         window.clearTimeout(timer);

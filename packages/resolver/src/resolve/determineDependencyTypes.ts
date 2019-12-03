@@ -68,7 +68,7 @@ function determineModuleDependencyTypes(
   }
 }
 
-function isModule(dependency: Types.ResolvedModule, modules: string[] = ["node_modules"], baseDir: string = "."): boolean {
+function isModule(dependency: Types.ResolvedModule, modules: string[] = ["node_modules"], baseDir = "."): boolean {
   return modules.some(moduleName => {
     if (path.isAbsolute(moduleName) && dependency.resolved) {
       return path.resolve(baseDir, ...dependency.resolved).startsWith(moduleName);

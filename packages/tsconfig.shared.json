@@ -20,8 +20,8 @@
     "noLib": false,
     "jsx": "react",
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
+    "declarationMap": false,
+    "sourceMap": false,
     "composite": true
   },
   "exclude": ["./node_modules"],

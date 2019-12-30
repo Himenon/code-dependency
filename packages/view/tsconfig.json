@@ -10,6 +10,7 @@
       "@app/domain*": ["./src/domain*"],
       "@app/types": ["./src/types"]
     },
+    "incremental": true,
     "tsBuildInfoFile": "../../buildcache/view/tsconfig.json.tsbuildinfo"
   },
   "references": [{"path": "../interfaces"}, {"path": "../converter"}],

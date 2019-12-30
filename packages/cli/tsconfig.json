@@ -6,11 +6,8 @@
     "baseUrl": ".",
     "outDir": "lib",
     "rootDir": "src",
-    "incremental": true,
     "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo"
   },
-  "references": [
-    {"path": "../view"}
-  ],
+  "references": [{ "path": "../view" }],
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

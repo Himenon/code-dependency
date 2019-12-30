@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "removeComments": true,
+    "importHelpers": true,
     "allowJs": false,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -20,15 +21,11 @@
     "declaration": true,
     "declarationMap": false,
     "sourceMap": false,
+    "incremental": true,
+    "esModuleInterop": true,
     "composite": true
   },
   "exclude": ["./node_modules"],
-  "ordered-imports": [
-    true,
-    {"import-sources-order": "any", "named-imports-order": "case-insensitive"}
-  ],
-  "references": [
-    { "path": "view" },
-    { "path": "cli" }
-  ]
+  "ordered-imports": [true, { "import-sources-order": "any", "named-imports-order": "case-insensitive" }],
+  "references": [{ "path": "view" }, { "path": "cli" }]
 }

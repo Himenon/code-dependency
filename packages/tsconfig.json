@@ -1,12 +1,7 @@
 {
   "files": [],
   "references": [
-    { "path": "map" },
-    { "path": "converter" },
-    { "path": "extract" },
-    { "path": "interfaces" },
-    { "path": "resolver" },
     { "path": "view" },
-    { "path": "test-project" }
+    { "path": "cli" }
   ]
 }

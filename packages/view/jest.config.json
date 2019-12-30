@@ -1,0 +1,25 @@
+{
+  "automock": false,
+  "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
+  "roots": ["<rootDir>/src"],
+  "testEnvironment": "jsdom",
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json",
+      "diagnostics": false
+    }
+  },
+  "moduleNameMapper": {
+    "^@this/domain(.*)": "<rootDir>/src/domain$1",
+    "^@this/container-component(.*)": "<rootDir>/src/container-component$1",
+    "^@this/view-component(.*)": "<rootDir>/src/view-component$1",
+    "^@this/infra(.*)": "<rootDir>/src/infra$1"
+  },
+  "moduleDirectories": ["node_modules"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "node"],
+  "testMatch": ["**/__tests__/*.test.+(ts|tsx)"],
+  "collectCoverage": true,
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  }
+}

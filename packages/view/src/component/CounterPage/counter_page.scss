@@ -1,0 +1,13 @@
+.counter-page {
+  /*!*/
+}
+
+.heading {
+  font-family: serif;
+  font-size: 40px;
+  text-align: center;
+}
+
+.counter {
+  composes: counter from "../Counter/counter.scss";
+}

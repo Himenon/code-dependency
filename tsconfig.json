@@ -1,29 +1,34 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["es2017", "es2016", "es2015", "es5", "dom"],
-    "strict": true,
-    "removeComments": false,
-    "emitDecoratorMetadata": true,
+    "lib": ["dom", "esnext"],
     "experimentalDecorators": true,
-    "importHelpers": true,
-    "jsx": "react",
-    "noImplicitAny": false,
-    "noLib": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "preserveConstEnums": true,
-    "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "declaration": true,
-    "sourceMap": true,
-    "composite": true,
     "baseUrl": ".",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "removeComments": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noLib": false,
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "composite": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
-  "exclude": ["node_modules"]
+  "exclude": ["./node_modules"],
+  "ordered-imports": [
+    true,
+    {"import-sources-order": "any", "named-imports-order": "case-insensitive"}
+  ],
+  "references": [
+    { "path": "view" },
+    { "path": "cli" }
+  ]
 }

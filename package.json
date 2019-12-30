@@ -32,56 +32,60 @@
     "version": "lerna version",
     "warmup": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts dist"
   },
-  "dependencies": {
-    "lodash": "^4.17.11"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@types/commander": "^2.12.2",
     "@types/enhanced-resolve": "^3.0.6",
-    "@types/jest": "^24.0.11",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.1",
     "@types/recursive-readdir": "^2.2.0",
-    "@types/resolve": "^0.0.8",
+    "@types/resolve": "^1.14.0",
     "@types/typescript": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
-    "@typescript-eslint/parser": "^2.7.0",
-    "codecov": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "cpx": "^1.5.0",
-    "dependency-cruiser": "^4.15.1",
-    "eslint": "^6.6.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
+    "dependency-cruiser": "^6.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "generate-changelog": "^1.7.1",
-    "husky": "^3.0.9",
-    "jest": "^24.7.1",
-    "jest-cli": "^24.7.1",
+    "generate-changelog": "^1.8.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
     "json-stringify-pretty-compact": "^2.0.0",
-    "lerna": "^3.13.2",
-    "lint-staged": "^8.1.5",
+    "lerna": "^3.20.1",
+    "lint-staged": "^9.5.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2",
-    "rimraf": "^2.6.3",
-    "sort-package-json": "^1.22.1",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.0.3",
-    "type-fest": "^0.4.1"
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "sort-package-json": "^1.32.2",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "type-fest": "^0.8.1"
   },
   "peerDependencies": {
-    "graceful-fs": "^4.1.2"
+    "graceful-fs": "^4.2.3"
+  },
+  "resolutions": {
+    "**/**/fsevents": "^1.2.9"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-    }
   }
 }

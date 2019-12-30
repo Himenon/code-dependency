@@ -18,53 +18,53 @@
     "lib",
     "package.json"
   ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "code-dependency": "./lib/index.js"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "clean": "rimraf ./lib ./build",
+    "clean:lib": "rimraf lib",
     "cli": "node ./lib/index.js -f ../map/src/index.ts",
     "cruiser": "dependency-cruiser --validate .dependency-cruiser.json src",
+    "generate:dist": "node ./lib/index.js --static-dist ./dist",
+    "input:test-project": "node ./lib/index.js -s -i ./data/sample-test-project.json",
+    "input:view": "node ./lib/index.js -s -i ./data/sample-view.json",
     "lint": "eslint --cache --cache-location ../../buildcache/cli/ -c ../../.eslintrc.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn run lint --fix",
+    "output:test-project": "node ./lib/index.js -f ../test-project/src/index.ts -o ./dist/projects/sample-test-project.json -c",
+    "output:view": "node ./lib/index.js -f ../view/src/App.tsx -o ./dist/projects/sample-view.json -c",
     "serve:dist": "serve dist",
-    "generate:dist": "node ./lib/index.js --static-dist ./dist",
-    "server:view": "node ./lib/index.js ../view/src",
     "server:resolver": "node ./lib/index.js ../resolver/src",
     "server:test-project": "node ./lib/index.js ../test-project/src",
-    "output:view": "node ./lib/index.js -f ../view/src/App.tsx -o ./dist/projects/sample-view.json -c",
-    "output:test-project": "node ./lib/index.js -f ../test-project/src/index.ts -o ./dist/projects/sample-test-project.json -c",
-    "input:view": "node ./lib/index.js -s -i ./data/sample-view.json",
-    "input:test-project": "node ./lib/index.js -s -i ./data/sample-test-project.json",
+    "server:view": "node ./lib/index.js ../view/src",
     "start": "yarn run develop",
     "test": "yarn run cruiser && yarn run test:jest",
     "test:ci": "yarn run test && codecov",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "test:watch": "yarn run test:jest --watch",
-    "clean:lib": "rimraf lib"
+    "test:watch": "yarn run test:jest --watch"
   },
   "dependencies": {
     "@code-dependency/view": "^0.1.0",
     "@types/pretty": "^2.0.0",
-    "chalk": "^2.4.2",
-    "commander": "^2.20.0",
-    "express": "^4.16.4",
-    "fs-extra": "^7.0.1",
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0",
     "interpolate-html-plugin": "^3.0.0",
-    "open": "^6.2.0",
+    "open": "^7.0.0",
     "pretty": "^2.0.0",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@types/express": "^4.16.1",
-    "@types/fs-extra": "^5.1.0"
+    "@types/express": "^4.17.2",
+    "@types/fs-extra": "^8.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

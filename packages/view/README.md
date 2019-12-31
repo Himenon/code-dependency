@@ -1,4 +1,4 @@
-# tiny-react-app-template
+# @code-dependency/view
 
 ## Start Development
 

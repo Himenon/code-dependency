@@ -1,6 +1,16 @@
 import webpack from "webpack";
 import { generateConfig } from "./webpack.config";
 import webpackDevServer from "webpack-dev-server";
+import express from "express";
+import resolvePkg from "resolve-pkg";
+
+const find = (searchPath: string) => {
+  const result = resolvePkg(searchPath);
+  if (result) {
+    return result;
+  }
+  throw new Error(`Not found: ${searchPath}`);
+};
 
 const main = async () => {
   const isProduction = process.env.NODE_ENV === "production";
@@ -9,7 +19,10 @@ const main = async () => {
   const server = new webpackDevServer(compiler as any, {
     hot: true,
     open: true,
-    historyApiFallback: true,
+    compress: true,
+    before: (app: express.Application, _server: any) => {
+      app.use("/scripts/full.render.js", express.static(find("viz.js/full.render.js")));
+    },
   });
   server.listen(9000);
 };

@@ -123,7 +123,7 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       },
     },
     entry: {
-      application: ["core-js", "regenerator-runtime/runtime", "./src/index.tsx"],
+      application: ["core-js", "regenerator-runtime/runtime", "./src/application.tsx"],
     },
     devtool: isProduction ? "inline-source-map" : undefined,
     plugins: [
@@ -131,7 +131,9 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new ProgressBarPlugin(),
       new FriendlyErrorsWebpackPlugin(),
       new WebpackNotifierPlugin(),
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({
+        memoryLimit: 8192,
+      }),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
       new webpack.HotModuleReplacementPlugin(),
       new CleanWebpackPlugin(),
@@ -143,11 +145,19 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new HtmlWebpackPlugin({
         title: isProduction ? "Production" : "Development",
         template: "public/index.html",
+        React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
+        ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
+        "full.render.js": "scripts/full.render.js",
       }),
       new ManifestPlugin(),
+      new webpack.DefinePlugin({
+        "process.env.isProduction": JSON.stringify(isProduction),
+        "process.env.PUBLIC_PATH": JSON.stringify(""),
+        "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
+      }),
     ].filter(Boolean),
     output: {
-      filename: "scripts/[name].bundle.js",
+      filename: "scripts/[name].js",
       path: path.resolve(__dirname, "../dist"),
     },
     externals: {

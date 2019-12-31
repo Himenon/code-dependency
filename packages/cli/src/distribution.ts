@@ -1,7 +1,5 @@
-import * as Types from "@code-dependency/interfaces";
-import { Assets, generateHtml, getPaths } from "@code-dependency/view";
 import * as path from "path";
-import pretty = require("pretty");
+import pretty from "pretty";
 import { renderToStaticMarkup } from "react-dom/server";
 import * as url from "url";
 import { copyAssetFiles, mkdirP, readConfig, saveConfig, saveFileSync } from "./filesystem";

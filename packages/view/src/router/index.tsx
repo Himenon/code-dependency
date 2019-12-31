@@ -1,24 +1,16 @@
 import React from "react";
-import Viz from "viz.js";
-import { Module, render } from "viz.js/full.render.js";
+import { Switch, Route, HashRouter as Router } from "react-router-dom";
+import { Editor } from "@app/container";
 
-const src = ``;
-
-export const AppRouter = () => {
-  const viz = new Viz({ Module, render });
-  const [element, updateElement] = React.useState("");
-  React.useEffect(() => {
-    const f = async () => {
-      const elem: string = await viz.renderString(src);
-      updateElement(elem);
-    };
-    f().catch(console.error);
-  });
-  return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: element,
-      }}
-    ></div>
+export const createRouter = async () => {
+  const EditorContainer = await Editor.createContainer();
+  return () => (
+    <Router hashType="noslash">
+      <Switch>
+        <Route key="/" path="/" exact={true} basename={process.env.PUBLIC_PATH}>
+          <EditorContainer />
+        </Route>
+      </Switch>
+    </Router>
   );
 };

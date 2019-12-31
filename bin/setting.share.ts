@@ -1,4 +1,4 @@
-import { monorepoSettings } from './settings';
+import { monorepoSettings } from "./settings";
 import { readConfig, saveConfig } from "./filesystem";
 import { PackageJson } from "type-fest";
 import { JestConfig } from "./types";
@@ -9,13 +9,13 @@ const generateShareScripts = (name: string) => {
     "build:lib": undefined,
     "lint:fix": "yarn run lint --fix",
     "test:ci": name === "view" ? "yarn run build:scripts && yarn run test && codecov" : "yarn run test && codecov",
-    "format": "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
+    format: "prettier --config ../../.prettierrc --write src/*.{ts,tsx}",
     "test:jest": "jest --cache -c ./jest.config.json",
-    "clean": "rimraf ./lib ./build",
+    clean: "rimraf ./lib ./build",
     "clean:cache": undefined,
     "clean:lib": "rimraf lib",
     "test:watch": "yarn run test:jest --watch",
-  }
+  };
 };
 
 const generateShareJestConfig = (name: string) => ({
@@ -46,8 +46,8 @@ const updatePackage = () => {
       }
     });
     saveConfig(settings.packageJson, pkg);
-  })
-}
+  });
+};
 
 const updateJestConfig = () => {
   Object.entries(monorepoSettings).forEach(entry => {
@@ -58,8 +58,8 @@ const updateJestConfig = () => {
       jestConfig[key] = sharedConfigs[key];
     });
     saveConfig(settings.jestConfig, jestConfig);
-  })
-}
+  });
+};
 
 updatePackage();
 updateJestConfig();

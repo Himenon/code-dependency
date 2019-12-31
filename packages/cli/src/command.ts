@@ -67,13 +67,7 @@ export const startLoadFileServe = async (filename: string, cwd: string, port = 7
 /**
  * ターゲットファイルを元にCSR用のPropsを生成する.
  */
-export const outputCsrProps = async (
-  project: string,
-  cwd: string,
-  options: Types.ResolveOption,
-  cut: boolean,
-  output: string | undefined,
-) => {
+export const outputCsrProps = async (project: string, cwd: string, options: Types.ResolveOption, cut: boolean, output: string | undefined) => {
   const stripBasePath: string | undefined = cut ? getBasePath(cwd, project) : undefined;
   const projectPath = path.resolve(cwd, path.normalize(project));
   const projectDirectory: string = existFile(projectPath) ? path.dirname(projectPath) : projectPath;

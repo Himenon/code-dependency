@@ -4,7 +4,7 @@ export interface PackageSettings {
   version: {
     name: string;
     value: string;
-  }
+  };
   packageJson: string;
   tsConfig: string;
   jestConfig: string;

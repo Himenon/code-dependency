@@ -3,18 +3,18 @@ import { Reducer, createReducer } from "./Reducer";
 import { Dispatch } from "./Action";
 
 export interface Reducers {
-  app: Reducer;
+  graphviz: Reducer;
 }
 
 export interface Stores {
-  app: {
+  graphviz: {
     state: State;
     dispatch: Dispatch;
   };
 }
 
-export const createReducers = (): Reducers => {
+export const createReducers = async (): Promise<Reducers> => {
   return {
-    app: createReducer(),
+    graphviz: await createReducer(),
   };
 };

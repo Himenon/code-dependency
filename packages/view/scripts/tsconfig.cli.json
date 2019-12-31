@@ -19,7 +19,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "sourceMap": true,
-    "composite": true
+    "composite": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"]
 }

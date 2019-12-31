@@ -1,5 +1,5 @@
-import * as Counter from "./Counter";
-export { Counter };
+import * as GraphvizViewer from "./GraphvizViewer";
+export { GraphvizViewer };
 
-import * as Page from "./Page";
-export { Page };
+import * as Editor from "./Editor";
+export { Editor };

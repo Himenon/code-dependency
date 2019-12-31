@@ -17,7 +17,7 @@ const isPackageDirectoryName = (nameList: string[]): boolean => {
     return false;
   }
   return true;
-}
+};
 
 const main = () => {
   if (process.argv.length < 4) {
@@ -35,10 +35,10 @@ const main = () => {
   const devDependenciesSet = new Set<string>(Object.keys(leftPackageJson.devDependencies || {}));
   Object.keys(rightPackageJson.dependencies || {}).forEach(dependency => {
     dependenciesSet.delete(dependency);
-  })
+  });
   Object.keys(rightPackageJson.devDependencies || {}).forEach(devDependencies => {
     devDependenciesSet.delete(devDependencies);
-  })
+  });
   const packageJsonDiff = {
     dependencies: {},
     devDependencies: {},
@@ -47,14 +47,13 @@ const main = () => {
     if (leftPackageJson.dependencies) {
       packageJsonDiff.dependencies[key] = leftPackageJson.dependencies[key];
     }
-  })
+  });
   devDependenciesSet.forEach(key => {
     if (leftPackageJson.devDependencies) {
       packageJsonDiff.devDependencies[key] = leftPackageJson.devDependencies[key];
     }
-  })
+  });
   console.log(JSON.stringify(packageJsonDiff, null, 2));
-}
-
+};
 
 main();

@@ -2,7 +2,7 @@
 
 ## Initialize
 
-Clone後、初回のみ実行します。
+Clone 後、初回のみ実行します。
 
 ```sh
 yarn run initialize
@@ -28,37 +28,37 @@ yarn run develop
 yarn build
 ```
 
-このコマンドは、source mapを生成しないため、一度実行するとエディター（vscode）のモジュール参照のサポートが受けられなくなります。
+このコマンドは、source map を生成しないため、一度実行するとエディター（vscode）のモジュール参照のサポートが受けられなくなります。
 再び参照を活かすためには、`yarn run clean:lib`を実行してから、`yarn run develop`を利用してください。
-もし参照が有効にならない場合は、エディター内で起動しているtsc serverを再起動してください。
+もし参照が有効にならない場合は、エディター内で起動している tsc server を再起動してください。
 
 ### View: webapck build
 
-webpackを利用するBuildは`tsBuildInfoFile`をOFFにする必要があります。
-tsconfig.jsonをオーバーライドできない関係で、ビルド前後にスクリプトで自動調節しています。
+webpack を利用する Build は`tsBuildInfoFile`を OFF にする必要があります。
+tsconfig.json をオーバーライドできない関係で、ビルド前後にスクリプトで自動調節しています。
 
 ## Test
 
-それぞれのPackage内で`yarn run test:watch`もしくは`yarn run test`を実行してください。
+それぞれの Package 内で`yarn run test:watch`もしくは`yarn run test`を実行してください。
 
 ## Linter
 
-git commitにhookさせているので、コミット時にチェックが走ります。
+git commit に hook させているので、コミット時にチェックが走ります。
 メッセージにしたがってください。
 
 ## Cache & Incremental build
 
-開発中は2つのキャッシュと1つのincremental buildが働きます。
+開発中は 2 つのキャッシュと 1 つの incremental build が働きます。
 
-* typescript : https://www.typescriptlang.org/docs/handbook/project-references.html
-* jest       : https://jestjs.io/docs/en/cli#cache
-* eslint     : https://eslint.org/docs/user-guide/command-line-interface#caching
+- typescript : https://www.typescriptlang.org/docs/handbook/project-references.html
+- jest : https://jestjs.io/docs/en/cli#cache
+- eslint : https://eslint.org/docs/user-guide/command-line-interface#caching
 
 ルートディレクトリに`buildcache`を配置しており、内部をパッケージ名を名前空間としてキャッシュする場所を仕切っています。
 
 ## TypeScript: Project References
 
-* https://www.typescriptlang.org/docs/handbook/project-references.html
+- https://www.typescriptlang.org/docs/handbook/project-references.html
 
 モノレポ間の参照を有効にしています。具体的には、`@code-dependency/cli`から`@code-dependency/map`へ参照をしているとき、`@code-dependency/map`の成果物（`lib`）に参照がジャンプせず、`src/`以下のファイルに参照がマッチするようになります。
 
@@ -66,32 +66,32 @@ git commitにhookさせているので、コミット時にチェックが走り
 
 ## View & CLI
 
-viewの開発は2つのPackageを利用します。
+view の開発は 2 つの Package を利用します。
 
-* view: Reactのアプリケーションを構築する。開発中はCSR(Client Side Rendering)を利用するため、初期状態を持たない。
-* cli : viewに初期状態を与えるためのAPIサーバーを提供する。
+- view: React のアプリケーションを構築する。開発中は CSR(Client Side Rendering)を利用するため、初期状態を持たない。
+- cli : view に初期状態を与えるための API サーバーを提供する。
 
-viewはインターフェースのみ共有しているため、初期状態を取得するためにwebpackの開発サーバーを再起動する必要はありません。
-開発中はCSRになりますが、ビルド後はSSR(Server Side Rendering)を利用できます。
+view はインターフェースのみ共有しているため、初期状態を取得するために webpack の開発サーバーを再起動する必要はありません。
+開発中は CSR になりますが、ビルド後は SSR(Server Side Rendering)を利用できます。
 
 ## CI
 
-Travis CIを利用しています。以下のHookでタスクが実行されます。
+Travis CI を利用しています。以下の Hook でタスクが実行されます。
 
-* Pull Request
-    * linter
-    * TypeScriptのビルド
-    * Jest
-* Merge
-    * TypeScriptのビルド
-    * webpackのビルド
-    * npm publish
+- Pull Request
+  - linter
+  - TypeScript のビルド
+  - Jest
+- Merge
+  - TypeScript のビルド
+  - webpack のビルド
+  - npm publish
 
 ## package.json scripts / jest / tsconfig.json
 
 共通のスクリプトや設定は以下のスクリプトを用いて更新します。
 
-* bin/setting.share.ts
-  * jest + package.json
-* bin/tsconfig.share.ts
-  * tsconfig.json
+- bin/setting.share.ts
+  - jest + package.json
+- bin/tsconfig.share.ts
+  - tsconfig.json

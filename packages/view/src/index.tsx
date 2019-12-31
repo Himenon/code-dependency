@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { AppRouter } from "./router";
+import { createRouter } from "./router";
 
-const initialize = () => {
-  ReactDOM.render(<AppRouter />, document.getElementById("root"));
+const initialize = async () => {
+  const Router = await createRouter();
+  ReactDOM.render(<Router />, document.getElementById("root"));
 };
 
-initialize();
+initialize().catch(console.error);

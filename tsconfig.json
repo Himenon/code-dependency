@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["dom", "esnext"],
+    "types": ["node", "jest"],
     "experimentalDecorators": true,
     "baseUrl": ".",
     "removeComments": true,
@@ -12,6 +13,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -22,6 +24,8 @@
     "declarationMap": false,
     "sourceMap": false,
     "incremental": true,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
     "esModuleInterop": true,
     "composite": true
   },

@@ -7,6 +7,8 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import CopyPlugin from "copy-webpack-plugin";
+import resolvePkg from "resolve-pkg";
 
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
@@ -16,9 +18,27 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
+const pkg = require("../package.json");
+
+export const find = (searchPath: string) => {
+  const result = resolvePkg(searchPath);
+  if (result) {
+    return result;
+  }
+  throw new Error(`Not found: ${searchPath}`);
+};
+
+export const generatePublicPath = (isProduction: boolean): string => {
+  if (isProduction) {
+    return pkg.homepage;
+  }
+  return "http://localhost:9000";
+};
 
 export const generateConfig = (isProduction: boolean): webpack.Configuration => {
   const isCI = process.env.CI;
+  const publicPath = generatePublicPath(isProduction);
+
   const tsLoader: webpack.RuleSetUse = {
     loader: "ts-loader",
     options: {
@@ -152,13 +172,20 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new ManifestPlugin(),
       new webpack.DefinePlugin({
         "process.env.isProduction": JSON.stringify(isProduction),
-        "process.env.PUBLIC_PATH": JSON.stringify(""),
+        "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
         "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
       }),
+      new CopyPlugin([
+        { to: "scripts", from: find("react-dom/umd/react-dom.production.min.js") },
+        { to: "scripts", from: find("react/umd/react.production.min.js") },
+        { to: "scripts", from: find("viz.js/viz.js") },
+        { to: "scripts", from: find("viz.js/full.render.js") },
+      ]),
     ].filter(Boolean),
     output: {
       filename: "scripts/[name].js",
       path: path.resolve(__dirname, "../dist"),
+      publicPath: undefined,
     },
     externals: {
       react: "React",

@@ -1,7 +1,7 @@
 {
   "name": "@code-dependency/view",
   "version": "0.1.0",
-  "homepage": "https://github.com/Himenon/code-dependency#readme",
+  "homepage": "https://pages.github.com/Himenon/code-dependency",
   "bugs": "https://github.com/Himenon/code-dependency/issues",
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@types/clean-webpack-plugin": "^0.1.3",
-    "@types/cpx": "^1.5.1",
+    "@types/copy-webpack-plugin": "^5.0.0",
     "@types/gh-pages": "^2.0.1",
     "@types/html-webpack-plugin": "^3.2.1",
     "@types/mini-css-extract-plugin": "^0.9.0",
@@ -61,8 +61,8 @@
     "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.0.3",
     "conventional-changelog-angular-all": "^1.7.0",
+    "copy-webpack-plugin": "^5.1.1",
     "core-js": "3",
-    "cpx": "^1.5.0",
     "cross-env": "^6.0.3",
     "css-loader": "^3.4.0",
     "dependency-cruiser": "^6.1.0",

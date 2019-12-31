@@ -2,7 +2,10 @@
 import { createServer } from "./server";
 
 const main = async () => {
-  await createServer();
+  const server = await createServer();
+
+  console.log("Run: http://localhost:3000");
+  server.listen(3000);
 };
 
 main().catch(error => {

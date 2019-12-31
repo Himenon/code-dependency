@@ -15,6 +15,7 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
@@ -168,6 +169,12 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
         ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
         "full.render.js": "scripts/full.render.js",
+        meta: {
+          description: "visualize code dependency with graphviz.",
+        },
+      }),
+      new ScriptExtHtmlWebpackPlugin({
+        defaultAttribute: "async",
       }),
       new ManifestPlugin(),
       new webpack.DefinePlugin({

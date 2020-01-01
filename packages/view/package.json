@@ -17,11 +17,13 @@
   "main": "./lib/application.lib.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "yarn clean && cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 yarn ts ./scripts/build.ts && yarn build:lib",
+    "build": "yarn clean && cross-env NODE_ENV=production yarn build:webpack && yarn build:lib",
     "build:lib": "tsc -p tsconfig.json --emitDeclarationOnly",
+    "build:webpack": "yarn ts ./scripts/build.ts",
     "clean": "rimraf ./lib ./build tsconfig.tsbuildinfo",
+    "develop": "cross-env NODE_ENV=development yarn ts ./scripts/develop.ts",
     "serve": "serve dist",
-    "start": "cross-env NODE_ENV=development yarn ts ./scripts/develop.ts",
+    "start": "yarn develop",
     "ts": "ts-node -P ./scripts/tsconfig.cli.json"
   },
   "dependencies": {

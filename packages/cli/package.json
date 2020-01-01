@@ -27,12 +27,13 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production yarn ts ./scripts/build.ts",
+    "build": "cross-env NODE_ENV=production yarn build:webpack",
     "build:lib": "tsc -b tsconfig.json",
+    "build:webpack": "webpack --config ./scripts/build.ts",
     "clean": "rimraf ./lib ./build",
-    "cli": "node ./lib/index.js -f ../map/src/index.ts",
-    "develop": "cross-env NODE_ENV=development webpack --config ./scripts/build.ts --watch",
+    "develop": "cross-env NODE_ENV=development yarn build:webpack --watch",
     "server": "nodemon ./dist/index.js",
+    "start": "run-p develop server",
     "ts": "ts-node -P tsconfig.json"
   },
   "dependencies": {

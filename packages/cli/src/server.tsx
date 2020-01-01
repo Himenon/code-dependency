@@ -7,6 +7,7 @@ import { Editor } from "@code-dependency/view";
 import { StaticRouter } from "react-router";
 import Viz from "viz.js";
 import { Module, render } from "viz.js/full.render.js";
+import { createTemplate } from "./template";
 
 export const find = (searchPath: string) => {
   const result = resolvePkg(searchPath);
@@ -21,11 +22,12 @@ const App = ({ url, context }: { url: string; context: {} }) => {
   const injection = {
     createSvgString: (source: string) => viz.renderString(source),
   };
-  return (
+  const body = (
     <StaticRouter location={url} context={context}>
       <Editor.Container {...injection} />
     </StaticRouter>
   );
+  return createTemplate({ body });
 };
 
 export const createServer = async () => {
@@ -50,7 +52,7 @@ export const createServer = async () => {
     }
   });
 
-  // app.use("/scripts", express.static(find("@code-dependency/view/dist/scripts"), { maxAge: "5000" }));
+  app.use("/scripts", express.static(find("@code-dependency/view/dist/scripts"), { maxAge: "5000" }));
 
   return app;
 };

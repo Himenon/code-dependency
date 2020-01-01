@@ -143,7 +143,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         }),
       !isLibrary &&
         new HtmlWebpackPlugin({
-          title: isProduction ? "Production" : "Development",
+          title: "@code-dependency/view",
           template: "public/index.html",
           React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
           ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",

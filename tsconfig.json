@@ -28,6 +28,7 @@
     "noUnusedParameters": false,
     "preserveConstEnums": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "composite": true
   },
   "exclude": ["./node_modules"],

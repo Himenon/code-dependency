@@ -31,7 +31,8 @@
     "build:lib": "tsc -b tsconfig.json",
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../map/src/index.ts",
-    "develop": "yarn ts --files src/index.ts",
+    "develop": "cross-env NODE_ENV=development webpack --config ./scripts/build.ts --watch",
+    "server": "nodemon ./dist/index.js",
     "ts": "ts-node -P tsconfig.json"
   },
   "dependencies": {

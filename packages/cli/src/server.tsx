@@ -23,7 +23,7 @@ const App = ({ url, context }: { url: string; context: {} }) => {
   };
   return (
     <StaticRouter location={url} context={context}>
-      <Editor.Container />
+      <Editor.Container {...injection} />
     </StaticRouter>
   );
 };

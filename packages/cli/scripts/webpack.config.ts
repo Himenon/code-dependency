@@ -2,6 +2,7 @@ import * as path from "path";
 import * as webpack from "webpack";
 
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
@@ -45,6 +46,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           ReactDOM: appPath("../../node_modules/react-dom"),
         },
       },
+      externals: [nodeExternals()],
       module: {
         rules: [
           {

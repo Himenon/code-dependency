@@ -6,13 +6,11 @@ interface GraphvizViewerProps extends React.DetailedHTMLProps<React.HTMLAttribut
 
 const GraphvizViewer = ({ source, ...props }: GraphvizViewerProps) => {
   return (
-    <div>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: source,
-        }}
-      />
-    </div>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: source,
+      }}
+    />
   );
 };
 

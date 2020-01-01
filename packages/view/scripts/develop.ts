@@ -22,6 +22,8 @@ const main = async () => {
     compress: true,
     before: (app: express.Application, _server: any) => {
       app.use("/scripts/full.render.js", express.static(find("viz.js/full.render.js")));
+      app.use("/scripts/react.development.js", express.static(find("react/umd/react.development.js")));
+      app.use("/scripts/react-dom.development.js", express.static(find("react-dom/umd/react-dom.development.js")));
     },
   });
   server.listen(9000);

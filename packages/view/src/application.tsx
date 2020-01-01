@@ -8,6 +8,7 @@ const initialize = async () => {
   const viz = new Viz({ workerURL: process.env.workerURL });
   const props: ServerSideRenderingProps = {
     state: {
+      filePathList: [],
       graphvizSource: await viz.renderString("digraph { a -> b }"),
     },
     injection: {

@@ -1,2 +1,1 @@
-import * as LocalStorage from "./LocalStorage/Repository";
-export { LocalStorage };
+console.log("hey!");

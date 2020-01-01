@@ -145,8 +145,8 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         new HtmlWebpackPlugin({
           title: "@code-dependency/view",
           template: "public/index.html",
-          React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
-          ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
+          React: isProduction ? "scripts/react.production.min.js" : "scripts/react.development.js",
+          ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "scripts/react-dom.development.js",
           "full.render.js": "scripts/full.render.js",
           meta: {
             description: "visualize code dependency with graphviz.",

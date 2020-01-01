@@ -1,3 +1,6 @@
+import * as FileTree from "./FileTree/FileTree";
+export { FileTree };
+
 import * as Editor from "./Editor/Editor";
 export { Editor };
 

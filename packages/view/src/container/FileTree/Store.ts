@@ -33,6 +33,9 @@ const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFuncti
     basename: path.basename(filePathObject.source),
     children: path.basename(filePathObject.source),
     level: depth(filePathObject.source),
+    onClick: () => {
+      updateKey(filePathObject.source);
+    },
   };
 };
 
@@ -93,9 +96,10 @@ export const generateFolderTree = (
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
   const onClick = (nextSource: string) => {
-    console.log(nextSource);
+    domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource });
   };
-  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, undefined);
+  const name = domainStores.graphviz.state.currentSelectedPath;
+  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, name ? { name } : undefined);
   return {
     rootDirectory,
   };

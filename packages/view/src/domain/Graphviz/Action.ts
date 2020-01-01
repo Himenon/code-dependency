@@ -5,6 +5,11 @@ export interface UpdateGraphvizSource {
   graphvizSource: string;
 }
 
-export type ActionTypes = UpdateGraphvizSource;
+export interface UpdateSelectedFilePath {
+  type: "UPDATE_SELECTED_FILE_PATH";
+  filePath: string;
+}
+
+export type ActionTypes = UpdateGraphvizSource | UpdateSelectedFilePath;
 
 export type Dispatch = React.Dispatch<ActionTypes>;

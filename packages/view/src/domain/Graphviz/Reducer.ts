@@ -6,6 +6,9 @@ export const reducer = (state: State, action: ActionTypes): State => {
     case "UPDATE_GRAPHVIZ_SOURCE": {
       return { ...state, source: state.source };
     }
+    case "UPDATE_SELECTED_FILE_PATH": {
+      return { ...state, currentSelectedPath: action.filePath };
+    }
     default:
       return state;
   }

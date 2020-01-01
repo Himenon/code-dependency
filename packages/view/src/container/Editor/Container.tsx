@@ -10,12 +10,17 @@ const generateProps = (store: Store): Editor.Props => {
   return {
     fileTree: FileTree.generateProps(store.fileTree),
     graphvizViewer: GraphvizViewer.generateProps(store.graphvizViewer),
+    current: store.current || "no selected",
   };
 };
 
 export const Container = (props: ServerSideRenderingProps) => {
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
-  const reducers = Domain.Graphviz.createReducers({ source: props.state.graphvizSource, filePathList: props.state.filePathList });
+  const reducers = Domain.Graphviz.createReducers({
+    source: props.state.graphvizSource,
+    filePathList: props.state.filePathList,
+    currentSelectedPath: undefined,
+  });
   const domainStores: Domain.Graphviz.Stores = {
     graphviz: createReducer(React.useReducer(...reducers.graphviz)),
   };

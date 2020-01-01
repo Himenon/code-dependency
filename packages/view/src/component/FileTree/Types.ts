@@ -1,4 +1,4 @@
-export type Anchor = JSX.IntrinsicElements["a"];
+export type Anchor = JSX.IntrinsicElements["p"];
 export type List = JSX.IntrinsicElements["li"];
 
 export interface FileItem extends Anchor {

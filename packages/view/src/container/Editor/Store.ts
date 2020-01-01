@@ -4,6 +4,7 @@ import * as FileTree from "../FileTree";
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
   return {
+    current: domainStores.graphviz.state.currentSelectedPath,
     fileTree: FileTree.generateStore(domainStores),
     graphvizViewer: GraphvizViewer.generateStore(domainStores),
   };

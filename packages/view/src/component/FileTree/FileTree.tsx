@@ -43,7 +43,7 @@ const DirectoryWrap = ({ directory, element }: { directory: DirectoryItem; eleme
 };
 
 const FileItemComponent = ({ type, path, basename, level, ...props }: FileItem): React.ReactElement<any> => {
-  return <a href="#" {...props} />;
+  return <p {...props} />;
 };
 
 const createDirectoryItem = ({ type, path, items, ...props }: DirectoryItem): React.ReactFragment => {

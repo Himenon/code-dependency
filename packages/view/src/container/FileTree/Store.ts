@@ -3,8 +3,9 @@ import { FileTree } from "@app/component";
 import * as path from "path";
 import { FilePathObject } from "@app/interface";
 import { depth } from "./depth";
+import { getGraph } from "@app/infra";
 
-type UpdateKeyFunction = (key: string) => void;
+type UpdateKeyFunction = (key: string) => Promise<void>;
 
 interface FlatFileMap {
   [dirname: string]: FileTree.FileItem[] | undefined;
@@ -33,8 +34,8 @@ const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFuncti
     basename: path.basename(filePathObject.source),
     children: path.basename(filePathObject.source),
     level: depth(filePathObject.source),
-    onClick: () => {
-      updateKey(filePathObject.source);
+    onClick: async () => {
+      await updateKey(filePathObject.source);
     },
   };
 };
@@ -95,8 +96,9 @@ export const generateFolderTree = (
 };
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
-  const onClick = (nextSource: string) => {
-    domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource });
+  const onClick = async (nextSource: string) => {
+    const res = await getGraph({ path: nextSource });
+    domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: res.data.element });
   };
   const name = domainStores.graphviz.state.currentSelectedPath;
   const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, name ? { name } : undefined);

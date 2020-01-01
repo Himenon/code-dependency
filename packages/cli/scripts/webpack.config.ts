@@ -40,7 +40,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
       plugins: [new FriendlyErrorsWebpackPlugin()],
       target: "node",
       resolve: {
-        extensions: [".js", ".ts", ".tsx"],
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".mjs"],
         alias: {
           React: appPath("../../node_modules/react"),
           ReactDOM: appPath("../../node_modules/react-dom"),
@@ -53,6 +53,10 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
             test: /\.tsx?$/,
             exclude: [/__tests__/, /node_modules/],
             loaders: [babelLoader, tsLoader],
+          },
+          {
+            test: /\.mjs$/,
+            type: "javascript/auto",
           },
         ],
       },

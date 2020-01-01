@@ -8,6 +8,7 @@ export interface UpdateGraphvizSource {
 export interface UpdateSelectedFilePath {
   type: "UPDATE_SELECTED_FILE_PATH";
   filePath: string;
+  graphvizSource: string;
 }
 
 export type ActionTypes = UpdateGraphvizSource | UpdateSelectedFilePath;

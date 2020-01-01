@@ -8,6 +8,10 @@ import { StaticRouter } from "react-router";
 import Viz from "viz.js";
 import { Module, render } from "viz.js/full.render.js";
 import { createTemplate } from "./template";
+import { createApiResponse } from "./api";
+import { gather } from "./gather";
+import * as path from "path";
+import cors from "cors";
 
 export const find = (searchPath: string) => {
   const result = resolvePkg(searchPath);
@@ -25,6 +29,7 @@ const createApplication = async ({ url, context }: { url: string; context: {} })
   const props = {
     state: {
       graphvizSource: await viz.renderString("digraph { server -> front }"),
+      filePathList: [],
     },
     injection,
   };
@@ -38,6 +43,12 @@ const createApplication = async ({ url, context }: { url: string; context: {} })
 
 export const createServer = async () => {
   const app = express();
+
+  app.use(
+    cors({
+      origin: "*",
+    }),
+  );
 
   app.use(
     compression({
@@ -59,6 +70,19 @@ export const createServer = async () => {
   });
 
   app.use("/scripts", express.static(find("@code-dependency/view/dist/scripts"), { maxAge: "5000" }));
+
+  app.use("/api/paths", async (req, res) => {
+    const project = path.join(process.cwd(), "../view/src");
+    const pathList = await gather(project);
+    const data = createApiResponse(
+      pathList.map(p => ({
+        // TODO
+        source: path.relative(path.join(path.dirname(process.cwd()), "view"), p),
+      })),
+    );
+    res.json(data);
+    res.end();
+  });
 
   return app;
 };

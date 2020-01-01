@@ -1,5 +1,5 @@
 .caret {
-  cursor: pointer; 
+  cursor: pointer;
   user-select: none; /* Prevent text selection */
   &::before {
     content: "\25B6";
@@ -11,7 +11,7 @@
 }
 
 .caret-down::before {
-  transform: rotate(90deg); 
+  transform: rotate(90deg);
 }
 
 .nested {

@@ -135,7 +135,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       }),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
       new webpack.HotModuleReplacementPlugin(),
-      new CleanWebpackPlugin(),
+      isProduction && new CleanWebpackPlugin(),
       isProduction &&
         new MiniCssExtractPlugin({
           filename: "stylesheets/[name].[contenthash:8].css",

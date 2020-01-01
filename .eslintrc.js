@@ -4,6 +4,7 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module",
   },
+  plugins: ["react-hooks"],
   extends: ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
   rules: {
     "@typescript-eslint/no-floating-promises": 2,
@@ -28,6 +29,9 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "react/prop-types": 0,
     "@typescript-eslint/no-unnecessary-qualifier": 0,
+
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
   },
   settings: {
     react: {

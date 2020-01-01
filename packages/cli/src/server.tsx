@@ -5,7 +5,6 @@ import resolvePkg from "resolve-pkg";
 import ReactDOMServer from "react-dom/server";
 import { Editor } from "@code-dependency/view";
 import { StaticRouter } from "react-router";
-// import {} from "react-router-dom";
 import Viz from "viz.js";
 import { Module, render } from "viz.js/full.render.js";
 
@@ -17,16 +16,15 @@ export const find = (searchPath: string) => {
   throw new Error(`Not found: ${searchPath}`);
 };
 
-const generateHtml = async (url: string, context: {}) => {
+const App = ({ url, context }: { url: string; context: {} }) => {
   const viz = new Viz({ Module, render });
   const injection = {
     createSvgString: (source: string) => viz.renderString(source),
   };
-  console.log(injection);
-  ReactDOMServer.renderToString(
+  return (
     <StaticRouter location={url} context={context}>
       <Editor.Container />
-    </StaticRouter>,
+    </StaticRouter>
   );
 };
 
@@ -43,8 +41,8 @@ export const createServer = async () => {
 
   app.get("/", async (req, res) => {
     try {
-      const html = await generateHtml(req.url, {});
-      console.log({ html });
+      const props = { url: req.url, context: {} };
+      const html = ReactDOMServer.renderToString(<App {...props} />);
       res.send(html);
       res.end();
     } catch (error) {

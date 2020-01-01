@@ -27,6 +27,8 @@
     "lib": "lib"
   },
   "scripts": {
+    "build": "cross-env NODE_ENV=production yarn ts ./scripts/build.ts",
+    "build:lib": "tsc -b tsconfig.json",
     "clean": "rimraf ./lib ./build",
     "cli": "node ./lib/index.js -f ../map/src/index.ts",
     "develop": "yarn ts --files src/index.ts",

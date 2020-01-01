@@ -131,6 +131,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       new WebpackNotifierPlugin(),
       new ForkTsCheckerWebpackPlugin({
         memoryLimit: 8192,
+        useTypescriptIncrementalApi: true,
       }),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
       new webpack.HotModuleReplacementPlugin(),
@@ -179,6 +180,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       },
       isLibrary && nodeExternals(),
     ].filter(Boolean),
+    performance: { hints: false },
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".scss", ".json"],
       alias: {
@@ -188,8 +190,8 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/infra": appPath("./src/infra/index.ts"),
         "@app/interface": appPath("./src/interface/index.d.ts"),
         "@app/style": appPath("./src/style/index.ts"),
-        React: appPath("node_modules/react"),
-        ReactDOM: appPath("node_modules/react-dom"),
+        React: appPath("../../node_modules/react"),
+        ReactDOM: appPath("../../node_modules/react-dom"),
       },
     },
     module: {

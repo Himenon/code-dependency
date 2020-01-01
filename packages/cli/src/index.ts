@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { createServer } from "./server";
 
 const main = async () => {

@@ -7,7 +7,10 @@ const main = async () => {
   const libConfig = generateLibConfig(isProduction);
   const compiler = webpack([config, libConfig]);
   compiler.run(err => {
-    console.error(err);
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (err) {
+      console.error(err);
+    }
   });
 };
 

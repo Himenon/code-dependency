@@ -4,7 +4,7 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module",
   },
-  extends: ["plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
+  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
   rules: {
     "@typescript-eslint/no-floating-promises": 2,
     "@typescript-eslint/triple-slash-reference": [2, { path: "never", types: "never", lib: "never" }],
@@ -28,7 +28,23 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "react/prop-types": 0,
     "@typescript-eslint/no-unnecessary-qualifier": 0,
-    "@typescript-eslint/no-use-before-define": 1,
-    "@typescript-eslint/no-unnecessary-condition": 1,
+  },
+  settings: {
+    react: {
+      createClass: "createReactClass", // Regex for Component Factory to use,
+      pragma: "React", // Pragma to use, default to "React"
+      version: "detect", // React version. "detect" automatically picks the version you have installed.
+    },
+    propWrapperFunctions: [
+      // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+      "forbidExtraProps",
+      { property: "freeze", object: "Object" },
+      { property: "myFavoriteWrapper" },
+    ],
+    linkComponents: [
+      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+      "Hyperlink",
+      { name: "Link", linkAttribute: "to" },
+    ],
   },
 };

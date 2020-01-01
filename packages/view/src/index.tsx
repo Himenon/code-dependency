@@ -1,3 +1,5 @@
-import { createRouter } from "./router";
+import { Editor } from "@app/container";
+export { Editor };
 
-export { createRouter };
+import { RootRouter } from "./router";
+export { RootRouter };

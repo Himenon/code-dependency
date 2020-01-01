@@ -1,10 +1,11 @@
 import webpack from "webpack";
-import { generateConfig } from "./webpack.config";
+import { generateDistConfig, generateLibConfig } from "./configFactory";
 
 const main = async () => {
   const isProduction = process.env.NODE_ENV === "production";
-  const config = generateConfig(isProduction);
-  const compiler = webpack(config);
+  const config = generateDistConfig(isProduction);
+  const libConfig = generateLibConfig(isProduction);
+  const compiler = webpack([config, libConfig]);
   compiler.run(err => {
     console.error(err);
   });

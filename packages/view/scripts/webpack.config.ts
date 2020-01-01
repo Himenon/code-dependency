@@ -6,16 +6,17 @@ import ManifestPlugin from "webpack-manifest-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+// import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import CopyPlugin from "copy-webpack-plugin";
 import resolvePkg from "resolve-pkg";
+import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
 
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+// const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
+const nodeExternals = require("webpack-node-externals");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
@@ -36,8 +37,16 @@ export const generatePublicPath = (isProduction: boolean): string => {
   return "http://localhost:9000";
 };
 
-export const generateConfig = (isProduction: boolean): webpack.Configuration => {
-  const isCI = process.env.CI;
+export interface Option {
+  output: webpack.Output;
+  isProduction: boolean;
+  isLibrary: boolean;
+  entry: webpack.Entry;
+  splitChunks: webpack.Options.Optimization["splitChunks"];
+}
+
+export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): webpack.Configuration => {
+  // const isCI = process.env.CI;
   const publicPath = generatePublicPath(isProduction);
 
   const tsLoader: webpack.RuleSetUse = {
@@ -90,9 +99,9 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
 
   return {
     mode: isProduction ? "production" : "development",
-    target: "web",
+    target: isLibrary ? "node" : "web",
     optimization: {
-      minimize: isProduction,
+      minimize: isLibrary ? false : isProduction,
       runtimeChunk: false,
       minimizer: [
         new TerserPlugin({
@@ -111,45 +120,13 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
           canPrint: true,
         }),
       ],
-      splitChunks: {
-        chunks: "initial",
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          lib: {
-            name: "lib",
-            chunks: "initial",
-            filename: "scripts/lib.[chunkhash:10].js",
-            minChunks: 2,
-            test: ({ resource: filePath, context: dirPath }, chunk) => {
-              return [/src/].some(pattern => pattern.test(filePath));
-            },
-            enforce: true,
-          },
-          vendor: {
-            name: "vendor",
-            chunks: "initial",
-            filename: "scripts/vendor.[chunkhash:10].js",
-            test: /node_modules/,
-            enforce: true,
-          },
-          styles: {
-            name: "styles",
-            filename: "scripts/styles.[chunkhash:10].js",
-            test: /\.scss$/,
-            chunks: "all",
-            enforce: true,
-          },
-        },
-      },
+      splitChunks: option.splitChunks,
     },
-    entry: {
-      application: ["core-js", "regenerator-runtime/runtime", "./src/application.tsx"],
-    },
-    devtool: isProduction ? "inline-source-map" : undefined,
+    entry: option.entry,
+    devtool: isProduction ? undefined : "inline-source-map",
     plugins: [
-      isProduction && !isCI && new BundleAnalyzerPlugin(),
-      new ProgressBarPlugin(),
+      // isProduction && isLibrary && new BundleAnalyzerPlugin(),
+      // new ProgressBarPlugin(),
       new FriendlyErrorsWebpackPlugin(),
       new WebpackNotifierPlugin(),
       new ForkTsCheckerWebpackPlugin({
@@ -163,41 +140,45 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
           filename: "stylesheets/[name].[contenthash:8].css",
           chunkFilename: "stylesheets/[name].[contenthash:8].chunk.css",
         }),
-      new HtmlWebpackPlugin({
-        title: isProduction ? "Production" : "Development",
-        template: "public/index.html",
-        React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
-        ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
-        "full.render.js": "scripts/full.render.js",
-        meta: {
-          description: "visualize code dependency with graphviz.",
-        },
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        defaultAttribute: "async",
-      }),
-      new ManifestPlugin(),
+      !isLibrary &&
+        new HtmlWebpackPlugin({
+          title: isProduction ? "Production" : "Development",
+          template: "public/index.html",
+          React: isProduction ? "scripts/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
+          ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
+          "full.render.js": "scripts/full.render.js",
+          meta: {
+            description: "visualize code dependency with graphviz.",
+          },
+        }),
+      !isLibrary &&
+        new ScriptExtHtmlWebpackPlugin({
+          defaultAttribute: "async",
+        }),
+      !isLibrary && new ManifestPlugin(),
       new webpack.DefinePlugin({
         "process.env.isProduction": JSON.stringify(isProduction),
+        "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
         "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
+        __isBrowser__: "false", // https://tylermcginnis.com/react-router-server-rendering/
       }),
-      new CopyPlugin([
-        { to: "scripts", from: find("react-dom/umd/react-dom.production.min.js") },
-        { to: "scripts", from: find("react/umd/react.production.min.js") },
-        { to: "scripts", from: find("viz.js/viz.js") },
-        { to: "scripts", from: find("viz.js/full.render.js") },
-      ]),
+      !isLibrary &&
+        new CopyPlugin([
+          { to: "scripts", from: find("react-dom/umd/react-dom.production.min.js") },
+          { to: "scripts", from: find("react/umd/react.production.min.js") },
+          { to: "scripts", from: find("viz.js/viz.js") },
+          { to: "scripts", from: find("viz.js/full.render.js") },
+        ]),
     ].filter(Boolean),
-    output: {
-      filename: "scripts/[name].js",
-      path: path.resolve(__dirname, "../dist"),
-      publicPath: undefined,
-    },
-    externals: {
-      react: "React",
-      "react-dom": "ReactDOM",
-    },
+    output: option.output,
+    externals: [
+      {
+        react: "React",
+        "react-dom": "ReactDOM",
+      },
+      isLibrary && nodeExternals(),
+    ].filter(Boolean),
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".scss", ".json"],
       alias: {
@@ -205,6 +186,7 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         "@app/container": appPath("./src/container/index.ts"),
         "@app/domain": appPath("./src/domain/index.ts"),
         "@app/infra": appPath("./src/infra/index.ts"),
+        "@app/interface": appPath("./src/interface/index.d.ts"),
         "@app/style": appPath("./src/style/index.ts"),
         React: appPath("node_modules/react"),
         ReactDOM: appPath("node_modules/react-dom"),

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["dom", "esnext"],
+    "module": "commonjs",
     "types": ["node", "jest"],
     "experimentalDecorators": true,
     "baseUrl": ".",
@@ -30,6 +31,19 @@
     "composite": true
   },
   "exclude": ["./node_modules"],
-  "ordered-imports": [true, { "import-sources-order": "any", "named-imports-order": "case-insensitive" }],
-  "references": [{ "path": "view" }, { "path": "cli" }]
+  "ordered-imports": [
+    true,
+    {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }
+  ],
+  "references": [
+    {
+      "path": "view"
+    },
+    {
+      "path": "cli"
+    }
+  ]
 }

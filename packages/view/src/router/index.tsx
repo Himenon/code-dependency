@@ -1,16 +1,16 @@
 import React from "react";
-import { Switch, Route, HashRouter as Router } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { Editor } from "@app/container";
+import { InjectionMethod } from "@app/interface";
 
-export const createRouter = async () => {
-  const EditorContainer = await Editor.createContainer();
-  return () => (
-    <Router hashType="noslash">
+export const RootRouter = (_props: InjectionMethod) => {
+  return (
+    <BrowserRouter>
       <Switch>
         <Route key="/" path="/" exact={true} basename={process.env.PUBLIC_PATH}>
-          <EditorContainer />
+          <Editor.Container />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 };

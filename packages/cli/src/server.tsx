@@ -1,6 +1,13 @@
+import * as React from "react";
 import express from "express";
 import compression from "compression";
 import resolvePkg from "resolve-pkg";
+import ReactDOMServer from "react-dom/server";
+import { Editor } from "@code-dependency/view";
+import { StaticRouter } from "react-router";
+// import {} from "react-router-dom";
+import Viz from "viz.js";
+import { Module, render } from "viz.js/full.render.js";
 
 export const find = (searchPath: string) => {
   const result = resolvePkg(searchPath);
@@ -8,6 +15,19 @@ export const find = (searchPath: string) => {
     return result;
   }
   throw new Error(`Not found: ${searchPath}`);
+};
+
+const generateHtml = async (url: string, context: {}) => {
+  const viz = new Viz({ Module, render });
+  const injection = {
+    createSvgString: (source: string) => viz.renderString(source),
+  };
+  console.log(injection);
+  ReactDOMServer.renderToString(
+    <StaticRouter location={url} context={context}>
+      <Editor.Container />
+    </StaticRouter>,
+  );
 };
 
 export const createServer = async () => {
@@ -21,14 +41,18 @@ export const createServer = async () => {
     }),
   );
 
-  /** Debug only */
-  // app.get("/api", async (req: express.Request, res: express.Response) => {
-  //   res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  //   res.end();
-  // });
+  app.get("/", async (req, res) => {
+    try {
+      const html = await generateHtml(req.url, {});
+      console.log({ html });
+      res.send(html);
+      res.end();
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
-  app.use("/", express.static(find("@code-dependency/view/dist"), { maxAge: "5000" }));
+  // app.use("/scripts", express.static(find("@code-dependency/view/dist/scripts"), { maxAge: "5000" }));
 
   return app;
 };

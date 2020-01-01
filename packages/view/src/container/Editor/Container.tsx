@@ -10,14 +10,12 @@ const generateProps = (store: Store): Editor.Props => {
   };
 };
 
-export const createContainer = async () => {
+export const Container = () => {
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
-  const reducers = await Domain.Graphviz.createReducers();
-  return () => {
-    const domainStores: Domain.Graphviz.Stores = {
-      graphviz: createReducer(React.useReducer(...reducers.graphviz)),
-    };
-    const viewStore = generateStore(domainStores);
-    return <Editor.Component {...generateProps(viewStore)} />;
+  const reducers = Domain.Graphviz.createReducers();
+  const domainStores: Domain.Graphviz.Stores = {
+    graphviz: createReducer(React.useReducer(...reducers.graphviz)),
   };
+  const viewStore = generateStore(domainStores);
+  return <Editor.Component {...generateProps(viewStore)} />;
 };

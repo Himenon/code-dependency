@@ -1,12 +1,18 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings"],
   "compilerOptions": {
+    "module": "commonjs",
     "baseUrl": ".",
     "outDir": "lib",
     "rootDir": "src",
-    "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo"
+    "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo",
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./typings"]
   },
-  "references": [{ "path": "../view" }],
+  "references": [
+    {
+      "path": "../view"
+    }
+  ],
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

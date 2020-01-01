@@ -17,6 +17,7 @@
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
     "clean:cache": "rimraf buildcache",
     "clean:lib": "yarn run build:lib --clean && lerna run clean:lib",
+    "commit": "npx git-cz",
     "cooldown": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts",
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",

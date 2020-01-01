@@ -1,5 +1,5 @@
 import webpack from "webpack";
-import { generateConfig } from "./webpack.config";
+import { generateDistConfig } from "./configFactory";
 import webpackDevServer from "webpack-dev-server";
 import express from "express";
 import resolvePkg from "resolve-pkg";
@@ -14,7 +14,7 @@ const find = (searchPath: string) => {
 
 const main = async () => {
   const isProduction = process.env.NODE_ENV === "production";
-  const config = generateConfig(isProduction);
+  const config = generateDistConfig(isProduction);
   const compiler = webpack(config);
   const server = new webpackDevServer(compiler as any, {
     hot: true,

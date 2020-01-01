@@ -1,1 +1,1 @@
-export { createContainer } from "./Container";
+export { Container } from "./Container";

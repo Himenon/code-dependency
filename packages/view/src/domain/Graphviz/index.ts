@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State, DEFAULT_STATE } from "./State";
 import { Reducer, createReducer } from "./Reducer";
 import { Dispatch } from "./Action";
 
@@ -13,8 +13,8 @@ export interface Stores {
   };
 }
 
-export const createReducers = async (): Promise<Reducers> => {
+export const createReducers = (state: State = DEFAULT_STATE): Reducers => {
   return {
-    graphviz: await createReducer(),
+    graphviz: createReducer(state),
   };
 };

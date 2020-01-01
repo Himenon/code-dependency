@@ -3,5 +3,5 @@ export interface State {
 }
 
 export const DEFAULT_STATE: State = {
-  source: "digraph { a -> b }",
+  source: "",
 };

@@ -17,14 +17,20 @@ export const find = (searchPath: string) => {
   throw new Error(`Not found: ${searchPath}`);
 };
 
-const App = ({ url, context }: { url: string; context: {} }) => {
+const createApplication = async ({ url, context }: { url: string; context: {} }) => {
   const viz = new Viz({ Module, render });
   const injection = {
     createSvgString: (source: string) => viz.renderString(source),
   };
+  const props = {
+    state: {
+      graphvizSource: await viz.renderString("digraph { server -> front }"),
+    },
+    injection,
+  };
   const body = (
     <StaticRouter location={url} context={context}>
-      <Editor.Container {...injection} />
+      <Editor.Container {...props} />
     </StaticRouter>
   );
   return createTemplate({ body });
@@ -44,7 +50,7 @@ export const createServer = async () => {
   app.get("/", async (req, res) => {
     try {
       const props = { url: req.url, context: {} };
-      const html = ReactDOMServer.renderToString(<App {...props} />);
+      const html = ReactDOMServer.renderToString(await createApplication(props));
       res.send(html);
       res.end();
     } catch (error) {

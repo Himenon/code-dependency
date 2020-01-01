@@ -3,7 +3,7 @@ import * as React from "react";
 import { generateStore, Store } from "./Store";
 import { Editor } from "@app/component";
 import * as GraphvizViewer from "../GraphvizViewer";
-import { InjectionMethod } from "@app/interface";
+import { ServerSideRenderingProps } from "@app/interface";
 
 const generateProps = (store: Store): Editor.Props => {
   return {
@@ -11,9 +11,9 @@ const generateProps = (store: Store): Editor.Props => {
   };
 };
 
-export const Container = (_props: InjectionMethod) => {
+export const Container = (props: ServerSideRenderingProps) => {
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
-  const reducers = Domain.Graphviz.createReducers();
+  const reducers = Domain.Graphviz.createReducers({ source: props.state.graphvizSource });
   const domainStores: Domain.Graphviz.Stores = {
     graphviz: createReducer(React.useReducer(...reducers.graphviz)),
   };

@@ -20,74 +20,47 @@ const filePathObjectList: FilePathObject[] = [
   },
 ];
 
-const directoryResult: FileTree.DirectoryItem = {
-  type: "directory",
-  path: ".",
-  basename: ".",
-  level: 0,
-  children: ".",
+const directoryResult: FileTree.EuiSideNavItem = {
+  id: ".",
+  name: "",
   items: [
     {
-      type: "directory",
-      path: "./a",
-      basename: "a",
-      children: "a",
-      level: 1,
+      id: "./a",
+      name: "a",
       items: [
         {
-          type: "directory",
-          path: "./a/b",
-          basename: "b",
-          children: "b",
-          level: 2,
+          id: "./a/b",
+          name: "b",
           items: [
             {
-              type: "directory",
-              path: "./a/b/c",
-              basename: "c",
-              children: "c",
-              level: 3,
+              id: "./a/b/c",
+              name: "c",
               items: [
                 {
-                  type: "file",
-                  path: "./a/b/c/index.ts",
-                  basename: "index.ts",
-                  children: "index.ts",
-                  level: 4,
+                  id: "./a/b/c/index.ts",
+                  name: "index.ts",
                 },
               ],
             },
             {
-              type: "file",
-              path: "./a/b/index.ts",
-              basename: "index.ts",
-              children: "index.ts",
-              level: 3,
+              id: "./a/b/index.ts",
+              name: "index.ts",
             },
           ],
         },
         {
-          type: "file",
-          path: "./a/index.ts",
-          basename: "index.ts",
-          children: "index.ts",
-          level: 2,
+          id: "./a/index.ts",
+          name: "index.ts",
         },
       ],
     },
     {
-      type: "file",
-      path: "./app.ts",
-      basename: "app.ts",
-      children: "app.ts",
-      level: 1,
+      id: "./app.ts",
+      name: "app.ts",
     },
     {
-      type: "file",
-      path: "./index.ts",
-      basename: "index.ts",
-      children: "index.ts",
-      level: 1,
+      id: "./index.ts",
+      name: "index.ts",
     },
   ],
 };

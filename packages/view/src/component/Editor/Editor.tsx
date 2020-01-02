@@ -14,7 +14,9 @@ const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) =>
   return (
     <EuiPage>
       <EuiPageSideBar>
-        <FileTree.Component {...fileTree} />
+        <div style={{ position: "absolute", width: 192, bottom: 0, top: 32, overflowY: "scroll" }}>
+          <FileTree.Component {...fileTree} />
+        </div>
       </EuiPageSideBar>
       <EuiPageBody>
         <EuiPageHeader>

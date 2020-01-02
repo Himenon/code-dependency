@@ -71,9 +71,9 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       options: {
         localsConvention: "camelCase",
         importLoaders: 2,
-        modules: {
-          localIdentName: "___[local]___[hash:base64:5]",
-        },
+        // modules: {
+        // localIdentName: "___[local]___[hash:base64:5]",
+        // },
       },
     },
     {
@@ -192,6 +192,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/style": appPath("./src/style/index.ts"),
         React: appPath("../../node_modules/react"),
         ReactDOM: appPath("../../node_modules/react-dom"),
+        "~@elastic/eui": find("@elastic/eui"),
       },
     },
     module: {
@@ -204,6 +205,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         {
           test: /\.scss$/,
           loaders: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", ...cssLoaders].filter(Boolean) as webpack.RuleSetUse,
+          exclude: [/@elasticg\/eui/g],
         },
         {
           test: /\.js$/,

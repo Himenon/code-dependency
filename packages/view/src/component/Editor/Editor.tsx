@@ -20,7 +20,7 @@ const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) =>
       </EuiPageSideBar>
       <EuiPageBody>
         <EuiPageHeader>
-          <h1>Graphviz Editor | {current}</h1>
+          <h1>Path | {current}</h1>
         </EuiPageHeader>
         <EuiPageContent>
           <EuiPageContentBody>

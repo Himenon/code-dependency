@@ -17,12 +17,9 @@ const deleteItem = (arr: any[], value: any): void => {
 
 const generateDirectory = (directoryPath: string, basename: string, items: FileTree.EuiSideNavItem[]): FileTree.EuiSideNavItem => {
   return {
-    id: basename,
+    id: directoryPath,
     name: basename,
     items,
-    onClick: async () => {
-      console.log({ directoryPath });
-    },
   };
 };
 
@@ -30,9 +27,8 @@ const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFuncti
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
-    items: [],
-    onClick: async () => {
-      await updateKey(filePathObject.source);
+    updateKey: async (key: string) => {
+      await updateKey(key);
     },
   };
 };
@@ -47,10 +43,10 @@ const compareBasename = (a: FileTree.EuiSideNavItem, b: FileTree.EuiSideNavItem)
   if (!Array.isArray(a.items) && Array.isArray(b.items)) {
     return 1;
   }
-  if (a.name.toLowerCase() < b.name.toLowerCase()) {
+  if (a.id.toLowerCase() < b.id.toLowerCase()) {
     return -1;
   }
-  if (a.name.toLowerCase() > b.name.toLowerCase()) {
+  if (a.id.toLowerCase() > b.id.toLowerCase()) {
     return 1;
   }
   return 0;
@@ -74,11 +70,7 @@ const generateItems = (
     .sort(compareBasename);
 };
 
-export const generateFolderTree = (
-  filePathObjectList: FilePathObject[],
-  updateKey: UpdateKeyFunction,
-  current: { name: string } | undefined,
-): FileTree.EuiSideNavItem[] => {
+export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): FileTree.EuiSideNavItem[] => {
   const flatFileMap: FlatFileMap = {};
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
@@ -86,10 +78,16 @@ export const generateFolderTree = (
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(item);
   });
   const directories = Object.keys(flatFileMap);
-  const directoryPath = ".";
-  const basename = current ? current.name : path.basename(directoryPath);
-  deleteItem(directories, directoryPath);
-  return [generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap))];
+  const rootItems = directories
+    .filter(directory => {
+      return !!directory && directory === path.basename(directory);
+    })
+    .map(directory => {
+      deleteItem(directories, directory);
+      const items = generateItems(directory, directories, flatFileMap);
+      return generateDirectory(directory, path.basename(directory), items);
+    });
+  return [generateDirectory(".", "@code-dependency", rootItems)];
 };
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
@@ -97,8 +95,7 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
     const res = await getGraph({ path: nextSource });
     domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: res.data.element });
   };
-  const name = domainStores.graphviz.state.currentSelectedPath;
-  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, name ? { name } : undefined);
+  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);
   return {
     euiSideNavItems: rootDirectory,
   };

@@ -67,7 +67,7 @@ const directoryResult: FileTree.EuiSideNavItem = {
 
 describe("Store.ts", () => {
   test("generateFolderTree", () => {
-    const result = generateFolderTree(filePathObjectList, jest.fn(), undefined);
+    const result = generateFolderTree(filePathObjectList, jest.fn());
     // 関数を潰す
     expect(JSON.parse(JSON.stringify(result))).toEqual(directoryResult);
   });

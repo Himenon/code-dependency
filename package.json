@@ -10,12 +10,10 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "clean": "lerna clean",
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
     "commit": "npx git-cz",
-    "cooldown": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts",
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",
     "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md,scss}\"",

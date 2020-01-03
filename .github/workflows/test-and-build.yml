@@ -20,10 +20,7 @@ jobs:
       - name: yarn install, build, and test
         run: |
           yarn install --frozen-lockfile
-          yarn bootstrap
-          yarn setup
-          yarn lint
-          yarn build:lib --verbose
-          yarn test:ci
+          yarn build
+          yarn test
         env:
           CI: true

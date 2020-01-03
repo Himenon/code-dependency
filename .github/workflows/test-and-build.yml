@@ -19,7 +19,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          yarn install --force --frozen-lockfile
+          yarn install --ignore-optional --frozen-lockfile
           yarn build
           yarn test
         env:

@@ -10,21 +10,17 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "yarn run build:lib:dist && lerna run build && yarn run cooldown",
-    "build:lib": "tsc -b @build.txt",
-    "build:lib:dist": "yarn run clean:lib && yarn run warmup && yarn run build:lib --verbose && lerna run copy:style",
+    "build": "lerna run build",
+    "clean": "lerna clean",
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
-    "clean:cache": "rimraf buildcache",
-    "clean:lib": "yarn run build:lib --clean && lerna run clean:lib",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
-    "cooldown": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts",
+    "commit": "npx git-cz",
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",
-    "format": "lerna run format",
+    "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md,scss}\"",
     "generate:sample": "./bin/generate-sample.sh",
     "initialize": "run-s bootstrap clean:all setup build:lib",
-    "lint": "lerna run lint",
+    "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",
+    "lint:fix": "yarn lint --fix",
     "publish": "lerna publish from-package",
     "setup": "ts-node -P ./bin/tsconfig.json ./bin/setup.ts",
     "test": "lerna run test",
@@ -32,48 +28,58 @@
     "version": "lerna version",
     "warmup": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts dist"
   },
-  "dependencies": {
-    "lodash": "^4.17.11"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-conventional": "^7.5.0",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/commander": "^2.12.2",
     "@types/enhanced-resolve": "^3.0.6",
-    "@types/jest": "^24.0.11",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.1",
     "@types/recursive-readdir": "^2.2.0",
-    "@types/resolve": "^0.0.8",
+    "@types/resolve": "^1.14.0",
     "@types/typescript": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^1.6.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^1.6.0",
-    "@typescript-eslint/parser": "^1.6.0",
-    "codecov": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "cpx": "^1.5.0",
-    "dependency-cruiser": "^4.15.1",
-    "eslint": "^5.16.0",
-    "generate-changelog": "^1.7.1",
-    "husky": "^1.3.1",
-    "jest": "^24.7.1",
-    "jest-cli": "^24.7.1",
+    "dependency-cruiser": "^6.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "generate-changelog": "^1.8.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
     "json-stringify-pretty-compact": "^2.0.0",
-    "lerna": "^3.13.2",
-    "lint-staged": "^8.1.5",
+    "lerna": "^3.20.1",
+    "lint-staged": "^9.5.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.16.4",
-    "rimraf": "^2.6.3",
-    "sort-package-json": "^1.22.1",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.0.3",
-    "tslint": "^5.15.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-plugin-prettier": "^2.0.1",
-    "type-fest": "^0.4.1"
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "sort-package-json": "^1.32.2",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "type-fest": "^0.8.1"
   },
   "peerDependencies": {
-    "graceful-fs": "^4.1.2"
+    "graceful-fs": "^4.2.3"
+  },
+  "resolutions": {
+    "**/**/fsevents": "^1.2.9"
   },
   "publishConfig": {
     "access": "public"

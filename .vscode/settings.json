@@ -5,12 +5,14 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/coverage": true,
-    "**/lib": true,
-    "bin/*.js": true,
-    "packages/**/*.d.ts.map": true,
-    "packages/**/*.js": true,
-    "packages/view/scripts/**/*.d.ts": true,
-    "packages/view/config/**/*.d.ts": true
-  }
+    "**/coverage": true
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "prettier.configPath": "./.pretterrc",
+  "eslint.enable": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

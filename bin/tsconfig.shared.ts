@@ -9,6 +9,6 @@ export const updateDistributionSettings = () => {
   tsConfig.compilerOptions.sourceMap = isDistMode ? false : true;
   tsConfig.compilerOptions.declarationMap = isDistMode ? false : true;
   saveConfig(sharedSettings.tsSharedConfig, tsConfig);
-}
+};
 
 updateDistributionSettings();

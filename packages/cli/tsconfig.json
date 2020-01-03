@@ -1,19 +1,17 @@
 {
-  "extends": "../tsconfig.shared",
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "extends": "../../tsconfig",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings", "*.json", "**/*.json", "package.json"],
   "compilerOptions": {
-    "composite": true,
+    "module": "commonjs",
     "baseUrl": ".",
     "outDir": "lib",
-    "rootDir": "src",
-    "tsBuildInfoFile": "../../buildcache/cli/tsconfig.json.tsbuildinfo"
+    "rootDir": ".",
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./typings"]
   },
   "references": [
-    {"path": "../interfaces"},
-    {"path": "../resolver"},
-    {"path": "../converter"},
-    {"path": "../map"},
-    {"path": "../view"}
+    {
+      "path": "../view"
+    }
   ],
   "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
 }

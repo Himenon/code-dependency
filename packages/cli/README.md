@@ -1,6 +1,6 @@
 # @code-dependency/cli
 
-code-dependencyのライブラリを使用するためのコマンドラインツールです。
+code-dependency のライブラリを使用するためのコマンドラインツールです。
 
 **Quick Start**
 
@@ -43,7 +43,7 @@ code-dependency --static-dist /output/path --public-path /host/path
 ### 複数のプロジェクトを参照する
 
 `output/path/config.json`にプロジェクト名と相対パスを記述します。
-これを元にViewが切り替えメニューを生成します。
+これを元に View が切り替えメニューを生成します。
 
 ```json
 {

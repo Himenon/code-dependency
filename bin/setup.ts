@@ -12,6 +12,6 @@ const rewriteTsBuildInfoFile = () => {
     tsConfig.compilerOptions.tsBuildInfoFile = `../../buildcache/${name}/tsconfig.json.tsbuildinfo`;
     saveConfig(settings.tsConfig, tsConfig);
   });
-}
+};
 
-rewriteTsBuildInfoFile()
+rewriteTsBuildInfoFile();

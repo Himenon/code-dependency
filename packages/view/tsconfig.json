@@ -1,18 +1,25 @@
 {
-  "extends": "../tsconfig.shared",
+  "extends": "../../tsconfig",
   "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
     "outDir": "lib",
-    "rootDir": "src",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "lib": ["es2017", "es2016", "es2015", "es5", "dom"],
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
-    "lib": ["dom", "esnext"],
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./types"],
     "paths": {
-      "@app/domain": ["./src/domain"],
-      "@app/domain*": ["./src/domain*"],
-      "@app/types": ["./src/types"]
-    },
-    "tsBuildInfoFile": "../../buildcache/view/tsconfig.json.tsbuildinfo"
+      "@app/component": ["./src/component/index.ts"],
+      "@app/container": ["./src/container/index.ts"],
+      "@app/domain": ["./src/domain/index.ts"],
+      "@app/infra": ["./src/infra/index.ts"],
+      "@app/interface": ["./src/interface/index.ts"],
+      "@app/style": ["./src/style/index.ts"],
+      "@app/api": ["./src/api/index.ts"]
+    }
   },
-  "references": [{"path": "../interfaces"}, {"path": "../converter"}],
-  "include": ["src/*.ts", "src/*.tsx", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "./src/**/__tests__/*", "scripts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types"],
+  "exclude": ["node_modules"]
 }

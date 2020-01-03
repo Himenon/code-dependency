@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "module": "commonjs",
+    "types": ["node", "jest"],
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "removeComments": true,
+    "importHelpers": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noLib": false,
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "incremental": true,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "composite": true
+  },
+  "exclude": ["./node_modules"],
+  "ordered-imports": [
+    true,
+    {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }
+  ],
+  "references": [
+    {
+      "path": "view"
+    },
+    {
+      "path": "cli"
+    }
+  ]
+}

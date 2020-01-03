@@ -45,9 +45,7 @@
       "severity": "warn",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "core"
-        ],
+        "dependencyTypes": ["core"],
         "path": "^(punycode|domain|constants|sys|_linklist)$"
       }
     },
@@ -57,9 +55,7 @@
       "severity": "warn",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "deprecated"
-        ]
+        "dependencyTypes": ["deprecated"]
       }
     },
     {
@@ -80,9 +76,7 @@
         "pathNot": "\\.spec\\.(js|ts|ls|coffee|litcoffee|coffee\\.md)$"
       },
       "to": {
-        "dependencyTypes": [
-          "npm-dev"
-        ]
+        "dependencyTypes": ["npm-dev"]
       }
     },
     {
@@ -93,12 +87,7 @@
         "pathNot": "^node_modules"
       },
       "to": {
-        "dependencyTypes": [
-          "unknown",
-          "undetermined",
-          "npm-no-pkg",
-          "npm-unknown"
-        ]
+        "dependencyTypes": ["unknown", "undetermined", "npm-no-pkg", "npm-unknown"]
       }
     },
     {
@@ -107,9 +96,7 @@
       "comment": "nothing serious - but just check you have some serious try/ catches around the import/ requires of these",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "npm-optional"
-        ]
+        "dependencyTypes": ["npm-optional"]
       }
     },
     {
@@ -118,9 +105,7 @@
       "severity": "warn",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "npm-peer"
-        ]
+        "dependencyTypes": ["npm-peer"]
       }
     },
     {

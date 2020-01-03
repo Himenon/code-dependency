@@ -22,11 +22,8 @@
     "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
     "publish": "lerna publish from-package",
-    "setup": "ts-node -P ./bin/tsconfig.json ./bin/setup.ts",
     "test": "lerna run test",
-    "test:ci": "lerna run test:ci",
-    "version": "lerna version",
-    "warmup": "ts-node -P ./bin/tsconfig.json ./bin/tsconfig.shared.ts dist"
+    "version_up": "lerna version --yes"
   },
   "husky": {
     "hooks": {

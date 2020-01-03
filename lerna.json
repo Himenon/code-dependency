@@ -1,5 +1,10 @@
 {
   "command": {
+    "version": {
+      "conventionalCommits": true,
+      "changelogPreset": "angular-all",
+      "message": "chore(release): publish [SKIP CI]"
+    },
     "create": {
       "license": "MIT"
     },
@@ -10,7 +15,7 @@
     }
   },
   "packages": ["packages/*"],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",
   "useWorkspaces": true

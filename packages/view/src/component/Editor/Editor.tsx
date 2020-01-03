@@ -5,8 +5,8 @@ import { EuiPageHeader, EuiPageContent, EuiPageContentBody, EuiPage, EuiPageSide
 import "./editor.scss";
 
 interface EditorProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  graphvizViewer: GraphvizViewer.Props;
-  fileTree: FileTree.Props;
+  graphvizViewer?: GraphvizViewer.Props;
+  fileTree?: FileTree.Props;
   current: string;
 }
 
@@ -15,7 +15,7 @@ const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) =>
     <EuiPage>
       <EuiPageSideBar>
         <div style={{ position: "absolute", width: 192, bottom: 0, top: 32, overflowY: "scroll" }}>
-          <FileTree.Component {...fileTree} />
+          {fileTree && <FileTree.Component {...fileTree} />}
         </div>
       </EuiPageSideBar>
       <EuiPageBody>
@@ -23,9 +23,7 @@ const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) =>
           <h1>Path | {current}</h1>
         </EuiPageHeader>
         <EuiPageContent>
-          <EuiPageContentBody>
-            <GraphvizViewer.Component {...graphvizViewer} />
-          </EuiPageContentBody>
+          <EuiPageContentBody>{graphvizViewer && <GraphvizViewer.Component {...graphvizViewer} />}</EuiPageContentBody>
         </EuiPageContent>
       </EuiPageBody>
     </EuiPage>

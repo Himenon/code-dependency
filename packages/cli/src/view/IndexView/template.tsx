@@ -9,14 +9,15 @@ export const create = (props: Props) => {
   return (
     <html lang="en">
       <head>
+        <title>@code-dependency/view</title>
         <meta charSet="UTF-8" />
+        <meta name="description" content="visualize code dependency with graphviz." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <script async defer src={manifest["scripts/react.production.min.js"]} />
         <script async defer src={manifest["scripts/react-dom.production.min.js"]} />
         <script async defer src={manifest["scripts/full.render.js"]}></script>
-        <title>@code-dependency/view</title>
-        <meta name="description" content="visualize code dependency with graphviz." />
+        <link href={manifest["styles.css"]} rel="stylesheet" />
       </head>
       <body>
         <div id="root">{props.body}</div>

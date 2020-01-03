@@ -162,12 +162,6 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
         "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
-        ...(isLibrary
-          ? {
-              HTMLElement: () => undefined,
-              window: () => undefined,
-            }
-          : {}),
       }),
       !isLibrary &&
         new CopyPlugin([
@@ -183,14 +177,8 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         react: "React",
         "react-dom": "ReactDOM",
       },
+      isLibrary && { "react-ace": "react-ace" },
       isLibrary && nodeExternals(),
-      isLibrary &&
-        ((context: any, request: any, callback: any) => {
-          if (request.indexOf("@elastic/eui") > -1 || request.indexOf("react-ace") > -1) {
-            return callback();
-          }
-          return callback(context, request);
-        }),
     ].filter(Boolean),
     performance: { hints: false },
     resolve: {

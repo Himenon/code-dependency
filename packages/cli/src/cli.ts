@@ -1,5 +1,5 @@
 import commander from "commander";
-import * as path from "path";
+import pkg from "../package.json";
 
 interface CLIArguments {
   source: string;
@@ -15,7 +15,6 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
 };
 
 export const executeCommandLine = (): CLIArguments => {
-  const pkg = require(path.resolve(__dirname, "../package.json"));
   commander
     .version(pkg.version)
     .option("-s --source [value]", "Source Directory or File")

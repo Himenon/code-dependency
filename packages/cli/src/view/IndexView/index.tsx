@@ -12,15 +12,16 @@ export interface Props {
 }
 
 export const create = async ({ url, context, service }: Props) => {
-  const injection = {
-    createSvgString: (source: string) => service.vizJs.renderString(source),
-  };
+  console.log({ vizJs: service.vizJs });
   const props: ServerSideRenderingProps = {
+    isServer: true,
     state: {
-      graphvizSource: await service.vizJs.renderString("digraph { server -> front }"),
+      graphvizSource: "", // await service.vizJs.renderString("digraph { server -> front }"),
       filePathList: [],
     },
-    injection,
+    injection: {
+      createSvgString: (source: string) => service.vizJs.renderString(source),
+    },
   };
   const body = (
     <StaticRouter location={url} context={context}>

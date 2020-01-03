@@ -10,6 +10,7 @@ export interface FilePathObject {
 }
 
 export interface ServerSideRenderingProps {
+  isServer: boolean;
   state: {
     graphvizSource: string;
     filePathList: FilePathObject[];

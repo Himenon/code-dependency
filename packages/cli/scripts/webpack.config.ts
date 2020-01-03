@@ -1,6 +1,7 @@
 import * as path from "path";
 import * as webpack from "webpack";
 
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
 
@@ -15,6 +16,8 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
   const tsLoader: webpack.RuleSetUse = {
     loader: "ts-loader",
     options: {
+      transpileOnly: true,
+      configFile: "tsconfig.json",
       compilerOptions: {
         sourceMap: !isProduction,
       },
@@ -33,11 +36,17 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         index: "./src/index.ts",
       },
       optimization: {
-        minimize: isProduction,
+        minimize: false,
         noEmitOnErrors: true,
       },
       devtool: isProduction ? undefined : "inline-source-map",
-      plugins: [new FriendlyErrorsWebpackPlugin()],
+      plugins: [
+        new ProgressBarPlugin(),
+        new FriendlyErrorsWebpackPlugin(),
+        new webpack.DefinePlugin({
+          HTMLElement: {},
+        }),
+      ],
       target: "node",
       resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".mjs"],
@@ -57,6 +66,10 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           {
             test: /\.mjs$/,
             type: "javascript/auto",
+          },
+          {
+            test: /react-ace/,
+            use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
           },
         ],
       },

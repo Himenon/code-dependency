@@ -8,8 +8,8 @@ import { ServerSideRenderingProps } from "@app/interface";
 
 const generateProps = (store: Store): Editor.Props => {
   return {
-    fileTree: FileTree.generateProps(store.fileTree),
-    graphvizViewer: GraphvizViewer.generateProps(store.graphvizViewer),
+    fileTree: store.isServer ? FileTree.generateProps(store.fileTree) : undefined,
+    graphvizViewer: store.isServer ? GraphvizViewer.generateProps(store.graphvizViewer) : undefined,
     current: store.current || "no selected",
   };
 };
@@ -17,6 +17,7 @@ const generateProps = (store: Store): Editor.Props => {
 export const Container = (props: ServerSideRenderingProps) => {
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
   const reducers = Domain.Graphviz.createReducers({
+    isServer: props.isServer,
     source: props.state.graphvizSource,
     filePathList: props.state.filePathList,
     currentSelectedPath: undefined,

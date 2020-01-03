@@ -6,7 +6,7 @@ export const create = () => {
     if (typeof dependencies.output !== "string") {
       return format(dependencies.output, "dot").output.toString();
     }
-    throw new Error("あかん");
+    throw new Error("dependency cruiser api.");
   };
   return {
     getDependenciesDot,

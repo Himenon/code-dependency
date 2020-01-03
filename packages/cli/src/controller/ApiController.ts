@@ -18,7 +18,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
 
   router.post("/graph", async (req, res) => {
     const viz = service.viz.getInstance();
-    const filename = path.join(config.absoluteRootPath, req.body.path);
+    const filename = path.join(config.absoluteRootDirPath, req.body.path);
     const dot = service.dependencyCruiser.getDependenciesDot(filename);
     const data = createApiResponse<Api.GraphResponseData>({
       element: await viz.renderString(dot),

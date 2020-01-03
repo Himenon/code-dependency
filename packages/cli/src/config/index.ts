@@ -1,3 +1,4 @@
+import * as path from "path";
 import { FilePathObject } from "@code-dependency/view";
 
 export interface Type {
@@ -6,6 +7,7 @@ export interface Type {
   };
   executeRootPath: string;
   absoluteRootPath: string;
+  absoluteRootDirPath: string;
   filePathList: FilePathObject[];
 }
 
@@ -16,6 +18,7 @@ export const create = (port: number, absoluteRootPath: string, filePathList: Fil
     },
     executeRootPath: process.cwd(),
     absoluteRootPath,
+    absoluteRootDirPath: path.dirname(absoluteRootPath),
     filePathList,
   };
 };

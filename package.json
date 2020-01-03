@@ -41,13 +41,11 @@
     "@babel/preset-env": "^7.7.7",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@types/commander": "^2.12.2",
     "@types/enhanced-resolve": "^3.0.6",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.1",
     "@types/recursive-readdir": "^2.2.0",
     "@types/resolve": "^1.14.0",
-    "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "dependency-cruiser": "^6.1.0",
@@ -70,7 +68,8 @@
     "sort-package-json": "^1.32.2",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
-    "type-fest": "^0.8.1"
+    "type-fest": "^0.8.1",
+    "typescript": "^3.7.4"
   },
   "peerDependencies": {
     "graceful-fs": "^4.2.3"

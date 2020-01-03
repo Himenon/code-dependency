@@ -16,6 +16,7 @@
   },
   "files": [
     "lib",
+    "dist",
     "package.json"
   ],
   "main": "lib/index.js",

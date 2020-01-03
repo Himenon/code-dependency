@@ -27,11 +27,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
   });
 
   router.use("/paths", async (req, res) => {
-    const data = createApiResponse<Api.PathsResponseData>(
-      config.fileList.map(filename => ({
-        source: path.relative(path.join(path.dirname(process.cwd()), "view"), filename),
-      })),
-    );
+    const data = createApiResponse<Api.PathsResponseData>(config.filePathList);
     res.json(data);
     res.end();
   });

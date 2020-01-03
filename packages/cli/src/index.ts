@@ -12,7 +12,9 @@ const main = async () => {
   const absoluteRootPath = args.source.startsWith("/") ? args.source : path.join(executeRootPath, args.source);
   const pathList = await gather(absoluteRootPath);
 
-  const config = Config.create(absoluteRootPath, pathList);
+  const filePathList = pathList.map(pathname => ({ source: path.relative(executeRootPath, pathname) }));
+  const config = Config.create(absoluteRootPath, filePathList);
+
   const service = await Service.create();
   const server = createServer(service, config);
 

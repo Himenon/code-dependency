@@ -1,13 +1,15 @@
+import { FilePathObject } from "@code-dependency/view";
+
 export interface Type {
   executeRootPath: string;
   absoluteRootPath: string;
-  fileList: string[];
+  filePathList: FilePathObject[];
 }
 
-export const create = (absoluteRootPath: string, fileList: string[]) => {
+export const create = (absoluteRootPath: string, filePathList: FilePathObject[]): Type => {
   return {
     executeRootPath: process.cwd(),
     absoluteRootPath,
-    fileList,
+    filePathList,
   };
 };

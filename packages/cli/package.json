@@ -17,12 +17,14 @@
   "files": [
     "lib",
     "dist",
-    "package.json"
+    "package.json",
+    "README.md",
+    "LICENSE"
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "code-dependency": "./lib/index.js"
+    "code-dependency": "./dist/index.js"
   },
   "directories": {
     "lib": "lib"

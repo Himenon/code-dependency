@@ -20,6 +20,21 @@ code-dependency --source ./src
 - **elastic/eui** https://github.com/elastic/eui
 - **sverweij/dependency-cruiser** https://github.com/sverweij/dependency-cruiser
 
+## Development
+
+Run webpack-dev-server for @code-dependency/view
+
+```bash
+cd packages/view
+yarn start
+```
+
+Run api server for @code-dependency/cli
+
+```bash
+yarn start
+```
+
 ## License
 
 code-dependency is [MIT licensed](https://github.com/Himenon/code-dependency/blob/master/LICENSE).

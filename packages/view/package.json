@@ -12,6 +12,7 @@
     "dist",
     "lib",
     "package.json",
+    "LICENSE",
     "README.md"
   ],
   "main": "./lib/application.lib.js",

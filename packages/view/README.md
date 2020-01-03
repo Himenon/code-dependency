@@ -13,24 +13,14 @@ yarn start # start debug server
 yarn run build
 ```
 
-### Release
-
-```bash
-yarn run deploy # default release: github pages
-```
-
 ### Run server
+
+after build.
 
 ```bash
 yarn run serve
 ```
 
-## Code Format
-
-```bash
-yarn run format
-```
-
 ## License
 
-MIT
+@code-dependency/view is [MIT licensed](https://github.com/Himenon/code-dependency/blob/master/LICENSE).

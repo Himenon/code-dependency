@@ -40,7 +40,7 @@ export const generatePublicPath = (isProduction: boolean): string => {
 export interface Option {
   output: webpack.Output;
   isProduction: boolean;
-  isLibrary: boolean;
+  isLibrary: boolean; // == server
   entry: webpack.Entry;
   splitChunks: webpack.Options.Optimization["splitChunks"];
 }
@@ -162,7 +162,12 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
         "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
-        __isBrowser__: "false", // https://tylermcginnis.com/react-router-server-rendering/
+        ...(isLibrary
+          ? {
+              HTMLElement: () => undefined,
+              window: () => undefined,
+            }
+          : {}),
       }),
       !isLibrary &&
         new CopyPlugin([
@@ -179,6 +184,13 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "react-dom": "ReactDOM",
       },
       isLibrary && nodeExternals(),
+      isLibrary &&
+        ((context: any, request: any, callback: any) => {
+          if (request.indexOf("@elastic/eui") > -1 || request.indexOf("react-ace") > -1) {
+            return callback();
+          }
+          return callback(context, request);
+        }),
     ].filter(Boolean),
     performance: { hints: false },
     resolve: {
@@ -188,7 +200,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/container": appPath("./src/container/index.ts"),
         "@app/domain": appPath("./src/domain/index.ts"),
         "@app/infra": appPath("./src/infra/index.ts"),
-        "@app/interface": appPath("./src/interface/index.d.ts"),
+        "@app/interface": appPath("./src/interface/index.ts"),
         "@app/style": appPath("./src/style/index.ts"),
         React: appPath("../../node_modules/react"),
         ReactDOM: appPath("../../node_modules/react-dom"),
@@ -211,7 +223,11 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
           test: /\.js$/,
           loader: babelLoader,
         },
-      ],
+        isLibrary && {
+          test: /react-ace/,
+          use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
+        },
+      ].filter(Boolean) as webpack.RuleSetRule[],
     },
   };
 };

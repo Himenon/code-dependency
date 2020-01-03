@@ -9,7 +9,7 @@ import * as Config from "./config";
 const main = async () => {
   const args = Cli.executeCommandLine();
   const executeRootPath = process.cwd();
-  const absoluteRootPath = args.source.startsWith("/") ? args.source : path.join(executeRootPath, args.source);
+  const absoluteRootPath = args.source.startsWith("/") ? args.source : path.relative(executeRootPath, args.source);
   const pathList = await gather(absoluteRootPath);
 
   const config = Config.create(absoluteRootPath, pathList);

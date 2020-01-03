@@ -5,7 +5,7 @@ export interface Props {
   body: JSX.Element;
 }
 
-export const createTemplate = (props: Props) => {
+export const create = (props: Props) => {
   return (
     <html lang="en">
       <head>

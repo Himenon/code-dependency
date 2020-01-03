@@ -1,3 +1,6 @@
+import * as Api from "./api";
+export { Api };
+
 export interface InjectionMethod {
   createSvgString: (source: string) => Promise<string>;
 }

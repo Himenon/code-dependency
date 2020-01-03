@@ -4,10 +4,10 @@ export interface Type {
   fileList: string[];
 }
 
-export const create = () => {
+export const create = (absoluteRootPath: string, fileList: string[]) => {
   return {
-    executeRootPath: "",
-    absoluteRootPath: "",
-    fileList: [],
+    executeRootPath: process.cwd(),
+    absoluteRootPath,
+    fileList,
   };
 };

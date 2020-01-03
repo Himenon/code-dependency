@@ -16,7 +16,8 @@
       "@app/domain": ["./src/domain/index.ts"],
       "@app/infra": ["./src/infra/index.ts"],
       "@app/interface": ["./src/interface/index.ts"],
-      "@app/style": ["./src/style/index.ts"]
+      "@app/style": ["./src/style/index.ts"],
+      "@app/api": ["./src/api/index.ts"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "types"],

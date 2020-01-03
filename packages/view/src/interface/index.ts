@@ -1,12 +1,12 @@
 import * as Api from "./api";
 export { Api };
 
+import { FilePathObject } from "./filePathObject";
+export { FilePathObject };
+
 export interface InjectionMethod {
   createSvgString: (source: string) => Promise<string>;
-}
-
-export interface FilePathObject {
-  source: string;
+  client: Api.Client;
 }
 
 export interface ServerSideRenderingProps {
@@ -16,4 +16,13 @@ export interface ServerSideRenderingProps {
     filePathList: FilePathObject[];
   };
   injection: InjectionMethod;
+}
+
+export interface ClientSideRenderingProps {
+  isServer: boolean;
+  baseUrl: string;
+  state: {
+    graphvizSource: string;
+    filePathList: FilePathObject[];
+  };
 }

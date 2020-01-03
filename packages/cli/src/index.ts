@@ -13,12 +13,12 @@ const main = async () => {
   const pathList = await gather(absoluteRootPath);
 
   const filePathList = pathList.map(pathname => ({ source: path.relative(executeRootPath, pathname) }));
-  const config = Config.create(absoluteRootPath, filePathList);
+  const config = Config.create(args.port, absoluteRootPath, filePathList);
 
   const service = await Service.create();
   const server = createServer(service, config);
 
-  console.log("Run: http://localhost:3000");
+  console.log(`Run: http://localhost:${args.port}`);
   server.listen(3000);
 };
 

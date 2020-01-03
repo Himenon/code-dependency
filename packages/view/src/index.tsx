@@ -4,4 +4,7 @@ export { Editor };
 import { RootRouter } from "./router";
 export { RootRouter };
 
+import * as ApiClient from "./api";
+export { ApiClient };
+
 export * from "./interface";

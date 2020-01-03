@@ -17,17 +17,20 @@ export const create = (service: Service.Type, config: Config.Type) => {
   const router = express.Router();
 
   router.post("/graph", async (req, res) => {
+    const viz = service.viz.getInstance();
     const filename = path.join(config.absoluteRootPath, req.body.path);
     const dot = service.dependencyCruiser.getDependenciesDot(filename);
     const data = createApiResponse<Api.GraphResponseData>({
-      element: await service.vizJs.renderString(dot),
+      element: await viz.renderString(dot),
     });
     res.json(data);
     res.end();
   });
 
   router.use("/paths", async (req, res) => {
-    const data = createApiResponse<Api.PathsResponseData>(config.filePathList);
+    const data = createApiResponse<Api.PathsResponseData>({
+      pathList: config.filePathList,
+    });
     res.json(data);
     res.end();
   });

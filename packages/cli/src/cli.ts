@@ -3,6 +3,7 @@ import pkg from "../package.json";
 
 interface CLIArguments {
   source: string;
+  port: number;
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -11,6 +12,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
   }
   return {
     source: args["source"],
+    port: args["port"],
   };
 };
 
@@ -18,6 +20,7 @@ export const executeCommandLine = (): CLIArguments => {
   commander
     .version(pkg.version)
     .option("-s --source [value]", "Source Directory or File")
+    .option("-p --port [value]", "Port number", 3000)
     .parse(process.argv);
   return validateCliArguments(commander);
 };

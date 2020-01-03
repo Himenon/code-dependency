@@ -1,8 +1,7 @@
 import * as Domain from "@app/domain";
 import { FileTree } from "@app/component";
 import * as path from "path";
-import { FilePathObject } from "@app/interface";
-import { getGraph } from "@app/infra";
+import { FilePathObject, InjectionMethod } from "@app/interface";
 
 type UpdateKeyFunction = (key: string) => Promise<void>;
 
@@ -90,10 +89,12 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
   return [generateDirectory(".", "@code-dependency", rootItems)];
 };
 
-export const generateStore = (domainStores: Domain.Graphviz.Stores) => {
+export const generateStore = (domainStores: Domain.Graphviz.Stores, { client }: InjectionMethod) => {
   const onClick = async (nextSource: string) => {
-    const res = await getGraph({ path: nextSource });
-    domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: res.data.element });
+    const res = await client.getGraph({ path: nextSource });
+    if (res) {
+      domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: res.data.element });
+    }
   };
   const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);
   return {

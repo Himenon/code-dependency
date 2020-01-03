@@ -6,7 +6,7 @@ type GetPromiseValue<T> = T extends Promise<infer R> ? R : T;
 export const create = async () => {
   return {
     dependencyCruiser: DependencyCruiserService.create(),
-    vizJs: VizJsService.create(),
+    viz: VizJsService.create(),
   };
 };
 

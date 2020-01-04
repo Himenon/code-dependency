@@ -35,7 +35,7 @@
     "build:webpack": "webpack --config ./scripts/build.ts",
     "clean": "rimraf ./lib ./build",
     "develop": "cross-env NODE_ENV=development yarn build:webpack --watch",
-    "server": "nodemon ./dist/index.js",
+    "server": "nodemon ./dist/index.js --source ./src",
     "start": "run-p develop server",
     "ts": "ts-node -P tsconfig.json"
   },

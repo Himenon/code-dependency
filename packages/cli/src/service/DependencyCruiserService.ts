@@ -1,8 +1,12 @@
 import { cruise, format } from "dependency-cruiser";
 
-export const create = () => {
+export interface Option {
+  tsConfig: any;
+}
+
+export const create = (option: Option) => {
   const getDependenciesDot = (source: string): string => {
-    const dependencies = cruise([source], { exclude: "node_modules" });
+    const dependencies = cruise([source], { exclude: "node_modules" }, undefined, option.tsConfig);
     if (typeof dependencies.output !== "string") {
       return format(dependencies.output, "dot").output.toString();
     }

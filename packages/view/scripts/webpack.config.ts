@@ -193,7 +193,6 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/api": appPath("./src/api/index.ts"),
         React: appPath("../../node_modules/react"),
         ReactDOM: appPath("../../node_modules/react-dom"),
-        "~@elastic/eui": find("@elastic/eui"),
       },
     },
     module: {

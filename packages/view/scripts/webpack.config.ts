@@ -206,15 +206,10 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         {
           test: /\.scss$/,
           loaders: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", ...cssLoaders].filter(Boolean) as webpack.RuleSetUse,
-          exclude: [/@elasticg\/eui/g],
         },
         {
           test: /\.js$/,
           loader: babelLoader,
-        },
-        isLibrary && {
-          test: /react-ace/,
-          use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
         },
       ].filter(Boolean) as webpack.RuleSetRule[],
     },

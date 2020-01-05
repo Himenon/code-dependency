@@ -11,22 +11,31 @@ interface EditorProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
 
 const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) => {
   return (
-    <div style={{ backgroundColor: "#fafbfd" }}>
-      <div>
+    <div style={{ backgroundColor: "#fafbfd", display: "flex" }}>
+      <div style={{ marginRight: 24, minWidth: 192, flex: "0 1 0%" }}>
         <div style={{ position: "absolute", width: 192, bottom: 0, top: 0, overflowY: "scroll" }}>
           <FileTree.Component {...fileTree} />
         </div>
       </div>
-      <div style={{ position: "relative", left: 192 + 32, top: 0 }}>
-        <div>
-          <h1>Path | {current}</h1>
+      <main style={{ display: "flex", flex: "1 1 100%", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: 16 }}>
+          <h1 style={{ color: "#343741", fontSize: 16 }}>{current}</h1>
         </div>
-        <div>
-          <div>
+        <div
+          style={{
+            padding: 24,
+            boxShadow: "0 2px 2px -1px rgba(152,162,179,.3), 0 1px 5px -2px rgba(152,162,179,.3)",
+            backgroundColor: "#FFF",
+            borderRadius: 4,
+            border: "1px solid #d3dae6",
+            flexGrow: 1,
+          }}
+        >
+          <div style={{}}>
             <GraphvizViewer.Component {...graphvizViewer} />
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

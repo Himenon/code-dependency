@@ -15,7 +15,7 @@ const TreeItem = (props: TreeItemProps) => {
     const childItems = itemProps.items;
     const children = childItems ? <TreeItem {...{ items: childItems, depth: props.depth + 1 }} /> : undefined;
     return (
-      <SideNavItem.Component key={`SideNavItem-${props.depth}-${idx}`} {...itemProps}>
+      <SideNavItem.Component key={`SideNavItem-${props.depth}-${idx}`} {...itemProps} depth={props.depth}>
         {children}
       </SideNavItem.Component>
     );

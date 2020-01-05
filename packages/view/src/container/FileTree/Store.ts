@@ -86,7 +86,7 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
       const items = generateItems(directory, directories, flatFileMap);
       return generateDirectory(directory, path.basename(directory), items);
     });
-  return [generateDirectory(".", "@code-dependency", rootItems)];
+  return [generateDirectory(".", "Menu", rootItems)];
 };
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores, { client }: InjectionMethod) => {

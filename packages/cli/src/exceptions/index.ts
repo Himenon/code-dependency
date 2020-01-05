@@ -5,4 +5,4 @@ abstract class BaseCustomError extends Error {
   }
 }
 
-export class SourceNotFoundError extends BaseCustomError {}
+export class SourcePathInvalidError extends BaseCustomError {}

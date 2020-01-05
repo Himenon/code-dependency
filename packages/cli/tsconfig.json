@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*.ts", "src/**/*.tsx", "typings", "*.json", "**/*.json", "package.json"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings", "*.json", "**/*.json"],
   "compilerOptions": {
     "module": "commonjs",
     "baseUrl": ".",

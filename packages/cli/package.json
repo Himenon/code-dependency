@@ -37,6 +37,7 @@
     "develop": "cross-env NODE_ENV=development yarn build:webpack --watch",
     "server": "nodemon ./dist/index.js --source ./src",
     "start": "run-p develop server",
+    "test": "jest -c jest.config.json",
     "ts": "ts-node -P tsconfig.json"
   },
   "dependencies": {
@@ -51,6 +52,7 @@
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
     "interpolate-html-plugin": "^3.0.0",
+    "is-invalid-path": "^1.0.2",
     "open": "^7.0.0",
     "pretty": "^2.0.0",
     "react": "^16.12.0",

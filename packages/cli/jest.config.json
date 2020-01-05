@@ -1,5 +1,5 @@
 {
-  "automock": true,
+  "automock": false,
   "unmockedModulePathPatterns": ["<rootDir>/node_modules/*"],
   "roots": ["<rootDir>/src"],
   "globals": {

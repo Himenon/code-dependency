@@ -3,23 +3,20 @@ import { gather } from "./utils";
 import * as path from "path";
 import * as Cli from "./cli";
 
-import { SourceNotFoundError } from "./exceptions";
+import { SourcePathInvalidError } from "./exceptions";
 
 import * as Service from "./service";
 import * as Config from "./config";
 
 const main = async () => {
   const args = Cli.executeCommandLine();
-  const executeRootPath = process.cwd();
-  const isSourceAbsolutePath = args.source.startsWith("/");
-  const absoluteRootPath = isSourceAbsolutePath ? args.source : path.join(executeRootPath, args.source);
-  const pathList = await gather(absoluteRootPath);
+  const pathList = await gather(args.source.rootAbsolutePath);
 
   const filePathList = pathList.map(pathname => ({
-    source: isSourceAbsolutePath ? path.relative(path.dirname(args.source), pathname) : path.relative(executeRootPath, pathname),
+    source: path.relative(args.source.rootDir, pathname),
   }));
-  const config = Config.create(args.port, absoluteRootPath, filePathList);
-  const tsconfigFilePath = args.tsconfig && (args.tsconfig.startsWith("/") ? args.tsconfig : path.join(executeRootPath, args.tsconfig));
+  const config = Config.create(args.port, args.source.rootAbsolutePath, filePathList);
+  const tsconfigFilePath = args.tsconfig && args.tsconfig.rootAbsolutePath;
 
   const service = await Service.create({ tsconfigFilePath });
   const server = createServer(service, config);
@@ -29,7 +26,7 @@ const main = async () => {
 };
 
 main().catch(error => {
-  if (error instanceof SourceNotFoundError) {
+  if (error instanceof SourcePathInvalidError) {
     process.exit(0);
   } else {
     console.error(error);

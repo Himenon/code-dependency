@@ -3,7 +3,7 @@ import manifest from "@code-dependency/view/dist/manifest.json";
 import { ClientSideRenderingProps } from "@code-dependency/view";
 
 export interface Props {
-  body: JSX.Element;
+  body: JSX.Element | undefined;
 }
 
 export const create = (props: Props, csrProps: ClientSideRenderingProps) => {

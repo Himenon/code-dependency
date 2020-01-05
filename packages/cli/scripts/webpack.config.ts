@@ -44,7 +44,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         new ProgressBarPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         new webpack.DefinePlugin({
-          HTMLElement: {},
+          "process.env.isProduction": JSON.stringify(isProduction),
         }),
       ],
       target: "node",
@@ -66,10 +66,6 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           {
             test: /\.mjs$/,
             type: "javascript/auto",
-          },
-          {
-            test: /react-ace/,
-            use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
           },
         ],
       },

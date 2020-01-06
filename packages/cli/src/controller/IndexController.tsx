@@ -18,6 +18,6 @@ export const create = (service: Service.Type, config: Config.Type) => {
       console.error(error);
     }
   });
-  router.use("/manifest.json", express.static(find("@code-dependency/view/dist/manifest.json"), { maxAge: "5000" }));
+  // router.get("/manifest.json", express.static(find("@code-dependency/view/dist/manifest.json"), { maxAge: "5000" }));
   return router;
 };

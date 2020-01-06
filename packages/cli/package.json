@@ -24,10 +24,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "code-dependency": "./dist/index.js"
-  },
-  "directories": {
-    "lib": "lib"
+    "code-dependency": "./bin/code-dependency.js"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:webpack",

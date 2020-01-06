@@ -17,7 +17,6 @@ code-dependency --source ./src
 
 ## Core development UI / APi
 
-- **elastic/eui** https://github.com/elastic/eui
 - **sverweij/dependency-cruiser** https://github.com/sverweij/dependency-cruiser
 
 ## Development

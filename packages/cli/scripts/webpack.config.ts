@@ -35,7 +35,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         index: "./src/index.ts",
       },
       optimization: {
-        minimize: false,
+        minimize: isProduction,
         noEmitOnErrors: true,
       },
       devtool: isProduction ? undefined : "inline-source-map",

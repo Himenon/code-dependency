@@ -21,7 +21,7 @@
     "build": "yarn clean && cross-env NODE_ENV=production yarn build:webpack && yarn build:lib",
     "build:lib": "tsc -p tsconfig.json --emitDeclarationOnly",
     "build:webpack": "yarn ts ./scripts/build.ts",
-    "clean": "rimraf ./lib ./build tsconfig.tsbuildinfo",
+    "clean": "rimraf ./lib ./dist ./build tsconfig.tsbuildinfo",
     "develop": "cross-env NODE_ENV=development yarn ts ./scripts/develop.ts",
     "serve": "serve dist",
     "start": "yarn develop",
@@ -29,14 +29,8 @@
     "ts": "ts-node -P ./scripts/tsconfig.cli.json"
   },
   "dependencies": {
-    "@elastic/datemath": "^5.0.2",
-    "@elastic/eui": "^17.3.1",
-    "@emotion/core": "^10.0.27",
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
     "viz.js": "^2.1.2"
   },
   "devDependencies": {
@@ -103,5 +97,10 @@
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-node-externals": "^1.7.2",
     "webpack-notifier": "^1.8.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   }
 }

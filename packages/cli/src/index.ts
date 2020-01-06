@@ -3,19 +3,22 @@ import { gather } from "./utils";
 import * as path from "path";
 import * as Cli from "./cli";
 
+import { SourcePathInvalidError } from "./exceptions";
+
 import * as Service from "./service";
 import * as Config from "./config";
 
 const main = async () => {
   const args = Cli.executeCommandLine();
-  const executeRootPath = process.cwd();
-  const absoluteRootPath = args.source.startsWith("/") ? args.source : path.join(executeRootPath, args.source);
-  const pathList = await gather(absoluteRootPath);
+  const pathList = await gather(args.source.rootAbsolutePath);
 
-  const filePathList = pathList.map(pathname => ({ source: path.relative(executeRootPath, pathname) }));
-  const config = Config.create(args.port, absoluteRootPath, filePathList);
+  const filePathList = pathList.map(pathname => ({
+    source: path.relative(args.source.rootDir, pathname),
+  }));
+  const config = Config.create(args.port, args.source.rootAbsolutePath, filePathList);
+  const tsconfigFilePath = args.tsconfig && args.tsconfig.rootAbsolutePath;
 
-  const service = await Service.create();
+  const service = await Service.create({ tsconfigFilePath });
   const server = createServer(service, config);
 
   console.log(`Run: http://localhost:${args.port}`);
@@ -23,5 +26,10 @@ const main = async () => {
 };
 
 main().catch(error => {
-  console.error(error);
+  if (error instanceof SourcePathInvalidError) {
+    process.exit(0);
+  } else {
+    console.error(error);
+    process.exit(1);
+  }
 });

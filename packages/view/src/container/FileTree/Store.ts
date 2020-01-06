@@ -1,12 +1,12 @@
 import * as Domain from "@app/domain";
-import { FileTree } from "@app/component";
+import { SideNavItem } from "@app/component";
 import * as path from "path";
 import { FilePathObject, InjectionMethod } from "@app/interface";
 
 type UpdateKeyFunction = (key: string) => Promise<void>;
 
 interface FlatFileMap {
-  [dirname: string]: FileTree.EuiSideNavItem[] | undefined;
+  [dirname: string]: SideNavItem.Props[] | undefined;
 }
 
 const deleteItem = (arr: any[], value: any): void => {
@@ -14,7 +14,7 @@ const deleteItem = (arr: any[], value: any): void => {
   delete arr[idx];
 };
 
-const generateDirectory = (directoryPath: string, basename: string, items: FileTree.EuiSideNavItem[]): FileTree.EuiSideNavItem => {
+const generateDirectory = (directoryPath: string, basename: string, items: SideNavItem.Props[]): SideNavItem.Props => {
   return {
     id: directoryPath,
     name: basename,
@@ -22,12 +22,12 @@ const generateDirectory = (directoryPath: string, basename: string, items: FileT
   };
 };
 
-const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFunction): FileTree.EuiSideNavItem => {
+const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
-    updateKey: async (key: string) => {
-      await updateKey(key);
+    onClick: async () => {
+      await updateKey(filePathObject.source);
     },
   };
 };
@@ -35,7 +35,7 @@ const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFuncti
 /**
  * vscodeのファイルツリーと同じ順序にならべる.
  */
-const compareBasename = (a: FileTree.EuiSideNavItem, b: FileTree.EuiSideNavItem): 0 | -1 | 1 => {
+const compareBasename = (a: SideNavItem.Props, b: SideNavItem.Props): 0 | -1 | 1 => {
   if (Array.isArray(a.items) && !Array.isArray(b.items)) {
     return -1;
   }
@@ -54,12 +54,12 @@ const compareBasename = (a: FileTree.EuiSideNavItem, b: FileTree.EuiSideNavItem)
 const generateItems = (
   parentDirname: string,
   directories: string[],
-  flatFileMap: { [dirname: string]: FileTree.EuiSideNavItem[] | undefined },
-): FileTree.EuiSideNavItem[] => {
+  flatFileMap: { [dirname: string]: SideNavItem.Props[] | undefined },
+): SideNavItem.Props[] => {
   const childDirectories = directories.filter(dirname => path.dirname(dirname) === parentDirname);
   // TODO マシな実装を考える
   childDirectories.forEach(value => deleteItem(directories, value));
-  const items: FileTree.EuiSideNavItem[] = childDirectories.map(directoryPath => {
+  const items: SideNavItem.Props[] = childDirectories.map(directoryPath => {
     const basename = path.basename(directoryPath);
     return generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap));
   });
@@ -69,11 +69,11 @@ const generateItems = (
     .sort(compareBasename);
 };
 
-export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): FileTree.EuiSideNavItem[] => {
+export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const item: FileTree.EuiSideNavItem = generateFile(filePathObject, updateKey);
+    const item: SideNavItem.Props = generateFile(filePathObject, updateKey);
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(item);
   });
   const directories = Object.keys(flatFileMap);

@@ -18,5 +18,7 @@
   "version": "0.2.0",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "concurrency": 1,
+  "stream": true
 }

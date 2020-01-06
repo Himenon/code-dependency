@@ -1,5 +1,5 @@
 import { FilePathObject } from "@app/interface";
-import { FileTree } from "@app/component";
+import { SideNavItem } from "@app/component";
 import { generateFolderTree } from "../Store";
 
 const filePathObjectList: FilePathObject[] = [
@@ -20,7 +20,7 @@ const filePathObjectList: FilePathObject[] = [
   },
 ];
 
-const directoryResult: FileTree.EuiSideNavItem[] = [
+const directoryResult: SideNavItem.Props[] = [
   {
     id: ".",
     name: "@code-dependency",

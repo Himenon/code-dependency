@@ -173,9 +173,18 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
     ].filter(Boolean),
     output: option.output,
     externals: [
-      {
+      // クライアント側で読み込むscriptとして利用する場合のexternals
+      !isLibrary && {
         react: "React",
         "react-dom": "ReactDOM",
+      },
+      // Libraryとして利用する場合、以下のエラーを防ぐ対策
+      // https://github.com/facebook/react/issues/13991#issuecomment-490809442
+      // Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+      // 3. You might have more than one copy of React in the same app
+      isLibrary && {
+        react: "react",
+        "react-dom": "react-dom",
       },
       isLibrary && { "react-ace": "react-ace" },
       isLibrary && nodeExternals(),
@@ -193,7 +202,6 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/api": appPath("./src/api/index.ts"),
         React: appPath("../../node_modules/react"),
         ReactDOM: appPath("../../node_modules/react-dom"),
-        "~@elastic/eui": find("@elastic/eui"),
       },
     },
     module: {
@@ -206,15 +214,10 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         {
           test: /\.scss$/,
           loaders: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", ...cssLoaders].filter(Boolean) as webpack.RuleSetUse,
-          exclude: [/@elasticg\/eui/g],
         },
         {
           test: /\.js$/,
           loader: babelLoader,
-        },
-        isLibrary && {
-          test: /react-ace/,
-          use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
         },
       ].filter(Boolean) as webpack.RuleSetRule[],
     },

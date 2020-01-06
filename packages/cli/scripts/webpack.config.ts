@@ -3,7 +3,6 @@ import * as webpack from "webpack";
 
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
@@ -44,7 +43,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         new ProgressBarPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         new webpack.DefinePlugin({
-          HTMLElement: {},
+          "process.env.isProduction": JSON.stringify(isProduction),
         }),
       ],
       target: "node",
@@ -55,7 +54,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           ReactDOM: appPath("../../node_modules/react-dom"),
         },
       },
-      externals: [nodeExternals()],
+      externals: [/^(?!^(src|\.|\.\.)\/)/],
       module: {
         rules: [
           {
@@ -66,10 +65,6 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           {
             test: /\.mjs$/,
             type: "javascript/auto",
-          },
-          {
-            test: /react-ace/,
-            use: "null-loader", // https://github.com/elastic/gatsby-eui-starter
           },
         ],
       },

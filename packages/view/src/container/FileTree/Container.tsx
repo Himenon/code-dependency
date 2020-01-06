@@ -3,6 +3,6 @@ import { Store } from "./Store";
 
 export const generateProps = (store: Store): FileTree.Props => {
   return {
-    euiSideNavItems: store.euiSideNavItems,
+    items: store.euiSideNavItems,
   };
 };

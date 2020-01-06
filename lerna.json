@@ -3,7 +3,7 @@
     "version": {
       "conventionalCommits": true,
       "changelogPreset": "angular-all",
-      "message": "chore(release): publish [SKIP CI]"
+      "message": "chore(release): publish"
     },
     "create": {
       "license": "MIT"

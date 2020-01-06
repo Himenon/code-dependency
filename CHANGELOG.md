@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+
+# [0.3.0](https://github.com/Himenon/code-dependency/compare/v0.2.0...v0.3.0) (2020-01-06)
+
+### Bug Fixes
+
+- Invalid Hook Call Warning ([9e07e6a](https://github.com/Himenon/code-dependency/commit/9e07e6a))
+
+### Features
+
+- add memory leak comment ([3f678f5](https://github.com/Himenon/code-dependency/commit/3f678f5))
+- add tsconfig option & update cli absolute path ([0b5f54f](https://github.com/Himenon/code-dependency/commit/0b5f54f))
+- cli server change csr from ssr ([0c20627](https://github.com/Himenon/code-dependency/commit/0c20627))
+- remove [@elastic](https://github.com/elastic)/eui ([d1ffe09](https://github.com/Himenon/code-dependency/commit/d1ffe09))
+- revive ssr ([bfda64f](https://github.com/Himenon/code-dependency/commit/bfda64f))
+- update bin script ([7c64a8d](https://github.com/Himenon/code-dependency/commit/7c64a8d))
+- update cli path arguments validator ([4117803](https://github.com/Himenon/code-dependency/commit/4117803))
+- update fsevents pavkage ([aa927de](https://github.com/Himenon/code-dependency/commit/aa927de))
+- update ui ([c6b1a6e](https://github.com/Himenon/code-dependency/commit/c6b1a6e))
+- update webpack settings ([fa5ece0](https://github.com/Himenon/code-dependency/commit/fa5ece0))
+
+### Tests
+
+- update test ([224b594](https://github.com/Himenon/code-dependency/commit/224b594))
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://github.com/Himenon/code-dependency/compare/v0.0.1-alpha.7...v0.2.0) (2020-01-03)

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+
+# [0.3.0](https://github.com/Himenon/code-dependency/packages/cli/compare/v0.2.0...v0.3.0) (2020-01-06)
+
+### Bug Fixes
+
+- Invalid Hook Call Warning ([9e07e6a](https://github.com/Himenon/code-dependency/packages/cli/commit/9e07e6a))
+
+### Features
+
+- add memory leak comment ([3f678f5](https://github.com/Himenon/code-dependency/packages/cli/commit/3f678f5))
+- add tsconfig option & update cli absolute path ([0b5f54f](https://github.com/Himenon/code-dependency/packages/cli/commit/0b5f54f))
+- cli server change csr from ssr ([0c20627](https://github.com/Himenon/code-dependency/packages/cli/commit/0c20627))
+- remove [@elastic](https://github.com/elastic)/eui ([d1ffe09](https://github.com/Himenon/code-dependency/packages/cli/commit/d1ffe09))
+- revive ssr ([bfda64f](https://github.com/Himenon/code-dependency/packages/cli/commit/bfda64f))
+- update bin script ([7c64a8d](https://github.com/Himenon/code-dependency/packages/cli/commit/7c64a8d))
+- update cli path arguments validator ([4117803](https://github.com/Himenon/code-dependency/packages/cli/commit/4117803))
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://github.com/Himenon/code-dependency/packages/cli/compare/v0.0.1-alpha.7...v0.2.0) (2020-01-03)

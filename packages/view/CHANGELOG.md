@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+
+# [0.3.0](https://github.com/Himenon/code-dependency/compare/v0.2.0...v0.3.0) (2020-01-06)
+
+### Bug Fixes
+
+- Invalid Hook Call Warning ([9e07e6a](https://github.com/Himenon/code-dependency/commit/9e07e6a))
+
+### Features
+
+- remove [@elastic](https://github.com/elastic)/eui ([d1ffe09](https://github.com/Himenon/code-dependency/commit/d1ffe09))
+- update ui ([c6b1a6e](https://github.com/Himenon/code-dependency/commit/c6b1a6e))
+- update webpack settings ([fa5ece0](https://github.com/Himenon/code-dependency/commit/fa5ece0))
+
+### Tests
+
+- update test ([224b594](https://github.com/Himenon/code-dependency/commit/224b594))
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://github.com/Himenon/code-dependency/compare/v0.0.1-alpha.7...v0.2.0) (2020-01-03)

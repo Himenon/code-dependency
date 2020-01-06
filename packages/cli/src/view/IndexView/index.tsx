@@ -14,18 +14,16 @@ export interface Props {
 }
 
 export const create = async ({ url, serverUrl, context, service, filePathList }: Props) => {
-  // FIXME serviceから利用するとErrorが生じる
-  const viz = service.viz.getInstance();
   const client = ApiClient.create(serverUrl, true);
   const state: ServerSideRenderingProps["state"] = {
-    graphvizSource: await viz.renderString("digraph { hello -> world }"),
+    graphvizSource: await service.viz.renderToString("digraph { hello -> world }"),
     filePathList,
   };
   const props: ServerSideRenderingProps = {
     isServer: true,
     state,
     injection: {
-      createSvgString: (source: string) => viz.renderString(source),
+      createSvgString: (source: string) => Promise.resolve(source),
       client,
     },
   };

@@ -1,7 +1,6 @@
 import commander from "commander";
 import { SourcePathInvalidError } from "../exceptions";
 import * as PathFactory from "./PathFactory";
-import pkg from "../../package.json";
 
 const isInvalidPath = require("is-invalid-path");
 
@@ -27,7 +26,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
 
 export const executeCommandLine = (): CLIArguments => {
   commander
-    .version(pkg.version)
+    .version(process.env.VERSION)
     .option("-s --source [value]", "Source Directory or File")
     .option("-p --port [value]", "Port number", 3000)
     .option("--tsconfig [value]", "tsconfig.json path", undefined)

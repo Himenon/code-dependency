@@ -7,10 +7,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "launch cli/index.js",
+      "name": "launch command line interface",
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceFolder}/packages/cli",
-      "program": "${workspaceFolder}/packages/cli/dist/index.js",
+      "program": "${workspaceFolder}/packages/cli/bin/code-dependency.js",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "args": ["--source", "src"]
     }

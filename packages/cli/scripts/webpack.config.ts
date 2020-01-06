@@ -44,6 +44,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         new FriendlyErrorsWebpackPlugin(),
         new webpack.DefinePlugin({
           "process.env.isProduction": JSON.stringify(isProduction),
+          "process.env.VERSION": JSON.stringify(require("../package.json").version),
         }),
       ],
       target: "node",

@@ -23,7 +23,7 @@
     "lint:fix": "yarn lint --fix",
     "publish": "lerna publish from-package",
     "test": "lerna run test",
-    "version_up": "lerna version --yes"
+    "version_up": "lerna version --no-push"
   },
   "husky": {
     "hooks": {

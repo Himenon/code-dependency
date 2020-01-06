@@ -19,7 +19,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          yarn install --ignore-optional
+          yarn install
           yarn build
           yarn test
         env:

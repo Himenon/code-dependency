@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "clean": "lerna clean",
+    "clean": "lerna run clean",
     "clean:all": "yarn run clean:lib && yarn run clean:cache && lerna run clean",
     "commit": "npx git-cz",
     "cruiser": "lerna run cruiser",

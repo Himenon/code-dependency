@@ -3,7 +3,6 @@ import * as webpack from "webpack";
 
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
@@ -55,7 +54,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
           ReactDOM: appPath("../../node_modules/react-dom"),
         },
       },
-      externals: [nodeExternals()],
+      externals: [/^(?!^(src|\.|\.\.)\/)/],
       module: {
         rules: [
           {

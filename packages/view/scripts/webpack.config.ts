@@ -173,9 +173,18 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
     ].filter(Boolean),
     output: option.output,
     externals: [
-      {
+      // クライアント側で読み込むscriptとして利用する場合のexternals
+      !isLibrary && {
         react: "React",
         "react-dom": "ReactDOM",
+      },
+      // Libraryとして利用する場合、以下のエラーを防ぐ対策
+      // https://github.com/facebook/react/issues/13991#issuecomment-490809442
+      // Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+      // 3. You might have more than one copy of React in the same app
+      isLibrary && {
+        react: "react",
+        "react-dom": "react-dom",
       },
       isLibrary && { "react-ace": "react-ace" },
       isLibrary && nodeExternals(),

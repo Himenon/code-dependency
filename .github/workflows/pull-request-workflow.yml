@@ -1,4 +1,4 @@
-name: Test & Build
+name: Pull Request Workflow
 
 on: [pull_request]
 
@@ -11,7 +11,9 @@ jobs:
         node-version: [10.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          ref: master
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -19,7 +21,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          yarn install
+          yarn install --frozen-lockfile
           yarn build
           yarn test
         env:

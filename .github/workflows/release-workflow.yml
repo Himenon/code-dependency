@@ -1,0 +1,60 @@
+name: Release Workflow
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: |
+          yarn install --frozen-lockfile
+          yarn test
+          yarn build
+
+  # release-github-npm-registry:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         ref: master
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #         registry-url: https://npm.pkg.github.com/
+  #         scope: '@Himenon'
+  #     - run: |
+  #         yarn install --frozen-lockfile
+  #         yarn build
+  #         echo "//npm.pkg.github.com/:_authToken=$GITHUB_NPM_TOKEN" >> ~/.npmrc
+  #         yarn lerna publish from-package --yes --registry https://npm.pkg.github.com/:_authToken=${GITHUB_NPM_TOKEN}
+  #       env:
+  #         GITHUB_NPM_TOKEN: ${{secrets.GITHUB_NPM_TOKEN}}
+
+  release-npm-packages:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          yarn install --frozen-lockfile
+          yarn build
+          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+          yarn lerna publish from-package --yes
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

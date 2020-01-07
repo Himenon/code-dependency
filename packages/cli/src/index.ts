@@ -23,7 +23,7 @@ const main = async () => {
   const server = createServer(service, config);
 
   logger.info(`Start: http://localhost:${args.port}`);
-  server.listen(3000);
+  server.listen(args.port);
 };
 
 main().catch(error => {

@@ -8,7 +8,7 @@ export interface Option {
 export const create = (option: Option) => {
   const getDependenciesDot = (source: string): string => {
     logger.info(`cruise: ${source}`);
-    const dependencies = cruise([source], { exclude: "node_modules", maxDepth: 99, combinedDependencies: true }, undefined, option.tsConfig);
+    const dependencies = cruise([source], { tsPreCompilationDeps: true }, undefined, option.tsConfig);
     if (typeof dependencies.output !== "string") {
       return format(dependencies.output, "dot").output.toString();
     }

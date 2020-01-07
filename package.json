@@ -21,7 +21,6 @@
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
-    "publish": "lerna publish from-package",
     "test": "lerna run test",
     "version_up": "lerna version --yes"
   },

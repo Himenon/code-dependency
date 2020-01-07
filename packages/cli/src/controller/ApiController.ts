@@ -1,7 +1,8 @@
 import express from "express";
 import * as path from "path";
-import * as Service from "../service";
 import * as Config from "../config";
+import * as Service from "../service";
+import { logger } from "../logger";
 import { Api } from "@code-dependency/view";
 
 export const createApiResponse = <T>(data: T): Api.ApiResponse<T> => {
@@ -18,12 +19,17 @@ export const create = (service: Service.Type, config: Config.Type) => {
 
   router.post("/graph", async (req, res) => {
     const filename = path.join(config.absoluteRootDirPath, req.body.path);
-    const dot = service.dependencyCruiser.getDependenciesDot(filename);
-    const data = createApiResponse<Api.GraphResponseData>({
-      element: dot,
-    });
-    res.json(data);
-    res.end();
+    try {
+      const dot = service.dependencyCruiser.getDependenciesDot(filename);
+      const data = createApiResponse<Api.GraphResponseData>({
+        element: dot,
+      });
+      res.json(data);
+    } catch (error) {
+      res.status(500).send(error.message);
+      logger.error(error);
+      res.end();
+    }
   });
 
   router.use("/paths", async (req, res) => {

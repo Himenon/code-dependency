@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@code-dependency/view": "^0.3.2",
-    "chalk": "^3.0.0",
     "commander": "4.0.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -57,7 +56,7 @@
     "react-router-dom": "^5.1.2",
     "recursive-readdir": "^2.2.2",
     "resolve-pkg": "^2.0.0",
-    "viz.js": "^2.1.2"
+    "tsconfig": "^7.0.0"
   },
   "devDependencies": {
     "@types/compression": "^1.0.1",

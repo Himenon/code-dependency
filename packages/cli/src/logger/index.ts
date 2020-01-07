@@ -7,6 +7,6 @@ configure({
 
 const logger = getLogger("code-dependency");
 
-logger.level = "info";
+logger.level = process.env.isProduction ? "info" : "debug";
 
 export { logger };

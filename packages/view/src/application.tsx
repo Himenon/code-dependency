@@ -6,8 +6,8 @@ import { RootRouter } from "./router";
 import * as Api from "./api";
 
 const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
-  const viz = new Viz({ workerURL: process.env.workerURL });
   if (process.env.isProduction) {
+    const viz = new Viz({ workerURL: process.env.workerURL });
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
     const client = Api.create(csrProps.baseUrl, false);
     return {

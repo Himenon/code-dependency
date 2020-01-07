@@ -3,7 +3,6 @@ import ReactDOMServer from "react-dom/server";
 import { IndexView } from "../view";
 import * as Service from "../service";
 import * as Config from "../config";
-import { find } from "../utils";
 
 export const create = (service: Service.Type, config: Config.Type) => {
   const router = express.Router();
@@ -18,6 +17,5 @@ export const create = (service: Service.Type, config: Config.Type) => {
       console.error(error);
     }
   });
-  router.get("/manifest.json", express.static(find("@code-dependency/view/dist/manifest.json"), { maxAge: "5000" }));
   return router;
 };

@@ -19,7 +19,6 @@ export const create = (props: Props, csrProps: ClientSideRenderingProps) => {
         <script src={manifest["scripts/react-dom.production.min.js"]} />
         <script src={manifest["scripts/full.render.js"]}></script>
         <link href={manifest["styles.css"]} rel="stylesheet" />
-        <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.__INITIAL_PROPS__ = ${JSON.stringify(csrProps)}`,

@@ -39,6 +39,10 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         noEmitOnErrors: true,
       },
       devtool: isProduction ? undefined : "inline-source-map",
+      node: {
+        __dirname: false,
+        __filename: false,
+      },
       plugins: [
         new ProgressBarPlugin(),
         new FriendlyErrorsWebpackPlugin(),

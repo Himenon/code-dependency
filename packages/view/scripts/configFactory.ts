@@ -10,7 +10,7 @@ export const generateDistConfig = (isProduction: boolean): webpack.Configuration
       application: ["core-js", "regenerator-runtime/runtime", "./src/application.tsx"],
     },
     output: {
-      filename: "scripts/[name].js",
+      filename: "scripts/[name].[hash].js",
       path: path.resolve(__dirname, "../dist"),
       publicPath: undefined,
     },

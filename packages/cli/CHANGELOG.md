@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.2"></a>
+## 0.3.2 (2020-01-07)
+
+**Note:** Version bump only for package @code-dependency/cli
+
+
+
+
+
 <a name="0.3.1"></a>
 
 ## [0.3.1](https://github.com/Himenon/code-dependency/packages/cli/compare/v0.3.0...v0.3.1) (2020-01-06)

@@ -4,7 +4,7 @@ import recursive from "recursive-readdir";
 import resolvePkg from "resolve-pkg";
 
 export const find = (searchPath: string) => {
-  const result = resolvePkg(searchPath);
+  const result = resolvePkg(searchPath, { cwd: process.env.isProduction ? __dirname : undefined });
   if (result) {
     return result;
   }

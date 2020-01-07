@@ -1,3 +1,4 @@
+import { logger } from "./logger";
 import { createServer } from "./server";
 import { gather } from "./utils";
 import * as path from "path";
@@ -21,7 +22,7 @@ const main = async () => {
   const service = await Service.create({ tsconfigFilePath });
   const server = createServer(service, config);
 
-  console.log(`Run: http://localhost:${args.port}`);
+  logger.info(`Start: http://localhost:${args.port}`);
   server.listen(3000);
 };
 

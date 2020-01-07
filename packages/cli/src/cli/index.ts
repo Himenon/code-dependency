@@ -26,7 +26,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
 
 export const executeCommandLine = (): CLIArguments => {
   commander
-    .version(process.env.VERSION)
+    .version(process.env.VERSION!) // add webpack.DefinePlugin
     .option("-s --source [value]", "Source Directory or File")
     .option("-p --port [value]", "Port number", 3000)
     .option("--tsconfig [value]", "tsconfig.json path", undefined)

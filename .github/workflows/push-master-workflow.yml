@@ -1,0 +1,32 @@
+name: Push master Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: yarn install, build, and test
+        run: |
+          git config --local user.email "k.himeno314@gmail.com"
+          git config --local user.name "Himenon"
+          yarn install --frozen-lockfile
+          yarn version_up
+        env:
+          CI: true

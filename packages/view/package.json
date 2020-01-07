@@ -100,5 +100,8 @@
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-node-externals": "^1.7.2",
     "webpack-notifier": "^1.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -20,7 +20,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
     const filename = path.join(config.absoluteRootDirPath, req.body.path);
     const dot = service.dependencyCruiser.getDependenciesDot(filename);
     const data = createApiResponse<Api.GraphResponseData>({
-      element: await service.viz.renderToString(dot),
+      element: dot,
     });
     res.json(data);
     res.end();

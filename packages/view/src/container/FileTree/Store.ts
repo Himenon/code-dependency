@@ -91,10 +91,14 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, createSvgString }: InjectionMethod) => {
   const onClick = async (nextSource: string) => {
-    const res = await client.getGraph({ path: nextSource });
-    if (res) {
-      const graph = await createSvgString(res.data.element);
-      domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: graph });
+    try {
+      const res = await client.getGraph({ path: nextSource });
+      if (res) {
+        const graph = await createSvgString(res.data.element);
+        domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: graph });
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);

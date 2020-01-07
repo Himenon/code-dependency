@@ -16,7 +16,7 @@ export interface Props {
 export const create = async ({ url, serverUrl, context, service, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
   const state: ServerSideRenderingProps["state"] = {
-    graphvizSource: await service.viz.renderToString("digraph { hello -> world }"),
+    graphvizSource: "select from left source file.",
     filePathList,
   };
   const props: ServerSideRenderingProps = {

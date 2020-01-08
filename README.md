@@ -13,6 +13,8 @@ code-dependency --source ./src
 # open localhost:3000
 ```
 
+see [other option](./packages/cli/README.md#option).
+
 ![code dependency usage image](./docs/code-dependency-image.png)
 
 ## Core development UI / APi

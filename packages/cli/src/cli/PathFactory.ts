@@ -19,6 +19,8 @@ export const convertSourceToAbsolutePath = (source: string, context: string = pr
 export const create = ({ context = process.cwd(), source }: Params) => {
   const absolutePath = convertSourceToAbsolutePath(source);
   return {
+    original: source,
+    binRelativePath: path.relative(__dirname, source),
     rootDir: path.dirname(absolutePath),
     rootAbsolutePath: absolutePath,
   };

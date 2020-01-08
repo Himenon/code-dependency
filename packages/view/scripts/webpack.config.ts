@@ -162,6 +162,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
         "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
+        "process.env.NODE_ENV": JSON.stringify("production"),
       }),
       !isLibrary &&
         new CopyPlugin([

@@ -47,6 +47,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
         new ProgressBarPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         new webpack.DefinePlugin({
+          "process.env.NODE_ENV": JSON.stringify("production"),
           "process.env.isProduction": JSON.stringify(isProduction),
           "process.env.VERSION": JSON.stringify(require("../package.json").version),
         }),

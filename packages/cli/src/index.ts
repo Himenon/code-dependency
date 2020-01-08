@@ -17,9 +17,10 @@ const main = async () => {
     source: path.relative(args.source.rootDir, pathname),
   }));
   const config = Config.create(args.port, args.source.rootAbsolutePath, filePathList);
-  const tsconfigFilePath = args.tsconfig && args.tsconfig.rootAbsolutePath;
+  const tsconfigFilePath = args.tsConfig && args.tsConfig.rootAbsolutePath;
+  const webpackConfigPath = args.webpackConfig && args.webpackConfig.binRelativePath;
 
-  const service = await Service.create({ tsconfigFilePath, webpackConfigPath: args.webpackConfig?.rootAbsolutePath, exclude: args.exclude });
+  const service = await Service.create({ tsconfigFilePath, webpackConfigPath, exclude: args.exclude });
   const server = createServer(service, config);
 
   logger.info(`Start: http://localhost:${args.port}`);

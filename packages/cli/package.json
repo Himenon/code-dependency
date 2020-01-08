@@ -33,7 +33,7 @@
     "build:webpack": "webpack --config ./scripts/build.ts",
     "clean": "rimraf ./lib ./build ./dist",
     "develop": "cross-env NODE_ENV=development yarn build:webpack --watch",
-    "server": "nodemon ./bin/code-dependency.js --source ./src",
+    "server": "nodemon ./bin/code-dependency.js --source ./src --exclude node_modules",
     "start": "run-p develop server",
     "test": "jest -c jest.config.json",
     "test:depcruise": "depcruise --validate .dependency-cruiser.json src",

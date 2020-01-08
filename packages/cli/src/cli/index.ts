@@ -8,6 +8,8 @@ interface CLIArguments {
   source: PathFactory.Type;
   port: number;
   tsconfig?: PathFactory.Type;
+  exclude?: string;
+  webpackConfig?: PathFactory.Type;
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -21,6 +23,8 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
     source: PathFactory.create({ source: args["source"] }),
     port: args["port"],
     tsconfig: args["tsconfig"] && PathFactory.create({ source: args["tsconfig"] }),
+    exclude: args["exclude"],
+    webpackConfig: args["webpackConfig"] && PathFactory.create({ source: args["webpackConfig"] }),
   };
 };
 
@@ -30,6 +34,8 @@ export const executeCommandLine = (): CLIArguments => {
     .option("-s --source [value]", "Source Directory or File")
     .option("-p --port [value]", "Port number", 3000)
     .option("--tsconfig [value]", "tsconfig.json path", undefined)
+    .option("--webpack-config [value]", "webpack.config.json path")
+    .option("--exclude [value]", "exclude pattern", "node_modules")
     .parse(process.argv);
   return validateCliArguments(commander);
 };

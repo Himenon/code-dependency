@@ -86,7 +86,6 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
       }
     });
   });
-  console.log(flatFileMap);
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
     const fileItem: SideNavItem.Props = generateFile(filePathObject, updateKey);

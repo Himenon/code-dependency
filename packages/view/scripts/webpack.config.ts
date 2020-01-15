@@ -46,6 +46,7 @@ export interface Option {
 }
 
 export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): webpack.Configuration => {
+  console.log(`isProduction = ${isProduction}`);
   // const isCI = process.env.CI;
   const publicPath = generatePublicPath(isProduction);
 

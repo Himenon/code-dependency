@@ -11,14 +11,10 @@
     "publish": {
       "access": "public",
       "allowBranch": "master",
-      "ignoreChanges": [
-        "CHANGELOG.md"
-      ]
+      "ignoreChanges": ["CHANGELOG.md"]
     }
   },
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.3.4",
   "npmClient": "yarn",
   "registry": "https://registry.npmjs.org/",

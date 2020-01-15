@@ -69,12 +69,28 @@ const generateItems = (
     .sort(compareBasename);
 };
 
+export const generateParentDirectories = (filePath: string): string[] => {
+  const dirname = path.dirname(filePath);
+  if (dirname === ".") {
+    return [dirname];
+  }
+  return [dirname].concat(generateParentDirectories(dirname));
+};
+
 export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
+  filePathObjectList.forEach(p => {
+    generateParentDirectories(p.source).forEach(dirname => {
+      if (!(dirname in flatFileMap) && dirname !== ".") {
+        flatFileMap[dirname] = [];
+      }
+    });
+  });
+  console.log(flatFileMap);
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const item: SideNavItem.Props = generateFile(filePathObject, updateKey);
-    (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(item);
+    const fileItem: SideNavItem.Props = generateFile(filePathObject, updateKey);
+    (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);
   const rootItems = directories

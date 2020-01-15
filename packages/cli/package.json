@@ -27,8 +27,8 @@
     "code-dependency": "./bin/code-dependency.js"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production yarn build:webpack",
-    "build:dev": "cross-env NODE_ENV=development yarn build:webpack",
+    "build": "cross-env-shell NODE_ENV=production yarn build:webpack",
+    "build:dev": "cross-env-shell NODE_ENV=development yarn build:webpack",
     "build:lib": "tsc -b tsconfig.json",
     "build:webpack": "webpack --config ./scripts/build.ts",
     "clean": "rimraf ./lib ./build ./dist",

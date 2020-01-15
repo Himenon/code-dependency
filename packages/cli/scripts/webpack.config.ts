@@ -12,6 +12,7 @@ export interface Option {
 }
 
 export const generateConfig = ({ isProduction }: Option): webpack.Configuration[] => {
+  console.log(`isProduction = ${isProduction}`);
   const tsLoader: webpack.RuleSetUse = {
     loader: "ts-loader",
     options: {

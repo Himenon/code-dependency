@@ -16,7 +16,7 @@
     "commit": "npx git-cz",
     "cruiser": "lerna run cruiser",
     "develop": "yarn run build:lib --verbose -w",
-    "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md,scss}\"",
+    "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,scss}\"",
     "generate:sample": "./bin/generate-sample.sh",
     "initialize": "run-s bootstrap clean:all setup build:lib",
     "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",

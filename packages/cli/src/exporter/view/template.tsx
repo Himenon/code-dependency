@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StaticRouter } from "react-router";
 import { Editor, ClientSideRenderingProps, ServerSideRenderingProps } from "@code-dependency/view";
 
 export interface Props {
@@ -17,9 +18,11 @@ export interface Props {
       styles: string;
     };
   };
+  context: {};
+  url: string;
 }
 
-export const create = ({ assets, ...props }: Props, csrProps: ClientSideRenderingProps) => {
+export const create = ({ assets, context, url, ...props }: Props, csrProps: ClientSideRenderingProps) => {
   return (
     <html lang="en">
       <head>
@@ -40,7 +43,9 @@ export const create = ({ assets, ...props }: Props, csrProps: ClientSideRenderin
       </head>
       <body>
         <div id="root">
-          <Editor.Container {...props.ssr} />
+          <StaticRouter location={url} context={context}>
+            <Editor.Container {...props.ssr} />
+          </StaticRouter>
         </div>
         <script type="text/javascript" src={assets.scripts.vendor} />
         <script type="text/javascript" src={assets.scripts.styles} />

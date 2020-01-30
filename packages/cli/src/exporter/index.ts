@@ -10,9 +10,10 @@ import manifest from "@code-dependency/view/dist/manifest.json";
 export const create = (service: Service.Type, config: Config.Type) => {
   const ASSETS_BASE_DIR = "/assets";
   process.setMaxListeners(config.filePathList.length);
-  const generateStaticHtml = (source: string, assets: View.Assets): string => {
-    // const filename = path.join(config.absoluteRootDirPath, source);
-    const view = View.create(config.filePathList, assets);
+  const generateStaticHtml = async (source: string, assets: View.Assets): Promise<string> => {
+    const url = path.join("/", source.replace(path.extname(source), ""));
+    const targetSource = service.dependencyCruiser.getDependenciesDot(source);
+    const view = await View.create(url, targetSource, config.filePathList, assets);
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };
 
@@ -62,7 +63,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
       const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
       const promises = config.filePathList.map(async filePath => {
         const outputFilePath = path.join(outputBaseDir, filePath.source).replace(path.extname(filePath.source), ".html");
-        return writePage(outputFilePath, generateStaticHtml(filePath.source, assets));
+        return writePage(outputFilePath, await generateStaticHtml(filePath.source, assets));
       });
       return Promise.all(promises);
     },

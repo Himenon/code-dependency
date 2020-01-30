@@ -8,7 +8,7 @@ import * as Api from "./api";
 const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
   if (process.env.isProduction) {
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
-    const viz = new Viz({ workerURL: csrProps.isStatic ? csrProps.workerUrl : process.env.workerURL });
+    const viz = new Viz({ workerURL: csrProps.workerUrl });
     const client = Api.create(csrProps.baseUrl, false);
     return {
       isServer: false,

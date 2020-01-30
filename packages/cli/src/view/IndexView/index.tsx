@@ -36,5 +36,5 @@ export const create = async ({ url, serverUrl, context, service, filePathList }:
       <Editor.Container {...props} />
     </StaticRouter>
   );
-  return Template.create({ body }, { baseUrl: serverUrl, state, isServer: true, isStatic: false });
+  return Template.create({ body }, { baseUrl: serverUrl, state, isServer: true, isStatic: false, workerUrl: process.env.workerURL! });
 };

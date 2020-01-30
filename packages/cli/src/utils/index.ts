@@ -4,10 +4,12 @@ import recursive from "recursive-readdir";
 import resolvePkg from "resolve-pkg";
 import { logger } from "../logger";
 
-export const find = (searchPath: string) => {
+export const find = (searchPath: string, showLog = true) => {
   const result = resolvePkg(searchPath, { cwd: process.env.isProduction ? __dirname : undefined });
   if (result) {
-    logger.debug(`Find: search: ${searchPath} -> ${result}`);
+    if (showLog) {
+      logger.debug(`Find: search: ${searchPath} -> ${result}`);
+    }
     return result;
   }
   throw new Error(`Not found: ${searchPath}`);

@@ -4,24 +4,26 @@ import { ServerSideRenderingProps, FilePathObject, ClientSideRenderingProps } fr
 import { Module, render } from "viz.js/full.render.js";
 import manifest from "@code-dependency/view/dist/manifest.json";
 
-const generateAssetsPath = (): Template.Props["assets"] => {
+export type Assets = typeof manifest;
+
+const generateAssetsPath = (assets: Assets): Template.Props["assets"] => {
   return {
     scripts: {
-      application: manifest["application.js"],
-      react: manifest["scripts/react.production.min.js"],
-      "react-dom": manifest["scripts/react-dom.production.min.js"],
-      styles: manifest["styles.js"],
-      vendor: manifest["vendor.js"],
-      "full.render.js": manifest["scripts/full.render.js"],
-      "viz.js": manifest["scripts/viz.js"],
+      application: assets["application.js"],
+      react: assets["scripts/react.production.min.js"],
+      "react-dom": assets["scripts/react-dom.production.min.js"],
+      styles: assets["styles.js"],
+      vendor: assets["vendor.js"],
+      "full.render.js": assets["scripts/full.render.js"],
+      "viz.js": assets["scripts/viz.js"],
     },
     stylesheets: {
-      styles: manifest["styles.css"],
+      styles: assets["styles.css"],
     },
   };
 };
 
-export const create = (filePathList: FilePathObject[]) => {
+export const create = (filePathList: FilePathObject[], assets: Assets) => {
   const viz = new Viz({ Module, render });
 
   const ssr: ServerSideRenderingProps = {
@@ -42,13 +44,14 @@ export const create = (filePathList: FilePathObject[]) => {
 
   const props: Template.Props = {
     ssr,
-    assets: generateAssetsPath(),
+    assets: generateAssetsPath(assets),
   };
 
   const csrProps: ClientSideRenderingProps = {
     isServer: true,
-    isStatic: false,
-    baseUrl: "/", // TODO
+    isStatic: true,
+    workerUrl: assets["scripts/full.render.js"],
+    baseUrl: "/assets", // TODO
     state: {
       source: {
         type: "svg",

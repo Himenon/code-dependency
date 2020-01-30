@@ -26,6 +26,7 @@ export interface ClientSideRenderingProps {
   isServer: boolean;
   isStatic: boolean;
   baseUrl: string;
+  workerUrl: string;
   state: {
     source: {
       type: "svg";

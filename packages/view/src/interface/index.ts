@@ -5,14 +5,18 @@ import { FilePathObject } from "./filePathObject";
 export { FilePathObject };
 
 export interface InjectionMethod {
-  createSvgString: (source: string) => Promise<string>;
-  client: Api.Client;
+  createSvgString: (dotSource: string) => Promise<string>;
+  client: Api.Client | undefined;
 }
 
 export interface ServerSideRenderingProps {
   isServer: boolean;
+  isStatic: boolean;
   state: {
-    graphvizSource: string;
+    source: {
+      type: "svg";
+      data: string | undefined;
+    };
     filePathList: FilePathObject[];
   };
   injection: InjectionMethod;
@@ -20,9 +24,13 @@ export interface ServerSideRenderingProps {
 
 export interface ClientSideRenderingProps {
   isServer: boolean;
+  isStatic: boolean;
   baseUrl: string;
   state: {
-    graphvizSource: string;
+    source: {
+      type: "svg";
+      data: string | undefined;
+    };
     filePathList: FilePathObject[];
   };
 }

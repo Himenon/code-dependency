@@ -18,7 +18,8 @@ export const Container = (props: ServerSideRenderingProps) => {
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
   const reducers = Domain.Graphviz.createReducers({
     isServer: props.isServer,
-    source: props.state.graphvizSource,
+    isStatic: props.isStatic,
+    svgSource: props.state.source.data,
     filePathList: props.state.filePathList,
     currentSelectedPath: undefined,
   });

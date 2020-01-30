@@ -106,6 +106,12 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, createSvgString }: InjectionMethod) => {
   const onClick = async (nextSource: string) => {
+    if (domainStores.graphviz.state.isStatic) {
+      return;
+    }
+    if (!client) {
+      return;
+    }
     try {
       const res = await client.getGraph({ path: nextSource });
       if (res) {
@@ -118,7 +124,7 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
   };
   const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);
   return {
-    euiSideNavItems: rootDirectory,
+    sideNavItems: rootDirectory,
   };
 };
 

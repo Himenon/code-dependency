@@ -16,11 +16,15 @@ export interface Props {
 export const create = async ({ url, serverUrl, context, service, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
   const state: ServerSideRenderingProps["state"] = {
-    graphvizSource: "select from left source file.",
+    source: {
+      type: "svg",
+      data: "select from left source file",
+    },
     filePathList,
   };
   const props: ServerSideRenderingProps = {
     isServer: true,
+    isStatic: false,
     state,
     injection: {
       createSvgString: (source: string) => Promise.resolve(source),
@@ -32,5 +36,5 @@ export const create = async ({ url, serverUrl, context, service, filePathList }:
       <Editor.Container {...props} />
     </StaticRouter>
   );
-  return Template.create({ body }, { baseUrl: serverUrl, state, isServer: true });
+  return Template.create({ body }, { baseUrl: serverUrl, state, isServer: true, isStatic: false });
 };

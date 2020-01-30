@@ -4,10 +4,10 @@ import { DEFAULT_STATE, State } from "./State";
 export const reducer = (state: State, action: ActionTypes): State => {
   switch (action.type) {
     case "UPDATE_GRAPHVIZ_SOURCE": {
-      return { ...state, source: state.source };
+      return { ...state, svgSource: state.svgSource };
     }
     case "UPDATE_SELECTED_FILE_PATH": {
-      return { ...state, currentSelectedPath: action.filePath, source: action.graphvizSource };
+      return { ...state, currentSelectedPath: action.filePath, svgSource: action.graphvizSource };
     }
     default:
       return state;

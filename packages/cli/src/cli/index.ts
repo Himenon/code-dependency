@@ -10,6 +10,7 @@ interface CLIArguments {
   tsConfig?: PathFactory.Type;
   exclude?: string;
   webpackConfig?: PathFactory.Type;
+  exportStatic?: PathFactory.Type;
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -25,6 +26,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
     tsConfig: args["tsConfig"] && PathFactory.create({ source: args["tsConfig"] }),
     exclude: args["exclude"],
     webpackConfig: args["webpackConfig"] && PathFactory.create({ source: args["webpackConfig"] }),
+    exportStatic: args["exportStatic"] && PathFactory.create({ source: args["exportStatic"] }),
   };
 };
 
@@ -36,6 +38,7 @@ export const executeCommandLine = (): CLIArguments => {
     .option("--ts-config [path]", "tsconfig.json path", undefined)
     .option("--webpack-config [path]", "webpack.config.js path (only js file)")
     .option("--exclude [string pattern]", "cruise exclude pattern", "node_modules")
+    .option("--export-static [static directory]", "static file hosting directory")
     .parse(process.argv);
   return validateCliArguments(commander);
 };

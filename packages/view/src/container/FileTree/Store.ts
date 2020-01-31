@@ -19,16 +19,18 @@ const generateDirectory = (directoryPath: string, basename: string, items: SideN
     id: directoryPath,
     name: basename,
     items,
+    to: basename,
   };
 };
 
-const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
+const generateFile = (source: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
     onClick: async () => {
       await updateKey(filePathObject.source);
     },
+    to: source,
   };
 };
 
@@ -88,7 +90,7 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
   });
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const fileItem: SideNavItem.Props = generateFile(filePathObject, updateKey);
+    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey);
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);

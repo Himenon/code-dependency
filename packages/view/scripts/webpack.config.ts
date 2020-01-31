@@ -146,9 +146,9 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         new HtmlWebpackPlugin({
           title: "@code-dependency/view",
           template: "public/index.html",
-          React: isProduction ? "scripts/react.production.min.js" : "scripts/react.development.js",
-          ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "scripts/react-dom.development.js",
-          "full.render.js": "scripts/full.render.js",
+          React: isProduction ? "/scripts/react.production.min.js" : "/scripts/react.development.js",
+          ReactDOM: isProduction ? "/scripts/react-dom.production.min.js" : "/scripts/react-dom.development.js",
+          "full.render.js": "/scripts/full.render.js",
           meta: {
             description: "visualize code dependency with graphviz.",
           },
@@ -162,7 +162,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "process.env.isProduction": JSON.stringify(isProduction),
         "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
-        "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
+        "process.env.workerURL": JSON.stringify("/scripts/full.render.js"),
         "process.env.NODE_ENV": JSON.stringify("production"),
       }),
       !isLibrary &&

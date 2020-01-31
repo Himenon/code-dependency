@@ -1,6 +1,7 @@
 import * as React from "react";
+import { Link, LinkProps } from "react-router-dom";
 
-interface SideNavItemProps {
+interface SideNavItemProps extends LinkProps {
   id: string;
   name: string;
   onClick?: () => Promise<void>;
@@ -39,9 +40,9 @@ const ButtonStyle: React.CSSProperties = {
 const SideNav = (props: SideNavItemProps) => {
   const [isActive, toggleActive] = React.useState(false);
   if (!props.children) {
+    const { id, name, items, depth, ...linkProps } = props;
     return (
-      <button
-        type="button"
+      <Link
         key={props.id}
         id={props.id}
         style={{ ...ButtonStyle, paddingLeft: 6 * (props.depth || 0) }}
@@ -49,10 +50,11 @@ const SideNav = (props: SideNavItemProps) => {
           toggleActive(!isActive);
           props.onClick && props.onClick();
         }}
+        {...linkProps}
       >
         {props.name}
         {isActive && props.children}
-      </button>
+      </Link>
     );
   }
   return (

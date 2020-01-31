@@ -12,7 +12,7 @@ export const generateDistConfig = (isProduction: boolean): webpack.Configuration
     output: {
       filename: "scripts/[name].[hash].js",
       path: path.resolve(__dirname, "../dist"),
-      publicPath: undefined,
+      publicPath: isProduction ? undefined : "/",
     },
     splitChunks: {
       chunks: "initial",

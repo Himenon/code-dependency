@@ -44,6 +44,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
 const initialize = async () => {
   const props = await getInitialProps();
   const render = process.env.isProduction ? ReactDOM.hydrate : ReactDOM.render;
+  console.log("hey!");
   render(<RootRouter {...props} />, document.getElementById("root"));
 };
 

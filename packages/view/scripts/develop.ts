@@ -20,6 +20,7 @@ const main = async () => {
     hot: true,
     open: true,
     compress: true,
+    historyApiFallback: true,
     before: (app: express.Application, _server: any) => {
       app.use("/scripts/full.render.js", express.static(find("viz.js/full.render.js")));
       app.use("/scripts/react.development.js", express.static(find("react/umd/react.development.js")));

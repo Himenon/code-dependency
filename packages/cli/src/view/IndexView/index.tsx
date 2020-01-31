@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StaticRouter } from "react-router";
 import { ApiClient, Editor, ServerSideRenderingProps, FilePathObject } from "@code-dependency/view";
+import manifest from "@code-dependency/view/dist/manifest.json";
 
 import * as Template from "./template";
 import * as Service from "../../service";
@@ -36,5 +37,8 @@ export const create = async ({ url, serverUrl, context, service, filePathList }:
       <Editor.Container {...props} />
     </StaticRouter>
   );
-  return Template.create({ body }, { baseUrl: serverUrl, state, isServer: true, isStatic: false, workerUrl: process.env.workerURL! });
+  return Template.create(
+    { body },
+    { baseUrl: serverUrl, state, isServer: true, isStatic: false, workerUrl: manifest["scripts/full.render.js"] },
+  );
 };

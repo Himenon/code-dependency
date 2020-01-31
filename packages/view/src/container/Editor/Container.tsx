@@ -5,6 +5,7 @@ import { Editor } from "@app/component";
 import * as GraphvizViewer from "../GraphvizViewer";
 import * as FileTree from "../FileTree";
 import { ServerSideRenderingProps } from "@app/interface";
+import { useLocation } from "react-router-dom";
 
 const generateProps = (store: Store): Editor.Props => {
   return {
@@ -14,7 +15,14 @@ const generateProps = (store: Store): Editor.Props => {
   };
 };
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 export const Container = (props: ServerSideRenderingProps) => {
+  const query = useQuery();
+  const pathname = query.get("pathname");
+  console.log({ pathname });
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
   const reducers = Domain.Graphviz.createReducers({
     isServer: props.isServer,

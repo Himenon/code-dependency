@@ -4,6 +4,9 @@ export { Api };
 import { FilePathObject } from "./filePathObject";
 export { FilePathObject };
 
+import * as Page from "./Page";
+export { Page };
+
 export interface InjectionMethod {
   createSvgString: (dotSource: string) => Promise<string>;
   client: Api.Client | undefined;

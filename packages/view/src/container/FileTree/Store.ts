@@ -1,7 +1,8 @@
 import * as Domain from "@app/domain";
 import { SideNavItem } from "@app/component";
 import * as path from "path";
-import { FilePathObject, InjectionMethod } from "@app/interface";
+import { FilePathObject, InjectionMethod, Page } from "@app/interface";
+import { QueryParams } from "@app/infra";
 
 type UpdateKeyFunction = (key: string) => Promise<void>;
 
@@ -23,14 +24,17 @@ const generateDirectory = (directoryPath: string, basename: string, items: SideN
   };
 };
 
-const generateFile = (source: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
+const generateFile = (pathname: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
+  const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
+  const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
+  const to = "/project" + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
     onClick: async () => {
       await updateKey(filePathObject.source);
     },
-    to: source,
+    to,
   };
 };
 

@@ -15,6 +15,7 @@ export interface InjectionMethod {
 export interface ServerSideRenderingProps {
   isServer: boolean;
   isStatic: boolean;
+  pathname: string | undefined;
   state: {
     source: {
       type: "svg";
@@ -30,6 +31,7 @@ export interface ClientSideRenderingProps {
   isStatic: boolean;
   baseUrl: string;
   workerUrl: string;
+  pathname: string | undefined;
   state: {
     source: {
       type: "svg";

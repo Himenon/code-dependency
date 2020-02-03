@@ -11,13 +11,7 @@
     "baseUrl": ".",
     "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./types"],
     "paths": {
-      "@app/component": ["./src/component/index.ts"],
-      "@app/container": ["./src/container/index.ts"],
-      "@app/domain": ["./src/domain/index.ts"],
-      "@app/infra": ["./src/infra/index.ts"],
-      "@app/interface": ["./src/interface/index.ts"],
-      "@app/style": ["./src/style/index.ts"],
-      "@app/api": ["./src/api/index.ts"]
+      "@app/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "types"],

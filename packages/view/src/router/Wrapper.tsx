@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { ServerSideRenderingProps } from "@app/interface";
 
 const useQuery = () => {
@@ -8,6 +8,7 @@ const useQuery = () => {
 
 export interface HoCProps {
   pathname: string;
+  history: ReturnType<typeof useHistory>;
 }
 
 export interface Props {
@@ -18,8 +19,10 @@ export interface Props {
 export const Container: React.FC<Props> = ({ component: Component, ssrProps }) => {
   const query = useQuery();
   const pathname = query.get("pathname") || "";
+  const history = useHistory();
   const hocProps: HoCProps = {
     pathname,
+    history,
   };
   const props: ServerSideRenderingProps & HoCProps = { ...ssrProps, ...hocProps };
   return <Component {...props} />;

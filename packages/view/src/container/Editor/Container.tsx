@@ -16,7 +16,6 @@ const generateProps = (store: Store): Editor.Props => {
 };
 
 export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = props => {
-  console.log(props);
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
   const reducers = Domain.Graphviz.createReducers({
     isServer: props.isServer,
@@ -26,7 +25,7 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
     currentSelectedPath: undefined,
   });
   const domainStores: Domain.Graphviz.Stores = {
-    graphviz: createReducer(React.useReducer(...reducers.graphviz)),
+    graphviz: createReducer(React.useReducer(...reducers.graphviz({ history: props.history }))),
   };
   const viewStore = generateStore(domainStores, props.injection);
   return <Editor.Component {...generateProps(viewStore)} />;

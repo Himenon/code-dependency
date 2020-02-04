@@ -32,6 +32,7 @@ const generateFile = (
   isStatic: boolean,
   currentPathname: string,
 ): SideNavItem.Props => {
+  console.log(`generateFile: ${currentPathname}`);
   const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
   const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
   const to = isStatic ? path.join("/project/", pathname).replace(path.extname(pathname), ".html") : "/project" + queryParams; // TODO router variable
@@ -148,7 +149,9 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
   const rootDirectory = generateFolderTree(
     domainStores.graphviz.state.filePathList,
     onClick,
-    domainStores.graphviz.state.pathname || ".",
+    // TODO
+    ".",
+    // domainStores.graphviz.state.pathname || ".", // ssr caution !!!
     domainStores.graphviz.state.isStatic,
   );
   return {

@@ -5,8 +5,8 @@ interface GraphvizViewerProps extends React.DetailedHTMLProps<React.HTMLAttribut
 }
 
 const GraphvizViewer = ({ svgSource, ...props }: GraphvizViewerProps) => {
-  if (!svgSource) {
-    return <div>No Elements</div>;
+  if (typeof svgSource !== "string") {
+    return <div>Now loading ....</div>;
   }
   return (
     <div

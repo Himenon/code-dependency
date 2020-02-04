@@ -5,6 +5,15 @@ import { ServerSideRenderingProps, ClientSideRenderingProps } from "@app/interfa
 import { RootRouter } from "./router";
 import * as Api from "./api";
 
+const restoreSvgData = async (pathname: string | undefined, viz: Viz, client: ReturnType<typeof Api.create>): Promise<string | undefined> => {
+  if (!pathname) {
+    return;
+  }
+  const graphResponse = await client.getGraph({ path: pathname });
+  const source = (graphResponse && graphResponse.data.element) || "select file from left menu.";
+  return await viz.renderString(source);
+};
+
 const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
   if (process.env.isProduction) {
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
@@ -14,7 +23,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       isServer: false,
       isStatic: csrProps.isStatic,
       sourceType: csrProps.sourceType,
-      svgData: csrProps.svgData,
+      svgData: csrProps.svgData || (await restoreSvgData(csrProps.pathname, viz, client)),
       filePathList: csrProps.filePathList,
       pathname: csrProps.pathname,
       injection: {
@@ -48,7 +57,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
 
 const initialize = async () => {
   const props = await getInitialProps();
-  const render = process.env.isProduction ? ReactDOM.hydrate : ReactDOM.render;
+  const render = ReactDOM.render;
   render(<RootRouter {...props} />, document.getElementById("root"));
 };
 

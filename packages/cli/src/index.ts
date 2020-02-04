@@ -24,7 +24,7 @@ const main = async () => {
 
   if (args.exportStatic) {
     const exporter = Exporter.create(service, config);
-    await exporter.generateStaticHtml(args.exportStatic.rootAbsolutePath);
+    await exporter.generateStaticHtml(args.source.original, args.exportStatic.rootAbsolutePath);
   } else {
     const server = createServer(service, config);
     logger.info(`Start: http://localhost:${args.port}`);

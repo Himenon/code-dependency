@@ -23,14 +23,14 @@ const generateAssetsPath = (assets: Assets): Template.Props["assets"] => {
   };
 };
 
-export const create = async (url: string, targetSource: string, filePathList: FilePathObject[], assets: Assets) => {
+export const create = async (url: string, pathname: string, dotSource: string, filePathList: FilePathObject[], assets: Assets) => {
   const viz = new Viz({ Module, render });
-  const data = await viz.renderString(targetSource);
+  const data = await viz.renderString(dotSource);
 
   const ssr: ServerSideRenderingProps = {
     isServer: true,
     isStatic: true,
-    pathname: targetSource,
+    pathname: pathname,
     sourceType: "svg",
     svgData: data,
     filePathList,
@@ -50,16 +50,12 @@ export const create = async (url: string, targetSource: string, filePathList: Fi
   const csrProps: ClientSideRenderingProps = {
     isServer: true,
     isStatic: true,
-    pathname: targetSource,
+    pathname: pathname,
     workerUrl: assets["scripts/full.render.js"],
     baseUrl: "/assets", // TODO
-    state: {
-      source: {
-        type: "svg",
-        data,
-      },
-      filePathList,
-    },
+    sourceType: "svg",
+    svgData: data,
+    filePathList,
   };
 
   return Template.create(props, csrProps);

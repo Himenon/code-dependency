@@ -17,18 +17,13 @@ export interface Props {
 
 export const create = async ({ url, serverUrl, context, pathname, service, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
-  const state: ServerSideRenderingProps["state"] = {
-    source: {
-      type: "svg",
-      data: "select from left source file",
-    },
-    filePathList,
-  };
   const ssrProps: ServerSideRenderingProps = {
     isServer: true,
     isStatic: false,
     pathname,
-    state,
+    sourceType: "svg",
+    filePathList,
+    svgData: undefined,
     injection: {
       createSvgString: (source: string) => Promise.resolve(source),
       client,
@@ -41,6 +36,15 @@ export const create = async ({ url, serverUrl, context, pathname, service, fileP
   );
   return Template.create(
     { body },
-    { baseUrl: serverUrl, state, isServer: true, pathname, isStatic: false, workerUrl: manifest["scripts/full.render.js"] },
+    {
+      baseUrl: serverUrl,
+      sourceType: "svg",
+      svgData: undefined,
+      filePathList,
+      isServer: true,
+      pathname,
+      isStatic: false,
+      workerUrl: manifest["scripts/full.render.js"],
+    },
   );
 };

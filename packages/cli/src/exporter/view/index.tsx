@@ -31,13 +31,9 @@ export const create = async (url: string, targetSource: string, filePathList: Fi
     isServer: true,
     isStatic: true,
     pathname: targetSource,
-    state: {
-      source: {
-        type: "svg",
-        data,
-      },
-      filePathList,
-    },
+    sourceType: "svg",
+    svgData: data,
+    filePathList,
     injection: {
       createSvgString: (source: string) => viz.renderString(source),
       client: undefined,

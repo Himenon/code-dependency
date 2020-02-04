@@ -20,8 +20,8 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
   const reducers = Domain.Graphviz.createReducers({
     isServer: props.isServer,
     isStatic: props.isStatic,
-    svgSource: props.state.source.data,
-    filePathList: props.state.filePathList,
+    svgSource: props.svgData,
+    filePathList: props.filePathList,
     currentSelectedPath: props.pathname,
   });
   const domainStores: Domain.Graphviz.Stores = {

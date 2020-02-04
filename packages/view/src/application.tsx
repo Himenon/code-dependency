@@ -13,7 +13,9 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
     return {
       isServer: false,
       isStatic: csrProps.isStatic,
-      state: csrProps.state,
+      sourceType: csrProps.sourceType,
+      svgData: csrProps.svgData,
+      filePathList: csrProps.filePathList,
       pathname: csrProps.pathname,
       injection: {
         createSvgString: (source: string) => viz.renderString(source),
@@ -33,13 +35,9 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       isServer: false,
       isStatic: false,
       pathname: pathname,
-      state: {
-        filePathList: res ? res.data.pathList : [],
-        source: {
-          type: "svg",
-          data: await viz.renderString(source),
-        },
-      },
+      filePathList: res ? res.data.pathList : [],
+      sourceType: "svg",
+      svgData: await viz.renderString(source),
       injection: {
         createSvgString: (source: string) => viz.renderString(source),
         client,

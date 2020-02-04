@@ -16,13 +16,9 @@ export interface ServerSideRenderingProps {
   isServer: boolean;
   isStatic: boolean;
   pathname: string | undefined;
-  state: {
-    source: {
-      type: "svg";
-      data: string | undefined;
-    };
-    filePathList: FilePathObject[];
-  };
+  sourceType: "svg";
+  svgData: string | undefined;
+  filePathList: FilePathObject[];
   injection: InjectionMethod;
 }
 
@@ -32,11 +28,7 @@ export interface ClientSideRenderingProps {
   baseUrl: string;
   workerUrl: string;
   pathname: string | undefined;
-  state: {
-    source: {
-      type: "svg";
-      data: string | undefined;
-    };
-    filePathList: FilePathObject[];
-  };
+  sourceType: "svg";
+  svgData: string | undefined;
+  filePathList: FilePathObject[];
 }

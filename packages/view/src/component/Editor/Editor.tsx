@@ -13,7 +13,7 @@ const Editor = ({ graphvizViewer, fileTree, current, ...props }: EditorProps) =>
   return (
     <div style={{ backgroundColor: "#fafbfd", display: "flex" }}>
       <div style={{ marginRight: 24, minWidth: 192, flex: "0 1 0%" }}>
-        <div style={{ position: "absolute", width: 192, bottom: 0, top: 0, overflowY: "scroll" }}>
+        <div style={{ position: "absolute", width: 192, bottom: 0, top: 8, overflowY: "scroll" }}>
           <FileTree.Component {...fileTree} />
         </div>
       </div>

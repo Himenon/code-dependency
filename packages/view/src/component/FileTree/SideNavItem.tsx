@@ -8,6 +8,7 @@ interface SideNavItemProps extends LinkProps {
   items?: SideNavItemProps[];
   depth?: number;
   children?: React.ReactNode;
+  isDefaultOpen?: boolean;
 }
 
 const SpanStyle: React.CSSProperties = {
@@ -37,8 +38,8 @@ const ButtonStyle: React.CSSProperties = {
   fontSize: 14,
 };
 
-const SideNav = (props: SideNavItemProps) => {
-  const [isActive, toggleActive] = React.useState(false);
+const SideNav = ({ isDefaultOpen, ...props }: SideNavItemProps) => {
+  const [isActive, toggleActive] = React.useState(!!isDefaultOpen);
   if (!props.children) {
     const { id, name, items, depth, ...linkProps } = props;
     return (

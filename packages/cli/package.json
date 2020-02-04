@@ -36,7 +36,7 @@
     "export:static": "node ./bin/code-dependency.js --source ./src --exclude node_modules --export-static ./output",
     "server": "nodemon ./bin/code-dependency.js --source ./src --exclude node_modules",
     "start": "run-p develop server",
-    "test": "jest -c jest.config.json",
+    "test": "jest -c jest.config.json && yarn export:static",
     "test:depcruise": "depcruise --validate .dependency-cruiser.json src",
     "ts": "ts-node -P tsconfig.json"
   },

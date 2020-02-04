@@ -85,7 +85,7 @@ const directoryResult: SideNavItem.Props[] = [
 
 describe("Store.ts", () => {
   test("generateFolderTree", () => {
-    const result = generateFolderTree(filePathObjectList, jest.fn(), false);
+    const result = generateFolderTree(filePathObjectList, jest.fn(), ".", false);
     // 関数を潰す
     expect(JSON.parse(JSON.stringify(result))).toEqual(directoryResult);
   });

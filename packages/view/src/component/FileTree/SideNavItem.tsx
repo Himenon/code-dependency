@@ -38,26 +38,12 @@ const ButtonStyle: React.CSSProperties = {
   fontSize: 14,
 };
 
-const SideNav = ({ isDefaultOpen, ...props }: SideNavItemProps) => {
-  const [isActive, toggleActive] = React.useState(!!isDefaultOpen);
-  if (!props.children) {
-    const { id, name, items, depth, ...linkProps } = props;
-    return (
-      <Link
-        key={props.id}
-        id={props.id}
-        style={{ ...ButtonStyle, paddingLeft: 6 * (props.depth || 0) }}
-        onClick={() => {
-          toggleActive(!isActive);
-          props.onClick && props.onClick();
-        }}
-        {...linkProps}
-      >
-        {props.name}
-        {isActive && props.children}
-      </Link>
-    );
-  }
+const DirectoryItem = (props: SideNavItemProps) => {
+  const [isActive, toggleActive] = React.useState(false);
+  // fix: Error: Invariant failed
+  React.useEffect(() => {
+    toggleActive(!!props.isDefaultOpen);
+  }, [props.isDefaultOpen]);
   return (
     <div key={props.id} id={props.id} style={{ paddingLeft: 6 * (props.depth || 0) }}>
       <span
@@ -72,6 +58,26 @@ const SideNav = ({ isDefaultOpen, ...props }: SideNavItemProps) => {
       {isActive && props.children}
     </div>
   );
+};
+
+const SideNav = (props: SideNavItemProps) => {
+  if (!props.children) {
+    const { id, name, items, depth, isDefaultOpen, ...linkProps } = props;
+    return (
+      <Link
+        key={props.id}
+        id={props.id}
+        style={{ ...ButtonStyle, paddingLeft: 6 * (props.depth || 0) }}
+        onClick={() => {
+          props.onClick && props.onClick();
+        }}
+        {...linkProps}
+      >
+        {props.name}
+      </Link>
+    );
+  }
+  return <DirectoryItem {...props} />;
 };
 
 export { SideNav as Component, SideNavItemProps as Props };

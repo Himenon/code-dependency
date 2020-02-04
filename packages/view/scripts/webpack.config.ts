@@ -72,9 +72,9 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       options: {
         localsConvention: "camelCase",
         importLoaders: 2,
-        // modules: {
-        // localIdentName: "___[local]___[hash:base64:5]",
-        // },
+        modules: {
+          localIdentName: "___[local]___[hash:base64:5]",
+        },
       },
     },
     {

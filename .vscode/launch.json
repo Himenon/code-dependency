@@ -13,6 +13,16 @@
       "program": "${workspaceFolder}/packages/cli/bin/code-dependency.js",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "args": ["--source", "src"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "export static",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/packages/cli",
+      "program": "${workspaceFolder}/packages/cli/bin/code-dependency.js",
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "args": ["--source", "src", "--export-static", "${workspaceFolder}/packages/cli/output"]
     }
   ]
 }

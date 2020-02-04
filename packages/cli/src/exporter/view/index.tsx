@@ -30,7 +30,7 @@ export const create = async (url: string, pathname: string, dotSource: string, f
   const ssr: ServerSideRenderingProps = {
     isServer: true,
     isStatic: true,
-    pathname: pathname,
+    pathname,
     sourceType: "svg",
     svgData: data,
     filePathList,
@@ -50,7 +50,7 @@ export const create = async (url: string, pathname: string, dotSource: string, f
   const csrProps: ClientSideRenderingProps = {
     isServer: true,
     isStatic: true,
-    pathname: pathname,
+    pathname,
     workerUrl: assets["scripts/full.render.js"],
     baseUrl: "/assets", // TODO
     sourceType: "svg",

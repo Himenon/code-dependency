@@ -62,7 +62,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
     generateStaticHtml: async (targetDir: string, outputBaseDir: string) => {
       const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
       const promises = config.filePathList.map(async filePath => {
-        const pathname = path.relative(targetDir, filePath.source);
+        const pathname = filePath.source;
         const outputFilePath = path.join(outputBaseDir, "project", pathname).replace(path.extname(pathname), ".html");
         return writePage(outputFilePath, await generateStaticHtml(filePath.source, assets));
       });

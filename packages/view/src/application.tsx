@@ -43,7 +43,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
     return {
       isServer: false,
       isStatic: false,
-      pathname: pathname,
+      pathname,
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
       svgData: await viz.renderString(source),

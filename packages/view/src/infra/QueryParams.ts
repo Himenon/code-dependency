@@ -37,3 +37,9 @@ export const generateBaseQueryParams = (): Page.PageQueryParams => {
     pathname: searchParams.get("pathname") || undefined,
   };
 };
+
+export const reloadPage = (): void => {
+  if (IS_BROWSER) {
+    location.reload();
+  }
+};

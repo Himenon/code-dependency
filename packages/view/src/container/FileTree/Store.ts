@@ -24,17 +24,21 @@ const generateDirectory = (directoryPath: string, basename: string, items: SideN
   };
 };
 
-const generateFile = (pathname: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
+const generateFile = (pathname: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction, isStatic: boolean): SideNavItem.Props => {
   const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
   const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
-  const to = "/project" + queryParams; // TODO router variable
+  const to = isStatic ? path.join("/project/", pathname).replace(path.extname(pathname), ".html") : "/project" + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
     onClick: async () => {
       await updateKey(filePathObject.source);
+      if (isStatic) {
+        QueryParams.reloadPage();
+      }
     },
     to,
+    replace: isStatic,
   };
 };
 
@@ -83,7 +87,11 @@ export const generateParentDirectories = (filePath: string): string[] => {
   return [dirname].concat(generateParentDirectories(dirname));
 };
 
-export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): SideNavItem.Props[] => {
+export const generateFolderTree = (
+  filePathObjectList: FilePathObject[],
+  updateKey: UpdateKeyFunction,
+  isStatic: boolean,
+): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
   filePathObjectList.forEach(p => {
     generateParentDirectories(p.source).forEach(dirname => {
@@ -94,7 +102,7 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
   });
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey);
+    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey, isStatic);
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);
@@ -128,7 +136,7 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
       console.error(error);
     }
   };
-  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);
+  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, domainStores.graphviz.state.isStatic);
   return {
     sideNavItems: rootDirectory,
   };

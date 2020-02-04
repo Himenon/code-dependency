@@ -19,7 +19,7 @@ export interface Props {
 
 export const Container: React.FC<Props> = ({ component: Component, ssrProps }) => {
   const query = useQuery();
-  const pathname = query.get("pathname") || "";
+  const pathname = ssrProps.pathname || query.get("pathname") || "";
   const history = useHistory();
   const hocProps: HoCProps = {
     pathname,

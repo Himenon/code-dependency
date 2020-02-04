@@ -6,7 +6,7 @@ import * as FileTree from "../FileTree";
 export const generateStore = (domainStores: Domain.Graphviz.Stores, injection: InjectionMethod) => {
   return {
     isServer: domainStores.graphviz.state.isServer,
-    current: domainStores.graphviz.state.currentSelectedPath,
+    current: domainStores.graphviz.state.pathname,
     fileTree: FileTree.generateStore(domainStores, injection),
     graphvizViewer: GraphvizViewer.generateStore(domainStores),
   };

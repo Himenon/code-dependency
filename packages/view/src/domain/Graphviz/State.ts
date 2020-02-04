@@ -5,7 +5,7 @@ export interface State {
   isStatic: boolean;
   svgSource: string | undefined;
   filePathList: FilePathObject[];
-  currentSelectedPath: string | undefined;
+  pathname: string | undefined;
 }
 
 export const DEFAULT_STATE: State = {
@@ -13,5 +13,5 @@ export const DEFAULT_STATE: State = {
   isStatic: false,
   svgSource: undefined,
   filePathList: [],
-  currentSelectedPath: undefined,
+  pathname: undefined,
 };

@@ -22,7 +22,7 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
     isStatic: props.isStatic,
     svgSource: props.svgData,
     filePathList: props.filePathList,
-    currentSelectedPath: props.pathname,
+    pathname: props.pathname,
   });
   const domainStores: Domain.Graphviz.Stores = {
     graphviz: createReducer(React.useReducer(...reducers.graphviz({ history: props.history }))),

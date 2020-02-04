@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StaticRouter } from "react-router";
-import { Editor, ClientSideRenderingProps, ServerSideRenderingProps } from "@code-dependency/view";
+import { Editor, ClientSideRenderingProps, ServerSideRenderingProps, Wrapper } from "@code-dependency/view";
 
 export interface Props {
   ssr: ServerSideRenderingProps;
@@ -44,7 +44,7 @@ export const create = ({ assets, context, url, ...props }: Props, csrProps: Clie
       <body>
         <div id="root">
           <StaticRouter location={url} context={context}>
-            <Editor.Container {...props.ssr} />
+            <Wrapper.SsrContainer component={Editor.Container} ssrProps={props.ssr} />
           </StaticRouter>
         </div>
         <script type="text/javascript" src={assets.scripts.vendor} />

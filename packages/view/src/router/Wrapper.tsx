@@ -7,8 +7,8 @@ const useQuery = () => {
 };
 
 export interface HoCProps {
-  pathname: string;
-  history: ReturnType<typeof useHistory>;
+  pathname?: string;
+  history?: ReturnType<typeof useHistory>;
   query: URLSearchParams;
 }
 
@@ -24,6 +24,17 @@ export const Container: React.FC<Props> = ({ component: Component, ssrProps }) =
   const hocProps: HoCProps = {
     pathname,
     history,
+    query,
+  };
+  const props: ServerSideRenderingProps & HoCProps = { ...ssrProps, ...hocProps };
+  return <Component {...props} />;
+};
+
+export const SsrContainer: React.FC<Props> = ({ component: Component, ssrProps }) => {
+  const query = new URLSearchParams();
+  const hocProps: HoCProps = {
+    pathname: ssrProps.pathname,
+    history: undefined,
     query,
   };
   const props: ServerSideRenderingProps & HoCProps = { ...ssrProps, ...hocProps };

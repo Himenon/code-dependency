@@ -5,7 +5,7 @@ import { QueryParams } from "@app/infra";
 import { convertSearchParamToQueryParams } from "./Converter";
 
 export interface Hooks {
-  history: ReturnType<typeof useHistory>;
+  history?: ReturnType<typeof useHistory>;
 }
 
 export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): State => {
@@ -18,7 +18,9 @@ export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): St
     }
     case "UPDATE_PAGE_PARAMS": {
       const q = QueryParams.appendQueryParams({ q: convertSearchParamToQueryParams(action.pageParams) });
-      hooks.history.replace(`?${q}`);
+      if (hooks.history) {
+        hooks.history.replace(`?${q}`);
+      }
       return { ...state };
     }
     default:

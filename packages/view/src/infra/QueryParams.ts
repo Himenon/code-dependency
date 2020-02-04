@@ -1,11 +1,21 @@
 import * as querystring from "querystring";
 import { Page } from "@app/interface";
 
+const IS_BROWSER = typeof window !== "undefined" && "HTMLElement" in window;
+
+const getSearchParams = () => {
+  if (IS_BROWSER) {
+    return new URLSearchParams(window.location.search);
+  } else {
+    return new URLSearchParams();
+  }
+};
+
 /**
  * @returns key1=value1&key2=value2
  */
 export const appendQueryParams = (query: Page.PageQueryParams): string => {
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = getSearchParams();
   const params = {};
   searchParams.forEach((v, k) => {
     params[k] = v;
@@ -21,7 +31,7 @@ export const appendQueryParams = (query: Page.PageQueryParams): string => {
 };
 
 export const generateBaseQueryParams = (): Page.PageQueryParams => {
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = getSearchParams();
   return {
     q: searchParams.get("q") || undefined,
     pathname: searchParams.get("pathname") || undefined,

@@ -29,7 +29,7 @@ const generateAssetsPath = (publicPath: string, assets: Assets): Template.Props[
 export const create = async (
   url: string,
   publicPath: string,
-  pathname: string,
+  selectedPathname: string,
   dotSource: string,
   filePathList: FilePathObject[],
   assets: Assets,
@@ -37,16 +37,16 @@ export const create = async (
   const viz = new Viz({ Module, render });
   const data = await viz.renderString(dotSource);
 
-  const routeProjectPath = "/project";
-  const routeProjectBasePath = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
+  const publicPathname = "/project";
+  const pagePathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
 
   const ssr: ServerSideRenderingProps = {
     isServer: true,
     isStatic: true,
     publicPath,
-    pathname,
-    routeProjectPath,
-    routeProjectBasePath,
+    selectedPathname,
+    publicPathname,
+    pagePathname,
     sourceType: "svg",
     svgData: data,
     filePathList,
@@ -67,11 +67,11 @@ export const create = async (
     isServer: true,
     isStatic: true,
     publicPath,
-    pathname,
-    routeProjectPath,
-    routeProjectBasePath,
+    selectedPathname,
+    publicPathname,
+    pagePathname,
     workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
-    baseUrl: urljoin(publicPath, "/assets"), // TODO
+    assetBaseUrl: urljoin(publicPath, "/assets"), // TODO
     sourceType: "svg",
     svgData: data,
     filePathList,

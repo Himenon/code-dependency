@@ -22,14 +22,14 @@ export interface Props {
 export const create = async ({ url, serverUrl, context, pathname, publicPath, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
 
-  const routeProjectBasePath = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
+  const publicPathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
   const ssrProps: ServerSideRenderingProps = {
     isServer: true,
     isStatic: false,
-    pathname,
+    selectedPathname: pathname,
     publicPath,
-    routeProjectPath: "/project",
-    routeProjectBasePath,
+    publicPathname,
+    pagePathname: "/project",
     sourceType: "svg",
     filePathList,
     svgData: undefined,
@@ -46,15 +46,15 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
   return Template.create(
     { body },
     {
-      baseUrl: serverUrl,
+      assetBaseUrl: serverUrl,
       sourceType: "svg",
       svgData: undefined,
       filePathList,
       isServer: true,
-      pathname,
+      selectedPathname: pathname,
       publicPath,
-      routeProjectPath: "/project",
-      routeProjectBasePath,
+      publicPathname: "/project",
+      pagePathname: publicPathname,
       isStatic: false,
       workerUrl: urljoin(publicPath, "assets", manifest["scripts/full.render.js"]),
     },

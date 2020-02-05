@@ -144,7 +144,7 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
 };
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, createSvgString }: InjectionMethod) => {
-  const onClick = async (nextSource: string) => {
+  const onClick = async (selectedPathname: string) => {
     if (domainStores.graphviz.state.isStatic) {
       return;
     }
@@ -152,10 +152,10 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
       return;
     }
     try {
-      const res = await client.getGraph({ path: nextSource });
+      const res = await client.getGraph({ path: selectedPathname });
       if (res) {
         const graph = await createSvgString(res.data.element);
-        domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: graph });
+        domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, graphvizSource: graph });
       }
     } catch (error) {
       console.error(error);
@@ -163,9 +163,9 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
   };
   const option: Option = {
     isStatic: domainStores.graphviz.state.isStatic,
-    pagePathname: domainStores.graphviz.state.pageRoute,
-    publicPathname: domainStores.graphviz.state.routeProjectPath,
-    selectedPathname: domainStores.graphviz.state.pathname || ".", // ssr caution !!!
+    pagePathname: domainStores.graphviz.state.pagePathname,
+    publicPathname: domainStores.graphviz.state.publicPathname,
+    selectedPathname: domainStores.graphviz.state.selectedPathname || ".", // FIXME React.useStateにこの値を入れると不具合を起こす
   };
   const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, option);
   return {

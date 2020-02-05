@@ -12,29 +12,23 @@ export interface InjectionMethod {
   client: Api.Client | undefined;
 }
 
-export interface ServerSideRenderingProps {
+export interface ShareRenderingProps {
   isServer: boolean;
   isStatic: boolean;
-  pathname: string | undefined;
+  selectedPathname: string | undefined;
   sourceType: "svg";
   publicPath: string;
-  routeProjectPath: string; // use react router Route.path
-  routeProjectBasePath: string;
+  publicPathname: string;
+  pagePathname: string;
   svgData: string | undefined;
   filePathList: FilePathObject[];
+}
+
+export interface ServerSideRenderingProps extends ShareRenderingProps {
   injection: InjectionMethod;
 }
 
-export interface ClientSideRenderingProps {
-  isServer: boolean;
-  isStatic: boolean;
-  baseUrl: string;
+export interface ClientSideRenderingProps extends ShareRenderingProps {
+  assetBaseUrl: string;
   workerUrl: string;
-  pathname: string | undefined;
-  sourceType: "svg";
-  publicPath: string;
-  routeProjectPath: string; // use react router Route.path
-  routeProjectBasePath: string;
-  svgData: string | undefined;
-  filePathList: FilePathObject[];
 }

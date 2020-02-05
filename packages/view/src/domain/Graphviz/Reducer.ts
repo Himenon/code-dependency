@@ -14,7 +14,7 @@ export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): St
       return { ...state, svgSource: state.svgSource };
     }
     case "UPDATE_SELECTED_FILE_PATH": {
-      return { ...state, pathname: action.filePath, svgSource: action.graphvizSource };
+      return { ...state, selectedPathname: action.selectedPathname, svgSource: action.graphvizSource };
     }
     case "UPDATE_PAGE_PARAMS": {
       const q = QueryParams.appendQueryParams({ q: convertSearchParamToQueryParams(action.pageParams) });

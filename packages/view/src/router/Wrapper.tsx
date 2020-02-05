@@ -19,7 +19,7 @@ export interface Props {
 
 export const Container: React.FC<Props> = ({ component: Component, ssrProps }) => {
   const query = useQuery();
-  const pathname = ssrProps.pathname || query.get("pathname") || "";
+  const pathname = ssrProps.selectedPathname || query.get("pathname") || "";
   const history = useHistory();
   const hocProps: HoCProps = {
     pathname,
@@ -33,7 +33,7 @@ export const Container: React.FC<Props> = ({ component: Component, ssrProps }) =
 export const SsrContainer: React.FC<Props> = ({ component: Component, ssrProps }) => {
   const query = new URLSearchParams();
   const hocProps: HoCProps = {
-    pathname: ssrProps.pathname,
+    pathname: ssrProps.selectedPathname,
     history: undefined,
     query,
   };

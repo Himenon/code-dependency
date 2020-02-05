@@ -18,17 +18,17 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
   if (process.env.isProduction) {
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
     const viz = new Viz({ workerURL: csrProps.workerUrl });
-    const client = Api.create(csrProps.baseUrl, false);
+    const client = Api.create(csrProps.assetBaseUrl, false);
     return {
       isServer: false,
       isStatic: csrProps.isStatic,
       sourceType: csrProps.sourceType,
-      svgData: csrProps.svgData || (await restoreSvgData(csrProps.pathname, viz, client)),
+      svgData: csrProps.svgData || (await restoreSvgData(csrProps.selectedPathname, viz, client)),
       filePathList: csrProps.filePathList,
       publicPath: csrProps.publicPath,
-      routeProjectPath: csrProps.routeProjectPath,
-      routeProjectBasePath: csrProps.routeProjectBasePath,
-      pathname: csrProps.pathname,
+      publicPathname: csrProps.publicPathname,
+      pagePathname: csrProps.pagePathname,
+      selectedPathname: csrProps.selectedPathname,
       injection: {
         createSvgString: (source: string) => viz.renderString(source),
         client,
@@ -46,10 +46,10 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
     return {
       isServer: false,
       isStatic: false,
-      pathname,
+      selectedPathname: pathname,
       publicPath: process.env.PUBLIC_PATH!,
-      routeProjectPath: "/project",
-      routeProjectBasePath: "/project",
+      publicPathname: "/",
+      pagePathname: "/project",
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
       svgData: await viz.renderString(source),

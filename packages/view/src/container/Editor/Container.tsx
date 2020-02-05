@@ -23,9 +23,9 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
     publicPath: props.publicPath,
     svgSource: props.svgData,
     filePathList: props.filePathList,
-    pathname: props.pathname,
-    routeProjectPath: props.routeProjectPath,
-    pageRoute: props.routeProjectBasePath,
+    selectedPathname: props.selectedPathname,
+    publicPathname: props.publicPathname,
+    pagePathname: props.pagePathname,
   });
   const domainStores: Domain.Graphviz.Stores = {
     graphviz: createReducer(React.useReducer(...reducers.graphviz({ history: props.history }))),

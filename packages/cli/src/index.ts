@@ -23,7 +23,7 @@ const main = async () => {
   const service = await Service.create({ tsconfigFilePath, webpackConfigPath, exclude: args.exclude });
 
   if (args.exportStatic) {
-    const exporter = Exporter.create(service, config);
+    const exporter = Exporter.create(service, config, args.dryRun);
     await exporter.generateStaticHtml(args.publicPath || "/", args.exportStatic.rootAbsolutePath);
   } else {
     const server = createServer(service, config);

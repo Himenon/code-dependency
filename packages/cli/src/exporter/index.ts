@@ -5,10 +5,12 @@ import * as fs from "fs";
 import * as path from "path";
 import * as View from "./view";
 import { find } from "../utils";
+import * as DryRun from "./DryRun";
 import manifest from "@code-dependency/view/dist/manifest.json";
 
-export const create = (service: Service.Type, config: Config.Type) => {
-  const ASSETS_BASE_DIR = "/assets";
+export const create = (service: Service.Type, config: Config.Type, isDryRun: boolean) => {
+  const ASSETS_BASE_DIR = "/assets"; // TODO
+
   process.setMaxListeners(config.filePathList.length);
   const generateStaticHtml = async (pathname: string, publicPath: string, assets: View.Assets): Promise<string> => {
     const url = path.join("/", pathname.replace(path.extname(pathname), ""));
@@ -53,12 +55,26 @@ export const create = (service: Service.Type, config: Config.Type) => {
   return {
     generateStaticHtml: async (publicPath: string, outputBaseDir: string) => {
       const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
+      const dryRunCacheFilename = path.join(outputBaseDir, ".code-dependency.json");
+      const dryRun = DryRun.create(dryRunCacheFilename, isDryRun);
+      const dryRunCache = dryRun.getDryRunCache();
       for await (const filePath of config.filePathList) {
         const pathname = filePath.source;
+        if (dryRunCache[pathname] === "done") {
+          continue;
+        }
+        if (dryRunCache[pathname] === "pending") {
+          continue;
+        } else {
+          dryRunCache[pathname] = "pending";
+        }
+        dryRun.updateDryRunCache(dryRunCache);
         const outputFilePath = path.join(outputBaseDir, "project", pathname).replace(path.extname(pathname), ".html");
         const html = await generateStaticHtml(filePath.source, publicPath, assets);
         writePage(outputFilePath, html);
+        dryRunCache[pathname] = "done";
       }
+      dryRun.deleteDryRunCache();
     },
   };
 };

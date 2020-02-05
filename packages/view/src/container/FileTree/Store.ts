@@ -38,7 +38,9 @@ const generateFile = (
 ): SideNavItem.Props => {
   const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
   const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
-  const to = isStatic ? urljoin(routeProjectPath, pathname.replace(path.extname(pathname), ".html")) : pageRoute + queryParams; // TODO router variable
+  const to = isStatic
+    ? urljoin(routeProjectPath, pathname.replace(path.extname(pathname), ".html"))
+    : urljoin(routeProjectPath, pageRoute) + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),

@@ -2,6 +2,7 @@ import * as React from "react";
 import { StaticRouter } from "react-router";
 import { ApiClient, Editor, ServerSideRenderingProps, FilePathObject, Wrapper } from "@code-dependency/view";
 import manifest from "@code-dependency/view/dist/manifest.json";
+import { isValidUrl } from "../../utils";
 
 const urljoin = require("urljoin");
 
@@ -21,7 +22,7 @@ export interface Props {
 export const create = async ({ url, serverUrl, context, pathname, publicPath, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
 
-  const routeProjectBasePath = new URL(publicPath).pathname;
+  const routeProjectBasePath = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
   const ssrProps: ServerSideRenderingProps = {
     isServer: true,
     isStatic: false,
@@ -55,7 +56,7 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
       routeProjectPath: "/project",
       routeProjectBasePath,
       isStatic: false,
-      workerUrl: urljoin(publicPath, manifest["scripts/full.render.js"]),
+      workerUrl: urljoin(publicPath, "assets", manifest["scripts/full.render.js"]),
     },
   );
 };

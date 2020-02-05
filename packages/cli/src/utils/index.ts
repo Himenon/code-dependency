@@ -28,3 +28,12 @@ export const gather = async (projectRoot: string): Promise<string[]> => {
     return fs.existsSync(pathname) && fs.statSync(pathname).isFile() && [".js", ".jsx", ".ts", ".tsx"].includes(path.extname(pathname));
   });
 };
+
+export const isValidUrl = (url: string): boolean => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

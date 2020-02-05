@@ -3,6 +3,7 @@ import Viz from "viz.js";
 import { ServerSideRenderingProps, FilePathObject, ClientSideRenderingProps } from "@code-dependency/view";
 import { Module, render } from "viz.js/full.render.js";
 import manifest from "@code-dependency/view/dist/manifest.json";
+import { isValidUrl } from "../../utils";
 
 const urljoin = require("urljoin");
 
@@ -37,7 +38,7 @@ export const create = async (
   const data = await viz.renderString(dotSource);
 
   const routeProjectPath = "/project";
-  const routeProjectBasePath = new URL(publicPath).pathname;
+  const routeProjectBasePath = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
 
   const ssr: ServerSideRenderingProps = {
     isServer: true,

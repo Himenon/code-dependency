@@ -64,7 +64,8 @@ export const create = (service: Service.Type, config: Config.Type) => {
       const promises = config.filePathList.map(async filePath => {
         const pathname = filePath.source;
         const outputFilePath = path.join(outputBaseDir, "project", pathname).replace(path.extname(pathname), ".html");
-        return writePage(outputFilePath, await generateStaticHtml(filePath.source, publicPath, assets));
+        const html = await generateStaticHtml(filePath.source, publicPath, assets);
+        return writePage(outputFilePath, html);
       });
       return Promise.all(promises);
     },

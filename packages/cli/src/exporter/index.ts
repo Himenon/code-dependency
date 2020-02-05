@@ -5,12 +5,11 @@ import * as fs from "fs";
 import * as path from "path";
 import * as View from "./view";
 import { find } from "../utils";
+import { routes } from "../constants/router";
 import * as DryRun from "./DryRun";
 import manifest from "@code-dependency/view/dist/manifest.json";
 
 export const create = (service: Service.Type, config: Config.Type, isDryRun: boolean) => {
-  const ASSETS_BASE_DIR = "/assets"; // TODO
-
   process.setMaxListeners(config.filePathList.length);
   const generateStaticHtml = async (pathname: string, publicPath: string, assets: View.Assets): Promise<string> => {
     const url = path.join("/", pathname.replace(path.extname(pathname), ""));
@@ -45,7 +44,7 @@ export const create = (service: Service.Type, config: Config.Type, isDryRun: boo
             resolve();
           }
         });
-        assets[key] = path.join(ASSETS_BASE_DIR, assetsPath);
+        assets[key] = path.join(routes.assets.path, assetsPath);
       });
     });
     await Promise.all(promises);
@@ -54,7 +53,7 @@ export const create = (service: Service.Type, config: Config.Type, isDryRun: boo
 
   return {
     generateStaticHtml: async (publicPath: string, outputBaseDir: string) => {
-      const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
+      const assets = await copyAssets(path.join(outputBaseDir, routes.assets.path));
       const dryRunCacheFilename = path.join(outputBaseDir, ".code-dependency.json");
       const dryRun = DryRun.create(dryRunCacheFilename, isDryRun);
       const dryRunCache = dryRun.getDryRunCache();

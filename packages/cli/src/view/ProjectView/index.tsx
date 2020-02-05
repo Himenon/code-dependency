@@ -3,6 +3,7 @@ import { StaticRouter } from "react-router";
 import { ApiClient, Editor, ServerSideRenderingProps, FilePathObject, Wrapper } from "@code-dependency/view";
 import manifest from "@code-dependency/view/dist/manifest.json";
 import { isValidUrl } from "../../utils";
+import { routes } from "../../constants/router";
 
 const urljoin = require("urljoin");
 
@@ -29,7 +30,7 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
     selectedPathname: pathname,
     publicPath,
     publicPathname,
-    pagePathname: "/project",
+    pagePathname: routes.project.path,
     sourceType: "svg",
     filePathList,
     svgData: undefined,
@@ -53,7 +54,7 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
       isServer: true,
       selectedPathname: pathname,
       publicPath,
-      publicPathname: "/project",
+      publicPathname: routes.project.path,
       pagePathname: publicPathname,
       isStatic: false,
       workerUrl: urljoin(publicPath, "assets", manifest["scripts/full.render.js"]),

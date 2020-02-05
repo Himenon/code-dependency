@@ -4,6 +4,7 @@ import { ServerSideRenderingProps, FilePathObject, ClientSideRenderingProps } fr
 import { Module, render } from "viz.js/full.render.js";
 import manifest from "@code-dependency/view/dist/manifest.json";
 import { isValidUrl } from "../../utils";
+import { routes } from "../../constants/router";
 
 const urljoin = require("urljoin");
 
@@ -37,7 +38,6 @@ export const create = async (
   const viz = new Viz({ Module, render });
   const data = await viz.renderString(dotSource);
 
-  const publicPathname = "/project";
   const pagePathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
 
   const ssr: ServerSideRenderingProps = {
@@ -45,7 +45,7 @@ export const create = async (
     isStatic: true,
     publicPath,
     selectedPathname,
-    publicPathname,
+    publicPathname: routes.project.path,
     pagePathname,
     sourceType: "svg",
     svgData: data,
@@ -68,10 +68,10 @@ export const create = async (
     isStatic: true,
     publicPath,
     selectedPathname,
-    publicPathname,
+    publicPathname: routes.project.path,
     pagePathname,
     workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
-    assetBaseUrl: urljoin(publicPath, "/assets"), // TODO
+    assetBaseUrl: urljoin(publicPath, routes.assets.path),
     sourceType: "svg",
     svgData: data,
     filePathList,

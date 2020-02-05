@@ -34,6 +34,7 @@
     "clean": "rimraf ./lib ./build ./dist",
     "develop": "cross-env NODE_ENV=development yarn build:webpack --watch",
     "export:static": "node ./bin/code-dependency.js --source ./src --exclude node_modules --export-static ./output --public-path http://localhost:5000/output",
+    "generate:docs": "node ./bin/code-dependency.js --source ./src --exclude node_modules --export-static ../../docs --public-path https://himenon.github.io/code-dependency/",
     "server": "nodemon ./bin/code-dependency.js --source ./src --exclude node_modules",
     "start": "run-p develop server",
     "test": "jest -c jest.config.json && yarn export:static",

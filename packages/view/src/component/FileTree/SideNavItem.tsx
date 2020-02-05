@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link, LinkProps } from "react-router-dom";
 
 interface SideNavItemProps extends LinkProps {
-  tagName?: "anchor" | "link";
   id: string;
   name: string;
   onClick?: () => Promise<void>;
@@ -63,20 +62,7 @@ const DirectoryItem = (props: SideNavItemProps) => {
 
 const SideNav = (props: SideNavItemProps) => {
   if (!props.children) {
-    const { id, name, items, depth, isDefaultOpen, tagName, ...linkProps } = props;
-    if (tagName === "anchor") {
-      <a
-        key={props.id}
-        id={props.id}
-        style={{ ...ButtonStyle, paddingLeft: 6 * (props.depth || 0) }}
-        onClick={() => {
-          props.onClick && props.onClick();
-        }}
-        href={linkProps.href}
-      >
-        {props.name}
-      </a>
-    }
+    const { id, name, items, depth, isDefaultOpen, ...linkProps } = props;
     return (
       <Link
         key={props.id}

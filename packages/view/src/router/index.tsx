@@ -6,9 +6,9 @@ import { ServerSideRenderingProps } from "@app/interface";
 
 export const RootRouter = (props: ServerSideRenderingProps) => {
   return (
-    <Router>
+    <Router basename={props.routeProjectBasePath}>
       <Switch>
-        <Route key={props.routeProjectPath} path={props.routeProjectPath} basename={props.routeProjectBasePath}>
+        <Route key={props.routeProjectPath} path={props.routeProjectPath}>
           <Wrapper.Container ssrProps={props} component={Editor.Container} />
         </Route>
       </Switch>

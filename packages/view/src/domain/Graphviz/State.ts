@@ -7,6 +7,7 @@ export interface State {
   svgSource: string | undefined;
   filePathList: FilePathObject[];
   pathname: string | undefined;
+  routeProjectPath: string;
   pageRoute: string;
 }
 
@@ -18,4 +19,5 @@ export const DEFAULT_STATE: State = {
   filePathList: [],
   pathname: undefined,
   pageRoute: "/project",
+  routeProjectPath: "/project",
 };

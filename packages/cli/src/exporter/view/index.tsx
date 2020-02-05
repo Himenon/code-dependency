@@ -36,8 +36,8 @@ export const create = async (
   const viz = new Viz({ Module, render });
   const data = await viz.renderString(dotSource);
 
-  const routeProjectPath = urljoin(new URL(publicPath).pathname, "/project");
-  const routeProjectBasePath = publicPath;
+  const routeProjectPath = "/project";
+  const routeProjectBasePath = new URL(publicPath).pathname;
 
   const ssr: ServerSideRenderingProps = {
     isServer: true,

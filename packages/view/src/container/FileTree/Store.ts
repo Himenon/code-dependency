@@ -4,6 +4,8 @@ import * as path from "path";
 import { FilePathObject, InjectionMethod, Page } from "@app/interface";
 import { QueryParams } from "@app/infra";
 
+const urljoin = require("urljoin");
+
 type UpdateKeyFunction = (key: string) => Promise<void>;
 
 interface FlatFileMap {
@@ -31,11 +33,12 @@ const generateFile = (
   updateKey: UpdateKeyFunction,
   isStatic: boolean,
   currentPathname: string,
+  routeProjectPath: string,
   pageRoute: string,
 ): SideNavItem.Props => {
   const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
   const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
-  const to = isStatic ? pathname.replace(path.extname(pathname), ".html") : pageRoute + queryParams; // TODO router variable
+  const to = isStatic ? urljoin(routeProjectPath, pathname.replace(path.extname(pathname), ".html")) : pageRoute + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
@@ -45,7 +48,6 @@ const generateFile = (
         QueryParams.reloadPage();
       }
     },
-    tagName: isStatic ? "anchor" : "link",
     href: isStatic ? to : undefined,
     to,
     isDefaultOpen: currentPathname.indexOf(pathname) === 0,
@@ -103,6 +105,7 @@ export const generateFolderTree = (
   updateKey: UpdateKeyFunction,
   currentPathname: string,
   isStatic: boolean,
+  routeProjectPath: string,
   pageRoute: string,
 ): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
@@ -115,7 +118,15 @@ export const generateFolderTree = (
   });
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey, isStatic, currentPathname, pageRoute);
+    const fileItem: SideNavItem.Props = generateFile(
+      filePathObject.source,
+      filePathObject,
+      updateKey,
+      isStatic,
+      currentPathname,
+      routeProjectPath,
+      pageRoute,
+    );
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);
@@ -154,6 +165,7 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
     onClick,
     domainStores.graphviz.state.pathname || ".", // ssr caution !!!
     domainStores.graphviz.state.isStatic,
+    domainStores.graphviz.state.routeProjectPath,
     domainStores.graphviz.state.pageRoute,
   );
   return {

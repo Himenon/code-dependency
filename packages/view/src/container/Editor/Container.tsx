@@ -24,6 +24,7 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
     svgSource: props.svgData,
     filePathList: props.filePathList,
     pathname: props.pathname,
+    routeProjectPath: props.routeProjectPath,
     pageRoute: props.routeProjectBasePath,
   });
   const domainStores: Domain.Graphviz.Stores = {

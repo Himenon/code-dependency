@@ -17,19 +17,11 @@ export const create = (service: Service.Type, config: Config.Type) => {
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };
 
-  const writePage = (dist: string, html: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      if (!fs.existsSync(path.dirname(dist))) {
-        fs.mkdirSync(path.dirname(dist), { recursive: true });
-      }
-      fs.writeFile(dist, html, { encoding: "utf-8" }, error => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      });
-    });
+  const writePage = (dist: string, html: string) => {
+    if (!fs.existsSync(path.dirname(dist))) {
+      fs.mkdirSync(path.dirname(dist), { recursive: true });
+    }
+    fs.writeFileSync(dist, html, { encoding: "utf-8" });
   };
 
   const copyAssets = async (distDir: string): Promise<View.Assets> => {
@@ -61,13 +53,12 @@ export const create = (service: Service.Type, config: Config.Type) => {
   return {
     generateStaticHtml: async (publicPath: string, outputBaseDir: string) => {
       const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
-      const promises = config.filePathList.map(async filePath => {
+      for await (const filePath of config.filePathList) {
         const pathname = filePath.source;
         const outputFilePath = path.join(outputBaseDir, "project", pathname).replace(path.extname(pathname), ".html");
         const html = await generateStaticHtml(filePath.source, publicPath, assets);
-        return writePage(outputFilePath, html);
-      });
-      return Promise.all(promises);
+        writePage(outputFilePath, html);
+      }
     },
   };
 };

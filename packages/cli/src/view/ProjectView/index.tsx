@@ -3,24 +3,30 @@ import { StaticRouter } from "react-router";
 import { ApiClient, Editor, ServerSideRenderingProps, FilePathObject, Wrapper } from "@code-dependency/view";
 import manifest from "@code-dependency/view/dist/manifest.json";
 
+const urljoin = require("urljoin");
+
 import * as Template from "./template";
 import * as Service from "../../service";
 
 export interface Props {
   serverUrl: string;
   pathname: string;
+  publicPath: string;
   url: string;
   context: {};
   service: Service.Type;
   filePathList: FilePathObject[];
 }
 
-export const create = async ({ url, serverUrl, context, pathname, service, filePathList }: Props) => {
+export const create = async ({ url, serverUrl, context, pathname, publicPath, filePathList }: Props) => {
   const client = ApiClient.create(serverUrl, true);
   const ssrProps: ServerSideRenderingProps = {
     isServer: true,
     isStatic: false,
     pathname,
+    publicPath,
+    routeProjectPath: "/project",
+    routeProjectBasePath: new URL(publicPath).pathname,
     sourceType: "svg",
     filePathList,
     svgData: undefined,
@@ -43,8 +49,11 @@ export const create = async ({ url, serverUrl, context, pathname, service, fileP
       filePathList,
       isServer: true,
       pathname,
+      publicPath,
+      routeProjectPath: "/project",
+      routeProjectBasePath: new URL(publicPath).pathname,
       isStatic: false,
-      workerUrl: manifest["scripts/full.render.js"],
+      workerUrl: urljoin(publicPath, manifest["scripts/full.render.js"]),
     },
   );
 };

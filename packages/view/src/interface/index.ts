@@ -17,6 +17,9 @@ export interface ServerSideRenderingProps {
   isStatic: boolean;
   pathname: string | undefined;
   sourceType: "svg";
+  publicPath: string;
+  routeProjectPath: string; // use react router Route.path
+  routeProjectBasePath: string;
   svgData: string | undefined;
   filePathList: FilePathObject[];
   injection: InjectionMethod;
@@ -29,6 +32,9 @@ export interface ClientSideRenderingProps {
   workerUrl: string;
   pathname: string | undefined;
   sourceType: "svg";
+  publicPath: string;
+  routeProjectPath: string; // use react router Route.path
+  routeProjectBasePath: string;
   svgData: string | undefined;
   filePathList: FilePathObject[];
 }

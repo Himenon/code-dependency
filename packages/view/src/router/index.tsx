@@ -8,7 +8,7 @@ export const RootRouter = (props: ServerSideRenderingProps) => {
   return (
     <Router>
       <Switch>
-        <Route key="/project" path="/project" basename={process.env.PUBLIC_PATH}>
+        <Route key={props.routeProjectPath} path={props.routeProjectPath} basename={props.routeProjectBasePath}>
           <Wrapper.Container ssrProps={props} component={Editor.Container} />
         </Route>
       </Switch>

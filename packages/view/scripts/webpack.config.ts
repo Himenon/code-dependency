@@ -102,13 +102,13 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
     mode: isProduction ? "production" : "development",
     target: isLibrary ? "node" : "web",
     optimization: {
-      minimize: isProduction,
+      minimize: false,
       runtimeChunk: false,
       minimizer: [
         new TerserPlugin({
           terserOptions: {
             compress: {
-              drop_console: true,
+              drop_console: false,
             },
           },
         }),

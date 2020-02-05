@@ -31,10 +31,11 @@ const generateFile = (
   updateKey: UpdateKeyFunction,
   isStatic: boolean,
   currentPathname: string,
+  pageRoute: string,
 ): SideNavItem.Props => {
   const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
   const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
-  const to = isStatic ? path.join("/project/", pathname).replace(path.extname(pathname), ".html") : "/project" + queryParams; // TODO router variable
+  const to = isStatic ? pathname.replace(path.extname(pathname), ".html") : pageRoute + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
@@ -44,6 +45,8 @@ const generateFile = (
         QueryParams.reloadPage();
       }
     },
+    tagName: isStatic ? "anchor" : "link",
+    href: isStatic ? to : undefined,
     to,
     isDefaultOpen: currentPathname.indexOf(pathname) === 0,
   };
@@ -100,6 +103,7 @@ export const generateFolderTree = (
   updateKey: UpdateKeyFunction,
   currentPathname: string,
   isStatic: boolean,
+  pageRoute: string,
 ): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
   filePathObjectList.forEach(p => {
@@ -111,7 +115,7 @@ export const generateFolderTree = (
   });
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey, isStatic, currentPathname);
+    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey, isStatic, currentPathname, pageRoute);
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);
@@ -150,6 +154,7 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
     onClick,
     domainStores.graphviz.state.pathname || ".", // ssr caution !!!
     domainStores.graphviz.state.isStatic,
+    domainStores.graphviz.state.pageRoute,
   );
   return {
     sideNavItems: rootDirectory,

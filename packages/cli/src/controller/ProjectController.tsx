@@ -11,6 +11,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
     try {
       const props: ProjectView.Props = {
         serverUrl,
+        publicPath: serverUrl,
         url: req.url,
         pathname: req.query.pathname,
         context: {},

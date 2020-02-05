@@ -10,10 +10,10 @@ import manifest from "@code-dependency/view/dist/manifest.json";
 export const create = (service: Service.Type, config: Config.Type) => {
   const ASSETS_BASE_DIR = "/assets";
   process.setMaxListeners(config.filePathList.length);
-  const generateStaticHtml = async (pathname: string, assets: View.Assets): Promise<string> => {
+  const generateStaticHtml = async (pathname: string, publicPath: string, assets: View.Assets): Promise<string> => {
     const url = path.join("/", pathname.replace(path.extname(pathname), ""));
     const dotSource = service.dependencyCruiser.getDependenciesDot(pathname);
-    const view = await View.create(url, pathname, dotSource, config.filePathList, assets);
+    const view = await View.create(url, publicPath, pathname, dotSource, config.filePathList, assets);
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };
 
@@ -59,12 +59,12 @@ export const create = (service: Service.Type, config: Config.Type) => {
   };
 
   return {
-    generateStaticHtml: async (targetDir: string, outputBaseDir: string) => {
+    generateStaticHtml: async (publicPath: string, outputBaseDir: string) => {
       const assets = await copyAssets(path.join(outputBaseDir, ASSETS_BASE_DIR));
       const promises = config.filePathList.map(async filePath => {
         const pathname = filePath.source;
         const outputFilePath = path.join(outputBaseDir, "project", pathname).replace(path.extname(pathname), ".html");
-        return writePage(outputFilePath, await generateStaticHtml(filePath.source, assets));
+        return writePage(outputFilePath, await generateStaticHtml(filePath.source, publicPath, assets));
       });
       return Promise.all(promises);
     },

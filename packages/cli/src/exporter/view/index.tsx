@@ -4,33 +4,48 @@ import { ServerSideRenderingProps, FilePathObject, ClientSideRenderingProps } fr
 import { Module, render } from "viz.js/full.render.js";
 import manifest from "@code-dependency/view/dist/manifest.json";
 
+const urljoin = require("urljoin");
+
 export type Assets = typeof manifest;
 
-const generateAssetsPath = (assets: Assets): Template.Props["assets"] => {
+const generateAssetsPath = (publicPath: string, assets: Assets): Template.Props["assets"] => {
   return {
     scripts: {
-      application: assets["application.js"],
-      react: assets["scripts/react.production.min.js"],
-      "react-dom": assets["scripts/react-dom.production.min.js"],
-      styles: assets["styles.js"],
-      vendor: assets["vendor.js"],
-      "full.render.js": assets["scripts/full.render.js"],
-      "viz.js": assets["scripts/viz.js"],
+      application: urljoin(publicPath, assets["application.js"]),
+      react: urljoin(publicPath, assets["scripts/react.production.min.js"]),
+      "react-dom": urljoin(publicPath, assets["scripts/react-dom.production.min.js"]),
+      styles: urljoin(publicPath, assets["styles.js"]),
+      vendor: urljoin(publicPath, assets["vendor.js"]),
+      "full.render.js": urljoin(publicPath, assets["scripts/full.render.js"]),
+      "viz.js": urljoin(publicPath, assets["scripts/viz.js"]),
     },
     stylesheets: {
-      styles: assets["styles.css"],
+      styles: urljoin(publicPath, assets["styles.css"]),
     },
   };
 };
 
-export const create = async (url: string, pathname: string, dotSource: string, filePathList: FilePathObject[], assets: Assets) => {
+export const create = async (
+  url: string,
+  publicPath: string,
+  pathname: string,
+  dotSource: string,
+  filePathList: FilePathObject[],
+  assets: Assets,
+) => {
   const viz = new Viz({ Module, render });
   const data = await viz.renderString(dotSource);
+
+  const routeProjectPath = urljoin(new URL(publicPath).pathname, "/project");
+  const routeProjectBasePath = publicPath;
 
   const ssr: ServerSideRenderingProps = {
     isServer: true,
     isStatic: true,
+    publicPath,
     pathname,
+    routeProjectPath,
+    routeProjectBasePath,
     sourceType: "svg",
     svgData: data,
     filePathList,
@@ -42,7 +57,7 @@ export const create = async (url: string, pathname: string, dotSource: string, f
 
   const props: Template.Props = {
     ssr,
-    assets: generateAssetsPath(assets),
+    assets: generateAssetsPath(publicPath, assets),
     context: {},
     url,
   };
@@ -50,9 +65,12 @@ export const create = async (url: string, pathname: string, dotSource: string, f
   const csrProps: ClientSideRenderingProps = {
     isServer: true,
     isStatic: true,
+    publicPath,
     pathname,
-    workerUrl: assets["scripts/full.render.js"],
-    baseUrl: "/assets", // TODO
+    routeProjectPath,
+    routeProjectBasePath,
+    workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
+    baseUrl: urljoin(publicPath, "/assets"), // TODO
     sourceType: "svg",
     svgData: data,
     filePathList,

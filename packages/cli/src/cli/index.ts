@@ -11,6 +11,7 @@ interface CLIArguments {
   exclude?: string;
   webpackConfig?: PathFactory.Type;
   exportStatic?: PathFactory.Type;
+  publicPath?: string;
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -27,6 +28,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
     exclude: args["exclude"],
     webpackConfig: args["webpackConfig"] && PathFactory.create({ source: args["webpackConfig"] }),
     exportStatic: args["exportStatic"] && PathFactory.create({ source: args["exportStatic"] }),
+    publicPath: args["publicPath"],
   };
 };
 
@@ -39,6 +41,7 @@ export const executeCommandLine = (): CLIArguments => {
     .option("--webpack-config [path]", "webpack.config.js path (only js file)")
     .option("--exclude [string pattern]", "cruise exclude pattern", "node_modules")
     .option("--export-static [static directory]", "static file hosting directory")
+    .option("--public-path [host public path]", "the base path for all the assets")
     .parse(process.argv);
   return validateCliArguments(commander);
 };

@@ -1,2 +1,2 @@
-import * as IndexView from "./IndexView";
-export { IndexView };
+import * as ProjectView from "./ProjectView";
+export { ProjectView };

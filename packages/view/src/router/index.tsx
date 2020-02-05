@@ -1,16 +1,17 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { Editor } from "@app/container";
+import * as Wrapper from "./Wrapper";
 import { ServerSideRenderingProps } from "@app/interface";
 
 export const RootRouter = (props: ServerSideRenderingProps) => {
   return (
-    <BrowserRouter>
+    <Router basename={props.pagePathname}>
       <Switch>
-        <Route key="/" path="/" exact={true} basename={process.env.PUBLIC_PATH}>
-          <Editor.Container {...props} />
+        <Route key={props.publicPathname} path={props.publicPathname}>
+          <Wrapper.Container ssrProps={props} component={Editor.Container} />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };

@@ -51,6 +51,29 @@ cruise ignore pattern (default: "node_modules"). [see](https://github.com/sverwe
 code-dependency --source ./src --exclude node_modules
 ```
 
+**--export-static**
+
+generate static site.
+
+```bash
+code-dependency --source ./src --exclude node_modules --export-static ./docs
+```
+
+**--public-path**
+
+```bash
+code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path /docs
+code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path https://himenon.github.io/code-dependency/
+```
+
+**--dry-run** (experimental)
+
+if failed generate static file and retry generate static file only unfinished path.
+
+```bash
+code-dependency --source ./src --exclude node_modules --export-static ./docs --dry-run
+```
+
 ## License
 
 @code-dependency/cli is [MIT licensed](https://github.com/Himenon/code-dependency/blob/master/LICENSE).

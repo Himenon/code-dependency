@@ -4,25 +4,31 @@ export { Api };
 import { FilePathObject } from "./filePathObject";
 export { FilePathObject };
 
+import * as Page from "./Page";
+export { Page };
+
 export interface InjectionMethod {
-  createSvgString: (source: string) => Promise<string>;
-  client: Api.Client;
+  createSvgString: (dotSource: string) => Promise<string>;
+  client: Api.Client | undefined;
 }
 
-export interface ServerSideRenderingProps {
+export interface ShareRenderingProps {
   isServer: boolean;
-  state: {
-    graphvizSource: string;
-    filePathList: FilePathObject[];
-  };
+  isStatic: boolean;
+  selectedPathname: string | undefined;
+  sourceType: "svg";
+  publicPath: string;
+  publicPathname: string;
+  pagePathname: string;
+  svgData: string | undefined;
+  filePathList: FilePathObject[];
+}
+
+export interface ServerSideRenderingProps extends ShareRenderingProps {
   injection: InjectionMethod;
 }
 
-export interface ClientSideRenderingProps {
-  isServer: boolean;
-  baseUrl: string;
-  state: {
-    graphvizSource: string;
-    filePathList: FilePathObject[];
-  };
+export interface ClientSideRenderingProps extends ShareRenderingProps {
+  assetBaseUrl: string;
+  workerUrl: string;
 }

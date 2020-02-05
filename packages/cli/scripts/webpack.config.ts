@@ -1,5 +1,6 @@
 import * as path from "path";
 import * as webpack from "webpack";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
@@ -47,6 +48,7 @@ export const generateConfig = ({ isProduction }: Option): webpack.Configuration[
       plugins: [
         new ProgressBarPlugin(),
         new FriendlyErrorsWebpackPlugin(),
+        new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
           "process.env.NODE_ENV": JSON.stringify("production"),
           "process.env.isProduction": JSON.stringify(isProduction),

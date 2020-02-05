@@ -1,7 +1,10 @@
 import * as Domain from "@app/domain";
 import { SideNavItem } from "@app/component";
 import * as path from "path";
-import { FilePathObject, InjectionMethod } from "@app/interface";
+import { FilePathObject, InjectionMethod, Page } from "@app/interface";
+import { QueryParams } from "@app/infra";
+
+const urljoin = require("urljoin");
 
 type UpdateKeyFunction = (key: string) => Promise<void>;
 
@@ -9,26 +12,61 @@ interface FlatFileMap {
   [dirname: string]: SideNavItem.Props[] | undefined;
 }
 
+export interface Option {
+  /**
+   * 静的ホスティングかどうか
+   */
+  isStatic: boolean;
+  /**
+   * react-routerのrouteで指定したpathと同等
+   * @example /project
+   */
+  pagePathname: string;
+  /**
+   * hostingするサーバーのpathname
+   * 例えば、 http://localhost:5000/output の箇所にホスティングしたい場合は`/output`となる
+   * @example /output
+   */
+  publicPathname: string;
+  /**
+   * 現在ページで選択されている pathname
+   */
+  selectedPathname: string;
+}
+
 const deleteItem = (arr: any[], value: any): void => {
   const idx = arr.findIndex(t => t === value);
   delete arr[idx];
 };
 
-const generateDirectory = (directoryPath: string, basename: string, items: SideNavItem.Props[]): SideNavItem.Props => {
+const generateDirectory = (directoryPath: string, basename: string, items: SideNavItem.Props[], option: Option): SideNavItem.Props => {
   return {
     id: directoryPath,
     name: basename,
     items,
+    to: basename,
+    isDefaultOpen: directoryPath === "." || option.selectedPathname.indexOf(directoryPath) === 0,
   };
 };
 
-const generateFile = (filePathObject: FilePathObject, updateKey: UpdateKeyFunction): SideNavItem.Props => {
+const generateFile = (pathname: string, filePathObject: FilePathObject, updateKey: UpdateKeyFunction, option: Option): SideNavItem.Props => {
+  const params: Page.PageQueryParams = QueryParams.generateBaseQueryParams();
+  const queryParams = "?" + QueryParams.appendQueryParams({ ...params, pathname });
+  const to = option.isStatic
+    ? urljoin(option.publicPathname, pathname.replace(path.extname(pathname), ".html"))
+    : urljoin(option.publicPathname, option.pagePathname) + queryParams; // TODO router variable
   return {
     id: filePathObject.source,
     name: path.basename(filePathObject.source),
     onClick: async () => {
       await updateKey(filePathObject.source);
+      if (option.isStatic) {
+        QueryParams.reloadPage();
+      }
     },
+    href: option.isStatic ? to : undefined,
+    to,
+    isDefaultOpen: option.selectedPathname.indexOf(pathname) === 0,
   };
 };
 
@@ -55,13 +93,14 @@ const generateItems = (
   parentDirname: string,
   directories: string[],
   flatFileMap: { [dirname: string]: SideNavItem.Props[] | undefined },
+  option: Option,
 ): SideNavItem.Props[] => {
   const childDirectories = directories.filter(dirname => path.dirname(dirname) === parentDirname);
   // TODO マシな実装を考える
   childDirectories.forEach(value => deleteItem(directories, value));
   const items: SideNavItem.Props[] = childDirectories.map(directoryPath => {
     const basename = path.basename(directoryPath);
-    return generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap));
+    return generateDirectory(directoryPath, basename, generateItems(directoryPath, directories, flatFileMap, option), option);
   });
   return items
     .concat(flatFileMap[parentDirname] || [])
@@ -77,7 +116,7 @@ export const generateParentDirectories = (filePath: string): string[] => {
   return [dirname].concat(generateParentDirectories(dirname));
 };
 
-export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction): SideNavItem.Props[] => {
+export const generateFolderTree = (filePathObjectList: FilePathObject[], updateKey: UpdateKeyFunction, option: Option): SideNavItem.Props[] => {
   const flatFileMap: FlatFileMap = {};
   filePathObjectList.forEach(p => {
     generateParentDirectories(p.source).forEach(dirname => {
@@ -88,7 +127,7 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
   });
   filePathObjectList.forEach(filePathObject => {
     const dirname = path.dirname(filePathObject.source);
-    const fileItem: SideNavItem.Props = generateFile(filePathObject, updateKey);
+    const fileItem: SideNavItem.Props = generateFile(filePathObject.source, filePathObject, updateKey, option);
     (flatFileMap[dirname] || (flatFileMap[dirname] = [])).push(fileItem);
   });
   const directories = Object.keys(flatFileMap);
@@ -98,27 +137,39 @@ export const generateFolderTree = (filePathObjectList: FilePathObject[], updateK
     })
     .map(directory => {
       deleteItem(directories, directory);
-      const items = generateItems(directory, directories, flatFileMap);
-      return generateDirectory(directory, path.basename(directory), items);
+      const items = generateItems(directory, directories, flatFileMap, option);
+      return generateDirectory(directory, path.basename(directory), items, option);
     });
-  return [generateDirectory(".", "@code-dependency", rootItems)];
+  return [generateDirectory(".", "@code-dependency", rootItems, option)];
 };
 
 export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, createSvgString }: InjectionMethod) => {
-  const onClick = async (nextSource: string) => {
+  const onClick = async (selectedPathname: string) => {
+    if (domainStores.graphviz.state.isStatic) {
+      return;
+    }
+    if (!client) {
+      return;
+    }
     try {
-      const res = await client.getGraph({ path: nextSource });
+      const res = await client.getGraph({ path: selectedPathname });
       if (res) {
         const graph = await createSvgString(res.data.element);
-        domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", filePath: nextSource, graphvizSource: graph });
+        domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, graphvizSource: graph });
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick);
+  const option: Option = {
+    isStatic: domainStores.graphviz.state.isStatic,
+    pagePathname: domainStores.graphviz.state.pagePathname,
+    publicPathname: domainStores.graphviz.state.publicPathname,
+    selectedPathname: domainStores.graphviz.state.selectedPathname || ".", // FIXME React.useStateにこの値を入れると不具合を起こす
+  };
+  const rootDirectory = generateFolderTree(domainStores.graphviz.state.filePathList, onClick, option);
   return {
-    euiSideNavItems: rootDirectory,
+    sideNavItems: rootDirectory,
   };
 };
 

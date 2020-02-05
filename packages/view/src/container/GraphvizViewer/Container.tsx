@@ -3,6 +3,6 @@ import { GraphvizViewer } from "@app/component";
 
 export const generateProps = (store: Store): GraphvizViewer.Props => {
   return {
-    source: store.source,
+    svgSource: store.svgSource,
   };
 };

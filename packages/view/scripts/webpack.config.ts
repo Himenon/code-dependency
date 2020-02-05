@@ -72,9 +72,9 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
       options: {
         localsConvention: "camelCase",
         importLoaders: 2,
-        // modules: {
-        // localIdentName: "___[local]___[hash:base64:5]",
-        // },
+        modules: {
+          localIdentName: "___[local]___[hash:base64:5]",
+        },
       },
     },
     {
@@ -102,7 +102,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
     mode: isProduction ? "production" : "development",
     target: isLibrary ? "node" : "web",
     optimization: {
-      minimize: isLibrary ? false : isProduction,
+      minimize: isProduction,
       runtimeChunk: false,
       minimizer: [
         new TerserPlugin({
@@ -146,9 +146,9 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         new HtmlWebpackPlugin({
           title: "@code-dependency/view",
           template: "public/index.html",
-          React: isProduction ? "scripts/react.production.min.js" : "scripts/react.development.js",
-          ReactDOM: isProduction ? "scripts/react-dom.production.min.js" : "scripts/react-dom.development.js",
-          "full.render.js": "scripts/full.render.js",
+          React: isProduction ? "/scripts/react.production.min.js" : "/scripts/react.development.js",
+          ReactDOM: isProduction ? "/scripts/react-dom.production.min.js" : "/scripts/react-dom.development.js",
+          "full.render.js": "/scripts/full.render.js",
           meta: {
             description: "visualize code dependency with graphviz.",
           },
@@ -162,7 +162,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "process.env.isProduction": JSON.stringify(isProduction),
         "process.env.isLibrary": JSON.stringify(isLibrary),
         "process.env.PUBLIC_PATH": JSON.stringify(publicPath),
-        "process.env.workerURL": JSON.stringify("scripts/full.render.js"),
+        "process.env.workerURL": JSON.stringify("/scripts/full.render.js"),
         "process.env.NODE_ENV": JSON.stringify("production"),
       }),
       !isLibrary &&
@@ -199,6 +199,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
         "@app/container": appPath("./src/container/index.ts"),
         "@app/domain": appPath("./src/domain/index.ts"),
         "@app/infra": appPath("./src/infra/index.ts"),
+        "@app/router": appPath("./src/router/index.tsx"),
         "@app/interface": appPath("./src/interface/index.ts"),
         "@app/style": appPath("./src/style/index.ts"),
         "@app/api": appPath("./src/api/index.ts"),

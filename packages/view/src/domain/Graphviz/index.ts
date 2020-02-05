@@ -1,9 +1,9 @@
 import { State, DEFAULT_STATE } from "./State";
-import { Reducer, createReducer } from "./Reducer";
+import { Reducer, createReducer, Hooks } from "./Reducer";
 import { Dispatch } from "./Action";
 
 export interface Reducers {
-  graphviz: Reducer;
+  graphviz: (hooks: Hooks) => Reducer;
 }
 
 export interface Stores {

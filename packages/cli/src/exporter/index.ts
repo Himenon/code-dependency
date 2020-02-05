@@ -12,7 +12,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
   process.setMaxListeners(config.filePathList.length);
   const generateStaticHtml = async (pathname: string, publicPath: string, assets: View.Assets): Promise<string> => {
     const url = path.join("/", pathname.replace(path.extname(pathname), ""));
-    const dotSource = service.dependencyCruiser.getDependenciesDot(pathname);
+    const dotSource = service.dependencyCruiser.getDependenciesDot(path.join(config.absoluteRootDirPath, pathname));
     const view = await View.create(url, publicPath, pathname, dotSource, config.filePathList, assets);
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };

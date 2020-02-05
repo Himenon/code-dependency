@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.7"></a>
+## 0.3.7 (2020-02-05)
+
+**Note:** Version bump only for package @code-dependency/view
+
+
+
+
+
 <a name="0.3.6"></a>
 ## 0.3.6 (2020-01-15)
 

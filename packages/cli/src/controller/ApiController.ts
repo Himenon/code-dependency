@@ -22,7 +22,7 @@ export const create = (service: Service.Type, config: Config.Type) => {
     try {
       const dot = service.dependencyCruiser.getDependenciesDot(filename);
       const data = createApiResponse<Api.GraphResponseData>({
-        element: dot,
+        dotSource: dot,
       });
       res.json(data);
     } catch (error) {

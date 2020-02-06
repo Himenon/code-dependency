@@ -29,6 +29,7 @@ export interface ServerSideRenderingProps extends ShareRenderingProps {
 }
 
 export interface ClientSideRenderingProps extends ShareRenderingProps {
+  renderer: "client" | "server";
   assetBaseUrl: string;
   workerUrl: string;
 }

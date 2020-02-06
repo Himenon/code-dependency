@@ -152,9 +152,9 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
       return;
     }
     try {
-      const res = await client.getGraph({ path: selectedPathname });
+      const res = await client.getDotSource({ path: selectedPathname });
       if (res) {
-        const graph = await createSvgString(res.data.element);
+        const graph = await createSvgString(res.data.dotSource);
         domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, graphvizSource: graph });
       }
     } catch (error) {

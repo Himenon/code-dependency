@@ -1,48 +1,50 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Viz from "viz.js";
 import { ServerSideRenderingProps, ClientSideRenderingProps } from "@app/interface";
 import { RootRouter } from "./router";
 import * as Api from "./api";
 
-const restoreSvgData = async (pathname: string | undefined, viz: Viz, client: ReturnType<typeof Api.create>): Promise<string | undefined> => {
+const restoreSvgData = async (pathname: string | undefined, client: Api.Client): Promise<string | undefined> => {
   if (!pathname) {
     return;
   }
-  const graphResponse = await client.getGraph({ path: pathname });
-  const source = (graphResponse && graphResponse.data.element) || "select file from left menu.";
-  return await viz.renderString(source);
+  const graphResponse = await client.getDotSource({ path: pathname });
+  const source = (graphResponse && graphResponse.data.dotSource) || "select file from left menu.";
+  return await client.renderString(source);
 };
 
 const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
   if (process.env.isProduction) {
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
-    const viz = new Viz({ workerURL: csrProps.workerUrl });
-    const client = Api.create(csrProps.assetBaseUrl, false);
+    const isClientRenderer = csrProps.renderer === "client";
+    const client = await Api.create({ baseUrl: csrProps.assetBaseUrl, isClientRenderer, isServer: false, workerURL: csrProps.workerUrl });
     return {
       isServer: false,
       isStatic: csrProps.isStatic,
       sourceType: csrProps.sourceType,
-      svgData: csrProps.svgData || (await restoreSvgData(csrProps.selectedPathname, viz, client)),
+      svgData: csrProps.svgData || (await restoreSvgData(csrProps.selectedPathname, client)),
       filePathList: csrProps.filePathList,
       publicPath: csrProps.publicPath,
       publicPathname: csrProps.publicPathname,
       pagePathname: csrProps.pagePathname,
       selectedPathname: csrProps.selectedPathname,
       injection: {
-        createSvgString: (source: string) => viz.renderString(source),
+        createSvgString: (source: string) => client.renderString(source),
         client,
       },
     };
   } else {
-    const client = Api.create("http://localhost:3000", false);
-    const viz = new Viz({ workerURL: process.env.workerURL });
+    const client = await Api.create({
+      baseUrl: "http://localhost:3000",
+      isServer: false,
+      isClientRenderer: true,
+      workerURL: process.env.workerURL!,
+    });
     const res = await client.getPaths();
-
     const query = new URLSearchParams(window.location.search);
     const pathname = query.get("pathname") || undefined;
-    const graphResponse = !!pathname && (await client.getGraph({ path: pathname }));
-    const source = (graphResponse && graphResponse.data.element) || "digraph { a -> b }";
+    const graphResponse = !!pathname && (await client.getDotSource({ path: pathname }));
+    const source = (graphResponse && graphResponse.data.dotSource) || "digraph { a -> b }";
     return {
       isServer: false,
       isStatic: false,
@@ -52,9 +54,9 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       pagePathname: "/project",
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
-      svgData: await viz.renderString(source),
+      svgData: await client.renderString(source),
       injection: {
-        createSvgString: (source: string) => viz.renderString(source),
+        createSvgString: (source: string) => client.renderString(source),
         client,
       },
     };

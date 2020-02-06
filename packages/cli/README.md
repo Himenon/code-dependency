@@ -63,7 +63,20 @@ code-dependency --source ./src --exclude node_modules --export-static ./docs
 
 ```bash
 code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path /docs
+
+# If export GitHub Pages
 code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path https://himenon.github.io/code-dependency/
+```
+
+Directory Structure
+
+```
+./docs/
+├── assets            // provide from @code-dependency/view
+│   ├── scripts
+│   └── stylesheets
+└── project
+    └── src           // `--source` target : Browser entrypoint -> /project/src/index.html
 ```
 
 **--dry-run** (experimental)

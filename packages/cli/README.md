@@ -8,7 +8,7 @@ code-dependency --source ./src
 
 ## Option
 
-**-s --source** (required)
+### -s --source\*\* (required)
 
 Source directory path
 
@@ -17,7 +17,7 @@ code-dependency --source ./src
 code-dependency --source /home/app/src
 ```
 
-**-p --port**
+### -p --port
 
 Server port number (default 3000).
 
@@ -26,7 +26,7 @@ code-dependency --source ./src --p 4000
 code-dependency --source ./src --port 4000
 ```
 
-**--ts-config**
+### --ts-config
 
 `tsconfig.json` path. [see](https://github.com/sverweij/dependency-cruiser/blob/develop/doc/cli.md#--ts-config-use-a-typescript-configuration-file-project)
 
@@ -34,7 +34,7 @@ code-dependency --source ./src --port 4000
 code-dependency --source ./src --ts-config ./tsconfig.json
 ```
 
-**--webpack-config**
+### --webpack-config
 
 `webpack.config.js` path. (JavaScript only) [see](https://github.com/sverweij/dependency-cruiser/blob/develop/doc/cli.md#--webpack-config-use-the-resolution-options-of-a-webpack-configuration)
 
@@ -43,7 +43,7 @@ code-dependency --source ./src --webpack-config webpack.config.js
 code-dependency --source ./src --webpack-config your.config.js
 ```
 
-**--exclude**
+### --exclude
 
 cruise ignore pattern (default: "node_modules"). [see](https://github.com/sverweij/dependency-cruiser/blob/develop/doc/cli.md#--exclude-exclude-dependencies-from-being-cruised)
 
@@ -51,7 +51,7 @@ cruise ignore pattern (default: "node_modules"). [see](https://github.com/sverwe
 code-dependency --source ./src --exclude node_modules
 ```
 
-**--export-static**
+### --export-static
 
 generate static site.
 
@@ -59,7 +59,7 @@ generate static site.
 code-dependency --source ./src --exclude node_modules --export-static ./docs
 ```
 
-**--public-path**
+### --public-path
 
 ```bash
 code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path /docs
@@ -79,7 +79,15 @@ Directory Structure
     └── src           // `--source` target : Browser entrypoint -> /project/src/index.html
 ```
 
-**--dry-run** (experimental)
+### --engine
+
+Use native graphviz engine. (https://www.graphviz.org/)
+
+```bash
+code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path /docs --engine dot
+```
+
+### --dry-run (experimental)
 
 if failed generate static file and retry generate static file only unfinished path.
 

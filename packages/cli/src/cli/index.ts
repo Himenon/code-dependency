@@ -13,6 +13,7 @@ interface CLIArguments {
   exportStatic?: PathFactory.Type;
   publicPath?: string;
   dryRun: boolean;
+  engine?: "dot";
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -31,6 +32,7 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
     exportStatic: args["exportStatic"] && PathFactory.create({ source: args["exportStatic"] }),
     publicPath: args["publicPath"],
     dryRun: !!args["dryRun"],
+    engine: args["engine"] === "dot" ? "dot" : undefined,
   };
 };
 
@@ -45,6 +47,7 @@ export const executeCommandLine = (): CLIArguments => {
     .option("--export-static [static directory]", "static file hosting directory")
     .option("--public-path [host public path]", "the base path for all the assets")
     .option("--dry-run", "only use --export-static option")
+    .option("--engine <dot>", "already local installed graphviz. <https://www.graphviz.org/>")
     .parse(process.argv);
   return validateCliArguments(commander);
 };

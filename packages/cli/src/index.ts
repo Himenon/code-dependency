@@ -20,7 +20,7 @@ const main = async () => {
   const config = Config.create(args.port, args.source.rootAbsolutePath, filePathList);
   const tsconfigFilePath = args.tsConfig && args.tsConfig.rootAbsolutePath;
   const webpackConfigPath = args.webpackConfig && args.webpackConfig.binRelativePath;
-  const service = await Service.create({ tsconfigFilePath, webpackConfigPath, exclude: args.exclude });
+  const service = await Service.create({ tsconfigFilePath, webpackConfigPath, exclude: args.exclude, engine: args.engine });
 
   if (args.exportStatic) {
     const exporter = Exporter.create(service, config, args.dryRun);

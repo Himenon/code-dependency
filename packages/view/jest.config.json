@@ -10,13 +10,10 @@
     }
   },
   "moduleNameMapper": {
-    "^@this/domain(.*)": "<rootDir>/src/domain$1",
-    "^@this/container-component(.*)": "<rootDir>/src/container-component$1",
-    "^@this/view-component(.*)": "<rootDir>/src/view-component$1",
-    "^@this/infra(.*)": "<rootDir>/src/infra$1"
+    "@app/(.+)": "<rootDir>/src/$1"
   },
   "moduleDirectories": ["node_modules"],
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "node"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
   "testMatch": ["**/__tests__/*.test.+(ts|tsx)"],
   "collectCoverage": true,
   "transform": {

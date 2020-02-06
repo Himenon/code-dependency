@@ -22,6 +22,7 @@
     "lint": "eslint -c ./.eslintrc.js 'packages/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
     "test": "lerna run test",
+    "test:ci": "lerna run test:ci",
     "version_up": "lerna version --yes"
   },
   "husky": {

@@ -195,14 +195,7 @@ export const generateConfig = ({ isProduction, isLibrary, ...option }: Option): 
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".scss", ".json"],
       alias: {
-        "@app/component": appPath("./src/component/index.ts"),
-        "@app/container": appPath("./src/container/index.ts"),
-        "@app/domain": appPath("./src/domain/index.ts"),
-        "@app/infra": appPath("./src/infra/index.ts"),
-        "@app/router": appPath("./src/router/index.tsx"),
-        "@app/interface": appPath("./src/interface/index.ts"),
-        "@app/style": appPath("./src/style/index.ts"),
-        "@app/api": appPath("./src/api/index.ts"),
+        "@app": appPath("./src"),
         React: appPath("../../node_modules/react"),
         ReactDOM: appPath("../../node_modules/react-dom"),
       },

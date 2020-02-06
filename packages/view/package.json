@@ -26,7 +26,8 @@
     "develop": "cross-env-shell NODE_ENV=development yarn ts ./scripts/develop.ts",
     "serve": "serve dist",
     "start": "yarn develop",
-    "test": "jest -c jest.config.json",
+    "test": "jest -c jest.config.json --no-cache",
+    "test:ci": "jest -c jest.config.json --no-cache --ci",
     "ts": "ts-node -P ./scripts/tsconfig.cli.json"
   },
   "dependencies": {

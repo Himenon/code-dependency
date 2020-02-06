@@ -13,10 +13,10 @@ jobs:
           ref: master
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 12
       - run: |
           yarn install --frozen-lockfile
-          yarn test
+          yarn test:ci
           yarn build
 
   # release-github-npm-registry:

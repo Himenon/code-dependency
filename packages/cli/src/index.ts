@@ -27,7 +27,7 @@ const main = async () => {
     await exporter.generateStaticHtml(args.publicPath || "/", args.exportStatic.rootAbsolutePath);
   } else {
     const server = createServer(service, config);
-    logger.info(`Start: http://localhost:${args.port}`);
+    logger.info(`Start: http://localhost:${args.port}/project`);
     server.listen(args.port);
   }
 };

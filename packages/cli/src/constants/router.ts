@@ -1,4 +1,7 @@
 export const routes = {
+  index: {
+    path: "/",
+  },
   project: {
     path: "/project",
   },

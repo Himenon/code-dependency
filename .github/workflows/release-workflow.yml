@@ -31,12 +31,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: |
-          git config --local user.email "k.himeno314@gmail.com"
-          git config --local user.name "Himenon"
-
           yarn install --frozen-lockfile
-          yarn version_up
-
           yarn build
           echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
 

@@ -3,32 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.9"></a>
+
+## [0.3.9](https://github.com/Himenon/code-dependency/compare/v0.3.8...v0.3.9) (2020-02-06)
+
+### Chores
+
+- **deps:** update dependencies ([4834458](https://github.com/Himenon/code-dependency/commit/4834458))
+
+### Continuous Integrations
+
+- change release flow ([e36c1a4](https://github.com/Himenon/code-dependency/commit/e36c1a4))
+- remove version up in release flow ([d7389b2](https://github.com/Himenon/code-dependency/commit/d7389b2))
+
 <a name="0.3.8"></a>
+
 ## 0.3.8 (2020-02-06)
 
 **Note:** Version bump only for package code-dependency
 
-
-
-
-
 <a name="0.3.7"></a>
+
 ## 0.3.7 (2020-02-05)
 
 **Note:** Version bump only for package code-dependency
 
-
-
-
-
 <a name="0.3.6"></a>
+
 ## 0.3.6 (2020-01-15)
 
 **Note:** Version bump only for package code-dependency
-
-
-
-
 
 <a name="0.3.5"></a>
 

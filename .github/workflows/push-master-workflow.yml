@@ -24,9 +24,8 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          git config --local user.email "k.himeno314@gmail.com"
-          git config --local user.name "Himenon"
           yarn install --frozen-lockfile
-          yarn version_up
+          yarn build
+          yarn test:ci
         env:
           CI: true

@@ -23,59 +23,69 @@ const filePathObjectList: FilePathObject[] = [
 const directoryResult: SideNavItem.Props[] = [
   {
     id: ".",
+    isDefaultOpen: true,
     name: "@code-dependency",
-    to: "",
+    to: "@code-dependency",
     items: [
       {
         id: ".",
+        isDefaultOpen: true,
         name: ".",
-        to: "",
+        to: ".",
         items: [
           {
             id: "./a",
+            isDefaultOpen: false,
             name: "a",
-            to: "",
+            to: "a",
             items: [
               {
                 id: "./a/b",
+                isDefaultOpen: false,
                 name: "b",
-                to: "",
+                to: "b",
                 items: [
                   {
                     id: "./a/b/c",
+                    isDefaultOpen: false,
                     name: "c",
-                    to: "",
+                    to: "c",
                     items: [
                       {
                         id: "./a/b/c/index.ts",
+                        isDefaultOpen: false,
                         name: "index.ts",
-                        to: "",
+                        to: "/project?pathname=.%2Fa%2Fb%2Fc%2Findex.ts",
                       },
                     ],
                   },
                   {
                     id: "./a/b/index.ts",
+                    isDefaultOpen: false,
                     name: "index.ts",
-                    to: "",
+                    to: "/project?pathname=.%2Fa%2Fb%2Findex.ts",
                   },
                 ],
               },
               {
                 id: "./a/index.ts",
+                isDefaultOpen: false,
                 name: "index.ts",
-                to: "",
+                to: "/project?pathname=.%2Fa%2Findex.ts",
               },
             ],
           },
           {
             id: "./app.ts",
+            isDefaultOpen: false,
             name: "app.ts",
-            to: "",
+            to: "/project?pathname=.%2Fapp.ts",
           },
           {
             id: "./index.ts",
+            isDefaultOpen: false,
             name: "index.ts",
-            to: "",
+            to: "/project?pathname=.%2Findex.ts",
           },
         ],
       },

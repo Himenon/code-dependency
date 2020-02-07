@@ -11,7 +11,6 @@ export interface Props {
 }
 
 export const create = (props: Props, csrProps: ClientSideRenderingProps) => {
-  const isClientRenderer = csrProps.rendererType === "client";
   return (
     <html lang="en">
       <head>
@@ -22,7 +21,9 @@ export const create = (props: Props, csrProps: ClientSideRenderingProps) => {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <script src={urljoin(csrProps.publicPath, routes.assets.path, manifest["scripts/react.production.min.js"])} />
         <script src={urljoin(csrProps.publicPath, routes.assets.path, manifest["scripts/react-dom.production.min.js"])} />
-        {isClientRenderer && <script src={urljoin(csrProps.publicPath, routes.assets.path, manifest["scripts/full.render.js"])} />}
+        {csrProps.rendererType === "client" && (
+          <script src={urljoin(csrProps.publicPath, routes.assets.path, manifest["scripts/full.render.js"])} />
+        )}
         <link href={urljoin(csrProps.publicPath, routes.assets.path, manifest["styles.css"])} rel="stylesheet" />
         <script
           dangerouslySetInnerHTML={{

@@ -22,7 +22,7 @@ export const create = (service: Service.Type, config: Config.Type, isDryRun: boo
       service.renderer.renderToString,
       config.filePathList,
       assets,
-      config.rendererType,
+      "server",
     );
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };

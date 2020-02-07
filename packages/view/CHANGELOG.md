@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+
+# [0.4.0](https://github.com/Himenon/code-dependency/compare/v0.3.9...v0.4.0) (2020-02-07)
+
+### Features
+
+- **view:** add client and server renderer ([6775e3d](https://github.com/Himenon/code-dependency/commit/6775e3d))
+- add error template ([144bf70](https://github.com/Himenon/code-dependency/commit/144bf70))
+- add rendererType ([ec1c4a8](https://github.com/Himenon/code-dependency/commit/ec1c4a8))
+- create svg element api ([07d3fd7](https://github.com/Himenon/code-dependency/commit/07d3fd7))
+- update svg-element api ([fd9d37d](https://github.com/Himenon/code-dependency/commit/fd9d37d))
+
 <a name="0.3.9"></a>
 
 ## [0.3.9](https://github.com/Himenon/code-dependency/compare/v0.3.8...v0.3.9) (2020-02-06)

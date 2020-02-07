@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+
+# [0.4.0](https://github.com/Himenon/code-dependency/packages/cli/compare/v0.3.9...v0.4.0) (2020-02-07)
+
+### Documentation
+
+- **cli:** update arguments ([4671ae0](https://github.com/Himenon/code-dependency/packages/cli/commit/4671ae0))
+- **cli:** update export static docs ([ebde7a8](https://github.com/Himenon/code-dependency/packages/cli/commit/ebde7a8))
+- update README ([b75167f](https://github.com/Himenon/code-dependency/packages/cli/commit/b75167f))
+
+### Features
+
+- **view:** add client and server renderer ([6775e3d](https://github.com/Himenon/code-dependency/packages/cli/commit/6775e3d))
+- add cli exception ([a3e8426](https://github.com/Himenon/code-dependency/packages/cli/commit/a3e8426))
+- add error template ([144bf70](https://github.com/Himenon/code-dependency/packages/cli/commit/144bf70))
+- add native dot engine ([4369d7d](https://github.com/Himenon/code-dependency/packages/cli/commit/4369d7d))
+- add redirect settings ([e48fb94](https://github.com/Himenon/code-dependency/packages/cli/commit/e48fb94))
+- add rendererType ([ec1c4a8](https://github.com/Himenon/code-dependency/packages/cli/commit/ec1c4a8))
+- create svg element api ([07d3fd7](https://github.com/Himenon/code-dependency/packages/cli/commit/07d3fd7))
+- enabled render over 300kb dot source ([35bd148](https://github.com/Himenon/code-dependency/packages/cli/commit/35bd148))
+- update svg-element api ([fd9d37d](https://github.com/Himenon/code-dependency/packages/cli/commit/fd9d37d))
+
 <a name="0.3.9"></a>
 
 ## [0.3.9](https://github.com/Himenon/code-dependency/packages/cli/compare/v0.3.8...v0.3.9) (2020-02-06)

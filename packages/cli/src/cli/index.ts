@@ -1,5 +1,5 @@
 import commander from "commander";
-import { SourcePathInvalidError } from "../exceptions";
+import { SourcePathInvalidError, CliArgumentError } from "../exceptions";
 import * as PathFactory from "./PathFactory";
 
 const isInvalidPath = require("is-invalid-path");
@@ -22,6 +22,12 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
   }
   if (args["tsConfig"] && isInvalidPath(args["source"])) {
     throw new SourcePathInvalidError("`--source` arguments does not selected.");
+  }
+  if ("exportStatic" in args && typeof args["exportStatic"] !== "string") {
+    throw new CliArgumentError("`--export-static` require 1 string argument.");
+  }
+  if ("publicPath" in args && typeof args["publicPath"] !== "string") {
+    throw new CliArgumentError("`--public-path` require 1 string argument.");
   }
   return {
     source: PathFactory.create({ source: args["source"] }),

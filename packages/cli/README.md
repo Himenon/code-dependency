@@ -83,6 +83,8 @@ Directory Structure
 
 Use native graphviz engine. (https://www.graphviz.org/)
 
+Option: `dot` (recommended)
+
 ```bash
 code-dependency --source ./src --exclude node_modules --export-static ./docs --public-path /docs --engine dot
 ```

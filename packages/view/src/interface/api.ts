@@ -18,9 +18,16 @@ export interface GraphRequestData {
 export type GraphRequest = ApiRequest<GraphRequestData>;
 
 export interface GraphResponseData {
-  element: string;
+  dotSource: string;
 }
+
 export type GraphResponse = ApiResponse<GraphResponseData>;
+
+export interface SvgResponseData {
+  svgElement: string;
+}
+
+export type SvgResponse = ApiResponse<SvgResponseData>;
 
 export interface PathsResponseData {
   pathList: FilePathObject[];
@@ -29,6 +36,8 @@ export interface PathsResponseData {
 export type PathsResponse = ApiResponse<PathsResponseData>;
 
 export interface Client {
-  getGraph: (data: GraphRequestData) => Promise<GraphResponse | undefined>;
+  getDotSource: (data: GraphRequestData) => Promise<GraphResponse | undefined>;
+  getSvgElement: (data: GraphRequestData) => Promise<SvgResponse | undefined>;
   getPaths: () => Promise<PathsResponse | undefined>;
+  renderString: (dotSource: string) => Promise<string>;
 }

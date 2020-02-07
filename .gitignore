@@ -11,3 +11,20 @@ private_npm_cache
 buildcache/
 bin/*.js
 .npmrc
+
+### packages/cli
+
+packages/cli/lib
+packages/cli/coverage
+packages/cli/node_modules
+packages/cli/package-lock.json
+packages/cli/.env*
+packages/cli/*.log
+packages/cli/private_npm_cache
+packages/cli/data/
+packages/cli/dist/
+packages/cli/output
+
+### packages/view
+
+packages/view/dist

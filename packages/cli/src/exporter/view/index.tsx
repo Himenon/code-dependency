@@ -1,7 +1,7 @@
 import * as Template from "./template";
-import Viz from "viz.js";
+
 import { ServerSideRenderingProps, FilePathObject, ClientSideRenderingProps } from "@code-dependency/view";
-import { Module, render } from "viz.js/full.render.js";
+
 import manifest from "@code-dependency/view/dist/manifest.json";
 import { isValidUrl } from "../../utils";
 import { routes } from "../../constants/router";
@@ -32,12 +32,12 @@ export const create = async (
   publicPath: string,
   selectedPathname: string,
   dotSource: string,
+  renderToString: (dotSource: string) => Promise<string>,
   filePathList: FilePathObject[],
   assets: Assets,
+  rendererType: "client" | "server",
 ) => {
-  const viz = new Viz({ Module, render });
-  const data = await viz.renderString(dotSource);
-
+  const svgElement = await renderToString(dotSource);
   const pagePathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
 
   const ssr: ServerSideRenderingProps = {
@@ -48,10 +48,11 @@ export const create = async (
     publicPathname: routes.project.path,
     pagePathname,
     sourceType: "svg",
-    svgData: data,
+    svgElement,
     filePathList,
+    rendererType,
     injection: {
-      createSvgString: (source: string) => viz.renderString(source),
+      createSvgString: (source: string) => renderToString(source),
       client: undefined,
     },
   };
@@ -73,7 +74,8 @@ export const create = async (
     workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
     assetBaseUrl: urljoin(publicPath, routes.assets.path),
     sourceType: "svg",
-    svgData: data,
+    svgElement,
+    rendererType,
     filePathList,
   };
 

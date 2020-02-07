@@ -20,8 +20,9 @@ export interface ShareRenderingProps {
   publicPath: string;
   publicPathname: string;
   pagePathname: string;
-  svgData: string | undefined;
+  svgElement: string | undefined;
   filePathList: FilePathObject[];
+  rendererType: "client" | "server";
 }
 
 export interface ServerSideRenderingProps extends ShareRenderingProps {

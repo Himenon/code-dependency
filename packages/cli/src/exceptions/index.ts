@@ -6,3 +6,5 @@ abstract class BaseCustomError extends Error {
 }
 
 export class SourcePathInvalidError extends BaseCustomError {}
+
+export class CliArgumentError extends BaseCustomError {}

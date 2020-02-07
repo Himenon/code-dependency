@@ -9,6 +9,9 @@ import * as ApiController from "./ApiController";
 import { routes } from "../constants/router";
 
 export const create = (app: express.Application, service: Service.Type, config: Config.Type) => {
+  app.get(routes.index.path, (req, res) => {
+    res.redirect(routes.project.path);
+  });
   app.use(routes.project.path, ProjectController.create(service, config));
   app.use(routes.assets.path, AssetController.create());
   app.use(routes.api.path, ApiController.create(service, config));

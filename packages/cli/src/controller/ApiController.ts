@@ -17,12 +17,28 @@ export const createApiResponse = <T>(data: T): Api.ApiResponse<T> => {
 export const create = (service: Service.Type, config: Config.Type) => {
   const router = express.Router();
 
-  router.post("/graph", async (req, res) => {
+  router.post("/dot-source", async (req, res) => {
     const filename = path.join(config.absoluteRootDirPath, req.body.path);
     try {
-      const dot = service.dependencyCruiser.getDependenciesDot(filename);
+      const dotSource = service.dependencyCruiser.getDependenciesDot(filename);
       const data = createApiResponse<Api.GraphResponseData>({
-        element: dot,
+        dotSource,
+      });
+      res.json(data);
+    } catch (error) {
+      res.status(500).send(error.message);
+      logger.error(error);
+      res.end();
+    }
+  });
+
+  router.post("/svg-element", async (req, res) => {
+    const filename = path.join(config.absoluteRootDirPath, req.body.path);
+    try {
+      const dotSource = service.dependencyCruiser.getDependenciesDot(filename);
+      const svgElement = await service.renderer.renderToString(dotSource);
+      const data = createApiResponse<Api.SvgResponseData>({
+        svgElement,
       });
       res.json(data);
     } catch (error) {

@@ -22,7 +22,7 @@ export const create = ({ context = process.cwd(), source }: Params) => {
     original: source,
     binRelativePath: path.relative(__dirname, source),
     rootDir: path.dirname(absolutePath),
-    rootAbsolutePath: absolutePath,
+    absoluteRootPath: absolutePath,
   };
 };
 

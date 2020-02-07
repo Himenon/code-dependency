@@ -35,8 +35,9 @@ export const create = async (
   renderToString: (dotSource: string) => Promise<string>,
   filePathList: FilePathObject[],
   assets: Assets,
+  rendererType: "client" | "server",
 ) => {
-  const data = await renderToString(dotSource);
+  const svgElement = await renderToString(dotSource);
   const pagePathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
 
   const ssr: ServerSideRenderingProps = {
@@ -47,8 +48,9 @@ export const create = async (
     publicPathname: routes.project.path,
     pagePathname,
     sourceType: "svg",
-    svgElement: data,
+    svgElement,
     filePathList,
+    rendererType,
     injection: {
       createSvgString: (source: string) => renderToString(source),
       client: undefined,
@@ -72,7 +74,8 @@ export const create = async (
     workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
     assetBaseUrl: urljoin(publicPath, routes.assets.path),
     sourceType: "svg",
-    svgElement: data,
+    svgElement,
+    rendererType,
     filePathList,
   };
 

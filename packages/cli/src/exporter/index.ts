@@ -14,7 +14,16 @@ export const create = (service: Service.Type, config: Config.Type, isDryRun: boo
   const generateStaticHtml = async (pathname: string, publicPath: string, assets: View.Assets): Promise<string> => {
     const url = path.join("/", pathname.replace(path.extname(pathname), ""));
     const dotSource = service.dependencyCruiser.getDependenciesDot(path.join(config.absoluteRootDirPath, pathname));
-    const view = await View.create(url, publicPath, pathname, dotSource, service.renderer.renderToString, config.filePathList, assets);
+    const view = await View.create(
+      url,
+      publicPath,
+      pathname,
+      dotSource,
+      service.renderer.renderToString,
+      config.filePathList,
+      assets,
+      config.rendererType,
+    );
     return "<!DOCTYPE html>" + ReactDOM.renderToStaticMarkup(view);
   };
 

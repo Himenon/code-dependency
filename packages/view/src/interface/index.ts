@@ -22,6 +22,7 @@ export interface ShareRenderingProps {
   pagePathname: string;
   svgElement: string | undefined;
   filePathList: FilePathObject[];
+  rendererType: "client" | "server";
 }
 
 export interface ServerSideRenderingProps extends ShareRenderingProps {
@@ -29,7 +30,6 @@ export interface ServerSideRenderingProps extends ShareRenderingProps {
 }
 
 export interface ClientSideRenderingProps extends ShareRenderingProps {
-  renderer: "client" | "server";
   assetBaseUrl: string;
   workerUrl: string;
 }

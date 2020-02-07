@@ -2,6 +2,7 @@ import * as path from "path";
 import { FilePathObject } from "@code-dependency/view";
 
 export interface Type {
+  rendererType: "client" | "server";
   server: {
     port: number;
   };
@@ -11,8 +12,16 @@ export interface Type {
   filePathList: FilePathObject[];
 }
 
-export const create = (port: number, absoluteRootPath: string, filePathList: FilePathObject[]): Type => {
+export interface Params {
+  rendererType: "client" | "server";
+  port: number;
+  absoluteRootPath: string;
+  filePathList: FilePathObject[];
+}
+
+export const create = ({ rendererType, port, absoluteRootPath, filePathList }: Params): Type => {
   return {
+    rendererType,
     server: {
       port,
     },

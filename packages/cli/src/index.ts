@@ -12,19 +12,24 @@ import * as Config from "./config";
 
 const main = async () => {
   const args = Cli.executeCommandLine();
-  const pathList = await gather(args.source.rootAbsolutePath);
+  const pathList = await gather(args.source.absoluteRootPath);
 
   const filePathList = pathList.map(pathname => ({
     source: path.relative(args.source.rootDir, pathname),
   }));
-  const config = Config.create(args.port, args.source.rootAbsolutePath, filePathList);
-  const tsconfigFilePath = args.tsConfig && args.tsConfig.rootAbsolutePath;
+  const config = Config.create({
+    port: args.port,
+    absoluteRootPath: args.source.absoluteRootPath,
+    filePathList,
+    rendererType: args.engine === "dot" ? "server" : "client",
+  });
+  const tsconfigFilePath = args.tsConfig && args.tsConfig.absoluteRootPath;
   const webpackConfigPath = args.webpackConfig && args.webpackConfig.binRelativePath;
   const service = await Service.create({ tsconfigFilePath, webpackConfigPath, exclude: args.exclude, engine: args.engine });
 
   if (args.exportStatic) {
     const exporter = Exporter.create(service, config, args.dryRun);
-    await exporter.generateStaticHtml(args.publicPath || "/", args.exportStatic.rootAbsolutePath);
+    await exporter.generateStaticHtml(args.publicPath || "/", args.exportStatic.absoluteRootPath);
   } else {
     const server = createServer(service, config);
     logger.info(`Start: http://localhost:${args.port}/project`);

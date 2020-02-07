@@ -3,13 +3,13 @@ import * as ClientRenderer from "./ClientRenderer";
 
 export interface Params {
   baseUrl: string;
-  isClientRenderer: boolean;
+  rendererType: "client" | "server";
   isServer: boolean;
   workerURL: string;
 }
 
-export const create = async ({ baseUrl, isClientRenderer, isServer, workerURL }: Params): Promise<Api.Client> => {
-  const clientRenderer = await ClientRenderer.create(isClientRenderer, workerURL);
+export const create = async ({ baseUrl, rendererType, isServer, workerURL }: Params): Promise<Api.Client> => {
+  const clientRenderer = await ClientRenderer.create(rendererType, workerURL);
   const getDotSource = async (data: Api.GraphRequestData): Promise<Api.GraphResponse | undefined> => {
     if (isServer) {
       return undefined;
@@ -65,15 +65,16 @@ export const create = async ({ baseUrl, isClientRenderer, isServer, workerURL }:
     getDotSource,
     getSvgElement,
     getPaths,
-    renderString: isClientRenderer
-      ? clientRenderer.renderString
-      : async (dotSource: string) => {
-          const res = await getSvgElement({ path: dotSource });
-          if (res) {
-            return res.data.svgElement;
-          }
-          return "";
-        },
+    renderString:
+      rendererType === "client"
+        ? clientRenderer.renderString
+        : async (dotSource: string) => {
+            const res = await getSvgElement({ path: dotSource });
+            if (res) {
+              return res.data.svgElement;
+            }
+            return "";
+          },
   };
 };
 

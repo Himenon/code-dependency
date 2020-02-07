@@ -34,11 +34,16 @@ export interface State {
    * @example /project
    */
   pagePathname: string;
+  /**
+   * SVGのrenderingを行う場所がclientかserverか
+   */
+  rendererType: "client" | "server";
 }
 
 export const DEFAULT_STATE: State = {
   isServer: false,
   isStatic: false,
+  rendererType: "client",
   publicPath: "/",
   svgSource: undefined,
   filePathList: [],

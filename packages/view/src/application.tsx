@@ -4,30 +4,44 @@ import { ServerSideRenderingProps, ClientSideRenderingProps } from "@app/interfa
 import { RootRouter } from "./router";
 import * as Api from "./api";
 
-const restoreSvgData = async (pathname: string | undefined, client: Api.Client): Promise<string | undefined> => {
+const restoreSvgData = async (
+  pathname: string | undefined,
+  client: Api.Client,
+  rendererType: "client" | "server",
+): Promise<string | undefined> => {
   if (!pathname) {
     return;
   }
-  const graphResponse = await client.getDotSource({ path: pathname });
-  const source = (graphResponse && graphResponse.data.dotSource) || "select file from left menu.";
-  return await client.renderString(source);
+  if (rendererType === "client") {
+    const graphResponse = await client.getDotSource({ path: pathname });
+    const source = (graphResponse && graphResponse.data.dotSource) || "select file from left menu.";
+    return await client.renderString(source);
+  } else {
+    const res = await client.getSvgElement({ path: pathname });
+    return res && res.data.svgElement;
+  }
 };
 
 const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
   if (process.env.isProduction) {
     const csrProps: ClientSideRenderingProps = (window as any).__INITIAL_PROPS__;
-    const isClientRenderer = csrProps.renderer === "client";
-    const client = await Api.create({ baseUrl: csrProps.assetBaseUrl, isClientRenderer, isServer: false, workerURL: csrProps.workerUrl });
+    const client = await Api.create({
+      baseUrl: csrProps.assetBaseUrl,
+      rendererType: csrProps.rendererType,
+      isServer: false,
+      workerURL: csrProps.workerUrl,
+    });
     return {
       isServer: false,
       isStatic: csrProps.isStatic,
       sourceType: csrProps.sourceType,
-      svgElement: csrProps.svgElement || (await restoreSvgData(csrProps.selectedPathname, client)),
+      svgElement: csrProps.svgElement || (await restoreSvgData(csrProps.selectedPathname, client, csrProps.rendererType)),
       filePathList: csrProps.filePathList,
       publicPath: csrProps.publicPath,
       publicPathname: csrProps.publicPathname,
       pagePathname: csrProps.pagePathname,
       selectedPathname: csrProps.selectedPathname,
+      rendererType: csrProps.rendererType,
       injection: {
         createSvgString: (source: string) => client.renderString(source),
         client,
@@ -37,7 +51,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
     const client = await Api.create({
       baseUrl: "http://localhost:3000",
       isServer: false,
-      isClientRenderer: true,
+      rendererType: "client",
       workerURL: process.env.workerURL!,
     });
     const res = await client.getPaths();
@@ -54,6 +68,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       pagePathname: "/project",
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
+      rendererType: "client",
       svgElement: await client.renderString(source),
       injection: {
         createSvgString: (source: string) => client.renderString(source),

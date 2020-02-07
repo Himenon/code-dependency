@@ -36,6 +36,7 @@
     "export:static": "node ./bin/code-dependency.js --source ./src --exclude node_modules --export-static ./output --public-path http://localhost:5000/output",
     "generate:docs": "node ./bin/code-dependency.js --source ./src --exclude node_modules --export-static ../../docs --public-path https://himenon.github.io/code-dependency/",
     "server": "nodemon ./bin/code-dependency.js --source ./src --exclude node_modules",
+    "server2": "nodemon ./bin/code-dependency.js --source ./src --engine dot --exclude node_modules",
     "start": "run-p develop server",
     "test": "jest -c jest.config.json && yarn export:static",
     "test:ci": "jest -c jest.config.json --no-cache --ci && yarn export:static",

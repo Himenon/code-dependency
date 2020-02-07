@@ -2,8 +2,8 @@ export interface Renderer {
   renderString: (dotSource: string) => Promise<string>;
 }
 
-export const create = async (isClient: boolean, workerURL: string) => {
-  if (isClient) {
+export const create = async (rendererType: "client" | "server", workerURL: string) => {
+  if (rendererType === "client") {
     const Viz = (await import("viz.js")).default;
     const viz = new Viz({ workerURL });
     return {

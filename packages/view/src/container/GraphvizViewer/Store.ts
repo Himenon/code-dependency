@@ -2,7 +2,7 @@ import * as Domain from "@app/domain";
 
 export const generateStore = (stores: Domain.Graphviz.Stores) => {
   return {
-    svgSource: stores.graphviz.state.svgSource,
+    svgElement: stores.graphviz.state.svgElement,
   };
 };
 

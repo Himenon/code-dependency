@@ -157,12 +157,12 @@ export const generateStore = (domainStores: Domain.Graphviz.Stores, { client, cr
         const res = await client.getDotSource({ path: selectedPathname });
         if (res) {
           const graph = await createSvgString(res.data.dotSource);
-          domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, graphvizSource: graph });
+          domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, svgElement: graph });
         }
       } else if (domainStores.graphviz.state.rendererType === "server") {
         const res = await client.getSvgElement({ path: selectedPathname });
         if (res) {
-          domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, graphvizSource: res.data.svgElement });
+          domainStores.graphviz.dispatch({ type: "UPDATE_SELECTED_FILE_PATH", selectedPathname, svgElement: res.data.svgElement });
         }
       }
     } catch (error) {

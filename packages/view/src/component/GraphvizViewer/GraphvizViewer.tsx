@@ -1,17 +1,17 @@
 import * as React from "react";
 
 interface GraphvizViewerProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  svgSource: string | undefined;
+  svgElement: string | undefined;
 }
 
-const GraphvizViewer = ({ svgSource, ...props }: GraphvizViewerProps) => {
-  if (typeof svgSource !== "string") {
+const GraphvizViewer = ({ svgElement, ...props }: GraphvizViewerProps) => {
+  if (typeof svgElement !== "string") {
     return <div>Now loading ....</div>;
   }
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: svgSource,
+        __html: svgElement,
       }}
     />
   );

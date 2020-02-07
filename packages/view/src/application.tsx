@@ -48,17 +48,16 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       },
     };
   } else {
+    const rendererType = "server";
     const client = await Api.create({
       baseUrl: "http://localhost:3000",
       isServer: false,
-      rendererType: "client",
+      rendererType,
       workerURL: process.env.workerURL!,
     });
     const res = await client.getPaths();
     const query = new URLSearchParams(window.location.search);
     const pathname = query.get("pathname") || undefined;
-    const graphResponse = !!pathname && (await client.getDotSource({ path: pathname }));
-    const source = (graphResponse && graphResponse.data.dotSource) || "digraph { a -> b }";
     return {
       isServer: false,
       isStatic: false,
@@ -68,8 +67,8 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       pagePathname: "/project",
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
-      rendererType: "client",
-      svgElement: await client.renderString(source),
+      rendererType,
+      svgElement: await restoreSvgData(pathname, client, rendererType),
       injection: {
         createSvgString: (source: string) => client.renderString(source),
         client,

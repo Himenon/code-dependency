@@ -13,7 +13,7 @@ export interface State {
   /**
    * SVG rendering用のsource
    */
-  svgSource: string | undefined;
+  svgElement: string | undefined;
   /**
    * 現在ページで選択されている pathname
    */
@@ -45,7 +45,7 @@ export const DEFAULT_STATE: State = {
   isStatic: false,
   rendererType: "client",
   publicPath: "/",
-  svgSource: undefined,
+  svgElement: undefined,
   filePathList: [],
   selectedPathname: undefined,
   pagePathname: "/project",

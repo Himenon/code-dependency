@@ -9,7 +9,7 @@ export interface UpdateGraphvizSource {
 export interface UpdateSelectedFilePath {
   type: "UPDATE_SELECTED_FILE_PATH";
   selectedPathname: string;
-  graphvizSource: string;
+  svgElement: string;
 }
 
 export interface UpdatePageParams {

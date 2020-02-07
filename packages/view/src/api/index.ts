@@ -33,7 +33,7 @@ export const create = async ({ baseUrl, rendererType, isServer, workerURL }: Par
 
   const getSvgElement = async (data: Api.GraphRequestData): Promise<Api.SvgResponse | undefined> => {
     try {
-      const res = await fetch(baseUrl + "/api/svg", {
+      const res = await fetch(baseUrl + "/api/svg-element", {
         method: "POST",
         mode: "cors",
         headers: {

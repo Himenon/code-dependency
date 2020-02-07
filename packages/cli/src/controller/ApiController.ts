@@ -32,10 +32,10 @@ export const create = (service: Service.Type, config: Config.Type) => {
     }
   });
 
-  router.post("/svg", async (req, res) => {
+  router.post("/svg-element", async (req, res) => {
     const filename = path.join(config.absoluteRootDirPath, req.body.path);
     try {
-      const dotSource = service.dependencyCruiser.getDependenciesDot(path.join(config.absoluteRootDirPath, filename));
+      const dotSource = service.dependencyCruiser.getDependenciesDot(filename);
       const svgElement = await service.renderer.renderToString(dotSource);
       const data = createApiResponse<Api.SvgResponseData>({
         svgElement,

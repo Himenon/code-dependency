@@ -15,7 +15,7 @@ export const create = async ({ baseUrl, isClientRenderer, isServer, workerURL }:
       return undefined;
     }
     try {
-      const res = await fetch(baseUrl + "/api/graph", {
+      const res = await fetch(baseUrl + "/api/dot-source", {
         method: "POST",
         mode: "cors",
         headers: {

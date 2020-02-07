@@ -47,7 +47,7 @@ export const create = async (
     publicPathname: routes.project.path,
     pagePathname,
     sourceType: "svg",
-    svgData: data,
+    svgElement: data,
     filePathList,
     injection: {
       createSvgString: (source: string) => renderToString(source),
@@ -72,7 +72,7 @@ export const create = async (
     workerUrl: urljoin(publicPath, assets["scripts/full.render.js"]),
     assetBaseUrl: urljoin(publicPath, routes.assets.path),
     sourceType: "svg",
-    svgData: data,
+    svgElement: data,
     filePathList,
   };
 

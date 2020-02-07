@@ -22,7 +22,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       isServer: false,
       isStatic: csrProps.isStatic,
       sourceType: csrProps.sourceType,
-      svgData: csrProps.svgData || (await restoreSvgData(csrProps.selectedPathname, client)),
+      svgElement: csrProps.svgElement || (await restoreSvgData(csrProps.selectedPathname, client)),
       filePathList: csrProps.filePathList,
       publicPath: csrProps.publicPath,
       publicPathname: csrProps.publicPathname,
@@ -54,7 +54,7 @@ const getInitialProps = async (): Promise<ServerSideRenderingProps> => {
       pagePathname: "/project",
       filePathList: res ? res.data.pathList : [],
       sourceType: "svg",
-      svgData: await client.renderString(source),
+      svgElement: await client.renderString(source),
       injection: {
         createSvgString: (source: string) => client.renderString(source),
         client,

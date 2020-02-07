@@ -21,7 +21,7 @@ export const Container: React.FC<ServerSideRenderingProps & Router.HoCProps> = p
     isServer: props.isServer,
     isStatic: props.isStatic,
     publicPath: props.publicPath,
-    svgSource: props.svgData,
+    svgSource: props.svgElement,
     filePathList: props.filePathList,
     selectedPathname: props.selectedPathname,
     publicPathname: props.publicPathname,

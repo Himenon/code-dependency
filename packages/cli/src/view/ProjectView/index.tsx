@@ -11,6 +11,7 @@ import * as Template from "./template";
 import * as Service from "../../service";
 
 export interface Props {
+  isClientRenderer: boolean;
   serverUrl: string;
   pathname: string;
   publicPath: string;
@@ -20,8 +21,9 @@ export interface Props {
   filePathList: FilePathObject[];
 }
 
-export const create = async ({ url, serverUrl, context, pathname, publicPath, filePathList }: Props) => {
-  const client = ApiClient.create(serverUrl, true);
+export const create = async ({ url, serverUrl, isClientRenderer, context, pathname, publicPath, filePathList }: Props) => {
+  const workerURL = urljoin(publicPath, "assets", manifest["scripts/full.render.js"]);
+  const client = await ApiClient.create({ baseUrl: serverUrl, isClientRenderer, isServer: true, workerURL });
 
   const publicPathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
   const ssrProps: ServerSideRenderingProps = {
@@ -33,7 +35,7 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
     pagePathname: routes.project.path,
     sourceType: "svg",
     filePathList,
-    svgData: undefined,
+    svgElement: undefined,
     injection: {
       createSvgString: (source: string) => Promise.resolve(source),
       client,
@@ -47,17 +49,18 @@ export const create = async ({ url, serverUrl, context, pathname, publicPath, fi
   return Template.create(
     { body },
     {
-      assetBaseUrl: serverUrl,
-      sourceType: "svg",
-      svgData: undefined,
-      filePathList,
       isServer: true,
+      isStatic: false,
       selectedPathname: pathname,
+      sourceType: "svg",
+      svgElement: undefined,
+      filePathList,
       publicPath,
       publicPathname: routes.project.path,
       pagePathname: publicPathname,
-      isStatic: false,
-      workerUrl: urljoin(publicPath, "assets", manifest["scripts/full.render.js"]),
+      renderer: isClientRenderer ? "client" : "server",
+      assetBaseUrl: serverUrl,
+      workerUrl: workerURL,
     },
   );
 };

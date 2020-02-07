@@ -18,7 +18,24 @@ const createViz = (): Renderer => {
 const createNativeDot = (): Renderer => {
   return {
     renderToString: async (dotSource: string) => {
-      return execSync(`echo '${dotSource}' | dot -T svg`).toString();
+      try {
+        return execSync(`echo '${dotSource}' | dot -T svg`, { encoding: "utf-8" })
+          .toString()
+          .trim();
+      } catch (error) {
+        const stringkb = Buffer.byteLength(dotSource, "utf8") / 1000;
+        return `<h3>Transform Error!</h3>
+          <ul>
+            <li>Error Code: ${error.code}</li>
+            <li>Reason : ${error.code === "E2BIG" ? "Very Large input !" : "unknown error."}</li>
+            <li>Size: ${stringkb} KB</li>
+          </ul>
+          <section>
+            <h3>dot source</h3>
+            <code><pre>${dotSource}</pre></code>
+          </section>
+        `;
+      }
     },
   };
 };

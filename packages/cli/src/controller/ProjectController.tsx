@@ -15,7 +15,8 @@ export const create = (service: Service.Type, config: Config.Type) => {
 
   router.get("/", async (req, res) => {
     const serverUrl = `${req.protocol}://${req.hostname}:${config.server.port}`;
-    const svgElement = config.rendererType === "client" ? undefined : await createSvgElement(req.query.pathname);
+    const pathname: string | undefined = req.query.pathname;
+    const svgElement = config.rendererType === "client" ? undefined : pathname && (await createSvgElement(req.query.pathname));
     try {
       const props: ProjectView.Props = {
         rendererType: config.rendererType,

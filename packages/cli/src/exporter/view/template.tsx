@@ -33,7 +33,7 @@ export const create = ({ assets, context, url, ...props }: Props, csrProps: Clie
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <script src={assets.scripts.react} />
         <script src={assets.scripts["react-dom"]} />
-        <script src={assets.scripts["full.render.js"]}></script>
+        {props.ssr.rendererType === "client" && <script src={assets.scripts["full.render.js"]} />}
         <link href={assets.stylesheets.styles} rel="stylesheet" />
         <script
           dangerouslySetInnerHTML={{

@@ -24,7 +24,6 @@ export interface Props {
 
 export const create = async ({ url, serverUrl, svgElement, rendererType, context, pathname, publicPath, filePathList }: Props) => {
   const workerURL = urljoin(publicPath, "assets", manifest["scripts/full.render.js"]);
-  const client = await ApiClient.create({ baseUrl: serverUrl, rendererType, isServer: true, workerURL });
 
   const publicPathname = isValidUrl(publicPath) ? new URL(publicPath).pathname : publicPath;
   const ssrProps: ServerSideRenderingProps = {
@@ -40,7 +39,7 @@ export const create = async ({ url, serverUrl, svgElement, rendererType, context
     rendererType,
     injection: {
       createSvgString: (source: string) => Promise.resolve(source),
-      client,
+      client: undefined,
     },
   };
   const body = (

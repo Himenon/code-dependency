@@ -25,7 +25,7 @@ export const gather = async (projectRoot: string): Promise<string[]> => {
     },
   ]);
   return filePathList.filter(pathname => {
-    return fs.existsSync(pathname) && fs.statSync(pathname).isFile() && [".js", ".jsx", ".ts", ".tsx"].includes(path.extname(pathname));
+    return fs.existsSync(pathname) && fs.statSync(pathname).isFile() && [".js", ".jsx", ".ts", ".tsx", ".vue"].includes(path.extname(pathname));
   });
 };
 

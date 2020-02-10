@@ -1,6 +1,6 @@
 {
   "name": "@code-dependency/cli",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "It is a command line tool for using code-dependency library.",
   "keywords": [],
   "homepage": "https://github.com/Himenon/code-dependency#readme",
@@ -44,7 +44,7 @@
     "ts": "ts-node -P tsconfig.json"
   },
   "dependencies": {
-    "@code-dependency/view": "^0.4.1",
+    "@code-dependency/view": "^0.5.0",
     "commander": "4.0.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",

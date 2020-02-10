@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.5.0"></a>
+
+# [0.5.0](https://github.com/Himenon/code-dependency/compare/v0.4.1...v0.5.0) (2020-02-10)
+
+### Features
+
+- update dependnecy-cruiser@v7 and add libcheck ([fff7800](https://github.com/Himenon/code-dependency/commit/fff7800))
+
 <a name="0.4.1"></a>
 
 ## [0.4.1](https://github.com/Himenon/code-dependency/compare/v0.4.0...v0.4.1) (2020-02-07)

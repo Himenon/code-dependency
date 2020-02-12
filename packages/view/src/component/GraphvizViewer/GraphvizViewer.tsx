@@ -15,15 +15,30 @@ const GraphvizViewer = ({ svgElement, ...props }: GraphvizViewerProps) => {
   }
   return (
     <div {...props}>
-      <TransformWrapper options={{ minScale: 0.1 }}>
-        <TransformComponent>
-          <div
-            className={classNames.viewer}
-            dangerouslySetInnerHTML={{
-              __html: svgElement,
-            }}
-          />
-        </TransformComponent>
+      <TransformWrapper defaultScale={1} options={{ minScale: 0.1 }}>
+        {({ zoomIn, zoomOut, resetTransform, ...rest }: any) => (
+          <React.Fragment>
+            <div className={classNames.tool}>
+              <button className={classNames.button} onClick={zoomIn}>
+                ZOOM IN
+              </button>
+              <button className={classNames.button} onClick={zoomOut}>
+                ZOOM OUT
+              </button>
+              <button className={classNames.button} onClick={resetTransform}>
+                RESET
+              </button>
+            </div>
+            <TransformComponent>
+              <div
+                className={classNames.viewer}
+                dangerouslySetInnerHTML={{
+                  __html: svgElement,
+                }}
+              />
+            </TransformComponent>
+          </React.Fragment>
+        )}
       </TransformWrapper>
     </div>
   );

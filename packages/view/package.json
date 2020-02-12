@@ -36,6 +36,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "react-zoom-pan-pinch": "^1.6.1",
     "urljoin": "^0.1.5",
     "viz.js": "^2.1.2"
   },

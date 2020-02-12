@@ -1,8 +1,5 @@
-import * as FileTree from "./FileTree/FileTree";
+import * as FileTree from "./FileTree/SideNav";
 export { FileTree };
-
-import * as SideNav from "./FileTree/SideNav";
-export { SideNav };
 
 import * as SideNavItem from "./FileTree/SideNavItem";
 export { SideNavItem };

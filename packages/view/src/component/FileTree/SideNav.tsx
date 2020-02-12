@@ -1,7 +1,9 @@
 import * as React from "react";
 import * as SideNavItem from "./SideNavItem";
 
-interface SideNavProps {
+type NavProps = JSX.IntrinsicElements["nav"];
+
+interface SideNavProps extends NavProps {
   items: SideNavItem.Props[];
 }
 
@@ -23,10 +25,10 @@ const TreeItem = (props: TreeItemProps) => {
   return <>{elements}</>;
 };
 
-const SideNav = (props: SideNavProps) => {
+const SideNav = ({ items, ...props }: SideNavProps) => {
   return (
-    <nav>
-      <TreeItem {...{ items: props.items, depth: 0 }} />
+    <nav {...props}>
+      <TreeItem {...{ items, depth: 0 }} />
     </nav>
   );
 };

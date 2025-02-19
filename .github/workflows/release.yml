@@ -1,0 +1,71 @@
+name: Release Workflow
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - uses: ./.github/actions/initialize
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          registry-url: https://npm.pkg.github.com
+          scope: "@Himenon"
+          cache: "pnpm"
+      - run: pnpm i --frozen-lockfile
+      - run: |
+          pnpm build
+
+  release-github-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - uses: ./.github/actions/initialize
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          registry-url: https://npm.pkg.github.com
+          scope: "@Himenon"
+          cache: "pnpm"
+      - run: pnpm install
+      - run: |
+          pnpm build
+          pnpm run release:github:registry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release-npm-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm build
+      - run: NPM_CONFIG_PROVENANCE=true pnpm run release:npm:registry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
